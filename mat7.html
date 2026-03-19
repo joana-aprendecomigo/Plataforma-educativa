@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="3ponto14 — Centro de Estudos. Recursos interativos, exercícios, fichas e explicações para Matemática 7.º ano, alinhados com o currículo português.">
+<meta name="theme-color" content="#516860">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="3ponto14 · Centro de Estudos">
+<meta property="og:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://3ponto14.pt/mat7">
+<meta property="og:image" content="https://3ponto14.pt/og-mat7.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3ponto14 · Centro de Estudos">
+<meta name="twitter:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
+<meta name="twitter:image" content="https://3ponto14.pt/og-mat7.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23516860'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='serif'>eP</text></svg>">
+<title>Matemática 7.º Ano · 3ponto14</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ico-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="ico-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></symbol>
+  <symbol id="ico-telescope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/><path d="m13.56 11.747 4.332-.924"/><path d="m16 21-3.105-6.21"/><path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"/><path d="m6.158 8.633 1.114 4.456"/><path d="m8 21 3.105-6.21"/></symbol>
+  <symbol id="ico-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16.5h10"/></symbol>
+  <symbol id="ico-graduation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="ico-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></symbol>
+  <symbol id="ico-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></symbol>
+  <symbol id="ico-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+  <symbol id="ico-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="ico-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="ico-dices" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6.08"/><path d="M6 18h.01"/><path d="M10 14h.01"/><path d="M15 6h.01"/><path d="M18.5 9.5h.01"/></symbol>
+  <symbol id="ico-gamepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></symbol>
+  <symbol id="ico-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="ico-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol>
+  <symbol id="ico-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+  <symbol id="ico-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ico-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></symbol>
+  <symbol id="ico-triangle-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5 4 19l-1.414-1.414L8.5 11.672V7.828L6 5.414l1.414-1.414 3.086 3.086V14.5z"/><path d="M14.5 8.5 19 4l1.414 1.414-5.914 5.914h3.844L20.758 13.742l-1.414 1.414-3.086-3.086H8.5"/><path d="m2.586 19.414 2-2"/></symbol>
+  <symbol id="ico-hash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol>
+  <symbol id="ico-square-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="ico-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol>
+  <symbol id="ico-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="ico-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></symbol>
+  <symbol id="ico-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></symbol>
+</svg>
+
+<!-- UX: Scroll to top + Section indicator -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+<div class="section-indicator" id="sectionIndicator"></div>
+
+
+
+<div id="view-mat7" class="math-view" >
+
+
+<!-- ── Top bar ── -->
+<div class="mat7-hub-bar">
+  <button class="mat7-hub-bar-back" onclick="showPortalFromMat7()" aria-label="Voltar ao portal">←</button>
+  <div class="mat7-hub-logo">3ponto<span class="pi">14</span></div>
+  <span class="mat7-hub-disc">Matemática</span>
+  <span class="mat7-hub-year">7.º Ano</span>
+</div>
+
+<!-- ── Tab bar ── -->
+<div class="mat7-hub-tabbar" id="mat7-hub-tabbar">
+  <button class="mat7-hub-tab active" data-tab="fichas"   onclick="mat7SwitchTab('fichas',this)">  <span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span></span> Fichas</button>
+  <button class="mat7-hub-tab"        data-tab="resumo"   onclick="mat7SwitchTab('resumo',this)">  <span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span></span> Resumo</button>
+  <button class="mat7-hub-tab"        data-tab="exercicios" onclick="mat7SwitchTab('exercicios',this)"><span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg></span></span> Exercícios</button>
+
+  <button class="mat7-hub-tab"        data-tab="jogos"    onclick="mat7SwitchTab('jogos',this)">  <span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg></span></span> Jogos</button>
+  <button class="mat7-hub-tab"        data-tab="quiz"     onclick="mat7SwitchTab('quiz',this)">   <span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span></span> ⚡ Quiz</button>
+  <button class="mat7-hub-tab"        data-tab="flashcards" onclick="mat7SwitchTab('flashcards',this)"><span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 12.5v.5"/><path d="M17 11.5v.5"/></svg></span></span> Flashcards</button>
+  <button class="mat7-hub-tab"        data-tab="exame"    onclick="mat7SwitchTab('exame',this)">  <span class="mat7-hub-tab-icon">⏱</span> Teste</button>
+  <button class="mat7-hub-tab"        data-tab="reta"     onclick="mat7SwitchTab('reta',this)">   <span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z"/><path d="m7.5 10.5 2 2"/><path d="m10.5 7.5 2 2"/><path d="m13.5 4.5 2 2"/><path d="m4.5 13.5 2 2"/></svg></span></span> Reta</button>
+  <button class="mat7-hub-tab"        data-tab="progresso" onclick="mat7SwitchTab('progresso',this)"><span class="mat7-hub-tab-icon"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span></span> Progresso</button>
+</div>
+
+<main class="mat7-hub-main">
+
+<!-- ══════════════════════════════════════════
+     PANEL: FICHAS (default)
+══════════════════════════════════════════ -->
+<div class="mat7-panel active" id="mat7p-fichas">
+  <div class="mat7-panel-heading">Gerador de Fichas</div>
+  <div class="mat7-panel-sub">Escolhe os capítulos e subtemas — gera e descarrega uma ficha PDF personalizada</div>
+  <!-- Existing gf panel embedded -->
+  <div id="mat7-downloads" style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--p-radius);padding:1.5rem 1.75rem;box-shadow:var(--shadow)">
+    <div class="gf-row" style="margin-bottom:1rem">
+      <div class="gf-col">
+        <div class="gf-label">Capítulos a incluir</div>
+        <div class="gf-caps" id="gf-caps-mat7-downloads" style="margin-top:.4rem;display:block">
+          <div class="gf-cap-block">
+            <div class="gf-cap-row">
+              <button class="gf-cap-btn active" data-cap="1" onclick="gfToggleCap(this,'mat7-downloads');gfStToggleTray(this,'mat7-downloads',1)">± Cap. 1 · Inteiros <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+            </div>
+            <div class="gf-st-tray" id="gf-st-1-mat7-downloads">
+              <span class="gf-st-tray-label">Subtemas:</span>
+              <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Conjunto ℤ</button>
+              <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Valor absoluto</button>
+              <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Adição</button>
+              <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Subtração</button>
+              <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Parênteses</button>
+              <div class="gf-st-tray-actions">
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',1,true)">Todos</button>
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',1,false)">Nenhum</button>
+              </div>
+            </div>
+          </div>
+          <div class="gf-cap-block">
+            <div class="gf-cap-row">
+              <button class="gf-cap-btn active" data-cap="2" onclick="gfToggleCap(this,'mat7-downloads');gfStToggleTray(this,'mat7-downloads',2)">½ Cap. 2 · Racionais <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+            </div>
+            <div class="gf-st-tray" id="gf-st-2-mat7-downloads">
+              <span class="gf-st-tray-label">Subtemas:</span>
+              <button class="gf-st-chip active" data-cap="2" data-st="1" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Comparação</button>
+              <button class="gf-st-chip active" data-cap="2" data-st="2" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Adição/Subtração</button>
+              <button class="gf-st-chip active" data-cap="2" data-st="3" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Percentagens</button>
+              <button class="gf-st-chip active" data-cap="2" data-st="4" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Potências</button>
+              <button class="gf-st-chip active" data-cap="2" data-st="5" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Not. Científica</button>
+              <div class="gf-st-tray-actions">
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',2,true)">Todos</button>
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',2,false)">Nenhum</button>
+              </div>
+            </div>
+          </div>
+          <div class="gf-cap-block">
+            <div class="gf-cap-row">
+              <button class="gf-cap-btn active" data-cap="3" onclick="gfToggleCap(this,'mat7-downloads');gfStToggleTray(this,'mat7-downloads',3)"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L22 22 L2 2 Z"/></svg></span> Cap. 3 · Geometria <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+            </div>
+            <div class="gf-st-tray" id="gf-st-3-mat7-downloads">
+              <span class="gf-st-tray-label">Subtemas:</span>
+              <button class="gf-st-chip active" data-cap="3" data-st="1" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Ângulos internos</button>
+              <button class="gf-st-chip active" data-cap="3" data-st="2" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Ângulos externos</button>
+              <button class="gf-st-chip active" data-cap="3" data-st="3" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Retas paralelas</button>
+              <button class="gf-st-chip active" data-cap="3" data-st="4" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Quadriláteros</button>
+              <button class="gf-st-chip active" data-cap="3" data-st="5" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Áreas</button>
+              <div class="gf-st-tray-actions">
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',3,true)">Todos</button>
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',3,false)">Nenhum</button>
+              </div>
+            </div>
+          </div>
+          <div class="gf-cap-block">
+            <div class="gf-cap-row">
+              <button class="gf-cap-btn active" data-cap="4" onclick="gfToggleCap(this,'mat7-downloads');gfStToggleTray(this,'mat7-downloads',4)">𝑥 Cap. 4 · Álgebra <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+            </div>
+            <div class="gf-st-tray" id="gf-st-4-mat7-downloads">
+              <span class="gf-st-tray-label">Subtemas:</span>
+              <button class="gf-st-chip active" data-cap="4" data-st="1" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Sequências</button>
+              <button class="gf-st-chip active" data-cap="4" data-st="2" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Expressões</button>
+              <button class="gf-st-chip active" data-cap="4" data-st="3" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Equações</button>
+              <button class="gf-st-chip active" data-cap="4" data-st="4" onclick="this.classList.toggle('active')"><span class="gf-st-check">✓</span>Problemas</button>
+              <div class="gf-st-tray-actions">
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',4,true)">Todos</button>
+                <button class="gf-st-tray-action" onclick="gfStAll('mat7-downloads',4,false)">Nenhum</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gf-row" style="margin-bottom:1rem">
+      <div class="gf-col">
+        <div class="gf-label">O que incluir</div>
+        <div class="gf-types" id="gf-types-mat7-downloads" style="margin-top:.4rem">
+          <button class="gf-type-btn active" data-type="resumo" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Resumo teórico</button>
+          <button class="gf-type-btn active" data-type="exercicios" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Exercícios</button>
+          <button class="gf-type-btn active" data-type="teste" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Teste de avaliação</button>
+          <button class="gf-type-btn" data-type="minitestes" onclick="gfToggleType(this)"><span class="gf-tick"></span> Minitestes</button>
+          <button class="gf-type-btn" data-type="solucoes" onclick="gfToggleType(this)"><span class="gf-tick"></span> Soluções</button>
+        </div>
+      </div>
+    </div>
+    <div class="gf-row" style="margin-bottom:1.25rem">
+      <div class="gf-col">
+        <div class="gf-label">Nível de dificuldade</div>
+        <div class="gf-dif-row" id="gf-dif-mat7-downloads" style="margin-top:.4rem">
+          <button class="gf-dif-btn active" data-dif="facil" onclick="gfToggleDif(this,'mat7-downloads')"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
+          <button class="gf-dif-btn" data-dif="medio" onclick="gfToggleDif(this,'mat7-downloads')"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
+          <button class="gf-dif-btn" data-dif="dificil" onclick="gfToggleDif(this,'mat7-downloads')"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:.5rem">
+      <button class="gf-gen-btn" onclick="gfAction('mat7-downloads')">
+        <span class="ico ico-sm"><svg><use href="#ico-download"/></svg></span> Guardar como PDF
+      </button>
+      <button class="gf-gen-btn" onclick="gfActionHTML('mat7-downloads')" style="background:var(--white);color:var(--ink);border:1.5px solid var(--border2);box-shadow:var(--shadow)" onmouseenter="this.style.borderColor='var(--c2-mid)'" onmouseleave="this.style.borderColor='var(--border2)'">
+        <span class="ico ico-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span> Guardar como HTML
+      </button>
+      <button class="gf-share-btn" id="gf-share-btn-mat7-downloads" onclick="gfCopiarLink('mat7-downloads')" title="Copiar link com estas configurações">
+        <span class="ico ico-sm"><svg><use href="#ico-share"/></svg></span> <span id="gf-share-label-mat7-downloads">Copiar link</span>
+      </button>
+      <span id="gf-status-mat7-downloads" class="gf-status"></span>
+    </div>
+  <div id="gf-preview-mat7-downloads" style="display:none;margin-top:1rem">
+    <div class="gf-preview" id="gf-content-mat7-downloads"></div>
+  </div>
+</div><!-- /panel fichas -->
+
+<!-- ══════════════════════════════════════════
+     PANEL: RESUMO
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-resumo" style="display:none">
+
+  <!-- selector bar (sticky dentro do panel) -->
+  <div id="mat7-resumo-selector" style="position:sticky;top:0;z-index:10;background:var(--cream);padding:.85rem 0 .75rem;margin-bottom:1rem;border-bottom:1.5px solid var(--border)">
+  <div style="margin:0 0 1rem">
+    <div class="gf-label" style="margin-bottom:.6rem">Capítulos e subtemas</div>
+    <div id="mat7-caps-resumo" style="display:block">
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('resumo',1,this)">± Cap. 1 · Inteiros <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-1-resumo">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="mat7TabStClick(this,'resumo',1)"><span class="gf-st-check">✓</span>Conjunto ℤ</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="mat7TabStClick(this,'resumo',1)"><span class="gf-st-check">✓</span>Valor absoluto</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="mat7TabStClick(this,'resumo',1)"><span class="gf-st-check">✓</span>Adição</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="mat7TabStClick(this,'resumo',1)"><span class="gf-st-check">✓</span>Subtração</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="mat7TabStClick(this,'resumo',1)"><span class="gf-st-check">✓</span>Parênteses</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',1,true);mat7TabReload('resumo')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',1,false);mat7TabReload('resumo')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="2" onclick="mat7TabCapClick('resumo',2,this)">½ Cap. 2 · Racionais <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-2-resumo" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="2" data-st="1" onclick="mat7TabStClick(this,'resumo',2)"><span class="gf-st-check">✓</span>Comparação</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="2" onclick="mat7TabStClick(this,'resumo',2)"><span class="gf-st-check">✓</span>Adição/Subt.</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="3" onclick="mat7TabStClick(this,'resumo',2)"><span class="gf-st-check">✓</span>Percentagens</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="4" onclick="mat7TabStClick(this,'resumo',2)"><span class="gf-st-check">✓</span>Potências</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="5" onclick="mat7TabStClick(this,'resumo',2)"><span class="gf-st-check">✓</span>Not. Científica</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',2,true);mat7TabReload('resumo')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',2,false);mat7TabReload('resumo')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="3" onclick="mat7TabCapClick('resumo',3,this)"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L22 22 L2 2 Z"/></svg></span> Cap. 3 · Geometria <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-3-resumo" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="3" data-st="1" onclick="mat7TabStClick(this,'resumo',3)"><span class="gf-st-check">✓</span>Ângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="2" onclick="mat7TabStClick(this,'resumo',3)"><span class="gf-st-check">✓</span>Triângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="3" onclick="mat7TabStClick(this,'resumo',3)"><span class="gf-st-check">✓</span>Semelhança</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="4" onclick="mat7TabStClick(this,'resumo',3)"><span class="gf-st-check">✓</span>Áreas</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="5" onclick="mat7TabStClick(this,'resumo',3)"><span class="gf-st-check">✓</span>Circunferência</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',3,true);mat7TabReload('resumo')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',3,false);mat7TabReload('resumo')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="4" onclick="mat7TabCapClick('resumo',4,this)">𝑥 Cap. 4 · Álgebra <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-4-resumo" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="4" data-st="1" onclick="mat7TabStClick(this,'resumo',4)"><span class="gf-st-check">✓</span>Sequências</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="2" onclick="mat7TabStClick(this,'resumo',4)"><span class="gf-st-check">✓</span>Expressões</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="3" onclick="mat7TabStClick(this,'resumo',4)"><span class="gf-st-check">✓</span>Simplificação</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="4" onclick="mat7TabStClick(this,'resumo',4)"><span class="gf-st-check">✓</span>Equações</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="5" onclick="mat7TabStClick(this,'resumo',4)"><span class="gf-st-check">✓</span>Inequações</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',4,true);mat7TabReload('resumo')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('resumo',4,false);mat7TabReload('resumo')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- inline theory content -->
+  <div id="mat7-resumo-content">
+    <div style="text-align:center;padding:2.5rem 1rem;color:var(--ink4)">
+      <div style="font-size:.9rem;font-weight:600;color:var(--ink3);margin-bottom:.4rem">Escolhe um capítulo e subtema acima</div>
+      <div style="font-size:.78rem">O resumo teórico aparece aqui — definições, exemplos e fórmulas</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: EXERCÍCIOS
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-exercicios" style="display:none">
+  <div class="mat7-panel-heading">Exercícios</div>
+
+  <!-- ── Mode toggle ── -->
+  <div style="display:flex;gap:.5rem;margin-bottom:1.25rem;background:var(--cream2);border-radius:12px;padding:4px;">
+    <button id="exmode-btn-ex" onclick="exModeSwitch('exercicios')"
+      style="flex:1;padding:8px 0;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;background:var(--sage-dark);color:#fff;box-shadow:0 2px 8px rgba(81,104,96,.25)">
+      ✏️ Exercícios
+    </button>
+    <button id="exmode-btn-mini" onclick="exModeSwitch('minitestes')"
+      style="flex:1;padding:8px 0;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:var(--ink3)">
+      📋 Minitestes
+    </button>
+  </div>
+
+  <!-- ── Exercícios section ── -->
+  <div id="exmode-section-exercicios">
+    <div class="mat7-panel-sub" style="margin-bottom:1rem">Questões geradas automaticamente com correção imediata</div>
+    <div style="margin:0 0 1rem">
+      <div class="gf-label" style="margin-bottom:.6rem">Capítulos e subtemas</div>
+      <div id="mat7-caps-exercicios" style="display:block">
+        <div class="gf-cap-block">
+          <div class="gf-cap-row"><button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('exercicios',1,this)">± Cap. 1 · Inteiros <span class="gf-cap-arrow">▾</span></button></div>
+          <div class="gf-st-tray" id="mat7-st-1-exercicios"><span class="gf-st-tray-label">Subtemas:</span>
+            <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="mat7TabStClick(this,'exercicios',1)"><span class="gf-st-num">1</span> Conjunto ℤ</button>
+            <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="mat7TabStClick(this,'exercicios',1)"><span class="gf-st-num">2</span> Valor absoluto</button>
+            <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="mat7TabStClick(this,'exercicios',1)"><span class="gf-st-num">3</span> Adição</button>
+            <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="mat7TabStClick(this,'exercicios',1)"><span class="gf-st-num">4</span> Subtração</button>
+            <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="mat7TabStClick(this,'exercicios',1)"><span class="gf-st-num">5</span> Expressões</button>
+            <div class="gf-st-tray-actions"><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',1,true);mat7TabReload('exercicios')">Todos</button><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',1,false);mat7TabReload('exercicios')">Nenhum</button></div>
+          </div>
+        </div>
+        <div class="gf-cap-block">
+          <div class="gf-cap-row"><button class="gf-cap-btn" data-cap="2" onclick="mat7TabCapClick('exercicios',2,this)">½ Cap. 2 · Racionais <span class="gf-cap-arrow">▾</span></button></div>
+          <div class="gf-st-tray" id="mat7-st-2-exercicios" style="display:none"><span class="gf-st-tray-label">Subtemas:</span>
+            <button class="gf-st-chip active" data-cap="2" data-st="1" onclick="mat7TabStClick(this,'exercicios',2)"><span class="gf-st-num">1</span> Comparação</button>
+            <button class="gf-st-chip active" data-cap="2" data-st="2" onclick="mat7TabStClick(this,'exercicios',2)"><span class="gf-st-num">2</span> Adição/Subtração</button>
+            <button class="gf-st-chip active" data-cap="2" data-st="3" onclick="mat7TabStClick(this,'exercicios',2)"><span class="gf-st-num">3</span> Percentagens</button>
+            <button class="gf-st-chip active" data-cap="2" data-st="4" onclick="mat7TabStClick(this,'exercicios',2)"><span class="gf-st-num">4</span> Potências</button>
+            <button class="gf-st-chip active" data-cap="2" data-st="5" onclick="mat7TabStClick(this,'exercicios',2)"><span class="gf-st-num">5</span> Notação científica</button>
+            <div class="gf-st-tray-actions"><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',2,true);mat7TabReload('exercicios')">Todos</button><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',2,false);mat7TabReload('exercicios')">Nenhum</button></div>
+          </div>
+        </div>
+        <div class="gf-cap-block">
+          <div class="gf-cap-row"><button class="gf-cap-btn" data-cap="3" onclick="mat7TabCapClick('exercicios',3,this)">△ Cap. 3 · Geometria <span class="gf-cap-arrow">▾</span></button></div>
+          <div class="gf-st-tray" id="mat7-st-3-exercicios" style="display:none"><span class="gf-st-tray-label">Subtemas:</span>
+            <button class="gf-st-chip active" data-cap="3" data-st="1" onclick="mat7TabStClick(this,'exercicios',3)"><span class="gf-st-num">1</span> Ângulos</button>
+            <button class="gf-st-chip active" data-cap="3" data-st="2" onclick="mat7TabStClick(this,'exercicios',3)"><span class="gf-st-num">2</span> Triângulos</button>
+            <button class="gf-st-chip active" data-cap="3" data-st="3" onclick="mat7TabStClick(this,'exercicios',3)"><span class="gf-st-num">3</span> Semelhança</button>
+            <button class="gf-st-chip active" data-cap="3" data-st="4" onclick="mat7TabStClick(this,'exercicios',3)"><span class="gf-st-num">4</span> Áreas</button>
+            <button class="gf-st-chip active" data-cap="3" data-st="5" onclick="mat7TabStClick(this,'exercicios',3)"><span class="gf-st-num">5</span> Volumes</button>
+            <div class="gf-st-tray-actions"><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',3,true);mat7TabReload('exercicios')">Todos</button><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',3,false);mat7TabReload('exercicios')">Nenhum</button></div>
+          </div>
+        </div>
+        <div class="gf-cap-block">
+          <div class="gf-cap-row"><button class="gf-cap-btn" data-cap="4" onclick="mat7TabCapClick('exercicios',4,this)">𝑥 Cap. 4 · Álgebra <span class="gf-cap-arrow">▾</span></button></div>
+          <div class="gf-st-tray" id="mat7-st-4-exercicios" style="display:none"><span class="gf-st-tray-label">Subtemas:</span>
+            <button class="gf-st-chip active" data-cap="4" data-st="1" onclick="mat7TabStClick(this,'exercicios',4)"><span class="gf-st-num">1</span> Sequências</button>
+            <button class="gf-st-chip active" data-cap="4" data-st="2" onclick="mat7TabStClick(this,'exercicios',4)"><span class="gf-st-num">2</span> Expressões</button>
+            <button class="gf-st-chip active" data-cap="4" data-st="3" onclick="mat7TabStClick(this,'exercicios',4)"><span class="gf-st-num">3</span> Simplificação</button>
+            <button class="gf-st-chip active" data-cap="4" data-st="4" onclick="mat7TabStClick(this,'exercicios',4)"><span class="gf-st-num">4</span> Equações</button>
+            <button class="gf-st-chip active" data-cap="4" data-st="5" onclick="mat7TabStClick(this,'exercicios',4)"><span class="gf-st-num">5</span> Inequações</button>
+            <div class="gf-st-tray-actions"><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',4,true);mat7TabReload('exercicios')">Todos</button><button class="gf-st-tray-action" onclick="mat7TabStAll('exercicios',4,false);mat7TabReload('exercicios')">Nenhum</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mat7-inline-exercicios" class="mat7-inline-content"></div>
+  </div>
+
+  <!-- ── Minitestes section ── -->
+  <div id="exmode-section-minitestes" style="display:none">
+    <div class="mat7-panel-sub" style="margin-bottom:1rem">Minitestes por tema com correção automática</div>
+    <div style="margin:0 0 1rem">
+      <div class="gf-label" style="margin-bottom:.6rem">Capítulo</div>
+      <div id="mat7-caps-minitestes" style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('minitestes',1,this)">± Cap. 1 · Inteiros</button>
+        <button class="gf-cap-btn" data-cap="2" onclick="mat7TabCapClick('minitestes',2,this)">½ Cap. 2 · Racionais</button>
+        <button class="gf-cap-btn" data-cap="3" onclick="mat7TabCapClick('minitestes',3,this)">△ Cap. 3 · Geometria</button>
+        <button class="gf-cap-btn" data-cap="4" onclick="mat7TabCapClick('minitestes',4,this)">𝑥 Cap. 4 · Álgebra</button>
+      </div>
+    </div>
+    <div id="mat7-inline-minitestes" class="mat7-inline-content"></div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: TESTES
+══════════════════════════════════════════ -->
+
+
+<!-- ══════════════════════════════════════════
+     PANEL: MINITESTES
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-jogos" style="display:none">
+  <div class="mat7-panel-heading">Jogos Matemáticos</div>
+  <div class="mat7-panel-sub">Escolhe o capítulo — os jogos interativos aparecem abaixo</div>
+
+  <div style="margin:0 0 1rem">
+    <div class="gf-label" style="margin-bottom:.6rem">Capítulos e subtemas</div>
+    <div id="mat7-caps-jogos" style="display:block">
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('jogos',1,this)">± Cap. 1 · Inteiros <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-1-jogos">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="mat7TabStClick(this,'jogos',1)"><span class="gf-st-check">✓</span>Conjunto ℤ</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="mat7TabStClick(this,'jogos',1)"><span class="gf-st-check">✓</span>Valor absoluto</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="mat7TabStClick(this,'jogos',1)"><span class="gf-st-check">✓</span>Adição</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="mat7TabStClick(this,'jogos',1)"><span class="gf-st-check">✓</span>Subtração</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="mat7TabStClick(this,'jogos',1)"><span class="gf-st-check">✓</span>Parênteses</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',1,true);mat7TabReload('jogos')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',1,false);mat7TabReload('jogos')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="2" onclick="mat7TabCapClick('jogos',2,this)">½ Cap. 2 · Racionais <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-2-jogos" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="2" data-st="1" onclick="mat7TabStClick(this,'jogos',2)"><span class="gf-st-check">✓</span>Comparação</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="2" onclick="mat7TabStClick(this,'jogos',2)"><span class="gf-st-check">✓</span>Adição/Subt.</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="3" onclick="mat7TabStClick(this,'jogos',2)"><span class="gf-st-check">✓</span>Percentagens</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="4" onclick="mat7TabStClick(this,'jogos',2)"><span class="gf-st-check">✓</span>Potências</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="5" onclick="mat7TabStClick(this,'jogos',2)"><span class="gf-st-check">✓</span>Not. Científica</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',2,true);mat7TabReload('jogos')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',2,false);mat7TabReload('jogos')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="3" onclick="mat7TabCapClick('jogos',3,this)"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L22 22 L2 2 Z"/></svg></span> Cap. 3 · Geometria <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-3-jogos" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="3" data-st="1" onclick="mat7TabStClick(this,'jogos',3)"><span class="gf-st-check">✓</span>Ângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="2" onclick="mat7TabStClick(this,'jogos',3)"><span class="gf-st-check">✓</span>Triângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="3" onclick="mat7TabStClick(this,'jogos',3)"><span class="gf-st-check">✓</span>Semelhança</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="4" onclick="mat7TabStClick(this,'jogos',3)"><span class="gf-st-check">✓</span>Áreas</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="5" onclick="mat7TabStClick(this,'jogos',3)"><span class="gf-st-check">✓</span>Circunferência</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',3,true);mat7TabReload('jogos')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',3,false);mat7TabReload('jogos')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="4" onclick="mat7TabCapClick('jogos',4,this)">𝑥 Cap. 4 · Álgebra <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-4-jogos" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="4" data-st="1" onclick="mat7TabStClick(this,'jogos',4)"><span class="gf-st-check">✓</span>Sequências</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="2" onclick="mat7TabStClick(this,'jogos',4)"><span class="gf-st-check">✓</span>Expressões</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="3" onclick="mat7TabStClick(this,'jogos',4)"><span class="gf-st-check">✓</span>Simplificação</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="4" onclick="mat7TabStClick(this,'jogos',4)"><span class="gf-st-check">✓</span>Equações</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="5" onclick="mat7TabStClick(this,'jogos',4)"><span class="gf-st-check">✓</span>Inequações</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',4,true);mat7TabReload('jogos')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('jogos',4,false);mat7TabReload('jogos')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-jogos" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: FLASHCARDS
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-flashcards" style="display:none">
+  <div class="mat7-panel-heading">Flashcards</div>
+  <div class="mat7-panel-sub">Repetição espaçada — escolhe o capítulo e os cartões aparecem abaixo</div>
+
+  <div style="margin:0 0 1rem">
+    <div class="gf-label" style="margin-bottom:.6rem">Capítulos e subtemas</div>
+    <div id="mat7-caps-flashcards" style="display:block">
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('flashcards',1,this)">± Cap. 1 · Inteiros <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-1-flashcards">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="mat7TabStClick(this,'flashcards',1)"><span class="gf-st-check">✓</span>Conjunto ℤ</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="mat7TabStClick(this,'flashcards',1)"><span class="gf-st-check">✓</span>Valor absoluto</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="mat7TabStClick(this,'flashcards',1)"><span class="gf-st-check">✓</span>Adição</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="mat7TabStClick(this,'flashcards',1)"><span class="gf-st-check">✓</span>Subtração</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="mat7TabStClick(this,'flashcards',1)"><span class="gf-st-check">✓</span>Parênteses</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',1,true);mat7TabReload('flashcards')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',1,false);mat7TabReload('flashcards')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="2" onclick="mat7TabCapClick('flashcards',2,this)">½ Cap. 2 · Racionais <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-2-flashcards" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="2" data-st="1" onclick="mat7TabStClick(this,'flashcards',2)"><span class="gf-st-check">✓</span>Comparação</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="2" onclick="mat7TabStClick(this,'flashcards',2)"><span class="gf-st-check">✓</span>Adição/Subt.</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="3" onclick="mat7TabStClick(this,'flashcards',2)"><span class="gf-st-check">✓</span>Percentagens</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="4" onclick="mat7TabStClick(this,'flashcards',2)"><span class="gf-st-check">✓</span>Potências</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="5" onclick="mat7TabStClick(this,'flashcards',2)"><span class="gf-st-check">✓</span>Not. Científica</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',2,true);mat7TabReload('flashcards')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',2,false);mat7TabReload('flashcards')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="3" onclick="mat7TabCapClick('flashcards',3,this)"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L22 22 L2 2 Z"/></svg></span> Cap. 3 · Geometria <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-3-flashcards" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="3" data-st="1" onclick="mat7TabStClick(this,'flashcards',3)"><span class="gf-st-check">✓</span>Ângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="2" onclick="mat7TabStClick(this,'flashcards',3)"><span class="gf-st-check">✓</span>Triângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="3" onclick="mat7TabStClick(this,'flashcards',3)"><span class="gf-st-check">✓</span>Semelhança</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="4" onclick="mat7TabStClick(this,'flashcards',3)"><span class="gf-st-check">✓</span>Áreas</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="5" onclick="mat7TabStClick(this,'flashcards',3)"><span class="gf-st-check">✓</span>Circunferência</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',3,true);mat7TabReload('flashcards')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',3,false);mat7TabReload('flashcards')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="4" onclick="mat7TabCapClick('flashcards',4,this)">𝑥 Cap. 4 · Álgebra <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-4-flashcards" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="4" data-st="1" onclick="mat7TabStClick(this,'flashcards',4)"><span class="gf-st-check">✓</span>Sequências</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="2" onclick="mat7TabStClick(this,'flashcards',4)"><span class="gf-st-check">✓</span>Expressões</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="3" onclick="mat7TabStClick(this,'flashcards',4)"><span class="gf-st-check">✓</span>Simplificação</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="4" onclick="mat7TabStClick(this,'flashcards',4)"><span class="gf-st-check">✓</span>Equações</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="5" onclick="mat7TabStClick(this,'flashcards',4)"><span class="gf-st-check">✓</span>Inequações</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',4,true);mat7TabReload('flashcards')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('flashcards',4,false);mat7TabReload('flashcards')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-flashcards" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: EXAME
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-exame" style="display:none">
+  <div class="mat7-panel-heading">Teste</div>
+  <div class="mat7-panel-sub">Teste cronometrado — escolhe o capítulo e inicia abaixo</div>
+
+  <div style="margin:0 0 1rem">
+    <div class="gf-label" style="margin-bottom:.6rem">Capítulos e subtemas</div>
+    <div id="mat7-caps-exame" style="display:block">
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('exame',1,this)">± Cap. 1 · Inteiros <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-1-exame">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="mat7TabStClick(this,'exame',1)"><span class="gf-st-check">✓</span>Conjunto ℤ</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="mat7TabStClick(this,'exame',1)"><span class="gf-st-check">✓</span>Valor absoluto</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="mat7TabStClick(this,'exame',1)"><span class="gf-st-check">✓</span>Adição</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="mat7TabStClick(this,'exame',1)"><span class="gf-st-check">✓</span>Subtração</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="mat7TabStClick(this,'exame',1)"><span class="gf-st-check">✓</span>Parênteses</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',1,true);mat7TabReload('exame')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',1,false);mat7TabReload('exame')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="2" onclick="mat7TabCapClick('exame',2,this)">½ Cap. 2 · Racionais <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-2-exame" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="2" data-st="1" onclick="mat7TabStClick(this,'exame',2)"><span class="gf-st-check">✓</span>Comparação</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="2" onclick="mat7TabStClick(this,'exame',2)"><span class="gf-st-check">✓</span>Adição/Subt.</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="3" onclick="mat7TabStClick(this,'exame',2)"><span class="gf-st-check">✓</span>Percentagens</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="4" onclick="mat7TabStClick(this,'exame',2)"><span class="gf-st-check">✓</span>Potências</button>
+          <button class="gf-st-chip active" data-cap="2" data-st="5" onclick="mat7TabStClick(this,'exame',2)"><span class="gf-st-check">✓</span>Not. Científica</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',2,true);mat7TabReload('exame')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',2,false);mat7TabReload('exame')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="3" onclick="mat7TabCapClick('exame',3,this)"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L22 22 L2 2 Z"/></svg></span> Cap. 3 · Geometria <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-3-exame" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="3" data-st="1" onclick="mat7TabStClick(this,'exame',3)"><span class="gf-st-check">✓</span>Ângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="2" onclick="mat7TabStClick(this,'exame',3)"><span class="gf-st-check">✓</span>Triângulos</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="3" onclick="mat7TabStClick(this,'exame',3)"><span class="gf-st-check">✓</span>Semelhança</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="4" onclick="mat7TabStClick(this,'exame',3)"><span class="gf-st-check">✓</span>Áreas</button>
+          <button class="gf-st-chip active" data-cap="3" data-st="5" onclick="mat7TabStClick(this,'exame',3)"><span class="gf-st-check">✓</span>Circunferência</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',3,true);mat7TabReload('exame')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',3,false);mat7TabReload('exame')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn" data-cap="4" onclick="mat7TabCapClick('exame',4,this)">𝑥 Cap. 4 · Álgebra <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-4-exame" style="display:none">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="4" data-st="1" onclick="mat7TabStClick(this,'exame',4)"><span class="gf-st-check">✓</span>Sequências</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="2" onclick="mat7TabStClick(this,'exame',4)"><span class="gf-st-check">✓</span>Expressões</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="3" onclick="mat7TabStClick(this,'exame',4)"><span class="gf-st-check">✓</span>Simplificação</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="4" onclick="mat7TabStClick(this,'exame',4)"><span class="gf-st-check">✓</span>Equações</button>
+          <button class="gf-st-chip active" data-cap="4" data-st="5" onclick="mat7TabStClick(this,'exame',4)"><span class="gf-st-check">✓</span>Inequações</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',4,true);mat7TabReload('exame')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('exame',4,false);mat7TabReload('exame')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-exame" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: RETA NUMÉRICA
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-reta" style="display:none">
+  <div class="mat7-panel-heading">Reta Numérica Interativa</div>
+  <div class="mat7-panel-sub">Visualiza inteiros, coloca pontos e anima operações</div>
+
+  <div style="margin:0 0 1rem">
+    <div class="gf-label" style="margin-bottom:.6rem">Capítulos e subtemas</div>
+    <div id="mat7-caps-reta" style="display:block">
+      <div class="gf-cap-block">
+        <div class="gf-cap-row">
+          <button class="gf-cap-btn active" data-cap="1" onclick="mat7TabCapClick('reta',1,this)">± Cap. 1 · Inteiros <span style="font-size:.7em;opacity:.6;margin-left:3px">▾</span></button>
+        </div>
+        <div class="gf-st-tray" id="mat7-st-1-reta">
+          <span class="gf-st-tray-label">Subtemas:</span>
+          <button class="gf-st-chip active" data-cap="1" data-st="1" onclick="mat7TabStClick(this,'reta',1)"><span class="gf-st-check">✓</span>Conjunto ℤ</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="2" onclick="mat7TabStClick(this,'reta',1)"><span class="gf-st-check">✓</span>Valor absoluto</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="3" onclick="mat7TabStClick(this,'reta',1)"><span class="gf-st-check">✓</span>Adição</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="4" onclick="mat7TabStClick(this,'reta',1)"><span class="gf-st-check">✓</span>Subtração</button>
+          <button class="gf-st-chip active" data-cap="1" data-st="5" onclick="mat7TabStClick(this,'reta',1)"><span class="gf-st-check">✓</span>Parênteses</button>
+          <div class="gf-st-tray-actions">
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('reta',1,true);mat7TabReload('reta')">Todos</button>
+            <button class="gf-st-tray-action" onclick="mat7TabStAll('reta',1,false);mat7TabReload('reta')">Nenhum</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-reta" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: PROGRESSO
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-progresso" style="display:none">
+  <div class="mat7-panel-heading">O Teu Progresso</div>
+  <div class="mat7-panel-sub">Visão global de todos os capítulos — desempenho, erros e treino direcionado</div>
+  <div id="mat7-progresso-unified"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: MODO QUIZ ⚡
+══════════════════════════════════════════ -->
+<div class="mat7-panel" id="mat7p-quiz" style="display:none">
+  <div class="mat7-panel-heading">⚡ Modo Quiz</div>
+  <div class="mat7-panel-sub">Questões de escolha múltipla geradas em tempo real — 3 vidas, streak e game over · Podes selecionar vários capítulos para misturar</div>
+
+  <div style="margin:0 0 1rem">
+    <div class="gf-label" style="margin-bottom:.6rem">Capítulo</div>
+    <div id="mat7-caps-quiz" style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button class="gf-cap-btn active" data-cap="1" onclick="qgHubSelectCap(1,this)">± Cap. 1 · Inteiros</button>
+      <button class="gf-cap-btn"        data-cap="2" onclick="qgHubSelectCap(2,this)">½ Cap. 2 · Racionais</button>
+      <button class="gf-cap-btn"        data-cap="3" onclick="qgHubSelectCap(3,this)">△ Cap. 3 · Geometria</button>
+      <button class="gf-cap-btn"        data-cap="4" onclick="qgHubSelectCap(4,this)">𝑥 Cap. 4 · Álgebra</button>
+    </div>
+  </div>
+
+  <div id="mat7-inline-quiz" class="mat7-inline-content" style="display:block">
+    <div id="qg-hub-app"></div>
+  </div>
+</div>
+
+</main>
+
+
+<!-- ── Multi-cap selector (hidden) ── -->
+<div class="mega-config-bar" style="display:none">
+  <span style="font-size:.78rem;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em">Selecionar capítulos:</span>
+  <div id="mat7-cap1" onclick="toggleCapSel(1)" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--border);background:var(--white);font-size:.8rem;font-weight:700;color:var(--ink3);transition:all .2s">
+    <span id="chkbox-cap1" class="mat7-chk-box" style="width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:inline-block;vertical-align:middle"></span>
+    <span>Cap. 1 · Inteiros</span>
+  </div>
+  <div id="mat7-cap2" onclick="toggleCapSel(2)" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--border);background:var(--white);font-size:.8rem;font-weight:700;color:var(--ink3);transition:all .2s">
+    <span id="chkbox-cap2" class="mat7-chk-box" style="width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:inline-block;vertical-align:middle"></span>
+    <span>Cap. 2 · Racionais</span>
+  </div>
+  <div id="mat7-cap3" onclick="toggleCapSel(3)" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--border);background:var(--white);font-size:.8rem;font-weight:700;color:var(--ink3);transition:all .2s">
+    <span id="chkbox-cap3" class="mat7-chk-box" style="width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:inline-block;vertical-align:middle"></span>
+    <span>Cap. 3 · Geometria</span>
+  </div>
+  <div id="mat7-cap4" onclick="toggleCapSel(4)" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--border);background:var(--white);font-size:.8rem;font-weight:700;color:var(--ink3);transition:all .2s">
+    <span id="chkbox-cap4" class="mat7-chk-box" style="width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:inline-block;vertical-align:middle"></span>
+    <span>Cap. 4 · Álgebra</span>
+  </div>
+  <button id="btn-todos" onclick="selecionarTodos(this)" style="display:inline-flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;padding:7px 16px;border-radius:999px;border:1.5px solid rgba(81,104,96,.25);background:linear-gradient(135deg,var(--c2-base),var(--c2-pale));color:var(--c2-deep);cursor:pointer;transition:all .2s">
+    <span id="btn-todos-icon">☐</span><span> Selecionar Todos</span>
+  </button>
+</div>
+
+<!-- ── Mega View FAB ── -->
+<button id="mega-fab" class="mega-fab" onclick="showMegaView()" title="Ver resumo multi-capítulo" style="display:none">
+  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+  Mega Resumo
+  <span class="fab-badge" id="fab-badge">0</span>
+</button>
+
+</div><!-- /view-mat7 -->
+
+<!-- ═══════════════ MEGA VIEW ═══════════════ -->
+
+<!-- PRINT HEADER (hidden on screen) -->
+<div id="print-header">
+  <div class="ph-logo">3ponto<em>14</em> · Centro de Estudos</div>
+  <div class="ph-meta">Matemática · 7.º Ano · Ficha de Estudo</div>
+  <div class="ph-fields">
+    <div class="ph-field"><span class="ph-field-label">Nome:</span><div class="ph-field-line" style="width:200px"></div></div>
+    <div class="ph-field"><span class="ph-field-label">N.º:</span><div class="ph-field-line" style="width:60px"></div></div>
+    <div class="ph-field"><span class="ph-field-label">Turma:</span><div class="ph-field-line" style="width:60px"></div></div>
+    <div class="ph-field"><span class="ph-field-label">Data:</span><div class="ph-field-line" style="width:100px"></div></div>
+  </div>
+</div>
+
+<!-- POMODORO FAB -->
+<button id="pomodoro-fab" onclick="pomodoroTogglePanel()" title="Temporizador Pomodoro" aria-label="Abrir temporizador Pomodoro">
+  🍅
+</button>
+
+<!-- POMODORO PANEL -->
+<div id="pomodoro-widget" class="hidden" role="dialog" aria-label="Temporizador Pomodoro">
+  <div id="pomodoro-panel">
+    <div class="pom-header">
+      <span class="pom-title">🍅 Pomodoro</span>
+      <button class="pom-close" onclick="pomodoroTogglePanel()" aria-label="Fechar">✕</button>
+    </div>
+    <div class="pom-mode-row">
+      <button class="pom-mode-btn active" id="pom-btn-focus" onclick="pomodoroSetMode('focus')">Foco</button>
+      <button class="pom-mode-btn" id="pom-btn-short" onclick="pomodoroSetMode('short')">Pausa</button>
+      <button class="pom-mode-btn" id="pom-btn-long" onclick="pomodoroSetMode('long')">Longa</button>
+    </div>
+    <div class="pom-clock">
+      <svg class="pom-svg" width="100" height="100" viewBox="0 0 100 100">
+        <circle class="pom-ring-bg" cx="50" cy="50" r="44"/>
+        <circle class="pom-ring-fill" id="pom-ring" cx="50" cy="50" r="44"
+          stroke-dasharray="276.46" stroke-dashoffset="0"/>
+      </svg>
+      <div class="pom-time-text" id="pom-time">25:00</div>
+    </div>
+    <div class="pom-session-label" id="pom-session-label">Sessão 1 de 4</div>
+    <div class="pom-controls">
+      <button class="pom-ctrl-btn primary" id="pom-start-btn" onclick="pomodoroStartStop()">▶ Iniciar</button>
+      <button class="pom-ctrl-btn secondary" onclick="pomodoroReset()" aria-label="Reiniciar temporizador">↺</button>
+    </div>
+    <div class="pom-sessions" id="pom-dots">
+      <div class="pom-dot" id="pom-d0"></div>
+      <div class="pom-dot" id="pom-d1"></div>
+      <div class="pom-dot" id="pom-d2"></div>
+      <div class="pom-dot" id="pom-d3"></div>
+    </div>
+    <div style="margin-top:1rem;padding:.75rem;background:var(--cream2);border-radius:10px;font-size:.68rem;color:var(--ink3);line-height:1.6;border:1px solid var(--border)">
+      <strong style="display:block;font-size:.7rem;color:var(--ink2);margin-bottom:.3rem">💡 O que é a técnica Pomodoro?</strong>
+      Estuda <strong>25 min</strong> com foco total, depois faz uma <strong>pausa de 5 min</strong>. Após 4 sessões, faz uma pausa longa de 15 min. Este ciclo ajuda o cérebro a <strong>concentrar-se melhor</strong>, reduzir a fadiga e memorizar mais eficazmente.
+    </div>
+  </div>
+</div>
+
+
+<!-- INJECT BUTTONS INTO TOPBAR — done after DOM ready -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     v33 FEATURES: Modo Escuro · Tamanho Texto ·
+════════════════════════════════════════════════════════════ -->
+
+</div>
+
+<!-- ── Calculadora FAB ── -->
+<button id="calc-fab" onclick="calcToggle()" title="Calculadora científica" aria-label="Calculadora">𝑥²</button>
+<div id="calc-widget">
+  <div id="calc-display">
+    <div id="calc-fab-expr"></div>
+    <div id="calc-result">0</div>
+  </div>
+  <div class="calc-grid">
+    <button class="calc-btn fn" onclick="calcFn('sqrt')">√</button>
+    <button class="calc-btn fn" onclick="calcFn('sq')">x²</button>
+    <button class="calc-btn fn" onclick="calcFn('inv')">1/x</button>
+    <button class="calc-btn clr" onclick="calcClear()">AC</button>
+    <button class="calc-btn fn" onclick="calcFn('sin')">sen</button>
+    <button class="calc-btn fn" onclick="calcFn('cos')">cos</button>
+    <button class="calc-btn fn" onclick="calcFn('tan')">tan</button>
+    <button class="calc-btn fn" onclick="calcFn('pi')">π</button>
+    <button class="calc-btn fn" onclick="calcFn('log')">log</button>
+    <button class="calc-btn fn" onclick="calcFn('ln')">ln</button>
+    <button class="calc-btn fn" onclick="calcOp('**')">xʸ</button>
+    <button class="calc-btn fn" onclick="calcFn('abs')">|x|</button>
+    <button class="calc-btn fn" onclick="calcFn('pct')">%</button>
+    <button class="calc-btn fn" onclick="calcFn('pm')">±</button>
+    <button class="calc-btn fn" onclick="calcNum('(')">( </button>
+    <button class="calc-btn fn" onclick="calcNum(')')"> )</button>
+    <button class="calc-btn fn" onclick="calcDel()">⌫</button>
+    <button class="calc-btn op" onclick="calcOp('/')">÷</button>
+    <button class="calc-btn op" onclick="calcOp('*')">×</button>
+    <button class="calc-btn op" onclick="calcOp('-')">−</button>
+    <button class="calc-btn" onclick="calcNum('7')">7</button>
+    <button class="calc-btn" onclick="calcNum('8')">8</button>
+    <button class="calc-btn" onclick="calcNum('9')">9</button>
+    <button class="calc-btn op" onclick="calcOp('+')">+</button>
+    <button class="calc-btn" onclick="calcNum('4')">4</button>
+    <button class="calc-btn" onclick="calcNum('5')">5</button>
+    <button class="calc-btn" onclick="calcNum('6')">6</button>
+    <button class="calc-btn eq" onclick="calcEq()">=</button>
+    <button class="calc-btn" onclick="calcNum('1')">1</button>
+    <button class="calc-btn" onclick="calcNum('2')">2</button>
+    <button class="calc-btn" onclick="calcNum('3')">3</button>
+    <button class="calc-btn" onclick="calcNum('0')">0</button>
+    <button class="calc-btn" onclick="calcNum('.')">.</button>
+  </div>
+  <div style="font-size:.62rem;color:var(--ink4);text-align:center;padding:4px 0 6px;font-family:'JetBrains Mono',monospace">sen/cos/tan em graus &nbsp;·&nbsp; xʸ = potência</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ESCAPE ROOM v2 — SALA VISUAL ÚNICA
+════════════════════════════════════════════════════════════ -->
+
+
+
+<!-- ── Unified Flashcard stub (ufc-* IDs used by _uniFC_render) ── -->
+<div id="ufc-stub" style="display:none" aria-hidden="true">
+  <span id="ufc-cap-label"></span>
+  <span id="ufc-tag"></span>
+  <span id="ufc-q"></span>
+  <span id="ufc-a"></span>
+  <span id="ufc-counter"></span>
+  <div id="ufc-prog"></div>
+  <div id="ufc-inner">
+    <div id="ufc-front"></div>
+    <div id="ufc-back"></div>
+  </div>
+  <button id="ufc-flip-btn" tabindex="-1" onclick="_uniFC_flip()">Virar</button>
+  <button tabindex="-1" onclick="_uniFC_prev()" aria-label="Carta anterior">←</button>
+  <button tabindex="-1" onclick="_uniFC_next()" aria-label="Próxima carta">→</button>
+  <button tabindex="-1" onclick="_uniFC_shuffle()" aria-label="Baralhar cartas">↺</button>
+</div>
+
+
+
+<script src="js/shared.js"></script>
+<script src="js/mat7.js"></script>
+<script src="js/games.js"></script>
+<script src="js/systems.js"></script>
+<script src="js/gf.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>

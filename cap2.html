@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="3ponto14 — Centro de Estudos. Recursos interativos, exercícios, fichas e explicações para Matemática 7.º ano, alinhados com o currículo português.">
+<meta name="theme-color" content="#516860">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="3ponto14 · Centro de Estudos">
+<meta property="og:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://3ponto14.pt/mat7">
+<meta property="og:image" content="https://3ponto14.pt/og-mat7.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3ponto14 · Centro de Estudos">
+<meta name="twitter:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
+<meta name="twitter:image" content="https://3ponto14.pt/og-mat7.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23516860'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='serif'>eP</text></svg>">
+<title>Cap. 2 · Racionais · 3ponto14</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ico-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="ico-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></symbol>
+  <symbol id="ico-telescope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"/><path d="m13.56 11.747 4.332-.924"/><path d="m16 21-3.105-6.21"/><path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"/><path d="m6.158 8.633 1.114 4.456"/><path d="m8 21 3.105-6.21"/></symbol>
+  <symbol id="ico-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16.5h10"/></symbol>
+  <symbol id="ico-graduation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="ico-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></symbol>
+  <symbol id="ico-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></symbol>
+  <symbol id="ico-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+  <symbol id="ico-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="ico-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="ico-dices" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6.08"/><path d="M6 18h.01"/><path d="M10 14h.01"/><path d="M15 6h.01"/><path d="M18.5 9.5h.01"/></symbol>
+  <symbol id="ico-gamepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></symbol>
+  <symbol id="ico-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="ico-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol>
+  <symbol id="ico-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+  <symbol id="ico-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ico-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></symbol>
+  <symbol id="ico-triangle-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5 4 19l-1.414-1.414L8.5 11.672V7.828L6 5.414l1.414-1.414 3.086 3.086V14.5z"/><path d="M14.5 8.5 19 4l1.414 1.414-5.914 5.914h3.844L20.758 13.742l-1.414 1.414-3.086-3.086H8.5"/><path d="m2.586 19.414 2-2"/></symbol>
+  <symbol id="ico-hash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol>
+  <symbol id="ico-square-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="ico-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol>
+  <symbol id="ico-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="ico-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></symbol>
+  <symbol id="ico-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></symbol>
+</svg>
+
+<!-- UX: Scroll to top + Section indicator -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+<div class="section-indicator" id="sectionIndicator"></div>
+
+
+
+<div id="view-math2" class="math-view" >
+
+<!-- ── Chapter Navigation Bar ── -->
+<nav class="chapter-nav-bar">
+  <button class="ch-back-link" onclick="showMat7View()">← Capítulos</button>
+  <div class="ch-nav-divider"></div>
+  <button class="ch-nav-btn" data-target-ch="1" onclick="goToChapter(1)">
+    <span class="ch-progress">●</span> Cap. 1 · Inteiros
+  </button>
+  <button class="ch-nav-btn active" data-target-ch="2" onclick="goToChapter(2)">
+    <span class="ch-progress">◑</span> Cap. 2 · Racionais
+  </button>
+  <button class="ch-nav-btn" data-target-ch="3" onclick="goToChapter(3)">
+    <span class="ch-progress">○</span> Cap. 3 · Geometria
+  </button>
+  <button class="ch-nav-btn" data-target-ch="4" onclick="goToChapter(4)">
+    <span class="ch-progress">○</span> Cap. 4 · Álgebra
+  </button>
+  <button class="ch-nav-btn locked" title="Em breve">
+    <span class="ch-progress">○</span> Cap. 5 · Estatística
+  </button>
+</nav>
+
+<header style="display:none">
+  <span class="badge"><span class="ico ico-sm"><svg><use href="#ico-ruler"/></svg></span> 7.º Ano · Matemática</span>
+  <h1>Capítulo 2 — <em>Números Racionais</em></h1>
+  <p>Teoria, exercícios interativos, minitestes, jogos e fichas para imprimir</p>
+</header>
+
+<nav class="tabs" id="tabs2" style="display:none">
+  <button class="tab-btn active" onclick="showSection2('temas2', this)">Temas</button>
+  <button class="tab-btn" onclick="showSection2('teoria2', this)">Teoria</button>
+  <button class="tab-btn" onclick="showSection2('questoes2', this)">Exercícios</button>
+  <button class="tab-btn" onclick="showSection2('minitestes2', this)"><span class="ico ico-sm"><svg><use href="#ico-file-text"/></svg></span> Minitestes</button>
+  <button class="tab-btn" onclick="showSection2('teste2', this)">Teste</button>
+  <button class="tab-btn" onclick="showSection2('gerador2', this)">Gerador</button>
+  <button class="tab-btn" onclick="showSection2('jogos2', this)">Jogos</button>
+  <button class="tab-btn" onclick="showSection2('quiz-game2', this)">⚡ Quiz</button>
+  <button class="tab-btn" onclick="showSection2('flashcards2', this)">Flashcards</button>
+  <button class="tab-btn" onclick="showSection2('exame2', this)">Exame</button>
+  <button class="tab-btn" onclick="showSection2('progresso2', this)">Progresso</button>
+</nav>
+
+<main>
+
+<!-- ══════════ TEMAS ══════════ -->
+<div class="section" id="sec-temas2">
+  <div class="sec-header" style="margin-bottom:1.25rem">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-file-text"/></svg></span></span> Temas</h2>
+  </div>
+  <div class="topics-grid">
+
+    <div class="topic-row" id="tr2_1">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_1')">
+        <div class="t-num">01</div><h3>Números Racionais</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('1','conjuntos')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Conjuntos ℕ, ℤ, ℚ</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('1','arredondamento')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Arredondamento</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('1','aprox')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Valores aproximados</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_2">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_2')">
+        <div class="t-num">02</div><h3>Comparação e Ordenação</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('2','comparar')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Comparar frações</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('2','ordenar')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Ordenar racionais</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('2','absoluto')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Valor absoluto em ℚ</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_3">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_3')">
+        <div class="t-num">03</div><h3>Adição Algébrica</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('3','somar_frac')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Somar frações</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('3','subtrair_frac')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Subtrair frações</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('3','expressoes')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Expressões com frações</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_4">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_4')">
+        <div class="t-num">04</div><h3>Problemas com Racionais</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('3','contexto_rac')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Partes de um todo</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('3','somar_frac')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Calcular frações</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_5">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_5')">
+        <div class="t-num">05</div><h3>Percentagens</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('5','converter')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Converter fração/decimal/%</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('5','calcular_pct')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Calcular percentagem de N</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_6">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_6')">
+        <div class="t-num">06</div><h3>Problemas com %</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('5','aumento')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Aumentos percentuais</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('5','desconto')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Descontos</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('5','variacao')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Taxa de variação</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_7">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_7')">
+        <div class="t-num">07</div><h3>Potências</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('7','produto')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Produto de potências</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('7','quociente')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Quociente de potências</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('7','frac_pot')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Potência de fração</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_8">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_8')">
+        <div class="t-num">08</div><h3>Notação Científica</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('8','escrever')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Escrever em notação científica</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('8','pot_base10')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Potências de base 10</button>
+      </div>
+    </div>
+
+    <div class="topic-row" id="tr2_9">
+      <div class="topic-row-head" onclick="toggleTemaRow('tr2_9')">
+        <div class="t-num">09</div><h3>Operações em Not. Científica</h3><span class="topic-row-chevron">▼</span>
+      </div>
+      <div class="subtopics">
+        <button class="subtopic-btn" onclick="abrirSubtema2('9','somar_nc')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Somar e subtrair</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('9','mult_nc')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Multiplicar e dividir</button>
+        <button class="subtopic-btn" onclick="abrirSubtema2('9','comparar_nc')"><span class="sb-icon"><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span></span> Comparar em not. científica</button>
+      </div>
+    </div>
+
+  </div>
+  <hr class="topics-sep">
+  <div class="topics-grid" style="margin-top:.55rem">
+    <div class="topic-tool" onclick="showSection2('gerador2', document.querySelector('#tabs2 .tab-btn:nth-child(6)'))"><span class="tt-icon"><span class="ico ico-sm"><svg><use href="#ico-dices"/></svg></span></span> Gerador</div>
+    <div class="topic-tool" onclick="showSection2('jogos2', document.querySelector('#tabs2 .tab-btn:nth-child(7)'))"><span class="tt-icon"><span class="ico ico-sm"><svg><use href="#ico-gamepad"/></svg></span></span> Jogos</div>
+    <div class="topic-tool" onclick="showSection2('flashcards2', document.querySelector('#tabs2 .tab-btn:nth-child(8)'))"><span class="tt-icon"><span class="ico ico-sm"><svg><use href="#ico-layers"/></svg></span></span> Flashcards</div>
+
+  </div>
+</div>
+
+<!-- ══════════ TEORIA ══════════ -->
+<div class="section" id="sec-teoria2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-book-open"/></svg></span></span> Teoria</h2>
+    <p>Resumo dos nove temas do capítulo</p>
+  </div>
+
+  <div id="topic2-1">
+  <div class="def-block">
+    <span class="def-tag def">Definição</span>
+    <h3>1. Números Racionais (ℚ)</h3>
+    <p>Um <strong>número racional</strong> é todo o número que pode ser escrito na forma de fração <sup>p</sup>/<sub>q</sub>, onde p ∈ ℤ e q ∈ ℤ, com q ≠ 0.</p>
+    <div class="highlight-box">ℚ = { p/q : p ∈ ℤ, q ∈ ℤ, q ≠ 0 }</div>
+    <p style="margin-top:.75rem">Exemplos: ½, −¾, 0,3, −2, 0, 5 são todos números racionais.</p>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Hierarquia dos conjuntos numéricos</span>
+    <h3>ℕ ⊂ ℤ ⊂ ℚ</h3>
+    <ul>
+      <li><strong>ℕ</strong> (naturais): {0, 1, 2, 3, …}</li>
+      <li><strong>ℤ</strong> (inteiros): {…, −2, −1, 0, 1, 2, …}</li>
+      <li><strong>ℚ⁺</strong> (racionais positivos): frações positivas</li>
+      <li><strong>ℚ⁻</strong> (racionais negativos): frações negativas</li>
+      <li><strong>ℚ₀⁺</strong>: racionais não negativos (inclui 0)</li>
+    </ul>
+  </div>
+  <div class="def-block">
+    <span class="def-tag ex">Arredondamento e valores aproximados</span>
+    <h3>Como arredondar uma fração</h3>
+    <p>Para arredondar <em>p/q</em>: efetua a divisão e observa o algarismo seguinte à casa pretendida.</p>
+    <ul>
+      <li>Se ≥ 5 → <strong>arredondamento por excesso</strong> (aumenta 1)</li>
+      <li>Se &lt; 5 → <strong>arredondamento por defeito</strong> (mantém)</li>
+    </ul>
+    <div class="highlight-box">2/3 ≈ 0,7 (às décimas, por excesso) &nbsp;&nbsp; 2/3 ≈ 0,6 (às décimas, por defeito)</div>
+  </div>
+  </div>
+
+  <div id="topic2-2">
+  <div class="def-block">
+    <span class="def-tag def">Regra</span>
+    <h3>2. Comparação de Números Racionais</h3>
+    <p>Para comparar frações com denominadores diferentes, reduzem-se ao mesmo denominador (mmc).</p>
+    <div class="highlight-box">−½ vs −⅓ → −3/6 vs −2/6 → −½ &lt; −⅓</div>
+    <p style="margin-top:.5rem">Na reta numérica: mais à esquerda = menor.</p>
+    <p>Para comparar com decimais: converte a fração para decimal ou vice-versa.</p>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Valor absoluto e simétrico de racionais</span>
+    <h3>|q| e −q para q ∈ ℚ</h3>
+    <ul>
+      <li>|−¾| = ¾ &nbsp;&nbsp; |½| = ½ &nbsp;&nbsp; |0| = 0</li>
+      <li>simétrico de −¾ é ¾ &nbsp;&nbsp; simétrico de ½ é −½</li>
+    </ul>
+  </div>
+  </div>
+
+  <div id="topic2-3">
+  <div class="def-block">
+    <span class="def-tag def">Regras</span>
+    <h3>3. Adição Algébrica de Racionais</h3>
+    <p>Para somar/subtrair frações com denominadores diferentes: reduzir ao mesmo denominador.</p>
+    <div class="formula">a/b + c/d = (a×d + c×b) / (b×d)</div>
+    <div class="highlight-box">½ + ⅓ = 3/6 + 2/6 = 5/6</div>
+    <div class="highlight-box green">−¾ + ½ = −3/4 + 2/4 = −1/4</div>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Simplificação de expressões</span>
+    <h3>Adição algébrica com parênteses</h3>
+    <ul>
+      <li>+(+a) = +a &nbsp;&nbsp; +(−a) = −a</li>
+      <li>−(+a) = −a &nbsp;&nbsp; −(−a) = +a</li>
+    </ul>
+    <div class="formula">½ − (⅓ − 1) + (−1 + ⅔) = ½ − ⅓ + 1 − 1 + ⅔ = 5/6</div>
+  </div>
+  </div>
+
+  <div id="topic2-4">
+  <div class="def-block">
+    <span class="def-tag def">Estratégia</span>
+    <h3>4. Resolução de Problemas com Racionais</h3>
+    <p>Passos para resolver problemas:</p>
+    <ul>
+      <li><strong>1.</strong> Identifica o que é pedido e o que é dado.</li>
+      <li><strong>2.</strong> Representa a situação com frações (partes de um todo).</li>
+      <li><strong>3.</strong> Efetua os cálculos e verifica o resultado.</li>
+    </ul>
+    <div class="highlight-box">Se ⅕ + ⅔ + 1/12 do trajeto são percorridos, resta: 1 − ⅕ − ⅔ − 1/12 = 1/20</div>
+  </div>
+  </div>
+
+  <div id="topic2-5">
+  <div class="def-block">
+    <span class="def-tag def">Definição</span>
+    <h3>5. Percentagens</h3>
+    <p>Uma <strong>percentagem</strong> p% representa p partes em 100.</p>
+    <div class="formula">p% = p/100</div>
+    <table class="data-table">
+      <thead><tr><th>Fração</th><th>Decimal</th><th>Percentagem</th></tr></thead>
+      <tbody>
+        <tr><td>1/10</td><td>0,1</td><td>10%</td></tr>
+        <tr><td>1/4</td><td>0,25</td><td>25%</td></tr>
+        <tr><td>1/2</td><td>0,5</td><td>50%</td></tr>
+        <tr><td>3/4</td><td>0,75</td><td>75%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Calcular percentagem de um valor</span>
+    <h3>p% de N = (p/100) × N</h3>
+    <div class="highlight-box">20% de 35 000 = 0,20 × 35 000 = 7 000</div>
+    <div class="highlight-box green">35% de 230 atletas = 0,35 × 230 = 80,5 ≈ 81 atletas</div>
+  </div>
+  </div>
+
+  <div id="topic2-6">
+  <div class="def-block">
+    <span class="def-tag def">Fórmulas</span>
+    <h3>6. Problemas com Percentagens</h3>
+    <ul>
+      <li><strong>Aumento de p%:</strong> Valor final = Valor inicial × (1 + p/100)</li>
+      <li><strong>Desconto de p%:</strong> Valor final = Valor inicial × (1 − p/100)</li>
+    </ul>
+    <div class="highlight-box">Desconto de 15%: Valor final = Valor × 0,85</div>
+    <div class="highlight-box green">Aumento de 20%: Valor final = Valor × 1,20</div>
+  </div>
+  <div class="def-block">
+    <span class="def-tag ex">Calcular a percentagem de desconto</span>
+    <h3>Percentagem de variação</h3>
+    <div class="formula">% variação = (Valor final − Valor inicial) / Valor inicial × 100</div>
+    <div class="highlight-box">Artigo: 80€ → 60€ &nbsp; % desconto = (80−60)/80 × 100 = 25%</div>
+  </div>
+  </div>
+
+  <div id="topic2-7">
+  <div class="def-block">
+    <span class="def-tag def">Definição</span>
+    <h3>7. Potências de Números Racionais</h3>
+    <p>Potência de base <em>a</em> e expoente natural <em>n</em>: aⁿ = a × a × … × a (n vezes).</p>
+    <div class="highlight-box">(2/7)³ = 2³/7³ = 8/343</div>
+    <div class="highlight-box green">(1/5)² : (1/5)⁵ = (1/5)^(2−5) = (1/5)^(−3) = 5³ = 125</div>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Propriedades das potências</span>
+    <h3>Regras de cálculo</h3>
+    <ul>
+      <li><strong>Produto de mesma base:</strong> aᵐ × aⁿ = aᵐ⁺ⁿ</li>
+      <li><strong>Quociente de mesma base:</strong> aᵐ ÷ aⁿ = aᵐ⁻ⁿ</li>
+      <li><strong>Potência de fração:</strong> (a/b)ⁿ = aⁿ/bⁿ</li>
+      <li><strong>Casos especiais:</strong> a⁰ = 1 (a ≠ 0); a¹ = a</li>
+    </ul>
+  </div>
+  </div>
+
+  <div id="topic2-8">
+  <div class="def-block">
+    <span class="def-tag def">Definição</span>
+    <h3>8. Potências de Base 10 e Notação Científica</h3>
+    <p>Um número está em <strong>notação científica</strong> quando é escrito na forma <em>a × 10ⁿ</em>, onde 1 ≤ a &lt; 10 e n ∈ ℤ.</p>
+    <table class="data-table">
+      <thead><tr><th>Número</th><th>Notação científica</th></tr></thead>
+      <tbody>
+        <tr><td>25 000</td><td>2,5 × 10⁴</td></tr>
+        <tr><td>0,0016</td><td>1,6 × 10⁻³</td></tr>
+        <tr><td>150 × 10⁸</td><td>1,5 × 10¹⁰</td></tr>
+        <tr><td>183 750</td><td>1,8375 × 10⁵</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Potências de base 10</span>
+    <h3>Propriedades</h3>
+    <ul>
+      <li>10ᵐ × 10ⁿ = 10ᵐ⁺ⁿ</li>
+      <li>10ᵐ ÷ 10ⁿ = 10ᵐ⁻ⁿ</li>
+      <li>5 × 10⁵ × 20 = 100 × 10⁵ = 10² × 10⁵ = 10⁷</li>
+    </ul>
+  </div>
+  </div>
+
+  <div id="topic2-9">
+  <div class="def-block">
+    <span class="def-tag def">Operações em Notação Científica</span>
+    <h3>9. Comparação e Operações</h3>
+    <p>Para <strong>comparar</strong>: número com expoente maior é o maior; se expoente igual, compara a parte decimal.</p>
+    <div class="highlight-box">2,5 × 10⁶ > 8,9 × 10³ (expoente maior → número maior)</div>
+  </div>
+  <div class="def-block">
+    <span class="def-tag prop">Somar e subtrair em notação científica</span>
+    <h3>Igualar os expoentes antes de operar</h3>
+    <div class="formula">A + B: converter para mesmo expoente, depois somar partes decimais</div>
+    <div class="highlight-box">0,032 × 10⁵ + 87 × 10² = 3200 + 8700 = 11900 = 1,19 × 10⁴</div>
+  </div>
+  <div class="def-block">
+    <span class="def-tag ex">Multiplicar e dividir em notação científica</span>
+    <h3>Operar separadamente</h3>
+    <div class="highlight-box">(a × 10ᵐ) × (b × 10ⁿ) = (a × b) × 10ᵐ⁺ⁿ</div>
+    <div class="highlight-box green">(a × 10ᵐ) ÷ (b × 10ⁿ) = (a ÷ b) × 10ᵐ⁻ⁿ</div>
+  </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ QUESTÕES-AULA ══════════ -->
+<div class="section" id="sec-questoes2">
+  <div class="sec-header" style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+    <div style="flex:1"><h2><span class="num"><span class="ico"><svg><use href="#ico-pencil"/></svg></span></span> Questões-aula</h2>
+    <p>Exercícios pelos 9 temas — escolhe o nível e gera novas questões a qualquer momento</p></div>
+  </div>
+  <div class="level-bar">
+    <div class="gen-level-group">
+      <span class="gen-level-label">Nível:</span>
+      <button class="gen-level-btn" data-level="facil" onclick="setLevelSection2('q2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
+      <button class="gen-level-btn active" data-level="medio" onclick="setLevelSection2('q2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
+      <button class="gen-level-btn" data-level="dificil" onclick="setLevelSection2('q2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+    </div>
+    <button class="btn btn-ghost" style="margin-left:auto" onclick="gerarQuestoes2()">↺ Novas questões</button>
+  </div>
+  <div class="score-bar">
+    <div><div class="score-num" id="q2-score">0</div><div class="score-label">pontos</div></div>
+    <div><div class="score-num" id="q2-total" style="color:var(--ink4);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
+    <div class="progress-track"><div class="progress-fill" id="q2-prog" style="width:0%"></div></div>
+  </div>
+  <div id="q2-container"></div>
+  <div id="relampago2-score" class="highlight-box green" style="display:none;margin-top:1.25rem;text-align:center;font-size:1.1rem;font-weight:700;">
+    <div id="relampago2-result"></div>
+    <button class="btn btn-ghost" style="margin-top:.5rem" onclick="gerarQuestoes2&&gerarQuestoes2()">↺ Tentar de novo</button>
+  </div>
+
+
+<div style="margin-top:2rem;padding-top:1.5rem;border-top:1.5px dashed var(--border2)" id="sec-minitestes2" class="section">
+<div class="sec-header" style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+    <div style="flex:1"><h2><span class="num"><span class="ico"><svg><use href="#ico-file-text"/></svg></span></span> Minitestes</h2>
+    <p>9 minitestes, um por tema — escolhe o nível e gera novas questões</p></div>
+  </div>
+  <div class="level-bar">
+    <div class="gen-level-group">
+      <span class="gen-level-label">Nível:</span>
+      <button class="gen-level-btn" data-level="facil" onclick="setLevelSection2('m2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
+      <button class="gen-level-btn active" data-level="medio" onclick="setLevelSection2('m2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
+      <button class="gen-level-btn" data-level="dificil" onclick="setLevelSection2('m2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+    </div>
+    <button class="btn btn-ghost" style="margin-left:auto" onclick="gerarMiniAtual2()">↺ Novas questões</button>
+  </div>
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;" id="mini-tabs2">
+    <button class="tab-btn active" onclick="showMiniDyn2(0,this)"><span class="ico ico-sm"><svg><use href="#ico-book-open"/></svg></span> Capítulo completo</button>
+    <button class="tab-btn" onclick="showMiniDyn2(1,this)">① Mini 1 — Racionais</button>
+    <button class="tab-btn" onclick="showMiniDyn2(2,this)">② Mini 2 — Ordenação</button>
+    <button class="tab-btn" onclick="showMiniDyn2(3,this)">③ Mini 3 — Adição</button>
+    <button class="tab-btn" onclick="showMiniDyn2(4,this)">④ Mini 4 — Problemas</button>
+    <button class="tab-btn" onclick="showMiniDyn2(5,this)">⑤ Mini 5 — %</button>
+    <button class="tab-btn" onclick="showMiniDyn2(6,this)"><span style="font-size:.85em"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.74V4a2 2 0 0 0-2-2h-9A1 1 0 0 0 10 3v12"/><path d="M4 3h2"/><path d="M4 7h2"/><path d="M4 11h2"/><path d="M4 15h2"/><path d="M4 19h2"/><path d="M10 17H4a2 2 0 1 0 0 4h10a2 2 0 0 0 2-2v-2z"/></svg></span></span> Mini 6 — Prob. %</button>
+    <button class="tab-btn" onclick="showMiniDyn2(7,this)">① Mini 7 — Potências</button>
+    <button class="tab-btn" onclick="showMiniDyn2(8,this)">② Mini 8 — Not. Cient.</button>
+    <button class="tab-btn" onclick="showMiniDyn2(9,this)">③ Mini 9 — Op. Not. Cient.</button>
+  </div>
+  <div class="score-bar">
+    <div><div class="score-num" id="m2-score">0</div><div class="score-label">pontos</div></div>
+    <div><div class="score-num" id="m2-total" style="color:var(--ink4);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
+    <div class="progress-track"><div class="progress-fill" id="m2-prog" style="width:0%"></div></div>
+  </div>
+  <div id="m2-container"></div>
+</div>
+
+
+<div style="margin-top:2rem;padding-top:1.5rem;border-top:1.5px dashed var(--border2)" id="sec-teste2" class="section">
+<div class="sec-header" style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
+    <div style="flex:1"><h2><span class="num"><span class="ico"><svg><use href="#ico-target"/></svg></span></span> Teste Global</h2>
+    <p>Questões de todos os temas do Capítulo 2</p></div>
+  </div>
+  <div class="level-bar">
+    <div class="gen-level-group">
+      <span class="gen-level-label">Nível:</span>
+      <button class="gen-level-btn" data-level="facil" onclick="setLevelSection2('t2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
+      <button class="gen-level-btn active" data-level="medio" onclick="setLevelSection2('t2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
+      <button class="gen-level-btn" data-level="dificil" onclick="setLevelSection2('t2',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+    </div>
+    <button class="btn btn-ghost" style="margin-left:auto" onclick="gerarTeste2()">↺ Novo teste</button>
+  </div>
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;" id="teste2-subtema-tabs">
+    <button class="tab-btn active" onclick="setTeste2Subtema(0,this)"><span class="ico ico-sm"><svg><use href="#ico-book-open"/></svg></span> Cap. completo</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(1,this)">① Racionais</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(2,this)">② Comparação</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(3,this)">③ Adição</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(5,this)">⑤ %</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(7,this)">7️⃣ Potências</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(8,this)">8️⃣ Not. Cient.</button>
+    <button class="tab-btn" onclick="setTeste2Subtema(9,this)">9️⃣ Op. N.C.</button>
+  </div>
+  <div class="score-bar">
+    <div><div class="score-num" id="t2-score">0</div><div class="score-label">pontos</div></div>
+    <div><div class="score-num" id="t2-total" style="color:var(--ink4);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
+    <div class="progress-track"><div class="progress-fill" id="t2-prog" style="width:0%"></div></div>
+  </div>
+  <div id="t2-container"></div>
+</div>
+</div>
+</div>
+
+<!-- ══════════ GERADOR ══════════ -->
+<div class="section" id="sec-gerador2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-dices"/></svg></span></span> Gerador de Exercícios</h2>
+    <p>Gera exercícios novos ilimitados sobre Números Racionais</p>
+  </div>
+  <div class="ai-panel">
+    <div class="ai-panel-title">Configurar gerador</div>
+    <div class="ai-controls" style="flex-wrap:wrap;gap:.75rem;">
+      <div class="gen-level-group">
+        <span class="gen-level-label">Nível:</span>
+        <button class="gen-level-btn active" data-level="facil" onclick="setGenLevel2(this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
+        <button class="gen-level-btn" data-level="medio" onclick="setGenLevel2(this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
+        <button class="gen-level-btn" data-level="dificil" onclick="setGenLevel2(this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+      </div>
+      <select class="ai-select" id="gen2-tema">
+        <option value="all">Todos os temas</option>
+        <option value="1">Tema 1 — Racionais</option>
+        <option value="2">Tema 2 — Ordenação</option>
+        <option value="3">Tema 3 — Adição</option>
+        <option value="5">Tema 5 — Percentagens</option>
+        <option value="7">Tema 7 — Potências</option>
+        <option value="8">Tema 8 — Not. Científica</option>
+        <option value="9">Tema 9 — Op. Not. Científica</option>
+      </select>
+      <select class="ai-select" id="gen2-qtd">
+        <option value="5">5 exercícios</option>
+        <option value="10" selected>10 exercícios</option>
+        <option value="15">15 exercícios</option>
+      </select>
+      <button class="btn btn-primary" onclick="gerarExercicios2()"><span class="ico ico-sm"><svg><use href="#ico-dices"/></svg></span> Gerar exercícios</button>
+    </div>
+  </div>
+  <div class="score-bar" id="gen2-score-bar" style="display:none">
+    <div><div class="score-num" id="gen2-score">0</div><div class="score-label">corretos</div></div>
+    <div><div class="score-num" id="gen2-total" style="color:var(--ink4);font-size:1.2rem">/ 0</div><div class="score-label">respondidos</div></div>
+    <div class="progress-track"><div class="progress-fill" id="gen2-prog" style="width:0%"></div></div>
+  </div>
+  <div id="gen2-resultado"></div>
+  <div id="gen2-download-area" class="score-bar" style="display:none;margin-top:1rem;gap:.75rem;">
+    <button class="btn btn-ghost" onclick="typeof gerarExercicios2==='function'&&gerarExercicios2()">↺ Gerar Novos</button>
+  </div>
+</div>
+</div>
+
+<!-- ══════════ JOGOS ══════════ -->
+<div class="section" id="sec-jogos2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-gamepad"/></svg></span></span> Jogos</h2>
+    <p>5 jogos matemáticos interativos — treina com números racionais</p>
+  </div>
+  <div id="j24-wrap-cap2"></div>
+  <div id="triangulo-fb" class="feedback" style="margin-top:1rem"></div>
+</div>
+
+<!-- ══════════ MODO QUIZ CAP 2 ══════════ -->
+<div class="section" id="sec-quiz-game2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-trophy"/></svg></span></span> ⚡ Modo Quiz</h2>
+    <p>Questões de escolha múltipla — Números Racionais — 3 vidas, streak e game over</p>
+  </div>
+  <div id="qg-app2"></div>
+</div>
+
+<!-- ══════════ FLASHCARDS ══════════ -->
+<div class="section" id="sec-flashcards2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-layers"/></svg></span></span> Flashcards</h2>
+    <p>Revê as definições e fórmulas principais — carrega para virar o cartão</p>
+  </div>
+  <div class="card" style="max-width:600px;margin:0 auto;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+      <span id="fc2-tag" style="background:var(--c2-base);color:var(--c2-deep);font-size:.7rem;font-weight:700;padding:3px 12px;border-radius:999px;border:1px solid rgba(30,136,229,.18)">Definição</span>
+      <span id="fc2-counter" style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--ink4)">1 / 20</span>
+    </div>
+    <div style="height:4px;background:var(--cream3);border-radius:999px;overflow:hidden;margin-bottom:1.25rem">
+      <div id="fc2-prog" style="height:100%;background:var(--c2-mid);border-radius:999px;transition:width .4s;width:5%"></div>
+    </div>
+    <div id="fc2-inner" onclick="fcFlip2()" style="cursor:pointer;min-height:120px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;border:2px dashed var(--border2);border-radius:var(--radius-sm);transition:background .2s;background:var(--cream)">
+      <div>
+        <p id="fc2-q" style="font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.5"></p>
+        <p id="fc2-a" style="font-size:.9rem;color:var(--c2-deep);margin-top:.75rem;display:none;line-height:1.6"></p>
+        <p style="font-size:.75rem;color:var(--ink4);margin-top:.5rem">Carrega para ver a resposta</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:.75rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap">
+      <button class="btn btn-ghost" onclick="fcPrev2()">← Anterior</button>
+      <button class="btn btn-primary" onclick="fcFlip2()">↕ Virar</button>
+      <button class="btn btn-ghost" onclick="fcNext2()">Seguinte →</button>
+    </div>
+    <div id="fc2-dots" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:.75rem"></div>
+  
+</div>
+</div>
+</div>
+
+<!-- ══════════ EXAME ══════════ -->
+<div class="section" id="sec-exame2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-timer"/></svg></span></span> Exame Cronometrado</h2>
+    <p>Simula condições de exame com tempo limite</p>
+  </div>
+  <div id="exame2-config" class="card">
+    <div class="card-title">Configurar exame</div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-end">
+      <div>
+        <div style="font-size:.78rem;font-weight:600;color:var(--ink3);margin-bottom:.4rem">Nível</div>
+        <div class="gen-level-group" id="exame2-level-group">
+          <button class="gen-level-btn" data-level="facil" onclick="exame2SetLevel(this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
+          <button class="gen-level-btn active" data-level="medio" onclick="exame2SetLevel(this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
+          <button class="gen-level-btn" data-level="dificil" onclick="exame2SetLevel(this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.78rem;font-weight:600;color:var(--ink3);margin-bottom:.4rem">N.º questões</div>
+        <select class="ai-select" id="exame2-qtd"><option value="10">10</option><option value="15">15</option><option value="20" selected>20</option></select>
+      </div>
+      <div>
+        <div style="font-size:.78rem;font-weight:600;color:var(--ink3);margin-bottom:.4rem">Tempo (seg)</div>
+        <select class="ai-select" id="exame2-tempo"><option value="600">10 min</option><option value="900" selected>15 min</option><option value="1800">30 min</option></select>
+      </div>
+      <button class="btn btn-primary" onclick="exame2Start()">▶ Iniciar exame</button>
+    </div>
+  </div>
+  <div id="exame2-running" style="display:none">
+    <div style="display:flex;align-items:center;gap:1rem;background:var(--white);border:1.5px solid var(--border);border-radius:var(--p-radius);padding:1rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);flex-wrap:wrap">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:900;color:var(--ink)" id="exame2-timer">15:00</div>
+      <div style="font-size:.8rem;font-weight:600;color:var(--ink3)">Respondidas: <span id="exame2-answered">0 / 20</span></div>
+      <div class="progress-track" style="flex:1;min-width:120px"><div class="progress-fill" id="exame2-prog" style="width:0%"></div></div>
+      <button class="btn btn-ghost" onclick="exame2Stop()">⏹ Terminar</button>
+    </div>
+    <div id="exame2-container"></div>
+  </div>
+  <div id="exame2-result" style="display:none;text-align:center;padding:2.5rem 1rem">
+    <div style="font-size:3rem;margin-bottom:.75rem" id="exame2-emoji"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span></div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:900;color:var(--ink)" id="exame2-nota">100%</div>
+    <div style="color:var(--ink3);margin-top:.5rem" id="exame2-detalhe">20 certas em 20 questões</div>
+    <button class="btn btn-primary" style="margin-top:1.5rem" onclick="exame2Reset()">↺ Novo exame</button>
+  </div>
+</div>
+
+<!-- ══════════ PROGRESSO ══════════ -->
+<div class="section" id="sec-progresso2">
+  <div class="sec-header">
+    <h2><span class="num"><span class="ico"><svg><use href="#ico-trophy"/></svg></span></span> O Meu Progresso</h2>
+    <p>Resumo das atividades realizadas neste capítulo</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:.6rem;background:#fdf0ef;border:1px solid #e8b4b0;border-radius:10px;padding:.65rem 1rem;margin-bottom:1.25rem;font-size:.82rem;color:#8b3a35">
+    <span>O progresso é guardado <strong>apenas neste browser e neste dispositivo</strong>. Se mudares de browser ou de computador, o registo começa do zero.</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem" id="prog2-cards"></div>
+  <div class="card">
+    <div class="card-title">Desempenho por Capítulo</div>
+    <div id="prog2-temas" style="display:flex;flex-direction:column;gap:.65rem;margin-top:.5rem"></div>
+  </div>
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title" style="display:flex;align-items:center;justify-content:space-between">
+      Histórico recente
+      <button class="btn btn-ghost" style="padding:6px 14px;font-size:.75rem" onclick="progReset2()">Limpar</button>
+    </div>
+    <div id="prog2-historico" style="display:flex;flex-direction:column;gap:4px;margin-top:.5rem;max-height:200px;overflow-y:auto"></div>
+  </div>
+  <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap">    <button class="btn btn-ghost" onclick="progDownloadPDF()" title="Gerar PDF para imprimir"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> PDF</button>
+  </div>
+</div>
+
+</main>
+</div><!-- /view-math2 -->
+
+
+<!-- ═══════════════════════════════════════
+     CAP. 3 — GEOMETRIA · 7.º ANO
+════════════════════════════════════════════ -->
+
+<!-- PRINT HEADER (hidden on screen) -->
+<div id="print-header">
+  <div class="ph-logo">3ponto<em>14</em> · Centro de Estudos</div>
+  <div class="ph-meta">Matemática · 7.º Ano · Ficha de Estudo</div>
+  <div class="ph-fields">
+    <div class="ph-field"><span class="ph-field-label">Nome:</span><div class="ph-field-line" style="width:200px"></div></div>
+    <div class="ph-field"><span class="ph-field-label">N.º:</span><div class="ph-field-line" style="width:60px"></div></div>
+    <div class="ph-field"><span class="ph-field-label">Turma:</span><div class="ph-field-line" style="width:60px"></div></div>
+    <div class="ph-field"><span class="ph-field-label">Data:</span><div class="ph-field-line" style="width:100px"></div></div>
+  </div>
+</div>
+
+<!-- POMODORO FAB -->
+<button id="pomodoro-fab" onclick="pomodoroTogglePanel()" title="Temporizador Pomodoro" aria-label="Abrir temporizador Pomodoro">
+  🍅
+</button>
+
+<!-- POMODORO PANEL -->
+<div id="pomodoro-widget" class="hidden" role="dialog" aria-label="Temporizador Pomodoro">
+  <div id="pomodoro-panel">
+    <div class="pom-header">
+      <span class="pom-title">🍅 Pomodoro</span>
+      <button class="pom-close" onclick="pomodoroTogglePanel()" aria-label="Fechar">✕</button>
+    </div>
+    <div class="pom-mode-row">
+      <button class="pom-mode-btn active" id="pom-btn-focus" onclick="pomodoroSetMode('focus')">Foco</button>
+      <button class="pom-mode-btn" id="pom-btn-short" onclick="pomodoroSetMode('short')">Pausa</button>
+      <button class="pom-mode-btn" id="pom-btn-long" onclick="pomodoroSetMode('long')">Longa</button>
+    </div>
+    <div class="pom-clock">
+      <svg class="pom-svg" width="100" height="100" viewBox="0 0 100 100">
+        <circle class="pom-ring-bg" cx="50" cy="50" r="44"/>
+        <circle class="pom-ring-fill" id="pom-ring" cx="50" cy="50" r="44"
+          stroke-dasharray="276.46" stroke-dashoffset="0"/>
+      </svg>
+      <div class="pom-time-text" id="pom-time">25:00</div>
+    </div>
+    <div class="pom-session-label" id="pom-session-label">Sessão 1 de 4</div>
+    <div class="pom-controls">
+      <button class="pom-ctrl-btn primary" id="pom-start-btn" onclick="pomodoroStartStop()">▶ Iniciar</button>
+      <button class="pom-ctrl-btn secondary" onclick="pomodoroReset()" aria-label="Reiniciar temporizador">↺</button>
+    </div>
+    <div class="pom-sessions" id="pom-dots">
+      <div class="pom-dot" id="pom-d0"></div>
+      <div class="pom-dot" id="pom-d1"></div>
+      <div class="pom-dot" id="pom-d2"></div>
+      <div class="pom-dot" id="pom-d3"></div>
+    </div>
+    <div style="margin-top:1rem;padding:.75rem;background:var(--cream2);border-radius:10px;font-size:.68rem;color:var(--ink3);line-height:1.6;border:1px solid var(--border)">
+      <strong style="display:block;font-size:.7rem;color:var(--ink2);margin-bottom:.3rem">💡 O que é a técnica Pomodoro?</strong>
+      Estuda <strong>25 min</strong> com foco total, depois faz uma <strong>pausa de 5 min</strong>. Após 4 sessões, faz uma pausa longa de 15 min. Este ciclo ajuda o cérebro a <strong>concentrar-se melhor</strong>, reduzir a fadiga e memorizar mais eficazmente.
+    </div>
+  </div>
+</div>
+
+
+<!-- INJECT BUTTONS INTO TOPBAR — done after DOM ready -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     v33 FEATURES: Modo Escuro · Tamanho Texto ·
+════════════════════════════════════════════════════════════ -->
+
+</div>
+
+<!-- ── Calculadora FAB ── -->
+<button id="calc-fab" onclick="calcToggle()" title="Calculadora científica" aria-label="Calculadora">𝑥²</button>
+<div id="calc-widget">
+  <div id="calc-display">
+    <div id="calc-fab-expr"></div>
+    <div id="calc-result">0</div>
+  </div>
+  <div class="calc-grid">
+    <button class="calc-btn fn" onclick="calcFn('sqrt')">√</button>
+    <button class="calc-btn fn" onclick="calcFn('sq')">x²</button>
+    <button class="calc-btn fn" onclick="calcFn('inv')">1/x</button>
+    <button class="calc-btn clr" onclick="calcClear()">AC</button>
+    <button class="calc-btn fn" onclick="calcFn('sin')">sen</button>
+    <button class="calc-btn fn" onclick="calcFn('cos')">cos</button>
+    <button class="calc-btn fn" onclick="calcFn('tan')">tan</button>
+    <button class="calc-btn fn" onclick="calcFn('pi')">π</button>
+    <button class="calc-btn fn" onclick="calcFn('log')">log</button>
+    <button class="calc-btn fn" onclick="calcFn('ln')">ln</button>
+    <button class="calc-btn fn" onclick="calcOp('**')">xʸ</button>
+    <button class="calc-btn fn" onclick="calcFn('abs')">|x|</button>
+    <button class="calc-btn fn" onclick="calcFn('pct')">%</button>
+    <button class="calc-btn fn" onclick="calcFn('pm')">±</button>
+    <button class="calc-btn fn" onclick="calcNum('(')">( </button>
+    <button class="calc-btn fn" onclick="calcNum(')')"> )</button>
+    <button class="calc-btn fn" onclick="calcDel()">⌫</button>
+    <button class="calc-btn op" onclick="calcOp('/')">÷</button>
+    <button class="calc-btn op" onclick="calcOp('*')">×</button>
+    <button class="calc-btn op" onclick="calcOp('-')">−</button>
+    <button class="calc-btn" onclick="calcNum('7')">7</button>
+    <button class="calc-btn" onclick="calcNum('8')">8</button>
+    <button class="calc-btn" onclick="calcNum('9')">9</button>
+    <button class="calc-btn op" onclick="calcOp('+')">+</button>
+    <button class="calc-btn" onclick="calcNum('4')">4</button>
+    <button class="calc-btn" onclick="calcNum('5')">5</button>
+    <button class="calc-btn" onclick="calcNum('6')">6</button>
+    <button class="calc-btn eq" onclick="calcEq()">=</button>
+    <button class="calc-btn" onclick="calcNum('1')">1</button>
+    <button class="calc-btn" onclick="calcNum('2')">2</button>
+    <button class="calc-btn" onclick="calcNum('3')">3</button>
+    <button class="calc-btn" onclick="calcNum('0')">0</button>
+    <button class="calc-btn" onclick="calcNum('.')">.</button>
+  </div>
+  <div style="font-size:.62rem;color:var(--ink4);text-align:center;padding:4px 0 6px;font-family:'JetBrains Mono',monospace">sen/cos/tan em graus &nbsp;·&nbsp; xʸ = potência</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ESCAPE ROOM v2 — SALA VISUAL ÚNICA
+════════════════════════════════════════════════════════════ -->
+
+
+
+<!-- ── Unified Flashcard stub (ufc-* IDs used by _uniFC_render) ── -->
+<div id="ufc-stub" style="display:none" aria-hidden="true">
+  <span id="ufc-cap-label"></span>
+  <span id="ufc-tag"></span>
+  <span id="ufc-q"></span>
+  <span id="ufc-a"></span>
+  <span id="ufc-counter"></span>
+  <div id="ufc-prog"></div>
+  <div id="ufc-inner">
+    <div id="ufc-front"></div>
+    <div id="ufc-back"></div>
+  </div>
+  <button id="ufc-flip-btn" tabindex="-1" onclick="_uniFC_flip()">Virar</button>
+  <button tabindex="-1" onclick="_uniFC_prev()" aria-label="Carta anterior">←</button>
+  <button tabindex="-1" onclick="_uniFC_next()" aria-label="Próxima carta">→</button>
+  <button tabindex="-1" onclick="_uniFC_shuffle()" aria-label="Baralhar cartas">↺</button>
+</div>
+
+
+
+<script src="js/shared.js"></script>
+<script src="js/cap2.js"></script>
+<script src="js/systems.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
