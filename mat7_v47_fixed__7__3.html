@@ -4881,31 +4881,256 @@ function mat7TabGetActiveSts(tab, cap) {
 <div style="margin-top:2rem;padding-top:1.5rem;border-top:1.5px dashed var(--border2)" id="sec-minitestes" class="section">
 <div class="sec-header" style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
     <div style="flex:1"><h2><span class="num" style="background:var(--cream2);color:var(--ink2);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:800;letter-spacing:.05em">Nível 2</span> Minitestes</h2>
-    <p>5 minitestes, um por tema — escolhe o nível e gera novas questões</p></div>
+    <p>5 questões de escolha múltipla por tema — seleciona o miniteste e responde</p></div>
   </div>
-  <div class="level-bar">
-    <div class="gen-level-group">
-      <span class="gen-level-label">Nível:</span>
-      <button class="gen-level-btn" data-level="facil" onclick="setLevelSection('m',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
-      <button class="gen-level-btn active" data-level="medio" onclick="setLevelSection('m',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
-      <button class="gen-level-btn" data-level="dificil" onclick="setLevelSection('m',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+
+  <!-- Tabs dos minitestes -->
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="mini-tabs">
+    <button class="tab-btn active" onclick="miniMostrar('mini1',this)">① Mini 1 — Inteiros</button>
+    <button class="tab-btn" onclick="miniMostrar('mini2',this)">② Mini 2 — Valor Abs.</button>
+    <button class="tab-btn" onclick="miniMostrar('mini3',this)">③ Mini 3 — Adição</button>
+    <button class="tab-btn" onclick="miniMostrar('mini4',this)">④ Mini 4 — Subtração</button>
+    <button class="tab-btn" onclick="miniMostrar('mini5',this)">⑤ Mini 5 — Parênteses</button>
+  </div>
+
+  <!-- ── MINITESTE 1 — em breve ── -->
+  <div id="mini1" class="mini-bloco">
+    <div class="card" style="text-align:center;padding:2rem;color:var(--ink4)">
+      <div style="font-size:2rem;margin-bottom:.5rem">📋</div>
+      <div style="font-weight:700;margin-bottom:.25rem">Miniteste 1 — Conjunto dos Inteiros</div>
+      <div style="font-size:.85rem">Brevemente disponível</div>
     </div>
-    <button class="btn btn-ghost" style="margin-left:auto" onclick="gerarMiniAtual()">↺ Novas questões</button>
   </div>
-  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.25rem;" id="mini-tabs">
-    <button class="tab-btn active" onclick="showMiniDyn(0,this)"><span class="ico ico-sm"><svg><use href="#ico-book-open"/></svg></span> Capítulo completo</button>
-    <button class="tab-btn" onclick="showMiniDyn(1,this)">① Mini 1 — Inteiros</button>
-    <button class="tab-btn" onclick="showMiniDyn(2,this)">② Mini 2 — |a|</button>
-    <button class="tab-btn" onclick="showMiniDyn(3,this)">③ Mini 3 — Adição</button>
-    <button class="tab-btn" onclick="showMiniDyn(4,this)">④ Mini 4 — Subtração</button>
-    <button class="tab-btn" onclick="showMiniDyn(5,this)">⑤ Mini 5 — Parênteses</button>
+
+  <!-- ── MINITESTE 2 — Valor Absoluto e Simétrico ── -->
+  <div id="mini2" class="mini-bloco" style="display:none">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Miniteste 2 — Valor Absoluto e Simétrico. Comparação de Números Inteiros
+    </div>
+    <div class="score-bar" style="margin-bottom:1.25rem">
+      <div><div class="score-num" id="m2-score">0</div><div class="score-label">certas</div></div>
+      <div><div class="score-num" id="m2-total" style="color:var(--muted);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
+      <div class="progress-track"><div class="progress-fill" id="m2-prog" style="width:0%"></div></div>
+      <button class="btn btn-ghost" style="font-size:.78rem" onclick="miniReset('m2')">↺ Recomeçar</button>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m2q1">
+      <div class="qg-dif-tag">Questão 1</div>
+      <p class="qg-question">Indica a afirmação <strong>falsa</strong>.</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m2',1,this,'A','C')"><span class="qg-opt-k">A</span> O valor absoluto de −5 é 5.</button>
+        <button class="qg-opt" onclick="miniResp('m2',1,this,'B','C')"><span class="qg-opt-k">B</span> O simétrico de 0 é 0.</button>
+        <button class="qg-opt" onclick="miniResp('m2',1,this,'C','C')"><span class="qg-opt-k">C</span> −|−3| = 3</button>
+        <button class="qg-opt" onclick="miniResp('m2',1,this,'D','C')"><span class="qg-opt-k">D</span> −(−4) = |−4|</button>
+      </div>
+      <div class="qg-fb" id="m2q1-fb"></div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m2q2">
+      <div class="qg-dif-tag">Questão 2</div>
+      <p class="qg-question">Seleciona a desigualdade <strong>verdadeira</strong>.</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m2',2,this,'A','B')"><span class="qg-opt-k">A</span> −10 &gt; −8</button>
+        <button class="qg-opt" onclick="miniResp('m2',2,this,'B','B')"><span class="qg-opt-k">B</span> 0 &gt; −1</button>
+        <button class="qg-opt" onclick="miniResp('m2',2,this,'C','B')"><span class="qg-opt-k">C</span> −7 &gt; 5</button>
+        <button class="qg-opt" onclick="miniResp('m2',2,this,'D','B')"><span class="qg-opt-k">D</span> 0 &lt; −3</button>
+      </div>
+      <div class="qg-fb" id="m2q2-fb"></div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m2q3">
+      <div class="qg-dif-tag">Questão 3</div>
+      <p class="qg-question">Qual das afirmações seguintes é <strong>falsa</strong>?</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m2',3,this,'A','D')"><span class="qg-opt-k">A</span> |−3| &gt; |2|</button>
+        <button class="qg-opt" onclick="miniResp('m2',3,this,'B','D')"><span class="qg-opt-k">B</span> −(−5) &gt; 0</button>
+        <button class="qg-opt" onclick="miniResp('m2',3,this,'C','D')"><span class="qg-opt-k">C</span> −|7| = −7</button>
+        <button class="qg-opt" onclick="miniResp('m2',3,this,'D','D')"><span class="qg-opt-k">D</span> −|−6| &lt; −(+7)</button>
+      </div>
+      <div class="qg-fb" id="m2q3-fb"><span class="qg-fb-label">Nota:</span> −|−6| = −6 e −(+7) = −7. Como −6 &gt; −7, a desigualdade −6 &lt; −7 é falsa.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m2q4">
+      <div class="qg-dif-tag">Questão 4.1</div>
+      <p class="qg-question">Considera a reta numérica com os pontos A e B assinalados (A à esquerda, B perto de 8). A abcissa do ponto A é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m2',4,this,'A','B')"><span class="qg-opt-k">A</span> A → −4</button>
+        <button class="qg-opt" onclick="miniResp('m2',4,this,'B','B')"><span class="qg-opt-k">B</span> A → −2</button>
+        <button class="qg-opt" onclick="miniResp('m2',4,this,'C','B')"><span class="qg-opt-k">C</span> A → −1</button>
+        <button class="qg-opt" onclick="miniResp('m2',4,this,'D','B')"><span class="qg-opt-k">D</span> A → 1</button>
+      </div>
+      <div class="qg-fb" id="m2q4-fb"></div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m2q5">
+      <div class="qg-dif-tag">Questão 4.2</div>
+      <p class="qg-question">A distância do ponto A ao ponto B é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m2',5,this,'A','C')"><span class="qg-opt-k">A</span> 7</button>
+        <button class="qg-opt" onclick="miniResp('m2',5,this,'B','C')"><span class="qg-opt-k">B</span> −10</button>
+        <button class="qg-opt" onclick="miniResp('m2',5,this,'C','C')"><span class="qg-opt-k">C</span> 10</button>
+        <button class="qg-opt" onclick="miniResp('m2',5,this,'D','C')"><span class="qg-opt-k">D</span> 5</button>
+      </div>
+      <div class="qg-fb" id="m2q5-fb"><span class="qg-fb-label">Nota:</span> A distância = |8 − (−2)| = 10.</div>
+    </div>
   </div>
-  <div class="score-bar">
-    <div><div class="score-num" id="m-score">0</div><div class="score-label">certas</div></div>
-    <div><div class="score-num" id="m-total" style="color:var(--muted);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
-    <div class="progress-track"><div class="progress-fill" id="m-prog" style="width:0%"></div></div>
+
+  <!-- ── MINITESTE 3 — Adição ── -->
+  <div id="mini3" class="mini-bloco" style="display:none">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Miniteste 3 — Adição de Números Inteiros
+    </div>
+    <div class="score-bar" style="margin-bottom:1.25rem">
+      <div><div class="score-num" id="m3-score">0</div><div class="score-label">certas</div></div>
+      <div><div class="score-num" id="m3-total" style="color:var(--muted);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
+      <div class="progress-track"><div class="progress-fill" id="m3-prog" style="width:0%"></div></div>
+      <button class="btn btn-ghost" style="font-size:.78rem" onclick="miniReset('m3')">↺ Recomeçar</button>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m3q1">
+      <div class="qg-dif-tag">Questão 1</div>
+      <p class="qg-question">A afirmação <strong>falsa</strong> é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m3',1,this,'A','B')"><span class="qg-opt-k">A</span> −2 + (−3) = −5</button>
+        <button class="qg-opt" onclick="miniResp('m3',1,this,'B','B')"><span class="qg-opt-k">B</span> −3 + 5 = −8</button>
+        <button class="qg-opt" onclick="miniResp('m3',1,this,'C','B')"><span class="qg-opt-k">C</span> −4 + 4 = 0</button>
+        <button class="qg-opt" onclick="miniResp('m3',1,this,'D','B')"><span class="qg-opt-k">D</span> 2 + (−4) = −2</button>
+      </div>
+      <div class="qg-fb" id="m3q1-fb"><span class="qg-fb-label">Nota:</span> −3 + 5 = +2, não −8.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m3q2">
+      <div class="qg-dif-tag">Questão 2</div>
+      <p class="qg-question">A soma do valor absoluto de −4 com o simétrico de 5 é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m3',2,this,'A','B')"><span class="qg-opt-k">A</span> −9</button>
+        <button class="qg-opt" onclick="miniResp('m3',2,this,'B','B')"><span class="qg-opt-k">B</span> −1</button>
+        <button class="qg-opt" onclick="miniResp('m3',2,this,'C','B')"><span class="qg-opt-k">C</span> 1</button>
+        <button class="qg-opt" onclick="miniResp('m3',2,this,'D','B')"><span class="qg-opt-k">D</span> 9</button>
+      </div>
+      <div class="qg-fb" id="m3q2-fb"><span class="qg-fb-label">Nota:</span> |−4| = 4; simétrico de 5 = −5; 4 + (−5) = −1.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m3q3">
+      <div class="qg-dif-tag">Questão 3</div>
+      <p class="qg-question">Na expressão −3 + <span style="border:1.5px solid var(--border2);padding:1px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace">?</span> = −8, o número em falta é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m3',3,this,'A','C')"><span class="qg-opt-k">A</span> −11</button>
+        <button class="qg-opt" onclick="miniResp('m3',3,this,'B','C')"><span class="qg-opt-k">B</span> 11</button>
+        <button class="qg-opt" onclick="miniResp('m3',3,this,'C','C')"><span class="qg-opt-k">C</span> −5</button>
+        <button class="qg-opt" onclick="miniResp('m3',3,this,'D','C')"><span class="qg-opt-k">D</span> 5</button>
+      </div>
+      <div class="qg-fb" id="m3q3-fb"><span class="qg-fb-label">Nota:</span> −3 + (−5) = −8 ✓</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m3q4">
+      <div class="qg-dif-tag">Questão 4</div>
+      <p class="qg-question">Um elevador está parado 4 andares abaixo do piso zero. Subiu até ao piso sete. Quantos andares subiu o elevador?</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m3',4,this,'A','D')"><span class="qg-opt-k">A</span> 4</button>
+        <button class="qg-opt" onclick="miniResp('m3',4,this,'B','D')"><span class="qg-opt-k">B</span> 7</button>
+        <button class="qg-opt" onclick="miniResp('m3',4,this,'C','D')"><span class="qg-opt-k">C</span> 10</button>
+        <button class="qg-opt" onclick="miniResp('m3',4,this,'D','D')"><span class="qg-opt-k">D</span> 11</button>
+      </div>
+      <div class="qg-fb" id="m3q4-fb"><span class="qg-fb-label">Nota:</span> 7 − (−4) = 11 andares.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m3q5">
+      <div class="qg-dif-tag">Questão 5</div>
+      <p class="qg-question">Considera a reta numérica com os pontos A, B e C representados (A à esquerda de B, C à direita de 0; entre 0 e 1 há marcas). A soma das abcissas dos pontos A, B e C é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m3',5,this,'A','C')"><span class="qg-opt-k">A</span> −9</button>
+        <button class="qg-opt" onclick="miniResp('m3',5,this,'B','C')"><span class="qg-opt-k">B</span> −3</button>
+        <button class="qg-opt" onclick="miniResp('m3',5,this,'C','C')"><span class="qg-opt-k">C</span> −1</button>
+        <button class="qg-opt" onclick="miniResp('m3',5,this,'D','C')"><span class="qg-opt-k">D</span> 1</button>
+      </div>
+      <div class="qg-fb" id="m3q5-fb"></div>
+    </div>
   </div>
-  <div id="m-container"></div>
+
+  <!-- ── MINITESTE 4 — Subtração ── -->
+  <div id="mini4" class="mini-bloco" style="display:none">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Miniteste 4 — Subtração de Números Inteiros. Adição Algébrica
+    </div>
+    <div class="score-bar" style="margin-bottom:1.25rem">
+      <div><div class="score-num" id="m4-score">0</div><div class="score-label">certas</div></div>
+      <div><div class="score-num" id="m4-total" style="color:var(--muted);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
+      <div class="progress-track"><div class="progress-fill" id="m4-prog" style="width:0%"></div></div>
+      <button class="btn btn-ghost" style="font-size:.78rem" onclick="miniReset('m4')">↺ Recomeçar</button>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m4q1">
+      <div class="qg-dif-tag">Questão 1</div>
+      <p class="qg-question">Os valores das subtrações 15 − (−5) e −12 − (+7) são, respetivamente, iguais a:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m4',1,this,'A','D')"><span class="qg-opt-k">A</span> 10 e −19</button>
+        <button class="qg-opt" onclick="miniResp('m4',1,this,'B','D')"><span class="qg-opt-k">B</span> 20 e −5</button>
+        <button class="qg-opt" onclick="miniResp('m4',1,this,'C','D')"><span class="qg-opt-k">C</span> 20 e 19</button>
+        <button class="qg-opt" onclick="miniResp('m4',1,this,'D','D')"><span class="qg-opt-k">D</span> 20 e −19</button>
+      </div>
+      <div class="qg-fb" id="m4q1-fb"><span class="qg-fb-label">Nota:</span> 15−(−5)=20; −12−(+7)=−19.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m4q2">
+      <div class="qg-dif-tag">Questão 2</div>
+      <p class="qg-question">O número em falta na igualdade 10 − <span style="border:1.5px solid var(--border2);padding:1px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace">?</span> = −5 − 3 é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m4',2,this,'A','D')"><span class="qg-opt-k">A</span> −18</button>
+        <button class="qg-opt" onclick="miniResp('m4',2,this,'B','D')"><span class="qg-opt-k">B</span> 2</button>
+        <button class="qg-opt" onclick="miniResp('m4',2,this,'C','D')"><span class="qg-opt-k">C</span> −12</button>
+        <button class="qg-opt" onclick="miniResp('m4',2,this,'D','D')"><span class="qg-opt-k">D</span> 18</button>
+      </div>
+      <div class="qg-fb" id="m4q2-fb"><span class="qg-fb-label">Nota:</span> −5−3=−8; 10−?=−8 → ?=18.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m4q3">
+      <div class="qg-dif-tag">Questão 3</div>
+      <p class="qg-question">O valor absoluto da expressão −3 − |−4| − (−2) é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m4',3,this,'A','C')"><span class="qg-opt-k">A</span> −9</button>
+        <button class="qg-opt" onclick="miniResp('m4',3,this,'B','C')"><span class="qg-opt-k">B</span> −5</button>
+        <button class="qg-opt" onclick="miniResp('m4',3,this,'C','C')"><span class="qg-opt-k">C</span> 5</button>
+        <button class="qg-opt" onclick="miniResp('m4',3,this,'D','C')"><span class="qg-opt-k">D</span> 9</button>
+      </div>
+      <div class="qg-fb" id="m4q3-fb"><span class="qg-fb-label">Nota:</span> −3−4+2=−5; |−5|=5.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m4q4">
+      <div class="qg-dif-tag">Questão 4</div>
+      <p class="qg-question">O valor da expressão −3 − 2 + (−6) − (−10) − (+1) é:</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m4',4,this,'A','A')"><span class="qg-opt-k">A</span> −2</button>
+        <button class="qg-opt" onclick="miniResp('m4',4,this,'B','A')"><span class="qg-opt-k">B</span> 0</button>
+        <button class="qg-opt" onclick="miniResp('m4',4,this,'C','A')"><span class="qg-opt-k">C</span> 1</button>
+        <button class="qg-opt" onclick="miniResp('m4',4,this,'D','A')"><span class="qg-opt-k">D</span> 2</button>
+      </div>
+      <div class="qg-fb" id="m4q4-fb"><span class="qg-fb-label">Nota:</span> −3−2−6+10−1=−2.</div>
+    </div>
+
+    <div class="card qa-card" style="margin-bottom:1rem" id="m4q5">
+      <div class="qg-dif-tag">Questão 5</div>
+      <p class="qg-question">Considera os números representados nos retângulos: <span style="font-family:'JetBrains Mono',monospace;font-weight:700"> [?] &nbsp; 8 &nbsp; 4 &nbsp; [?]</span>. Se calcularmos as diferenças entre dois destes números, qual é o menor resultado que podemos obter?</p>
+      <div class="qg-opts">
+        <button class="qg-opt" onclick="miniResp('m4',5,this,'A','B')"><span class="qg-opt-k">A</span> −22</button>
+        <button class="qg-opt" onclick="miniResp('m4',5,this,'B','B')"><span class="qg-opt-k">B</span> −20</button>
+        <button class="qg-opt" onclick="miniResp('m4',5,this,'C','B')"><span class="qg-opt-k">C</span> −18</button>
+        <button class="qg-opt" onclick="miniResp('m4',5,this,'D','B')"><span class="qg-opt-k">D</span> −16</button>
+      </div>
+      <div class="qg-fb" id="m4q5-fb"></div>
+    </div>
+  </div>
+
+  <!-- ── MINITESTE 5 — em breve ── -->
+  <div id="mini5" class="mini-bloco" style="display:none">
+    <div class="card" style="text-align:center;padding:2rem;color:var(--ink4)">
+      <div style="font-size:2rem;margin-bottom:.5rem">📋</div>
+      <div style="font-weight:700;margin-bottom:.25rem">Miniteste 5 — Expressões com Parênteses</div>
+      <div style="font-size:.85rem">Brevemente disponível</div>
+    </div>
+  </div>
+
+  <div id="m-container" style="display:none"></div>
 </div>
 
 
@@ -6543,6 +6768,58 @@ function downloadFichaGerada2(){
 function toggleTemaRow(id) {
   const row = document.getElementById(id);
   row.classList.toggle('open');
+}
+
+// ── Minitestes: trocar bloco visível ──
+function miniMostrar(id, btn) {
+  document.querySelectorAll('#mini-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.mini-bloco').forEach(b => b.style.display = 'none');
+  document.getElementById(id).style.display = '';
+}
+
+// ── Minitestes: responder a uma questão ──
+var _miniState = {};
+function miniResp(prefix, qNum, btn, chosen, correct) {
+  var key = prefix + 'q' + qNum;
+  if (_miniState[key]) return; // já respondida
+  _miniState[key] = true;
+  var card = document.getElementById(key);
+  card.querySelectorAll('.qg-opt').forEach(function(b) { b.classList.add('dis'); });
+  var isOk = (chosen === correct);
+  btn.classList.add(isOk ? 'ok' : 'err');
+  if (!isOk) {
+    card.querySelectorAll('.qg-opt').forEach(function(b) {
+      var attr = b.getAttribute('onclick') || '';
+      if (attr.indexOf("'" + correct + "'") !== -1 && attr.indexOf("'" + correct + "','" + correct + "'") !== -1) b.classList.add('ok');
+      // simpler: find by label
+    });
+    // mark correct option
+    card.querySelectorAll('.qg-opt').forEach(function(b) {
+      if (b.querySelector('.qg-opt-k') && b.querySelector('.qg-opt-k').textContent === correct) b.classList.add('ok');
+    });
+  }
+  var fb = document.getElementById(key + '-fb');
+  if (fb) { fb.classList.add('show', isOk ? 'ok' : 'err'); if (!fb.innerHTML.trim()) fb.innerHTML = isOk ? '<span class="qg-fb-label">Correto!</span>' : '<span class="qg-fb-label">Incorreto.</span> A resposta certa é <strong>' + correct + '</strong>.'; }
+  // update score
+  var s = _miniState[prefix] = _miniState[prefix] || {c:0,t:0};
+  s.t++; if (isOk) s.c++;
+  var sc = document.getElementById(prefix + '-score'), tot = document.getElementById(prefix + '-total'), prog = document.getElementById(prefix + '-prog');
+  if (sc) sc.textContent = s.c;
+  if (tot) tot.textContent = '/ ' + s.t;
+  if (prog) prog.style.width = (s.t > 0 ? Math.round(s.c/s.t*100) : 0) + '%';
+}
+
+// ── Minitestes: reiniciar ──
+function miniReset(prefix) {
+  Object.keys(_miniState).forEach(function(k){ if(k.startsWith(prefix+'q')) delete _miniState[k]; });
+  delete _miniState[prefix];
+  document.querySelectorAll('[id^="'+prefix+'q"]').forEach(function(card){
+    card.querySelectorAll('.qg-opt').forEach(function(b){ b.classList.remove('ok','err','dis'); });
+    var fb = card.querySelector('.qg-fb'); if(fb){ fb.classList.remove('show','ok','err'); }
+  });
+  var sc=document.getElementById(prefix+'-score'),tot=document.getElementById(prefix+'-total'),prog=document.getElementById(prefix+'-prog');
+  if(sc)sc.textContent='0'; if(tot)tot.textContent='/ 0'; if(prog)prog.style.width='0%';
 }
 
 // ── Questões-aula: filtro por tema ──
