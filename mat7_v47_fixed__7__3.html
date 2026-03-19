@@ -4462,28 +4462,420 @@ function mat7TabGetActiveSts(tab, cap) {
 <!-- ══════════ QUESTÕES-AULA ══════════ -->
 <div id="sec-questoes">
   <div class="sec-header" style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap">
-    <div style="flex:1"><h2><span class="num" style="background:var(--avail-bg);color:var(--available);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:800;letter-spacing:.05em">Nível 1</span> Questões-aula</h2>
-    <p>20 exercícios pelos 5 temas — escolhe o nível e gera novas questões a qualquer momento</p></div>
+    <div style="flex:1"><h2><span class="num" style="background:var(--avail-bg);color:var(--available);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:800;letter-spacing:.05em">Questões-aula</span> Exercícios</h2>
+    <p>12 questões-aula pelos 5 temas do Capítulo 1 — Números Inteiros</p></div>
   </div>
-  <div class="level-bar">
-    <div class="gen-level-group">
-      <span class="gen-level-label">Nível:</span>
-      <button class="gen-level-btn" data-level="facil" onclick="setLevelSection('q',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#4caf50;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Fácil</button>
-      <button class="gen-level-btn active" data-level="medio" onclick="setLevelSection('q',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#f59e0b;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Médio</button>
-      <button class="gen-level-btn" data-level="dificil" onclick="setLevelSection('q',this)"><span style="display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ef4444;vertical-align:middle;flex-shrink:0;margin-right:1px"></span> Difícil</button>
+
+  <!-- Filtro por tema -->
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="qa-tema-tabs">
+    <button class="tab-btn active" onclick="qaFiltrar(0,this)">Todos</button>
+    <button class="tab-btn" onclick="qaFiltrar(1,this)">① Inteiros</button>
+    <button class="tab-btn" onclick="qaFiltrar(2,this)">② Valor Absoluto</button>
+    <button class="tab-btn" onclick="qaFiltrar(3,this)">③ Adição</button>
+    <button class="tab-btn" onclick="qaFiltrar(4,this)">④ Subtração</button>
+    <button class="tab-btn" onclick="qaFiltrar(5,this)">⑤ Parênteses</button>
+  </div>
+
+  <!-- ── TEMA 1 — CONJUNTO DOS NÚMEROS INTEIROS ── -->
+  <div class="qa-tema-block" data-tema="1">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Tema 1 — Conjunto dos Números Inteiros
     </div>
-    <button class="btn btn-ghost" style="margin-left:auto" onclick="gerarQuestoes()">↺ Novas questões</button>
-  </div>
-  <div class="score-bar">
-    <div><div class="score-num" id="q-score">0</div><div class="score-label">pontos</div></div>
-    <div><div class="score-num" id="q-total" style="color:var(--muted);font-size:1.2rem">/ 0</div><div class="score-label">respondidas</div></div>
-    <div class="progress-track"><div class="progress-fill" id="q-prog" style="width:0%"></div></div>
-  </div>
-  <div id="q-container"></div>
-  <div id="relampago-score" class="highlight-box green" style="display:none;margin-top:1.25rem;text-align:center;font-size:1.1rem;font-weight:700;">
-    <div id="relampago-result"></div>
-    <button class="btn btn-ghost" style="margin-top:.5rem" onclick="gerarQuestoes()">↺ Tentar de novo</button>
-  </div>
+
+    <!-- QA 1 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 1</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 1 · Representação de inteiros</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem">Completa a tabela escrevendo o número inteiro que representa cada uma das situações.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:1rem">
+        <thead><tr style="background:var(--c2-base)">
+          <th style="padding:8px 12px;text-align:left;border:1px solid var(--border2)">Situação</th>
+          <th style="padding:8px 12px;text-align:center;border:1px solid var(--border2);width:100px">Inteiro</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border)"><strong>I)</strong> A temperatura mínima verificada na cidade de Viseu foi de 5 graus negativos.</td><td style="padding:8px 12px;border:1px solid var(--border);text-align:center"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border)"><strong>II)</strong> A D. Maria ganhou 30 euros com a venda de um bolo.</td><td style="padding:8px 12px;border:1px solid var(--border);text-align:center"></td></tr>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border)"><strong>III)</strong> A Diana deixou o carro no terceiro piso subterrâneo do parque de estacionamento.</td><td style="padding:8px 12px;border:1px solid var(--border);text-align:center"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border)"><strong>IV)</strong> O Mar Morto encontra-se 430 m abaixo do nível médio do mar.</td><td style="padding:8px 12px;border:1px solid var(--border);text-align:center"></td></tr>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border)"><strong>V)</strong> O ponto de ebulição da água é de 100 °C.</td><td style="padding:8px 12px;border:1px solid var(--border);text-align:center"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border)"><strong>VI)</strong> O Pedro gastou 80 euros na compra de umas sapatilhas.</td><td style="padding:8px 12px;border:1px solid var(--border);text-align:center"></td></tr>
+        </tbody>
+      </table>
+      <button class="btn btn-ghost" style="font-size:.78rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>Resolução:</strong> I) −5 &nbsp; II) +30 &nbsp; III) −3 &nbsp; IV) −430 &nbsp; V) +100 &nbsp; VI) −80
+      </div>
+    </div>
+
+    <!-- QA 2 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 2</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 1 · Classificação e ordenação</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem">Considera os seguintes números:</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;padding:.75rem 1rem;background:var(--cream2);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;justify-content:center">
+        <span>0</span><span>5</span><span>−3</span><span>−12</span><span>7</span><span>−35</span><span>66</span><span>−0,1</span>
+      </div>
+      <p style="margin-bottom:.5rem"><strong>1.1.</strong> Indica os que:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem;margin-bottom:.75rem;padding-left:1rem;font-size:.9rem">
+        <div><strong>a)</strong> são naturais;</div>
+        <div><strong>b)</strong> são inteiros negativos;</div>
+        <div><strong>c)</strong> são inteiros não positivos;</div>
+        <div><strong>d)</strong> pertencem a ℤ₀⁺.</div>
+      </div>
+      <p style="font-size:.9rem"><strong>1.2.</strong> Escreve os números inteiros por ordem crescente.</p>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1. a)</strong> 0, 5, 7, 66 &nbsp; <strong>b)</strong> −3, −12, −35 &nbsp; <strong>c)</strong> −3, −12, −35, 0 &nbsp; <strong>d)</strong> 0, 5, 7, 66<br>
+        <strong>1.2.</strong> −35 &lt; −12 &lt; −3 &lt; 0 &lt; 5 &lt; 7 &lt; 66
+      </div>
+    </div>
+
+    <!-- QA 3 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 3</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 1 · Símbolos e conjuntos</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> Completa com os símbolos ∈, ∉, ⊂ ou ⊄ de modo a obteres afirmações verdadeiras.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem .75rem;margin-bottom:1rem;padding-left:1rem;font-size:.9rem">
+        <div><strong>1.1.</strong> −2 _____ ℤ</div>
+        <div><strong>1.2.</strong> 0 _____ ℕ</div>
+        <div><strong>1.3.</strong> −6,5 _____ ℤ</div>
+        <div><strong>1.4.</strong> ℕ _____ ℤ₀⁺</div>
+        <div><strong>1.5.</strong> −5 _____ ℤ⁺</div>
+        <div><strong>1.6.</strong> {−2, −1, 0} _____ ℤ⁻</div>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Escreve todos os números inteiros que são:</p>
+      <div style="display:flex;flex-direction:column;gap:.3rem;padding-left:1rem;font-size:.9rem;margin-bottom:.5rem">
+        <div><strong>2.1.</strong> menores do que +2 e maiores do que −4;</div>
+        <div><strong>2.2.</strong> maiores do que −5 e negativos;</div>
+        <div><strong>2.3.</strong> menores do que 4 e não negativos;</div>
+        <div><strong>2.4.</strong> maiores do que −3 e menores ou iguais a 3.</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.</strong> 1.1. ∈ &nbsp; 1.2. ∈ &nbsp; 1.3. ∉ &nbsp; 1.4. ⊂ &nbsp; 1.5. ∉ &nbsp; 1.6. ⊄<br>
+        <strong>2.1.</strong> −3, −2, −1, 0, 1 &nbsp; <strong>2.2.</strong> −4, −3, −2, −1 &nbsp; <strong>2.3.</strong> 0, 1, 2, 3 &nbsp; <strong>2.4.</strong> −2, −1, 0, 1, 2, 3
+      </div>
+    </div>
+
+    <!-- QA 4 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 4</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 1 · Reta numérica e ordenação</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> A Ana registou as temperaturas mínimas de seis capitais europeias, num dia de inverno:</p>
+      <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:1rem;text-align:center">
+        <thead><tr style="background:var(--c2-base)">
+          <th style="padding:8px;border:1px solid var(--border2)">Lisboa</th>
+          <th style="padding:8px;border:1px solid var(--border2)">Madrid</th>
+          <th style="padding:8px;border:1px solid var(--border2)">Paris</th>
+          <th style="padding:8px;border:1px solid var(--border2)">Londres</th>
+          <th style="padding:8px;border:1px solid var(--border2)">Roma</th>
+          <th style="padding:8px;border:1px solid var(--border2)">Atenas</th>
+        </tr></thead>
+        <tbody><tr>
+          <td style="padding:8px;border:1px solid var(--border);font-weight:700">+7</td>
+          <td style="padding:8px;border:1px solid var(--border);font-weight:700">−3</td>
+          <td style="padding:8px;border:1px solid var(--border);font-weight:700">0</td>
+          <td style="padding:8px;border:1px solid var(--border);font-weight:700">−5</td>
+          <td style="padding:8px;border:1px solid var(--border);font-weight:700">−2</td>
+          <td style="padding:8px;border:1px solid var(--border);font-weight:700">+4</td>
+        </tr></tbody>
+      </table>
+      <div style="display:flex;flex-direction:column;gap:.35rem;padding-left:1rem;font-size:.9rem">
+        <div><strong>1.1.</strong> Em que cidade esteve a temperatura mais baixa? E a mais alta?</div>
+        <div><strong>1.2.</strong> Representa as temperaturas numa reta numérica.</div>
+        <div><strong>1.3.</strong> Escreve as temperaturas por ordem decrescente.</div>
+        <div><strong>1.4.</strong> A Ana verificou que, nesse dia, a temperatura mínima em Berlim foi igual ao número inteiro que se encontra à mesma distância dos números −5 e +3. Qual foi a temperatura mínima em Berlim?</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1.</strong> Mais baixa: Londres (−5 °C); mais alta: Lisboa (+7 °C)<br>
+        <strong>1.2.</strong> Marca os pontos −5, −3, −2, 0, +4, +7 na reta<br>
+        <strong>1.3.</strong> +7 &gt; +4 &gt; 0 &gt; −2 &gt; −3 &gt; −5<br>
+        <strong>1.4.</strong> O número equidistante de −5 e +3 é −1 (distância 4 para cada lado). Temperatura em Berlim: −1 °C
+      </div>
+    </div>
+  </div><!-- /tema 1 -->
+
+  <!-- ── TEMA 2 — VALOR ABSOLUTO E SIMÉTRICO ── -->
+  <div class="qa-tema-block" data-tema="2">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Tema 2 — Valor Absoluto e Simétrico. Comparação de Números Inteiros
+    </div>
+
+    <!-- QA 5 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 5</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 2 · Valor absoluto e simétrico</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> Completa a tabela.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:1rem;text-align:center">
+        <thead><tr style="background:var(--c2-base)">
+          <th style="padding:8px 12px;border:1px solid var(--border2)">Número</th>
+          <th style="padding:8px 12px;border:1px solid var(--border2)">Valor absoluto</th>
+          <th style="padding:8px 12px;border:1px solid var(--border2)">Simétrico</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px;border:1px solid var(--border);font-weight:700">6</td><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border)"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px;border:1px solid var(--border);font-weight:700">−3</td><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border)"></td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border);font-weight:700">−7</td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border);font-weight:700">5</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--border)"></td><td style="padding:8px;border:1px solid var(--border);font-weight:700">0</td><td style="padding:8px;border:1px solid var(--border)"></td></tr>
+        </tbody>
+      </table>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Completa as igualdades.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem;padding-left:1rem;font-size:.9rem">
+        <div><strong>2.1.</strong> −(−12) = _____</div>
+        <div><strong>2.2.</strong> −(+15) = _____</div>
+        <div><strong>2.3.</strong> +(−66) = _____</div>
+        <div><strong>2.4.</strong> +(+120) = _____</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.</strong> Linha 1: |6|=6, sim=−6 &nbsp; Linha 2: |−3|=3, sim=+3 &nbsp; Linha 3: nº=+7, |7|=7 &nbsp; Linha 4: nº=−5, |−5|=5 &nbsp; Linha 5: nº=0, sim=0<br>
+        <strong>2.1.</strong> +12 &nbsp; <strong>2.2.</strong> −15 &nbsp; <strong>2.3.</strong> −66 &nbsp; <strong>2.4.</strong> +120
+      </div>
+    </div>
+
+    <!-- QA 6 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 6</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 2 · Comparação com valor absoluto</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> Completa com os sinais &gt;, &lt; ou =.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem;padding-left:1rem;font-size:.9rem;margin-bottom:1rem">
+        <div><strong>1.1.</strong> |−5| _____ |+8|</div>
+        <div><strong>1.2.</strong> |−12| _____ |−7|</div>
+        <div><strong>1.3.</strong> |−9| _____ |0|</div>
+        <div><strong>1.4.</strong> |−11| _____ −(−11)</div>
+        <div><strong>1.5.</strong> −|4| _____ −(+8)</div>
+        <div><strong>1.6.</strong> 0 _____ −|−6|</div>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Considera os números inteiros: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-weight:700"> −3 &nbsp; −(−2) &nbsp; |−3| &nbsp; −(+5) &nbsp; −|−1|</span></p>
+      <div style="display:flex;flex-direction:column;gap:.3rem;padding-left:1rem;font-size:.9rem">
+        <div><strong>2.1.</strong> Representa os números na reta numérica.</div>
+        <div><strong>2.2.</strong> Ordena, por ordem crescente, os simétricos dos números apresentados.</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1.</strong> &lt; &nbsp; <strong>1.2.</strong> &gt; &nbsp; <strong>1.3.</strong> &gt; &nbsp; <strong>1.4.</strong> = &nbsp; <strong>1.5.</strong> &gt; &nbsp; <strong>1.6.</strong> &gt;<br>
+        <strong>2.</strong> Os números valem: −3, +2, +3, −5, −1<br>
+        <strong>2.1.</strong> Marca −5, −3, −1, +2, +3 na reta<br>
+        <strong>2.2.</strong> Simétricos: +3, −2, −3, +5, +1 → ordem crescente: −3 &lt; −2 &lt; +1 &lt; +3 &lt; +5
+      </div>
+    </div>
+  </div><!-- /tema 2 -->
+
+  <!-- ── TEMA 3 — ADIÇÃO DE NÚMEROS INTEIROS ── -->
+  <div class="qa-tema-block" data-tema="3">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Tema 3 — Adição de Números Inteiros
+    </div>
+
+    <!-- QA 7 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 7</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 3 · Sinal das somas</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> Indica o sinal de cada uma das somas seguintes.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:1rem">
+        <thead><tr style="background:var(--c2-base);text-align:center">
+          <th style="padding:8px 12px;border:1px solid var(--border2)">Soma</th>
+          <th style="padding:8px 12px;border:1px solid var(--border2);width:120px">Sinal</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">5 + (−3)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">−125 + 100</td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">−50 + (−1500)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">+25 + (+50)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">0 + (−2021)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+        </tbody>
+      </table>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Determina o valor das somas seguintes.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem .75rem;padding-left:1rem;font-size:.9rem;font-family:'JetBrains Mono',monospace">
+        <div><strong>2.1.</strong> 25 + (−12)</div>
+        <div><strong>2.2.</strong> −50 + (+15)</div>
+        <div><strong>2.3.</strong> −12 + (−8)</div>
+        <div><strong>2.4.</strong> (−7) + (+7)</div>
+        <div><strong>2.5.</strong> 0 + (−20)</div>
+        <div><strong>2.6.</strong> −24 + 25</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.</strong> +, −, −, +, − <br>
+        <strong>2.1.</strong> 13 &nbsp; <strong>2.2.</strong> −35 &nbsp; <strong>2.3.</strong> −20 &nbsp; <strong>2.4.</strong> 0 &nbsp; <strong>2.5.</strong> −20 &nbsp; <strong>2.6.</strong> 1
+      </div>
+    </div>
+
+    <!-- QA 8 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 8</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 3 · Adição e problemas</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>1.</strong> Considera os seguintes números:</p>
+      <div style="display:flex;gap:.5rem;margin-bottom:.75rem;padding:.5rem 1rem;background:var(--cream2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.95rem">
+        <span>5</span><span>−3</span><span>0</span><span>7</span><span>−7</span><span>−12</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.3rem;padding-left:1rem;font-size:.9rem;margin-bottom:.75rem">
+        <div><strong>1.1.</strong> dois números cuja soma seja igual a 12;</div>
+        <div><strong>1.2.</strong> dois números cuja soma seja igual a −5;</div>
+        <div><strong>1.3.</strong> dois números cuja soma seja igual a −10;</div>
+        <div><strong>1.4.</strong> três números cuja soma seja igual a 0.</div>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:.5rem"><strong>2.</strong> Na realização de uma experiência a temperatura inicial era de −10 ºC. Durante a experiência a temperatura aumentou 6 ºC. Qual era a temperatura no final da experiência?</p>
+      <p style="font-size:.9rem"><strong>3.</strong> Calcula o simétrico da expressão |5 + (−8)| + (−10).</p>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1.</strong> 5 + 7 = 12 &nbsp; <strong>1.2.</strong> 7 + (−12) = −5 &nbsp; <strong>1.3.</strong> −3 + (−7) = −10 &nbsp; <strong>1.4.</strong> 5 + (−5) + 0 = 0 ou 5 + 7 + (−12) = 0<br>
+        <strong>2.</strong> −10 + 6 = −4 ºC<br>
+        <strong>3.</strong> |5 + (−8)| + (−10) = |−3| + (−10) = 3 − 10 = −7; simétrico = +7
+      </div>
+    </div>
+  </div><!-- /tema 3 -->
+
+  <!-- ── TEMA 4 — SUBTRAÇÃO DE NÚMEROS INTEIROS ── -->
+  <div class="qa-tema-block" data-tema="4">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Tema 4 — Subtração de Números Inteiros. Adição Algébrica
+    </div>
+
+    <!-- QA 9 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 9</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 4 · Subtração → soma</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> Transforma as subtrações em somas e indica o sinal do resultado.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:1rem">
+        <thead><tr style="background:var(--c2-base);text-align:center">
+          <th style="padding:8px 12px;border:1px solid var(--border2)">Subtração</th>
+          <th style="padding:8px 12px;border:1px solid var(--border2)">Soma</th>
+          <th style="padding:8px 12px;border:1px solid var(--border2);width:80px">Sinal</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;text-align:center">10 − (−3)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;text-align:center">−12 − (+6)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;text-align:center">−150 − (−500)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr style="background:var(--cream)"><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;text-align:center">80 − (+100)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+          <tr><td style="padding:8px 12px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;text-align:center">0 − (−123)</td><td style="padding:8px 12px;border:1px solid var(--border)"></td><td style="padding:8px 12px;border:1px solid var(--border)"></td></tr>
+        </tbody>
+      </table>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Calcula.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem .75rem;padding-left:1rem;font-size:.9rem;font-family:'JetBrains Mono',monospace">
+        <div><strong>2.1.</strong> 12 − (−15)</div>
+        <div><strong>2.2.</strong> −30 − (−15)</div>
+        <div><strong>2.3.</strong> −120 − (+40)</div>
+        <div><strong>2.4.</strong> (−10) − (+10)</div>
+        <div><strong>2.5.</strong> −50 − (−50)</div>
+        <div><strong>2.6.</strong> 0 − (−105)</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.</strong> 10+(+3)=13 (+); −12+(−6)=−18 (−); −150+(+500)=350 (+); 80+(−100)=−20 (−); 0+(+123)=123 (+)<br>
+        <strong>2.1.</strong> 27 &nbsp; <strong>2.2.</strong> −15 &nbsp; <strong>2.3.</strong> −160 &nbsp; <strong>2.4.</strong> −20 &nbsp; <strong>2.5.</strong> 0 &nbsp; <strong>2.6.</strong> 105
+      </div>
+    </div>
+
+    <!-- QA 10 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 10</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 4 · Adição algébrica</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.75rem"><strong>1.</strong> Considera as temperaturas registadas em cinco cidades, num dia de inverno.</p>
+      <div style="display:flex;gap:.5rem;margin-bottom:.75rem;padding:.5rem 1rem;background:var(--cream2);border-radius:8px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.95rem;justify-content:space-around">
+        <span>−5 °C</span><span>4 °C</span><span>0 °C</span><span>−3 °C</span><span>−1 °C</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.3rem;padding-left:1rem;font-size:.9rem;margin-bottom:.75rem">
+        <div><strong>1.1.</strong> a soma entre a temperatura mais alta e a temperatura mais baixa;</div>
+        <div><strong>1.2.</strong> a diferença entre a temperatura mais alta e a temperatura mais baixa;</div>
+        <div><strong>1.3.</strong> a diferença entre a temperatura mais baixa e a temperatura mais alta.</div>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Calcula o valor numérico de cada uma das expressões seguintes.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem;padding-left:1rem;font-size:.9rem;font-family:'JetBrains Mono',monospace">
+        <div><strong>2.1.</strong> −2 − (−5) + 6 + (−3)</div>
+        <div><strong>2.2.</strong> −3 − 3 + (−1) + (−1)</div>
+        <div><strong>2.3.</strong> 7 + (−1) − (+2) − (−4)</div>
+        <div><strong>2.4.</strong> 5 − 3 − (−8) − (+8)</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1.</strong> 4 + (−5) = −1 °C &nbsp; <strong>1.2.</strong> 4 − (−5) = 9 °C &nbsp; <strong>1.3.</strong> −5 − 4 = −9 °C<br>
+        <strong>2.1.</strong> 6 &nbsp; <strong>2.2.</strong> −8 &nbsp; <strong>2.3.</strong> 8 &nbsp; <strong>2.4.</strong> 2
+      </div>
+    </div>
+  </div><!-- /tema 4 -->
+
+  <!-- ── TEMA 5 — EXPRESSÕES COM PARÊNTESES ── -->
+  <div class="qa-tema-block" data-tema="5">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c2-mid);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--c2-base)">
+      Tema 5 — Expressões com Parênteses
+    </div>
+
+    <!-- QA 11 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 11</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 5 · Expressões numéricas</span>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:.75rem"><strong>1.</strong> O Rui, num jogo do telemóvel, sempre que apanha uma estrela ganha 5 pontos e de cada vez que é capturado por uma nave perde 15 pontos.</p>
+      <p style="margin-bottom:.5rem;font-weight:600">1.1. Escreve uma expressão que traduza a pontuação do Rui quando:</p>
+      <div style="display:flex;flex-direction:column;gap:.3rem;padding-left:1rem;font-size:.9rem;margin-bottom:.75rem">
+        <div><strong>a)</strong> apanha duas estrelas e é capturado por uma nave;</div>
+        <div><strong>b)</strong> apanha uma estrela e é capturado por três naves;</div>
+        <div><strong>c)</strong> apanha três estrelas e é capturado por duas naves.</div>
+      </div>
+      <p style="font-size:.9rem;margin-bottom:.75rem"><strong>1.2.</strong> Calcula o valor de cada uma das expressões obtidas na alínea 1.1.</p>
+      <p style="font-size:.9rem"><strong>2.</strong> Determina o valor absoluto da expressão numérica: &nbsp;<span style="font-family:'JetBrains Mono',monospace;font-weight:700">1 + (5 − 3) − (8 − 2) − [1 − (−3)]</span></p>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1. a)</strong> 2×5 + 1×(−15) = 10 − 15 = −5 pts &nbsp; <strong>b)</strong> 1×5 + 3×(−15) = 5 − 45 = −40 pts &nbsp; <strong>c)</strong> 3×5 + 2×(−15) = 15 − 30 = −15 pts<br>
+        <strong>2.</strong> 1 + 2 − 6 − 4 = −7; |−7| = 7
+      </div>
+    </div>
+
+    <!-- QA 12 -->
+    <div class="card qa-card" style="margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <span style="background:var(--c2-mid);color:#fff;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px">Questão-aula 12</span>
+        <span style="font-size:.78rem;color:var(--ink4)">Tema 5 · Remover parênteses</span>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>1.</strong> Determina o número que deves colocar no espaço de modo a obteres igualdades verdadeiras.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem;padding-left:1rem;font-size:.9rem;font-family:'JetBrains Mono',monospace;margin-bottom:.75rem">
+        <div><strong>1.1.</strong> −(−5 + 2) = _____ + 1</div>
+        <div><strong>1.2.</strong> −|−3 + 2| = _____</div>
+        <div><strong>1.3.</strong> _____ − (−3 + 2) = −3</div>
+        <div><strong>1.4.</strong> (−5) − (_____ + 7) = 0</div>
+      </div>
+      <p style="font-weight:600;margin-bottom:.5rem"><strong>2.</strong> Calcula o valor numérico de cada uma das expressões, depois de desembaraçar de parênteses.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem;padding-left:1rem;font-size:.9rem;font-family:'JetBrains Mono',monospace">
+        <div><strong>2.1.</strong> −(−8 − 5)</div>
+        <div><strong>2.2.</strong> −(1 + 3 − 4)</div>
+        <div><strong>2.3.</strong> 6 − (1 − 7 + 6)</div>
+        <div><strong>2.4.</strong> (−5 − 1) − (2 − 4 − 10)</div>
+        <div><strong>2.5.</strong> 2 + [−1 − (−5 + 3)]</div>
+        <div><strong>2.6.</strong> 3 − [−(−2) − 2]</div>
+      </div>
+      <button class="btn btn-ghost" style="font-size:.78rem;margin-top:.75rem" onclick="qaToggleSol(this)">Ver resolução</button>
+      <div class="qa-sol" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:var(--c1-base);border-radius:10px;border:1px solid rgba(81,104,96,.2);font-size:.88rem">
+        <strong>1.1.</strong> 2 &nbsp; <strong>1.2.</strong> −1 &nbsp; <strong>1.3.</strong> −4 &nbsp; <strong>1.4.</strong> −12<br>
+        <strong>2.1.</strong> 13 &nbsp; <strong>2.2.</strong> 0 &nbsp; <strong>2.3.</strong> 6 &nbsp; <strong>2.4.</strong> 6 &nbsp; <strong>2.5.</strong> 3 &nbsp; <strong>2.6.</strong> 3
+      </div>
+    </div>
+  </div><!-- /tema 5 -->
+
+  <div id="q-container" style="display:none"></div>
 
 
 <div style="margin-top:2rem;padding-top:1.5rem;border-top:1.5px dashed var(--border2)" id="sec-minitestes" class="section">
@@ -6151,6 +6543,23 @@ function downloadFichaGerada2(){
 function toggleTemaRow(id) {
   const row = document.getElementById(id);
   row.classList.toggle('open');
+}
+
+// ── Questões-aula: filtro por tema ──
+function qaFiltrar(tema, btn) {
+  document.querySelectorAll('#qa-tema-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.qa-tema-block').forEach(bl => {
+    bl.style.display = (tema === 0 || parseInt(bl.dataset.tema) === tema) ? '' : 'none';
+  });
+}
+
+// ── Questões-aula: mostrar/esconder resolução ──
+function qaToggleSol(btn) {
+  const sol = btn.nextElementSibling;
+  const visible = sol.style.display !== 'none';
+  sol.style.display = visible ? 'none' : 'block';
+  btn.textContent = visible ? 'Ver resolução' : 'Esconder resolução';
 }
 
 // ── Modal de subtema ──
