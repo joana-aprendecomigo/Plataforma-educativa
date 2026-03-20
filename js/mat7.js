@@ -94,7 +94,6 @@ function _mat7BuildSelectors() {
     {id:'mat7-caps-jogos',       tab:'jogos', opts:{type:'mat7tab'}},
     {id:'mat7-caps-flashcards',  tab:'flashcards', opts:{type:'mat7tab'}},
     {id:'mat7-caps-exame',       tab:'exame', opts:{type:'mat7tab'}},
-    {id:'mat7-caps-reta',        tab:'reta', opts:{type:'mat7tab', caps:[1]}},
     {id:'mat7-caps-quiz',        tab:'quiz', opts:{type:'simple', handler:"qgHubSelectCap({cap},this)"}}
   ];
   sets.forEach(function(s) {
@@ -895,4 +894,160 @@ function selecionarTodos(btn) {
   updateFAB();
 }
 
+
+// ══════════════════════════════════════════════════════════════
+// ⚡ MODO QUIZ — Hub quiz game (3 vidas, streak, game over)
+// ══════════════════════════════════════════════════════════════
+
+var _qgHub = {
+  cap: 1,
+  lives: 3,
+  streak: 0,
+  score: 0,
+  total: 0,
+  current: null,
+  answered: false
+};
+
+function qgHubInit() {
+  var row = document.getElementById('mat7-caps-quiz');
+  var active = row ? row.querySelector('.gf-cap-btn.active') : null;
+  _qgHub.cap = active ? (parseInt(active.dataset.cap) || 1) : 1;
+  _qgHub.lives = 3;
+  _qgHub.streak = 0;
+  _qgHub.score = 0;
+  _qgHub.total = 0;
+  _qgHub.answered = false;
+  _qgHubNext();
+}
+
+function qgHubSelectCap(cap, btn) {
+  var row = document.getElementById('mat7-caps-quiz');
+  if (row) row.querySelectorAll('.gf-cap-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  _qgHub.cap = cap;
+  _qgHub.lives = 3;
+  _qgHub.streak = 0;
+  _qgHub.score = 0;
+  _qgHub.total = 0;
+  _qgHub.answered = false;
+  _qgHubNext();
+}
+
+function _qgHubBuildQuestion(cap) {
+  var temas = ['1','2','3','4','5'];
+  var tema = temas[Math.floor(Math.random() * temas.length)];
+  var ex = null;
+  if (cap === 4) {
+    if (typeof buildEx4 === 'function') ex = buildEx4(tema, 'medio');
+  } else if (cap === 3) {
+    if (typeof buildEx3 === 'function') ex = buildEx3(tema, 'mc', 'medio');
+  } else if (cap === 2) {
+    if (typeof buildEx2 === 'function') ex = buildEx2(tema, 'mc', 'medio');
+  } else {
+    if (typeof buildExercicio === 'function') ex = buildExercicio(tema, 'mc', -12, 12, 1, 'medio');
+  }
+  // fallback: try mc, then fill
+  if (!ex || ex.tipo !== 'mc') {
+    for (var i = 0; i < 8; i++) {
+      tema = temas[Math.floor(Math.random() * temas.length)];
+      if (cap === 2 && typeof buildEx2 === 'function') ex = buildEx2(tema, 'mc', 'medio');
+      else if (cap === 3 && typeof buildEx3 === 'function') ex = buildEx3(tema, 'mc', 'medio');
+      else if (cap === 4 && typeof buildEx4 === 'function') ex = buildEx4(tema, 'medio');
+      else if (typeof buildExercicio === 'function') ex = buildExercicio(tema, 'mc', -12, 12, 1, 'medio');
+      if (ex && ex.tipo === 'mc' && ex.opcoes && ex.opcoes.length >= 2) break;
+    }
+  }
+  return (ex && ex.tipo === 'mc' && ex.opcoes && ex.opcoes.length >= 2) ? ex : null;
+}
+
+function _qgHubNext() {
+  var app = document.getElementById('qg-hub-app');
+  if (!app) return;
+
+  if (_qgHub.lives <= 0) {
+    _qgHubGameOver(app);
+    return;
+  }
+
+  var ex = _qgHubBuildQuestion(_qgHub.cap);
+  if (!ex) {
+    app.innerHTML = '<p style="color:var(--ink4);padding:2rem;text-align:center">Sem questões disponíveis para este capítulo.</p>';
+    return;
+  }
+  _qgHub.current = ex;
+  _qgHub.answered = false;
+
+  var livesHtml = '';
+  for (var i = 0; i < 3; i++) livesHtml += (i < _qgHub.lives ? '❤️' : '🖤') + ' ';
+
+  var optsHtml = '';
+  ex.opcoes.forEach(function(opt, idx) {
+    optsHtml += '<button class="qg-opt-btn" id="qgopt-' + idx + '" onclick="qgHubAnswer(' + idx + ')">' + opt + '</button>';
+  });
+
+  app.innerHTML =
+    '<div class="qg-hub-bar">' +
+      '<div class="qg-hub-lives">' + livesHtml + '</div>' +
+      '<div class="qg-hub-streak">' + (_qgHub.streak > 1 ? '🔥 ' + _qgHub.streak + ' seguidas' : '') + '</div>' +
+      '<div class="qg-hub-score">✓ ' + _qgHub.score + ' / ' + _qgHub.total + '</div>' +
+    '</div>' +
+    '<div class="qg-hub-question">' + ex.enun + '</div>' +
+    '<div class="qg-hub-opts">' + optsHtml + '</div>' +
+    '<div class="qg-hub-feedback" id="qg-hub-fb" style="min-height:2.5rem"></div>';
+}
+
+function qgHubAnswer(idx) {
+  if (_qgHub.answered) return;
+  _qgHub.answered = true;
+  var ex = _qgHub.current;
+  if (!ex) return;
+
+  var correct = ex.opcoes[idx] === ex.resposta;
+  _qgHub.total++;
+
+  var allBtns = document.querySelectorAll('.qg-opt-btn');
+  allBtns.forEach(function(b, i) {
+    b.disabled = true;
+    if (ex.opcoes[i] === ex.resposta) { b.style.background = '#4caf50'; b.style.color = '#fff'; }
+  });
+  var clicked = document.getElementById('qgopt-' + idx);
+  if (clicked && !correct) { clicked.style.background = '#f44336'; clicked.style.color = '#fff'; }
+
+  var fb = document.getElementById('qg-hub-fb');
+  if (correct) {
+    _qgHub.score++;
+    _qgHub.streak++;
+    if (fb) fb.innerHTML = '<span style="color:#4caf50;font-weight:700">✓ Correto!' + (_qgHub.streak >= 3 ? ' 🔥 Streak de ' + _qgHub.streak + '!' : '') + '</span>' + (ex.expl ? ' <span style="color:var(--ink3);font-size:.85rem">' + ex.expl + '</span>' : '');
+  } else {
+    _qgHub.lives--;
+    _qgHub.streak = 0;
+    if (fb) fb.innerHTML = '<span style="color:#f44336;font-weight:700">✗ Errado.</span> A resposta era <strong>' + ex.resposta + '</strong>.' + (ex.expl ? ' <span style="color:var(--ink3);font-size:.85rem">' + ex.expl + '</span>' : '');
+  }
+
+  var app = document.getElementById('qg-hub-app');
+  if (_qgHub.lives <= 0) {
+    setTimeout(function(){ if(app) _qgHubGameOver(app); }, 1400);
+  } else {
+    var btn = document.createElement('button');
+    btn.className = 'btn btn-primary';
+    btn.style.cssText = 'margin-top:1rem';
+    btn.textContent = 'Próxima →';
+    btn.onclick = _qgHubNext;
+    if (fb) fb.appendChild(btn);
+  }
+}
+
+function _qgHubGameOver(app) {
+  var pct = _qgHub.total > 0 ? Math.round(_qgHub.score / _qgHub.total * 100) : 0;
+  var emoji = pct >= 90 ? '🏆' : pct >= 70 ? '⭐' : pct >= 50 ? '👍' : '📚';
+  app.innerHTML =
+    '<div style="text-align:center;padding:2.5rem 1rem">' +
+      '<div style="font-size:3.5rem;margin-bottom:.75rem">' + emoji + '</div>' +
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:2rem;font-weight:900;color:var(--ink)">' + pct + '%</div>' +
+      '<div style="color:var(--ink3);margin:.5rem 0 1.5rem">' + _qgHub.score + ' certas em ' + _qgHub.total + ' questões</div>' +
+      '<div style="font-size:1.5rem;margin-bottom:1.5rem">Melhor sequência: ' + (_qgHub.streak || 0) + ' 🔥</div>' +
+      '<button class="btn btn-primary" onclick="qgHubInit()">↺ Jogar novamente</button>' +
+    '</div>';
+}
 

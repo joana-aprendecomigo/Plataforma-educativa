@@ -206,6 +206,9 @@ var FC1_CARDS = [
   {tag:'Síntese', q:'Quando é que a + b < a?', a:'Quando b < 0 (b é negativo). Somar um número negativo diminui o resultado.'},
 ];
 
+// Alias expected by mat7.js unified flashcard renderer
+var FC_CARDS_CAP1 = FC1_CARDS;
+
 // ── Register with chapter engine ──
 window.CAP_DATA = window.CAP_DATA || {};
 window.CAP_DATA[1] = {

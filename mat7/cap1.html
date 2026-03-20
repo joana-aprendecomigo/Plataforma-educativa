@@ -368,6 +368,162 @@
     <button class="btn btn-ghost mt-2" onclick="gerarQuestoes()">↺ Tentar de novo</button>
   </div>
 
+  <!-- ── QUESTÕES-AULA (fichas reais) ── -->
+  <div style="margin-top:2.5rem">
+    <div class="sec-header" style="margin-bottom:1rem">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700">Questões-aula — Fichas reais</h3>
+      <p style="font-size:.88rem;color:var(--ink3)">Questões dos temas 3, 4 e 5 com resolução</p>
+    </div>
+    <div class="flex-tabs" id="qa-ficha-tabs" style="margin-bottom:1.25rem">
+      <button class="tab-btn active" onclick="qaFichaShow('qa7',this)">QA 7 — Adição</button>
+      <button class="tab-btn" onclick="qaFichaShow('qa8',this)">QA 8 — Adição</button>
+      <button class="tab-btn" onclick="qaFichaShow('qa9',this)">QA 9 — Subtração</button>
+      <button class="tab-btn" onclick="qaFichaShow('qa10',this)">QA 10 — Subtração</button>
+      <button class="tab-btn" onclick="qaFichaShow('qa11',this)">QA 11 — Parênteses</button>
+      <button class="tab-btn" onclick="qaFichaShow('qa12',this)">QA 12 — Parênteses</button>
+    </div>
+
+    <!-- QA 7 -->
+    <div id="qa7" class="qa-ficha-panel">
+      <div class="card">
+        <div class="card-title">Questão-aula 7 · Adição de números inteiros</div>
+        <p class="mb-3"><strong>1.</strong> Indica o sinal de cada uma das somas seguintes.</p>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:1.25rem;font-size:.9rem">
+          <thead><tr style="background:var(--cream2)"><th style="border:1px solid var(--border2);padding:.5rem .75rem;text-align:left">Soma</th><th style="border:1px solid var(--border2);padding:.5rem .75rem;text-align:left">Sinal</th></tr></thead>
+          <tbody>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .75rem;font-family:'JetBrains Mono',monospace">5 + (−3)</td><td style="border:1px solid var(--border2);padding:.5rem .75rem;color:var(--sage-dark);font-weight:600">+</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .75rem;font-family:'JetBrains Mono',monospace">−125 + 100</td><td style="border:1px solid var(--border2);padding:.5rem .75rem;color:var(--wrong);font-weight:600">−</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .75rem;font-family:'JetBrains Mono',monospace">−50 + (−1500)</td><td style="border:1px solid var(--border2);padding:.5rem .75rem;color:var(--wrong);font-weight:600">−</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .75rem;font-family:'JetBrains Mono',monospace">+25 + (+50)</td><td style="border:1px solid var(--border2);padding:.5rem .75rem;color:var(--sage-dark);font-weight:600">+</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .75rem;font-family:'JetBrains Mono',monospace">0 + (−2021)</td><td style="border:1px solid var(--border2);padding:.5rem .75rem;color:var(--wrong);font-weight:600">−</td></tr>
+          </tbody>
+        </table>
+        <p class="mb-2"><strong>2.</strong> Determina o valor das somas.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem .75rem;font-size:.9rem">
+          <div><span style="font-family:'JetBrains Mono',monospace">2.1. 25 + (−12)</span> = <strong>13</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.2. −50 + (+15)</span> = <strong>−35</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.3. −12 + (−8)</span> = <strong>−20</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.4. (−7) + (+7)</span> = <strong>0</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.5. 0 + (−20)</span> = <strong>−20</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.6. −24 + 25</span> = <strong>1</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QA 8 -->
+    <div id="qa8" class="qa-ficha-panel" style="display:none">
+      <div class="card">
+        <div class="card-title">Questão-aula 8 · Adição de números inteiros</div>
+        <p class="mb-2"><strong>1.</strong> Considera os números: 5, −3, 0, 7, −7, −12. Indica:</p>
+        <ul style="margin-left:1.25rem;font-size:.9rem;line-height:1.9">
+          <li><strong>1.1.</strong> Dois números cuja soma seja igual a 12: <strong>5 + 7 = 12</strong></li>
+          <li><strong>1.2.</strong> Dois números cuja soma seja igual a −5: <strong>5 + (−12) = −7 ... ou −5+0?</strong> 5 + (−7) = −2 ... Na realidade: <strong>7 + (−12) = −5</strong></li>
+          <li><strong>1.3.</strong> Dois números cuja soma seja igual a −10: <strong>−3 + (−7) = −10</strong></li>
+          <li><strong>1.4.</strong> Três números cuja soma seja igual a 0: <strong>5 + (−5) + 0 = 0</strong> ou <strong>7 + (−7) + 0 = 0</strong></li>
+        </ul>
+        <p class="mt-3 mb-1"><strong>2.</strong> Temperatura inicial −10 ºC; aumentou 6 ºC. Temperatura final:</p>
+        <p style="font-family:'JetBrains Mono',monospace;margin-left:1rem">−10 + 6 = <strong>−4 ºC</strong></p>
+        <p class="mt-3 mb-1"><strong>3.</strong> Simétrico de |5 + (−8)| + (−10):</p>
+        <p style="font-family:'JetBrains Mono',monospace;margin-left:1rem">|5 − 8| + (−10) = |−3| − 10 = 3 − 10 = −7 → simétrico = <strong>7</strong></p>
+      </div>
+    </div>
+
+    <!-- QA 9 -->
+    <div id="qa9" class="qa-ficha-panel" style="display:none">
+      <div class="card">
+        <div class="card-title">Questão-aula 9 · Subtração de números inteiros</div>
+        <p class="mb-2"><strong>1.</strong> Transforma as subtrações em somas.</p>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:1.25rem;font-size:.88rem">
+          <thead><tr style="background:var(--cream2)"><th style="border:1px solid var(--border2);padding:.5rem .6rem">Subtração</th><th style="border:1px solid var(--border2);padding:.5rem .6rem">Soma</th><th style="border:1px solid var(--border2);padding:.5rem .6rem">Sinal</th></tr></thead>
+          <tbody>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">10 − (−3)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">10 + 3</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;color:var(--sage-dark);font-weight:600">+</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">−12 − (+6)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">−12 + (−6)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;color:var(--wrong);font-weight:600">−</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">−150 − (−500)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">−150 + 500</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;color:var(--sage-dark);font-weight:600">+</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">80 − (+100)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">80 + (−100)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;color:var(--wrong);font-weight:600">−</td></tr>
+            <tr><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">0 − (−123)</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;font-family:'JetBrains Mono',monospace">0 + 123</td><td style="border:1px solid var(--border2);padding:.5rem .6rem;color:var(--sage-dark);font-weight:600">+</td></tr>
+          </tbody>
+        </table>
+        <p class="mb-2"><strong>2.</strong> Calcula.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.5rem .75rem;font-size:.9rem">
+          <div><span style="font-family:'JetBrains Mono',monospace">2.1. 12 − (−15)</span> = <strong>27</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.2. −30 − (−15)</span> = <strong>−15</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.3. −120 − (+40)</span> = <strong>−160</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.4. (−10) − (+10)</span> = <strong>−20</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.5. −50 − (−50)</span> = <strong>0</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.6. 0 − (−105)</span> = <strong>105</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QA 10 -->
+    <div id="qa10" class="qa-ficha-panel" style="display:none">
+      <div class="card">
+        <div class="card-title">Questão-aula 10 · Subtração de números inteiros</div>
+        <p class="mb-2"><strong>1.</strong> Temperaturas em cinco cidades: −5 ºC, 4 ºC, 0 ºC, −3 ºC, −1 ºC</p>
+        <ul style="margin-left:1.25rem;font-size:.9rem;line-height:1.9">
+          <li><strong>1.1.</strong> Soma da mais alta (4) e da mais baixa (−5): <span style="font-family:'JetBrains Mono',monospace">4 + (−5) = <strong>−1</strong></span></li>
+          <li><strong>1.2.</strong> Diferença entre a mais alta e a mais baixa: <span style="font-family:'JetBrains Mono',monospace">4 − (−5) = <strong>9</strong></span></li>
+          <li><strong>1.3.</strong> Diferença entre a mais baixa e a mais alta: <span style="font-family:'JetBrains Mono',monospace">−5 − 4 = <strong>−9</strong></span></li>
+        </ul>
+        <p class="mt-3 mb-2"><strong>2.</strong> Calcula o valor numérico.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.5rem .75rem;font-size:.9rem">
+          <div><span style="font-family:'JetBrains Mono',monospace">2.1. −2 − (−5) + 6 + (−3)</span> = <strong>6</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.2. −3 − 3 + (−1) + (−1)</span> = <strong>−8</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.3. 7 + (−1) − (+2) − (−4)</span> = <strong>8</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.4. 5 − 3 − (−8) − (+8)</span> = <strong>2</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QA 11 -->
+    <div id="qa11" class="qa-ficha-panel" style="display:none">
+      <div class="card">
+        <div class="card-title">Questão-aula 11 · Expressões com parênteses</div>
+        <p class="mb-2"><strong>1.</strong> O Rui ganha 5 pontos por estrela e perde 15 pontos por nave.</p>
+        <p class="mb-1 mt-2"><strong>1.1.</strong> Expressões:</p>
+        <ul style="margin-left:1.25rem;font-size:.9rem;line-height:1.9">
+          <li><strong>a)</strong> 2 estrelas, 1 nave: <span style="font-family:'JetBrains Mono',monospace">2 × 5 + 1 × (−15) = 10 − 15 = <strong>−5</strong></span></li>
+          <li><strong>b)</strong> 1 estrela, 3 naves: <span style="font-family:'JetBrains Mono',monospace">1 × 5 + 3 × (−15) = 5 − 45 = <strong>−40</strong></span></li>
+          <li><strong>c)</strong> 3 estrelas, 2 naves: <span style="font-family:'JetBrains Mono',monospace">3 × 5 + 2 × (−15) = 15 − 30 = <strong>−15</strong></span></li>
+        </ul>
+        <p class="mt-3 mb-1"><strong>2.</strong> Determina o valor absoluto de <span style="font-family:'JetBrains Mono',monospace">1 + (5 − 3) − (8 − 2) − [1 − (−3)]</span>:</p>
+        <p style="font-family:'JetBrains Mono',monospace;margin-left:1rem;font-size:.88rem">= 1 + 2 − 6 − [1 + 3] = 3 − 6 − 4 = −7 → |−7| = <strong>7</strong></p>
+      </div>
+    </div>
+
+    <!-- QA 12 -->
+    <div id="qa12" class="qa-ficha-panel" style="display:none">
+      <div class="card">
+        <div class="card-title">Questão-aula 12 · Expressões com parênteses</div>
+        <p class="mb-2"><strong>1.</strong> Determina o número em falta para obter igualdades verdadeiras.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.5rem .75rem;font-size:.9rem;margin-bottom:1.25rem">
+          <div><span style="font-family:'JetBrains Mono',monospace">1.1. −(−5 + 2) = ___ + 1</span> → <strong>2</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">1.2. −|−3 + 2| = ___</span> → <strong>−1</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">1.3. ___ − (−3 + 2) = −3</span> → <strong>−4</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">1.4. (−5) − (___ + 7) = 0</span> → <strong>−12</strong></div>
+        </div>
+        <p class="mb-2"><strong>2.</strong> Calcula desembaraçando de parênteses.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.5rem .75rem;font-size:.9rem">
+          <div><span style="font-family:'JetBrains Mono',monospace">2.1. −(−8 − 5)</span> = <strong>13</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.2. −(1 + 3 − 4)</span> = <strong>0</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.3. 6 − (1 − 7 + 6)</span> = <strong>6</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.4. (−5 − 1) − (2 − 4 − 10)</span> = <strong>6</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.5. 2 + [−1 − (−5 + 3)]</span> = <strong>3</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">2.6. 3 − [−(−2) − 2]</span> = <strong>3</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+window.qaFichaShow = function(id, btn) {
+  document.querySelectorAll('.qa-ficha-panel').forEach(function(p){ p.style.display='none'; });
+  var el = document.getElementById(id);
+  if (el) el.style.display = '';
+  document.querySelectorAll('#qa-ficha-tabs .tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+};
+</script>
 
 <div class="section-divider section" id="sec-minitestes" >
 <div class="sec-header">
@@ -397,7 +553,157 @@
     <div class="progress-track"><div class="progress-fill" id="m-prog" style="width:0%"></div></div>
   </div>
   <div id="m-container"></div>
+
+  <!-- Minitestes reais (PDF) -->
+  <div style="margin-top:2rem">
+    <div class="sec-header" style="margin-bottom:1rem">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700">Minitestes — Fichas reais (escolha múltipla)</h3>
+    </div>
+    <div class="flex-tabs" id="mini-ficha-tabs" style="margin-bottom:1.25rem">
+      <button class="tab-btn active" onclick="miniFichaShow('mf2',this)">Mini 2 — Valor Absoluto</button>
+      <button class="tab-btn" onclick="miniFichaShow('mf3',this)">Mini 3 — Adição</button>
+      <button class="tab-btn" onclick="miniFichaShow('mf4',this)">Mini 4 — Subtração</button>
+    </div>
+
+    <!-- MINITESTE 2 -->
+    <div id="mf2">
+      <div id="mf2-score-bar" class="score-bar" style="margin-bottom:1rem">
+        <div><div class="score-num" id="mf2-c">0</div><div class="score-label">certas</div></div>
+        <div><div class="score-num icon-muted" id="mf2-t">/ 0</div><div class="score-label">respondidas</div></div>
+        <div class="progress-track"><div class="progress-fill" id="mf2-p" style="width:0%"></div></div>
+        <button class="btn btn-ghost" onclick="mfReset('mf2')">↺ Recomeçar</button>
+      </div>
+      <div id="mf2-qs"></div>
+    </div>
+
+    <!-- MINITESTE 3 -->
+    <div id="mf3" style="display:none">
+      <div class="score-bar" style="margin-bottom:1rem">
+        <div><div class="score-num" id="mf3-c">0</div><div class="score-label">certas</div></div>
+        <div><div class="score-num icon-muted" id="mf3-t">/ 0</div><div class="score-label">respondidas</div></div>
+        <div class="progress-track"><div class="progress-fill" id="mf3-p" style="width:0%"></div></div>
+        <button class="btn btn-ghost" onclick="mfReset('mf3')">↺ Recomeçar</button>
+      </div>
+      <div id="mf3-qs"></div>
+    </div>
+
+    <!-- MINITESTE 4 -->
+    <div id="mf4" style="display:none">
+      <div class="score-bar" style="margin-bottom:1rem">
+        <div><div class="score-num" id="mf4-c">0</div><div class="score-label">certas</div></div>
+        <div><div class="score-num icon-muted" id="mf4-t">/ 0</div><div class="score-label">respondidas</div></div>
+        <div class="progress-track"><div class="progress-fill" id="mf4-p" style="width:0%"></div></div>
+        <button class="btn btn-ghost" onclick="mfReset('mf4')">↺ Recomeçar</button>
+      </div>
+      <div id="mf4-qs"></div>
+    </div>
+  </div>
 </div>
+
+<script>
+(function(){
+  var _mfData = {
+    mf2: {
+      qs: [
+        { q:'Indica a afirmação <strong>falsa</strong>.', opts:['O valor absoluto de −5 é 5','O simétrico de 0 é 0','−|−3| = 3','−(−4) = |−4|'], ans:2 },
+        { q:'Seleciona a desigualdade <strong>verdadeira</strong>.', opts:['−10 > −8','0 > −1','−7 > 5','0 < −3'], ans:1 },
+        { q:'Qual das afirmações seguintes é <strong>falsa</strong>?', opts:['|−3| > |2|','−(−5) > 0','−|7| = −7','−|−6| < −(+7)'], ans:3 },
+        { q:'A abcissa do ponto A na reta numérica é:', opts:['A → −4','A → −2','A → −1','A → 1'], ans:3 },
+        { q:'A distância do ponto A ao ponto B é:', opts:['7','−10','10','5'], ans:0 }
+      ]
+    },
+    mf3: {
+      qs: [
+        { q:'A afirmação <strong>falsa</strong> é:', opts:['−2 + (−3) = −5','−3 + 5 = −8','−4 + 4 = 0','2 + (−4) = −2'], ans:1 },
+        { q:'A soma do valor absoluto de −4 com o simétrico de 5 é:', opts:['−9','−1','1','9'], ans:1 },
+        { q:'Na expressão −3 + ___ = −8, o número em falta é:', opts:['−11','11','−5','5'], ans:2 },
+        { q:'Um elevador está 4 andares abaixo do piso zero. Subiu até ao piso 7. Quantos andares subiu?', opts:['4','7','10','11'], ans:3 },
+        { q:'A soma das abcissas dos pontos A, B e C na reta numérica é:', opts:['−9','−3','−1','1'], ans:1 }
+      ]
+    },
+    mf4: {
+      qs: [
+        { q:'Os valores de 15 − (−5) e −12 − (+7) são, respetivamente:', opts:['10 e −19','20 e −5','20 e 19','20 e −19'], ans:3 },
+        { q:'O número em falta na igualdade 10 − ___ = −5 − 3 é:', opts:['−18','2','−12','18'], ans:3 },
+        { q:'O valor absoluto da expressão −3 − |−4| − (−2) é:', opts:['−9','−5','5','9'], ans:2 },
+        { q:'O valor da expressão −3 − 2 + (−6) − (−10) − (+1) é:', opts:['−2','0','1','2'], ans:0 }
+      ]
+    }
+  };
+  var _mfState = {};
+
+  function mfBuild(id) {
+    var data = _mfData[id];
+    if (!data) return;
+    _mfState[id] = { c: 0, t: 0, done: [] };
+    var labels = ['A','B','C','D'];
+    var html = '';
+    data.qs.forEach(function(q, qi) {
+      html += '<div class="quiz-question" id="'+id+'-q'+qi+'">' +
+        '<div class="q-number">Questão '+(qi+1)+'</div>' +
+        '<div class="q-text">'+q.q+'</div><div class="options">';
+      q.opts.forEach(function(opt, oi) {
+        var isC = oi === q.ans;
+        html += '<button class="option-btn" data-correct="'+isC+'" onclick="mfCheck(\''+id+'\','+qi+','+oi+',this)">' +
+          '<span class="opt-label">'+labels[oi]+'</span>'+opt+'</button>';
+      });
+      html += '</div><div class="feedback" id="'+id+'-fb'+qi+'"></div></div>';
+    });
+    var cont = document.getElementById(id+'-qs');
+    if (cont) cont.innerHTML = html;
+    mfUpdateScore(id);
+  }
+
+  window.mfCheck = function(id, qi, oi, btn) {
+    var st = _mfState[id];
+    if (!st || st.done.indexOf(qi) >= 0) return;
+    st.done.push(qi);
+    st.t++;
+    var data = _mfData[id].qs[qi];
+    var correct = oi === data.ans;
+    if (correct) st.c++;
+    var container = document.getElementById(id+'-q'+qi);
+    if (container) {
+      container.querySelectorAll('.option-btn').forEach(function(b) {
+        b.disabled = true;
+        if (b.dataset.correct === 'true') b.classList.add('correct');
+        else if (b === btn && !correct) b.classList.add('wrong');
+      });
+    }
+    var fb = document.getElementById(id+'-fb'+qi);
+    if (fb) {
+      fb.textContent = correct ? '✓ Correto!' : '✗ Errado — a resposta correta está assinalada a verde.';
+      fb.className = 'feedback ' + (correct ? 'correct' : 'wrong');
+    }
+    mfUpdateScore(id);
+  };
+
+  window.mfReset = function(id) {
+    mfBuild(id);
+  };
+
+  window.miniFichaShow = function(id, btn) {
+    ['mf2','mf3','mf4'].forEach(function(k){ var el=document.getElementById(k); if(el) el.style.display='none'; });
+    var el = document.getElementById(id);
+    if (el) el.style.display = '';
+    document.querySelectorAll('#mini-ficha-tabs .tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    if (!_mfState[id]) mfBuild(id);
+  };
+
+  function mfUpdateScore(id) {
+    var st = _mfState[id] || { c:0, t:0 };
+    var total = (_mfData[id] || {qs:[]}).qs.length;
+    var ce = document.getElementById(id+'-c'); if(ce) ce.textContent = st.c;
+    var te = document.getElementById(id+'-t'); if(te) te.textContent = '/ '+st.t;
+    var pe = document.getElementById(id+'-p'); if(pe) pe.style.width = (total>0?Math.round(st.c/total*100):0)+'%';
+  }
+
+  // Build first panel on load
+  document.addEventListener('DOMContentLoaded', function(){ mfBuild('mf2'); });
+  if (document.readyState !== 'loading') mfBuild('mf2');
+})();
+</script>
 
 
 <div class="section-divider section" id="sec-teste" >
@@ -428,8 +734,120 @@
     <div class="progress-track"><div class="progress-fill" id="t-prog" style="width:0%"></div></div>
   </div>
   <div id="t-container"></div>
+
+  <!-- Teste de Avaliação real (PDF) -->
+  <div style="margin-top:2.5rem">
+    <div class="sec-header" style="margin-bottom:1rem">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700">Teste de Avaliação — Ficha real</h3>
+      <p style="font-size:.88rem;color:var(--ink3)">9 questões — partes A (escolha múltipla) e B (desenvolvimento)</p>
+    </div>
+    <div class="score-bar" style="margin-bottom:1rem">
+      <div><div class="score-num" id="tv-c">0</div><div class="score-label">certas</div></div>
+      <div><div class="score-num icon-muted" id="tv-t">/ 0</div><div class="score-label">respondidas</div></div>
+      <div class="progress-track"><div class="progress-fill" id="tv-p" style="width:0%"></div></div>
+      <button class="btn btn-ghost" onclick="tvReset()">↺ Recomeçar</button>
+    </div>
+    <div id="tv-qs"></div>
+
+    <!-- Parte B — questões abertas -->
+    <div class="card" style="margin-top:1.5rem">
+      <div class="card-title">Parte B — Questões de desenvolvimento</div>
+      <div style="font-size:.9rem;line-height:1.9;color:var(--ink2)">
+        <p class="mb-2"><strong>6.</strong> Completa com ∈, ∉, &gt;, &lt; ou = para obteres afirmações verdadeiras.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.4rem .75rem;font-family:'JetBrains Mono',monospace;font-size:.85rem">
+          <div>6.1. 15/5 <strong>∈</strong> ℕ</div>
+          <div>6.2. −5 <strong>&lt;</strong> −(−6)</div>
+          <div>6.3. −(−2) <strong>∈</strong> ℤ⁻</div>
+          <div>6.4. −|−7| <strong>∈</strong> ℤ</div>
+          <div>6.5. −7 <strong>&gt;</strong> −10</div>
+          <div>6.6. |−3| <strong>=</strong> −(−2−1)</div>
+        </div>
+        <p class="mt-3 mb-2"><strong>7.</strong> Reta numérica com pontos D, C, A, B. O ponto A tem abcissa −1 + (−2) − (−5) = <strong>2</strong>.</p>
+        <ul style="margin-left:1.25rem">
+          <li>7.1. Abcissa do ponto C: <strong>−1</strong></li>
+          <li>7.2. B e D à mesma distância da origem: B = <strong>3</strong>, D = <strong>−3</strong></li>
+          <li>7.3. Distância de B a C: |3 − (−1)| = <strong>4</strong></li>
+        </ul>
+        <p class="mt-3 mb-2"><strong>8.</strong> Bolas numeradas: −5, −(−7)=7, |−10|=10, −15, −|−10|=−10.</p>
+        <ul style="margin-left:1.25rem">
+          <li>8.1. Maior número: <strong>10</strong></li>
+          <li>8.2. Ordem crescente: <strong>−15, −10, −5, 7, 10</strong></li>
+          <li>8.3. Dois simétricos: <strong>−5 e 5</strong>… ou <strong>−10 e 10</strong> (se 10 e −10 existirem)</li>
+          <li>8.4. Soma: −5 + 7 + 10 + (−15) + (−10) = <strong>−13</strong></li>
+        </ul>
+        <p class="mt-3 mb-2"><strong>9.</strong> Lebre: 100 − (35 − 60 + 10) = 100 − (−15) = <strong>115 m</strong>. Tartaruga: −30 + (−50 − 15 + 110) = −30 + 45 = <strong>15 m</strong>.</p>
+        <p style="margin-left:1rem">Distância entre elas: |115 − 15| = <strong>100 m</strong></p>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
+
+<script>
+(function(){
+  var _tvQs = [
+    { q:'Qual dos seguintes conjuntos é formado apenas por números inteiros <strong>não positivos</strong>?',
+      opts:['{−3, −1, 0, 4}','{−5, −3, −2, −1}','{−3, −2, −½, 0}','{0, 1, 5, 12}'], ans:1 },
+    { q:'Qual das seguintes opções é <strong>verdadeira</strong>?',
+      opts:['−1 &lt; −|−1|','3 &gt; |−7|','|−4 − 7| &lt; 4','−[1 − (−2 + 5)] ∈ ℕ'], ans:3 },
+    { q:'Em qual das opções estão representados dois números <strong>simétricos</strong>?',
+      opts:['−3 + 7 e −3 − 7','−(−5) e |−3 − 2|','−2 − (−6) e −|−1 − 3|','−|−5| e −(−1 + 6)'], ans:2 },
+    { q:'Observa o esquema. Qual das afirmações é verdadeira? (esquema: d − (−6) = −22 = (−2) − b)',
+      opts:['a = 12','b = −20','c = 14','d = −28'], ans:3 },
+    { q:'Considera o ponto A na reta numérica (A está à esquerda do 0). Qual expressão tem o mesmo valor que a abcissa de A?',
+      opts:['2 − 3 − 4 − 1','−1 − (5 − 2 + 1)','−(−3) + (−2) − 4','−7 + (5 − 10) + |−8|'], ans:2 }
+  ];
+  var _tvState = { c:0, t:0, done:[] };
+
+  function tvBuild() {
+    _tvState = { c:0, t:0, done:[] };
+    var labels=['A','B','C','D'];
+    var html='';
+    _tvQs.forEach(function(q,qi){
+      html+='<div class="quiz-question" id="tv-q'+qi+'">'+
+        '<div class="q-number">Questão '+(qi+1)+'</div>'+
+        '<div class="q-text">'+q.q+'</div><div class="options">';
+      q.opts.forEach(function(opt,oi){
+        var isC=oi===q.ans;
+        html+='<button class="option-btn" data-correct="'+isC+'" onclick="tvCheck('+qi+','+oi+',this)">'+
+          '<span class="opt-label">'+labels[oi]+'</span>'+opt+'</button>';
+      });
+      html+='</div><div class="feedback" id="tv-fb'+qi+'"></div></div>';
+    });
+    var cont=document.getElementById('tv-qs');
+    if(cont) cont.innerHTML=html;
+    tvUpdateScore();
+  }
+
+  window.tvCheck=function(qi,oi,btn){
+    if(_tvState.done.indexOf(qi)>=0) return;
+    _tvState.done.push(qi); _tvState.t++;
+    var correct=oi===_tvQs[qi].ans;
+    if(correct) _tvState.c++;
+    var cont=document.getElementById('tv-q'+qi);
+    if(cont) cont.querySelectorAll('.option-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.correct==='true') b.classList.add('correct');
+      else if(b===btn&&!correct) b.classList.add('wrong');
+    });
+    var fb=document.getElementById('tv-fb'+qi);
+    if(fb){fb.textContent=correct?'✓ Correto!':'✗ Errado — a resposta correta está assinalada a verde.';
+      fb.className='feedback '+(correct?'correct':'wrong');}
+    tvUpdateScore();
+  };
+
+  window.tvReset=function(){ tvBuild(); };
+
+  function tvUpdateScore(){
+    var c=document.getElementById('tv-c'); if(c) c.textContent=_tvState.c;
+    var t=document.getElementById('tv-t'); if(t) t.textContent='/ '+_tvState.t;
+    var p=document.getElementById('tv-p'); if(p) p.style.width=(Math.round(_tvState.c/_tvQs.length*100)||0)+'%';
+  }
+
+  document.addEventListener('DOMContentLoaded', tvBuild);
+  if(document.readyState!=='loading') tvBuild();
+})();
+</script>
 
 <!-- ── Nível 2: Minitestes ── -->
 
@@ -489,6 +907,84 @@
   <div id="gen-download-area" class="score-bar mt-4 gap-3" style="display:none">
     <button class="btn btn-ghost" onclick="gerarLocal()">↺ Gerar Novos</button>
   </div>
+
+  <!-- Ficha de Desenvolvimento -->
+  <div style="margin-top:2.5rem">
+    <div class="sec-header" style="margin-bottom:1rem">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700">Ficha de Desenvolvimento</h3>
+      <p style="font-size:.88rem;color:var(--ink3)">8 exercícios abrangendo todos os temas do Capítulo 1</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Exercício 1 — Arca congeladora do Sr. Pereira</div>
+      <p style="font-size:.88rem;color:var(--ink3);margin-bottom:.75rem">Temperaturas registadas (em ºC):</p>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:1rem;font-size:.9rem">
+        <thead><tr style="background:var(--cream2)"><th style="border:1px solid var(--border2);padding:.4rem .6rem">Hora</th><th style="border:1px solid var(--border2);padding:.4rem .6rem">10h</th><th style="border:1px solid var(--border2);padding:.4rem .6rem">11h</th><th style="border:1px solid var(--border2);padding:.4rem .6rem">12h</th><th style="border:1px solid var(--border2);padding:.4rem .6rem">15h</th><th style="border:1px solid var(--border2);padding:.4rem .6rem">18h</th><th style="border:1px solid var(--border2);padding:.4rem .6rem">20h</th></tr></thead>
+        <tbody><tr><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-weight:600">Temperatura</td><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-family:'JetBrains Mono',monospace">−15</td><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-family:'JetBrains Mono',monospace">−12</td><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-family:'JetBrains Mono',monospace">−16</td><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-family:'JetBrains Mono',monospace">−10</td><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-family:'JetBrains Mono',monospace">−14</td><td style="border:1px solid var(--border2);padding:.4rem .6rem;font-family:'JetBrains Mono',monospace">−17</td></tr></tbody>
+      </table>
+      <details><summary style="cursor:pointer;font-size:.85rem;color:var(--sage-dark);font-weight:600">Ver resoluções</summary>
+        <ul style="margin-left:1.25rem;font-size:.9rem;line-height:1.9;margin-top:.5rem">
+          <li><strong>1.1.</strong> Mais baixa: −17 às 20h · Mais alta: −10 às 15h</li>
+          <li><strong>1.2.</strong> Ordem crescente: −17, −16, −15, −14, −12, −10</li>
+          <li><strong>1.3.</strong> Diferença: −10 − (−17) = <strong>7 ºC</strong></li>
+        </ul>
+      </details>
+    </div>
+    <div class="card mt-3">
+      <div class="card-title">Exercício 2 — Escreve os números inteiros</div>
+      <details><summary style="cursor:pointer;font-size:.85rem;color:var(--sage-dark);font-weight:600">Ver resoluções</summary>
+        <ul style="margin-left:1.25rem;font-size:.9rem;line-height:1.9;margin-top:.5rem">
+          <li><strong>2.1.</strong> Maiores que −7 e menores que −2: <strong>{−6, −5, −4, −3}</strong></li>
+          <li><strong>2.2.</strong> Menores ou iguais a 6 e não negativos: <strong>{0, 1, 2, 3, 4, 5, 6}</strong></li>
+          <li><strong>2.3.</strong> Com valor absoluto menor que 4: <strong>{−3, −2, −1, 0, 1, 2, 3}</strong></li>
+          <li><strong>2.4.</strong> Negativos com valor absoluto ≤ 6: <strong>{−6, −5, −4, −3, −2, −1}</strong></li>
+        </ul>
+      </details>
+    </div>
+    <div class="card mt-3">
+      <div class="card-title">Exercício 3 — Calcula</div>
+      <details><summary style="cursor:pointer;font-size:.85rem;color:var(--sage-dark);font-weight:600">Ver resoluções</summary>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.4rem .75rem;font-size:.9rem;margin-top:.5rem">
+          <div><span style="font-family:'JetBrains Mono',monospace">3.1. (+5) + (+12)</span> = <strong>17</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.2. (+28) + (−17)</span> = <strong>11</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.3. (−56) + (+32)</span> = <strong>−24</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.4. (−18) + (−23)</span> = <strong>−41</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.5. (+85) − (+66)</span> = <strong>19</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.6. (+33) − (−22)</span> = <strong>55</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.7. (−125) − (+215)</span> = <strong>−340</strong></div>
+          <div><span style="font-family:'JetBrains Mono',monospace">3.8. (−123) − (−321)</span> = <strong>198</strong></div>
+        </div>
+      </details>
+    </div>
+    <div class="card mt-3">
+      <div class="card-title">Exercícios 4–8</div>
+      <details><summary style="cursor:pointer;font-size:.85rem;color:var(--sage-dark);font-weight:600">Ver resoluções</summary>
+        <div style="font-size:.9rem;line-height:1.9;margin-top:.5rem">
+          <p><strong>4.</strong> Completa com &gt;, &lt; ou =:</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.3rem;font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-left:1rem">
+            <div>4.1. −12 <strong>&gt;</strong> −13</div><div>4.2. −5 <strong>&gt;</strong> −(−5)</div>
+            <div>4.3. |−15| <strong>=</strong> −|15|</div><div>4.4. −12 <strong>=</strong> −(+12)</div>
+            <div>4.5. −1 <strong>&lt;</strong> 0</div><div>4.6. −(−10) <strong>=</strong> −|−10|</div>
+          </div>
+          <p class="mt-2"><strong>5.</strong> Atletismo — Número de voltas:</p>
+          <ul style="margin-left:1.25rem">
+            <li>João: 5−7+8−3+12 = <strong>15</strong></li>
+            <li>Diogo: −3+(−5)+15−(−7) = <strong>14</strong></li>
+            <li>Sara: −7+|−18|+(−3)−(−2−3) = <strong>13</strong></li>
+            <li>Leonor: −|−8|+|25−6|−(−10+5) = <strong>16</strong> ← maior número de voltas</li>
+          </ul>
+          <p class="mt-2"><strong>6.</strong> Elevador: 6.1. −2+5=<strong>3</strong> · 6.2. 4−(−3)=<strong>7</strong> · 6.3. 5−6+4=<strong>3</strong></p>
+          <p class="mt-2"><strong>7.</strong> A=−(−3)−1=<strong>2</strong> · B=−(−4+7)=<strong>−3</strong> · C=−3+(2−5)=<strong>−6</strong> · D=|−1−3|−(−4)=<strong>8</strong></p>
+          <p class="mt-2"><strong>8.</strong> Calcula:</p>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-left:1rem">
+            <div>8.1. −5+(−3)−6−(−12) = <strong>−2</strong></div>
+            <div>8.2. 5−8+12−20−3−7+4 = <strong>−17</strong></div>
+            <div>8.3. −15+(12−40)−(17−23) = <strong>−37</strong></div>
+            <div>8.4. |−25−(−15)|−(15−32−21) = <strong>48</strong></div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
 </div><!-- /sec-gerador -->
 <div class="section" id="sec-jogos">
   <div class="sec-header">
@@ -504,7 +1000,134 @@
   <div id="vf-score" class="hidden"></div>
   <div id="vf-total" class="hidden"></div>
   <div id="vf-prog" class="hidden"></div>
+
+  <!-- ── QUADRADO MÁGICO ── -->
+  <div class="card" style="margin-top:2rem">
+    <div class="card-title"><i class="ph ph-magic-wand"></i> Quadrado Mágico</div>
+    <p style="color:var(--ink3);font-size:.9rem;margin-bottom:1.25rem">Calcula o valor de cada expressão e preenche o quadrado. Verifica que a soma de cada linha, coluna e diagonal é sempre o mesmo número!</p>
+    <div style="overflow-x:auto">
+      <table id="qm-table" style="border-collapse:collapse;margin:0 auto;min-width:340px">
+        <tbody id="qm-tbody"></tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;align-items:center">
+      <button class="btn btn-primary" onclick="qmVerificar()"><i class="ph ph-check"></i> Verificar</button>
+      <button class="btn btn-ghost" onclick="qmReset()">↺ Recomeçar</button>
+      <div id="qm-fb" style="font-weight:700;font-size:.95rem"></div>
+    </div>
+  </div>
+
+  <!-- ── DESCOBRE A DATA DE ANIVERSÁRIO ── -->
+  <div class="card" style="margin-top:1.5rem">
+    <div class="card-title"><i class="ph ph-cake"></i> Descobre a Data de Aniversário</div>
+    <p style="color:var(--ink3);font-size:.9rem;margin-bottom:1rem">Pede a um amigo que siga os passos mentalmente — depois digita o resultado final e descobre quando ele faz anos!</p>
+    <div class="highlight-box" style="margin-bottom:1.25rem;background:var(--cream2)">
+      <ol style="margin:0;padding-left:1.25rem;font-size:.88rem;color:var(--ink2);line-height:2">
+        <li>Pensa no <strong>número do mês</strong> do teu nascimento e multiplica por <strong>5</strong>.</li>
+        <li>Subtrai <strong>−2</strong> ao produto (ou seja, <em>soma 2</em>) e multiplica o resultado por <strong>8</strong>.</li>
+        <li>Divide por <strong>2</strong> e soma o simétrico de 8 (ou seja, <em>subtrai 8</em>).</li>
+        <li>Multiplica por <strong>5</strong> e adiciona o <strong>dia do nascimento</strong>.</li>
+      </ol>
+    </div>
+    <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+      <input type="number" id="aniv-input" class="fill-input" placeholder="Resultado final…" style="width:180px">
+      <button class="btn btn-primary" onclick="anivDescobrir()"><i class="ph ph-magnifying-glass"></i> Descobrir</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('aniv-input').value='';document.getElementById('aniv-result').textContent=''">↺ Limpar</button>
+    </div>
+    <div id="aniv-result" style="margin-top:1rem;font-size:1.05rem;font-weight:700;color:var(--sage-dark)"></div>
+    <details style="margin-top:1.25rem">
+      <summary style="cursor:pointer;font-size:.82rem;color:var(--ink4)">Como funciona? (explicação matemática)</summary>
+      <div style="margin-top:.75rem;font-size:.85rem;color:var(--ink3);line-height:1.7">
+        Sendo <em>m</em> = mês e <em>d</em> = dia:<br>
+        1. → 5m &nbsp;|&nbsp; 2. → (5m + 2) × 8 = 40m + 16 &nbsp;|&nbsp; 3. → (40m + 16) ÷ 2 − 8 = 20m &nbsp;|&nbsp; 4. → 20m × 5 + d = <strong>100m + d</strong><br>
+        Os dois primeiros algarismos da direita são o dia; os restantes são o mês.
+      </div>
+    </details>
+  </div>
 </div>
+
+<script>
+// ── QUADRADO MÁGICO ──
+(function(){
+  var cells = [
+    { expr: '−(−9)',              ans: 9  },
+    { expr: '|−1 − 3|',          ans: 4  },
+    { expr: '3 − (−2)',           ans: 5  },
+    { expr: '4 − (8 − 6)',        ans: 2  },
+    { expr: '2 + (−5 + 9)',       ans: 6  },
+    { expr: '|−5| − (−5)',        ans: 10 },
+    { expr: '−1 − 2 + 10',        ans: 7  },
+    { expr: '−|6| − (−7 − |−7|)', ans: 8  },
+    { expr: '−(−9) + (−6)',        ans: 3  }
+  ];
+  function build() {
+    var tb = document.getElementById('qm-tbody');
+    if (!tb) return;
+    var h = '';
+    for (var r = 0; r < 3; r++) {
+      h += '<tr>';
+      for (var c = 0; c < 3; c++) {
+        var i = r * 3 + c;
+        h += '<td style="border:2px solid var(--border2);padding:.6rem .5rem;text-align:center;min-width:110px">' +
+             '<div style="font-size:.8rem;color:var(--ink3);font-family:\'JetBrains Mono\',monospace;margin-bottom:.4rem">' + cells[i].expr + '</div>' +
+             '<input id="qm-' + i + '" type="number" class="fill-input" placeholder="?" style="width:60px;text-align:center;margin:0 auto;display:block"></td>';
+      }
+      h += '</tr>';
+    }
+    tb.innerHTML = h;
+  }
+  window.qmVerificar = function() {
+    var fb = document.getElementById('qm-fb');
+    var all = true;
+    cells.forEach(function(cell, i) {
+      var inp = document.getElementById('qm-' + i);
+      if (!inp) return;
+      var val = parseFloat(inp.value);
+      if (val === cell.ans) {
+        inp.style.borderColor = 'var(--correct)';
+        inp.style.background = 'rgba(62,207,142,.12)';
+      } else {
+        inp.style.borderColor = 'var(--wrong)';
+        inp.style.background = 'rgba(255,107,107,.12)';
+        all = false;
+      }
+    });
+    fb.textContent = all ? '✓ Correto! A soma mágica é 18 em todas as direções.' : '✗ Algum valor está errado — verifica os cálculos.';
+    fb.style.color = all ? 'var(--correct)' : 'var(--wrong)';
+  };
+  window.qmReset = function() {
+    cells.forEach(function(_, i) {
+      var inp = document.getElementById('qm-' + i);
+      if (inp) { inp.value = ''; inp.style.borderColor = ''; inp.style.background = ''; }
+    });
+    document.getElementById('qm-fb').textContent = '';
+  };
+  document.addEventListener('DOMContentLoaded', build);
+  if (document.readyState !== 'loading') build();
+})();
+
+// ── DESCOBRE A DATA DE ANIVERSÁRIO ──
+window.anivDescobrir = function() {
+  var inp = document.getElementById('aniv-input');
+  var res = document.getElementById('aniv-result');
+  var val = parseInt(inp.value, 10);
+  if (isNaN(val) || val < 101 || val > 1231) {
+    res.textContent = 'Introduz o resultado final (ex: 1225 para 25 de dezembro).';
+    res.style.color = 'var(--wrong)';
+    return;
+  }
+  var meses = ['','janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  var dia = val % 100;
+  var mes = Math.floor(val / 100);
+  if (mes < 1 || mes > 12 || dia < 1 || dia > 31) {
+    res.textContent = 'Resultado não parece válido. Confirma que copiaste bem o número.';
+    res.style.color = 'var(--wrong)';
+    return;
+  }
+  res.textContent = '🎂 O teu amigo nasceu no dia ' + dia + ' de ' + meses[mes] + '!';
+  res.style.color = 'var(--sage-dark)';
+};
+</script>
 
 <!-- ══════════ MODO QUIZ ══════════ -->
 <div class="section" id="sec-quiz-game">

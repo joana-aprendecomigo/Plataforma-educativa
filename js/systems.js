@@ -1667,6 +1667,30 @@ function _limparTudoProgresso() {
   renderProgressoUnificado();
 }
 
+function _progGetCapTotals() {
+  var keys = [
+    { num:1, name:'Cap. 1 · Inteiros',  key:'edupt_cap1' },
+    { num:2, name:'Cap. 2 · Racionais', key:'edupt_cap2' },
+    { num:3, name:'Cap. 3 · Geometria', key:'edupt_cap3' },
+    { num:4, name:'Cap. 4 · Álgebra',   key:'edupt_cap4' }
+  ];
+  return keys.map(function(k) {
+    var raw = {};
+    try { raw = JSON.parse(localStorage.getItem(k.key) || '{}'); } catch(e) {}
+    var correct = 0, total = 0;
+    if (raw.sections) {
+      Object.keys(raw.sections).forEach(function(s) {
+        var sec = raw.sections[s];
+        if (sec && typeof sec.correct === 'number') {
+          correct += sec.correct;
+          total   += sec.total || 0;
+        }
+      });
+    }
+    return { num: k.num, name: k.name, data: { correct: correct, total: total } };
+  });
+}
+
 function renderProgressoUnificado() {
   var el = document.getElementById('mat7-progresso-unified');
   if (!el) return;

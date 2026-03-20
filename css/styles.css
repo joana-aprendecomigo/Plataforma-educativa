@@ -2167,3 +2167,15 @@ body.dark-mode .pom-mode-btn.active{background:#2e2e2e!important;}
 
 /* Flashcard: cap label (mega) */
 .fc-cap-label{font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink4);margin-bottom:.35rem}
+
+/* ⚡ Quiz Hub Game */
+.qg-hub-bar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.75rem 1rem;background:var(--cream2);border-radius:12px;margin-bottom:1.25rem}
+.qg-hub-lives{font-size:1.1rem;letter-spacing:2px}
+.qg-hub-streak{font-size:.88rem;font-weight:700;color:var(--c1-mid);flex:1;text-align:center}
+.qg-hub-score{font-size:.88rem;font-weight:700;color:var(--ink3)}
+.qg-hub-question{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:1.25rem;line-height:1.5;padding:.75rem 1rem;background:var(--white);border-radius:12px;border:1.5px solid var(--border)}
+.qg-hub-opts{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1rem}
+.qg-opt-btn{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:600;padding:.85rem 1rem;border:2px solid var(--border2);border-radius:12px;background:var(--white);color:var(--ink);cursor:pointer;transition:all .18s;text-align:left}
+.qg-opt-btn:hover:not(:disabled){border-color:var(--sage-dark);background:var(--cream)}
+.qg-hub-feedback{font-size:.9rem;line-height:1.5;padding:.5rem 0;display:flex;align-items:center;flex-wrap:wrap;gap:.75rem}
+@media(max-width:520px){.qg-hub-opts{grid-template-columns:1fr}}
