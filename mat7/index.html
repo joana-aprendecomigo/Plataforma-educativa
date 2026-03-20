@@ -804,7 +804,7 @@
       <span id="fc4-counter" class="fc-counter">1 / ?</span>
       <div class="progress-track flex-1 min-w-20"><div class="progress-fill" id="fc4-prog" style="width:5%"></div></div>
     </div>
-    <div onclick="fcFlip4()" class="fc-card-wrap">
+    <div onclick="fc4Flip()" class="fc-card-wrap">
       <div id="fc4-inner" class="fc-inner">
         <div class="fc-face fc-face--front">
           <div class="fc-tag-label" id="fc4-tag">Definição</div>
@@ -816,25 +816,12 @@
         </div>
       </div>
     </div>
-    <div id="fc4-confidence" style="display:none;text-align:center;margin-bottom:1rem">
-      <div class="fc-conf-prompt">Como te saístes?</div>
-      <div style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center">
-        <button class="fc-conf-btn fc-conf-0" onclick="fcNext4()"><i class="ph ph-smiley-sad"></i><br><span>Não sei</span></button>
-        <button class="fc-conf-btn fc-conf-1" onclick="fcNext4()"><i class="ph ph-smiley-meh"></i><br><span>Difícil</span></button>
-        <button class="fc-conf-btn fc-conf-2" onclick="fcNext4()"><i class="ph ph-smiley"></i><br><span>Razoável</span></button>
-        <button class="fc-conf-btn fc-conf-3" onclick="fcNext4()"><i class="ph ph-smiley-wink"></i><br><span>Dominado</span></button>
-      </div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem">
-      <button class="btn btn-ghost" onclick="fcPrev4()">← Anterior</button>
-      <button class="btn btn-primary" onclick="fcNext4()">Próxima →</button>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:1rem">
+      <button class="btn btn-ghost" onclick="fc4Prev()">← Anterior</button>
+      <button class="btn btn-ghost" onclick="fc4Shuffle()">↺ Baralhar</button>
+      <button class="btn btn-primary" onclick="fc4Next()">Próxima →</button>
     </div>
     <div id="fc4-dots" style="display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin-top:1rem"></div>
-    <div id="fc4-done" style="display:none;text-align:center;padding:2.5rem 1rem">
-      <div class="fc-done-title">Sessão concluída!</div>
-      <div id="fc4-done-msg" class="fc-done-msg"></div>
-      <button class="btn btn-primary" onclick="fcRender4()"><i class="ph ph-arrows-clockwise"></i> Nova sessão</button>
-    </div>
   </div>
   <div id="sec-exame4">
     <div class="sec-header">
@@ -876,20 +863,11 @@
         <div class="flex items-center gap-2"><i class="ph ph-timer text-[1.4em]"></i><span id="exame4-timer" class="exam-timer">15:00</span></div>
         <div class="progress-track flex-1 min-w-[100px]"><div class="progress-fill" id="exame4-prog" style="width:0%"></div></div>
         <span id="exame4-answered" class="exam-counter">0 / 0</span>
-        <button class="btn btn-ghost py-1.5 px-3.5 text-xs" onclick="exame4Stop()">■ Terminar</button>
+        <button class="btn btn-ghost py-1.5 px-3.5 text-xs" onclick="exame4Submit()">■ Terminar</button>
       </div>
       <div id="exame4-container"></div>
     </div>
-    <div id="exame4-result" style="display:none;">
-      <div class="card card-centered">
-        <div class="exam-result-icon" id="exame4-emoji"></div>
-        <div class="exam-result-grade" id="exame4-nota"></div>
-        <div class="exam-result-detail" id="exame4-detalhe"></div>
-        <div class="flex flex-wrap gap-4 justify-center mt-7">
-          <button class="btn btn-primary" onclick="exame4Reset()">↺ Novo Exame</button>
-        </div>
-      </div>
-    </div>
+    <div id="exame4-result" style="display:none;"></div>
   </div>
   <div id="sec-quiz-game4"><div id="qg-app4"></div></div>
 </div>

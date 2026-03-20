@@ -636,7 +636,7 @@ function saveProgData4(prefix,data){
 }
 function renderProg4(){
   // barras por capítulo (visão global)
-  _progRenderCapitulosBar('prog4-caps', 4);
+  if(typeof _progRenderCapitulosBar==='function') _progRenderCapitulosBar('prog4-caps', 4);
 
   var p={};
   try{p=JSON.parse(localStorage.getItem('edupt_cap4')||'{}');}catch(e){}

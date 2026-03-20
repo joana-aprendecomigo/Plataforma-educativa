@@ -56,6 +56,19 @@ function buildExercicio(tema, tipo, min, max, n, dif) {
       return { enun: 'Escreve em ordem crescente: ' + arr.join(', ') + '.', tipo: 'fill',
         resposta: [b, 0, a].join(', '), expl: 'Ordem crescente: ' + b + ' < 0 < ' + a, tema: 'T1 · Inteiros' };
     }
+    if (tipo === 'contexto') {
+      var nums1ctx = [-5, -3, -1, 0, 1, 3, 5, 7];
+      var n1ctx = nums1ctx[rnd(0, nums1ctx.length - 1)];
+      var subsets1ctx = ['ℤ⁺', 'ℤ⁻', 'ℕ'];
+      var tgt1ctx = subsets1ctx[rnd(0, 2)];
+      var belongs1ctx;
+      if (tgt1ctx === 'ℤ⁺') belongs1ctx = n1ctx > 0;
+      else if (tgt1ctx === 'ℤ⁻') belongs1ctx = n1ctx < 0;
+      else belongs1ctx = n1ctx >= 0;
+      return { enun: 'Verdadeiro ou Falso: ' + n1ctx + ' ∈ ' + tgt1ctx + '.',
+        tipo: 'vf', resposta: belongs1ctx ? 'V' : 'F',
+        expl: n1ctx + (belongs1ctx ? ' pertence' : ' não pertence') + ' a ' + tgt1ctx + '.', tema: 'T1 · Inteiros' };
+    }
   }
 
   // TEMA 2 — Valor Absoluto e Simétrico
@@ -179,6 +192,86 @@ function buildExercicio(tema, tipo, min, max, n, dif) {
     }
   }
 
+  // TEMA 6 — Propriedades da Adição
+  if (tema === '6') {
+    var a6 = rndNZ(1, 10), b6 = rndNZ(1, 8), c6 = rndNZ(1, 6);
+    var sA = Math.random() < 0.5 ? a6 : -a6;
+    var sB = Math.random() < 0.5 ? b6 : -b6;
+    var sC = Math.random() < 0.5 ? c6 : -c6;
+    if (tipo === 'fill') {
+      var fillProp6 = rnd(0, 3);
+      if (fillProp6 === 0) {
+        return { enun: 'Completa usando a propriedade comutativa: (' + sA + ') + (' + sB + ') = (' + sB + ') + ___',
+          tipo: 'fill', resposta: sA,
+          expl: 'Propriedade comutativa: a + b = b + a. O valor em falta é ' + sA + '.', tema: 'T6 · Propriedades' };
+      }
+      if (fillProp6 === 1) {
+        return { enun: 'Completa usando a propriedade associativa: [(' + sA + ') + (' + sB + ')] + (' + sC + ') = (' + sA + ') + (___ + (' + sC + '))',
+          tipo: 'fill', resposta: sB,
+          expl: 'Propriedade associativa: (a + b) + c = a + (b + c). O valor em falta é ' + sB + '.', tema: 'T6 · Propriedades' };
+      }
+      if (fillProp6 === 2) {
+        return { enun: 'Completa: (' + sA + ') + ___ = ' + sA,
+          tipo: 'fill', resposta: 0,
+          expl: 'Elemento neutro da adição: a + 0 = a. O elemento neutro é o 0.', tema: 'T6 · Propriedades' };
+      }
+      return { enun: 'Qual é o simétrico de ' + sA + '? Completa: (' + sA + ') + ___ = 0',
+        tipo: 'fill', resposta: -sA,
+        expl: 'Elemento simétrico: a + (−a) = 0. O simétrico de ' + sA + ' é ' + (-sA) + '.', tema: 'T6 · Propriedades' };
+    }
+    if (tipo === 'mc') {
+      var mcProp6 = rnd(0, 3);
+      var enunMc6, corrProp6;
+      if (mcProp6 === 0) {
+        enunMc6 = 'Qual propriedade ilustra: (' + sA + ') + (' + sB + ') = (' + sB + ') + (' + sA + ')?';
+        corrProp6 = 'Comutativa';
+      } else if (mcProp6 === 1) {
+        enunMc6 = 'Qual propriedade ilustra: [(' + sA + ') + (' + sB + ')] + (' + sC + ') = (' + sA + ') + [(' + sB + ') + (' + sC + ')]?';
+        corrProp6 = 'Associativa';
+      } else if (mcProp6 === 2) {
+        enunMc6 = 'Qual propriedade ilustra: (' + sA + ') + 0 = ' + sA + '?';
+        corrProp6 = 'Elemento neutro';
+      } else {
+        enunMc6 = 'Qual propriedade ilustra: (' + sA + ') + (' + (-sA) + ') = 0?';
+        corrProp6 = 'Elemento simétrico';
+      }
+      var allProps6 = ['Comutativa', 'Associativa', 'Elemento neutro', 'Elemento simétrico'];
+      var opts6 = shuffle(allProps6.slice());
+      return { enun: enunMc6, tipo: 'mc', opcoes: opts6, resposta: corrProp6,
+        expl: 'Propriedade ' + corrProp6 + ' da adição.', tema: 'T6 · Propriedades' };
+    }
+    if (tipo === 'vf') {
+      var vfProp6 = rnd(0, 2);
+      if (vfProp6 === 0) {
+        return { enun: 'Verdadeiro ou Falso: A adição de inteiros é comutativa, ou seja, a + b = b + a.',
+          tipo: 'vf', resposta: 'V',
+          expl: 'Verdadeiro. A propriedade comutativa garante que a ordem das parcelas não altera a soma.', tema: 'T6 · Propriedades' };
+      }
+      if (vfProp6 === 1) {
+        return { enun: 'Verdadeiro ou Falso: O elemento neutro da adição é o 1.',
+          tipo: 'vf', resposta: 'F',
+          expl: 'Falso. O elemento neutro da adição é o 0, pois a + 0 = a para qualquer inteiro a.', tema: 'T6 · Propriedades' };
+      }
+      return { enun: 'Verdadeiro ou Falso: O simétrico de ' + a6 + ' é ' + a6 + '.',
+        tipo: 'vf', resposta: 'F',
+        expl: 'Falso. O simétrico de ' + a6 + ' é −' + a6 + ', pois ' + a6 + ' + (−' + a6 + ') = 0.', tema: 'T6 · Propriedades' };
+    }
+    if (tipo === 'contexto') {
+      var ctxProp6 = rnd(0, 1);
+      if (ctxProp6 === 0) {
+        var p6 = rndNZ(2, 9), q6 = rndNZ(1, 5), r6 = rndNZ(1, 5);
+        var tot6 = p6 + (-q6) + (-r6);
+        return { enun: 'Usando a propriedade associativa, calcula: (' + p6 + ') + (−' + q6 + ') + (−' + r6 + ').',
+          tipo: 'fill', resposta: tot6,
+          expl: 'Associativa: (' + p6 + ') + [(−' + q6 + ') + (−' + r6 + ')] = ' + p6 + ' + (−' + (q6 + r6) + ') = ' + tot6 + '.', tema: 'T6 · Propriedades' };
+      }
+      var debt6 = rndNZ(3, 12);
+      return { enun: 'O João tem uma dívida de ' + debt6 + '€ (saldo de −' + debt6 + '€). Recebe exatamente ' + debt6 + '€. Qual é o saldo final?',
+        tipo: 'fill', resposta: 0,
+        expl: '(−' + debt6 + ') + ' + debt6 + ' = 0. Propriedade do elemento simétrico: a + (−a) = 0.', tema: 'T6 · Propriedades' };
+    }
+  }
+
   return null;
 }
 
@@ -204,6 +297,12 @@ var FC1_CARDS = [
   {tag:'Exemplo', q:'Ordena por ordem crescente: 3, −5, 0, −2, 7', a:'−5 < −2 < 0 < 3 < 7'},
   {tag:'Exemplo', q:'Calcula: |−9| − |4|', a:'= 9 − 4 = 5'},
   {tag:'Síntese', q:'Quando é que a + b < a?', a:'Quando b < 0 (b é negativo). Somar um número negativo diminui o resultado.'},
+  {tag:'Notação', q:'O que significam os símbolos ∈ e ∉?', a:'∈ significa "pertence a" e ∉ significa "não pertence a". Ex: −3 ∈ ℤ⁻ (−3 pertence aos inteiros negativos) e −3 ∉ ℕ (−3 não pertence aos naturais).'},
+  {tag:'Notação', q:'O que significam ⊂ e ⊄?', a:'⊂ significa "está contido em" (subconjunto de). ⊄ significa "não está contido em". Ex: ℕ ⊂ ℤ (os naturais estão contidos nos inteiros), mas ℤ ⊄ ℕ.'},
+  {tag:'Propriedade', q:'Qual é a propriedade comutativa da adição?', a:'a + b = b + a. A ordem das parcelas não altera a soma. Ex: (−3) + 5 = 5 + (−3) = 2.'},
+  {tag:'Propriedade', q:'Qual é a propriedade associativa da adição?', a:'(a + b) + c = a + (b + c). O agrupamento das parcelas não altera a soma. Ex: [(−2) + 3] + (−1) = (−2) + [3 + (−1)] = 0.'},
+  {tag:'Propriedade', q:'O que é o elemento neutro da adição?', a:'O 0 é o elemento neutro da adição: a + 0 = 0 + a = a. Somar zero não altera o número.'},
+  {tag:'Propriedade', q:'O que é o elemento simétrico de um inteiro a?', a:'O simétrico de a é −a, tal que a + (−a) = 0. Ex: simétrico de 7 é −7; simétrico de −4 é 4.'},
 ];
 
 // Alias expected by mat7.js unified flashcard renderer
@@ -216,28 +315,28 @@ window.CAP_DATA[1] = {
   storageKey: 'edupt_cap1',
   viewId: 'view-math',
   tabsId: 'tabs-cap1',
-  temas: ['T1 · Inteiros', 'T2 · Valor Abs.', 'T3 · Adição', 'T4 · Subtração', 'T5 · Parênteses'],
+  temas: ['T1 · Inteiros', 'T2 · Valor Abs.', 'T3 · Adição', 'T4 · Subtração', 'T5 · Parênteses', 'T6 · Propriedades'],
   flashcards: FC1_CARDS,
   buildExercicio: function(tema, tipo, dif) {
     var lv = lim(dif || 'medio');
     return buildExercicio(tema, tipo, lv.min, lv.max, 0, dif);
   },
   questoesPlans: {
-    facil:   { temas: ['1','1','1','1','2','2','2','2','3','3','3','3','4','4','4','4','5','5','5','5'],
-               tipos: ['vf','mc','mc','fill','fill','mc','vf','fill','mc','mc','fill','vf','mc','fill','mc','vf','mc','fill','mc','mc'] },
-    medio:   { temas: ['1','1','2','2','3','3','3','4','4','4','5','5','5','3','4','5','2','1','4','3'],
-               tipos: ['vf','mc','fill','mc','fill','mc','vf','fill','mc','vf','mc','fill','mc','mc','fill','mc','fill','mc','contexto','contexto'] },
-    dificil: { temas: ['1','2','2','3','3','3','4','4','4','5','5','5','3','4','5','4','3','5','4','3'],
-               tipos: ['mc','fill','mc','fill','contexto','mc','fill','contexto','mc','fill','mc','contexto','fill','fill','mc','mc','mc','fill','mc','fill'] }
+    facil:   { temas: ['1','1','1','1','2','2','2','2','3','3','3','3','4','4','4','4','5','5','6','6'],
+               tipos: ['vf','mc','mc','fill','fill','mc','vf','fill','mc','mc','fill','vf','mc','fill','mc','vf','mc','fill','fill','mc'] },
+    medio:   { temas: ['1','1','2','2','3','3','3','4','4','4','5','5','5','3','4','5','6','6','4','3'],
+               tipos: ['vf','mc','fill','mc','fill','mc','vf','fill','mc','vf','mc','fill','mc','contexto','contexto','mc','fill','mc','fill','mc'] },
+    dificil: { temas: ['1','2','2','3','3','3','4','4','4','5','5','5','6','6','6','4','3','5','1','3'],
+               tipos: ['contexto','fill','mc','fill','contexto','mc','fill','contexto','mc','fill','mc','contexto','fill','mc','vf','mc','mc','fill','contexto','fill'] }
   },
   miniPlans: {
-    0: [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'}]
+    0: [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'}]
   },
   testePlans: {
     subtema0: {
-      facil:   [{t:'1',tipo:'vf'},{t:'2',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'}],
-      medio:   [{t:'1',tipo:'vf'},{t:'2',tipo:'fill'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'}],
-      dificil: [{t:'1',tipo:'mc'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'3',tipo:'fill'},{t:'3',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'contexto'}]
+      facil:   [{t:'1',tipo:'vf'},{t:'2',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'}],
+      medio:   [{t:'1',tipo:'vf'},{t:'2',tipo:'fill'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'},{t:'6',tipo:'fill'},{t:'6',tipo:'vf'}],
+      dificil: [{t:'1',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'3',tipo:'fill'},{t:'3',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'contexto'}]
     }
   }
 };

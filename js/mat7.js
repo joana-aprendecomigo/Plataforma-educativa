@@ -90,7 +90,6 @@ function _mat7BuildSelectors() {
     {id:'gf-caps-mat7-downloads', tab:'fichas', opts:{type:'gf', panelId:'mat7-downloads', stData:_capStFichas}},
     {id:'mat7-caps-resumo',      tab:'resumo', opts:{type:'mat7tab'}},
     {id:'mat7-caps-exercicios',  tab:'exercicios', opts:{type:'mat7tab', numbered:true}},
-    {id:'mat7-caps-minitestes',  tab:'minitestes', opts:{type:'simple'}},
     {id:'mat7-caps-jogos',       tab:'jogos', opts:{type:'mat7tab'}},
     {id:'mat7-caps-flashcards',  tab:'flashcards', opts:{type:'mat7tab'}},
     {id:'mat7-caps-exame',       tab:'exame', opts:{type:'mat7tab'}},
@@ -126,7 +125,6 @@ var _mat7SecMap = {
   jogos:      { 1:'sec-jogos',       2:'sec-jogos2',      3:'sec-jogos3',      4:'sec-jogos4' },
   flashcards: { 1:'sec-flashcards',  2:'sec-flashcards2', 3:'sec-flashcards3', 4:'sec-flashcards4' },
   exame:      { 1:'sec-exame',       2:'sec-exame2',      3:'sec-exame3',      4:'sec-exame4' },
-  reta:       { 1:'sec-reta' },
   // progresso: handled by renderProgressoUnificado — not in secMap
   quiz:       { 1:'sec-quiz-game',   2:'sec-quiz-game2',  3:'sec-quiz-game3',  4:'sec-quiz-game4' }
 };
@@ -156,8 +154,7 @@ var _mat7InitMap = {
   'sec-exame':       function(){ if(typeof exameReset==='function') exameReset(); },
   'sec-exame2':      function(){ if(typeof exame2Reset==='function') exame2Reset(); },
   'sec-exame3':      function(){ if(typeof exame3Reset==='function') exame3Reset(); },
-  'sec-exame4':      function(){ if(typeof exame4Reset==='function') exame4Reset(); },
-  'sec-reta':        function(){ if(typeof retaDraw==='function') retaDraw(); },
+  'sec-exame4':      function(){ var c=document.getElementById('exame4-config');var r=document.getElementById('exame4-running');var rs=document.getElementById('exame4-result');if(c)c.style.display='block';if(r)r.style.display='none';if(rs)rs.style.display='none'; },
   'sec-progresso':   function(){ if(typeof progRenderSection==='function') progRenderSection(); },
   'sec-progresso2':  function(){ if(typeof progRenderSection2==='function') progRenderSection2(); },
   'sec-progresso3':  function(){ if(typeof progRenderSection3==='function') progRenderSection3(); },
@@ -184,7 +181,7 @@ var _uniFC = { cards: [], idx: 0, flipped: false };
 function mat7RenderUnifiedFlashcards(caps, inlineEl) {
   // Build merged card deck from all selected caps, tagged with cap name
   var capCardSources = {
-    1: typeof FC_CARDS_CAP1 !== 'undefined' ? FC_CARDS_CAP1 : [],
+    1: typeof FC_CARDS_CAP1 !== 'undefined' ? FC_CARDS_CAP1 : (typeof FC1_CARDS !== 'undefined' ? FC1_CARDS : []),
     2: typeof FC2_CARDS !== 'undefined' ? FC2_CARDS : [],
     3: typeof FC3_CARDS !== 'undefined' ? FC3_CARDS : [],
     4: typeof BANCO4 !== 'undefined' && BANCO4.flashcards ? BANCO4.flashcards : []
@@ -525,33 +522,8 @@ function mat7SwitchTab(tab, btn) {
   else if (tab === 'progresso') { if (typeof renderProgressoUnificado === 'function') renderProgressoUnificado(); }
   else if (tab === 'exercicios') {
     mat7LoadInline('exercicios');
-    // Load whichever mode is currently active
-    var miniSec = document.getElementById('exmode-section-minitestes');
-    if (miniSec && miniSec.style.display !== 'none') mat7LoadInline('minitestes');
-    if(typeof testeReloadFromGf==='function') setTimeout(testeReloadFromGf, 300);
   }
-  else if (tab === 'minitestes') { mat7SwitchTab('exercicios', document.querySelector('[data-tab="exercicios"]')); return; }
   else if (_mat7SecMap[tab]) mat7LoadInline(tab);
-}
-
-function exModeSwitch(mode) {
-  var secEx   = document.getElementById('exmode-section-exercicios');
-  var secMini = document.getElementById('exmode-section-minitestes');
-  var btnEx   = document.getElementById('exmode-btn-ex');
-  var btnMini = document.getElementById('exmode-btn-mini');
-  if (!secEx || !secMini) return;
-
-  var active = mode === 'exercicios';
-  secEx.style.display   = active ? '' : 'none';
-  secMini.style.display = active ? 'none' : '';
-
-  var activeStyle = 'background:var(--sage-dark);color:#fff;box-shadow:0 2px 8px rgba(81,104,96,.25)';
-  var inactiveStyle = 'background:transparent;color:var(--ink3)';
-  if (btnEx)   btnEx.style.cssText   = 'flex:1;padding:8px 0;border:none;border-radius:9px;font-family:Montserrat,sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;' + (active ? activeStyle : inactiveStyle);
-  if (btnMini) btnMini.style.cssText = 'flex:1;padding:8px 0;border:none;border-radius:9px;font-family:Montserrat,sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;' + (!active ? activeStyle : inactiveStyle);
-
-  if (active) { mat7LoadInline('exercicios'); }
-  else        { mat7LoadInline('minitestes'); }
 }
 
 
@@ -903,6 +875,7 @@ var _qgHub = {
   cap: 1,
   lives: 3,
   streak: 0,
+  maxStreak: 0,
   score: 0,
   total: 0,
   current: null,
@@ -915,6 +888,7 @@ function qgHubInit() {
   _qgHub.cap = active ? (parseInt(active.dataset.cap) || 1) : 1;
   _qgHub.lives = 3;
   _qgHub.streak = 0;
+  _qgHub.maxStreak = 0;
   _qgHub.score = 0;
   _qgHub.total = 0;
   _qgHub.answered = false;
@@ -928,6 +902,7 @@ function qgHubSelectCap(cap, btn) {
   _qgHub.cap = cap;
   _qgHub.lives = 3;
   _qgHub.streak = 0;
+  _qgHub.maxStreak = 0;
   _qgHub.score = 0;
   _qgHub.total = 0;
   _qgHub.answered = false;
@@ -1018,6 +993,7 @@ function qgHubAnswer(idx) {
   if (correct) {
     _qgHub.score++;
     _qgHub.streak++;
+    if (_qgHub.streak > _qgHub.maxStreak) _qgHub.maxStreak = _qgHub.streak;
     if (fb) fb.innerHTML = '<span style="color:#4caf50;font-weight:700">✓ Correto!' + (_qgHub.streak >= 3 ? ' 🔥 Streak de ' + _qgHub.streak + '!' : '') + '</span>' + (ex.expl ? ' <span style="color:var(--ink3);font-size:.85rem">' + ex.expl + '</span>' : '');
   } else {
     _qgHub.lives--;
@@ -1046,7 +1022,7 @@ function _qgHubGameOver(app) {
       '<div style="font-size:3.5rem;margin-bottom:.75rem">' + emoji + '</div>' +
       '<div style="font-family:\'Cormorant Garamond\',serif;font-size:2rem;font-weight:900;color:var(--ink)">' + pct + '%</div>' +
       '<div style="color:var(--ink3);margin:.5rem 0 1.5rem">' + _qgHub.score + ' certas em ' + _qgHub.total + ' questões</div>' +
-      '<div style="font-size:1.5rem;margin-bottom:1.5rem">Melhor sequência: ' + (_qgHub.streak || 0) + ' 🔥</div>' +
+      '<div style="font-size:1.5rem;margin-bottom:1.5rem">Melhor sequência: ' + (_qgHub.maxStreak || 0) + ' 🔥</div>' +
       '<button class="btn btn-primary" onclick="qgHubInit()">↺ Jogar novamente</button>' +
     '</div>';
 }

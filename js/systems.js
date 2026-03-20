@@ -1679,8 +1679,19 @@ function _progGetCapTotals() {
     try { raw = JSON.parse(localStorage.getItem(k.key) || '{}'); } catch(e) {}
     var correct = 0, total = 0;
     if (raw.sections) {
+      // Caps 1-3: chapter-engine stores {sections:{...}, log:[...]}
       Object.keys(raw.sections).forEach(function(s) {
         var sec = raw.sections[s];
+        if (sec && typeof sec.correct === 'number') {
+          correct += sec.correct;
+          total   += sec.total || 0;
+        }
+      });
+    } else {
+      // Cap 4: saveProgData4 stores data flat at root {q4:{correct,total}, m1:{...}, last_updated:'...'}
+      Object.keys(raw).forEach(function(s) {
+        if (s === 'last_updated') return;
+        var sec = raw[s];
         if (sec && typeof sec.correct === 'number') {
           correct += sec.correct;
           total   += sec.total || 0;
