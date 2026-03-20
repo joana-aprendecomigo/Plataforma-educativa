@@ -1,14 +1,13 @@
 /* ── mega.js — Mega-view (all-caps combined): state, navigation, exercises, flashcards, exame, progress, downloads ── */
 
-
 // ── Issue 2: State Management ──
 var capitulosSelecionados = [];
 
 var CAP_INFO = {
-  1: { nome: 'Cap. 1 — Números Inteiros',    emoji: '<span class="ico ico-sm"><svg><use href="#ico-hash"/></svg></span>', color: 'var(--c2-mid)' },
-  2: { nome: 'Cap. 2 — Números Racionais',   emoji: '<span class="ico ico-sm"><svg><use href="#ico-calculator"/></svg></span>', color: 'var(--c3-mid)' },
-  3: { nome: 'Cap. 3 — Geometria',           emoji: '<span class="ico ico-sm"><svg><use href="#ico-ruler"/></svg></span>', color: 'var(--c1-mid)' },
-  4: { nome: 'Cap. 4 — Seq., Expr. e Eq.',   emoji: '<span class="ico ico-sm"><svg><use href="#ico-sparkles"/></svg></span>', color: '#516860'       },
+  1: { nome: 'Cap. 1 — Números Inteiros',    emoji: '<i class="ph ph-hash"></i>', color: 'var(--c2-mid)' },
+  2: { nome: 'Cap. 2 — Números Racionais',   emoji: '<i class="ph ph-calculator"></i>', color: 'var(--c3-mid)' },
+  3: { nome: 'Cap. 3 — Geometria',           emoji: '<i class="ph ph-ruler"></i>', color: 'var(--c1-mid)' },
+  4: { nome: 'Cap. 4 — Seq., Expr. e Eq.',   emoji: '<i class="ph ph-sparkle"></i>', color: '#516860'       },
 };
 
 // ── Issue 1: Toggle Checkbox ──
@@ -108,9 +107,7 @@ function _updateMegaScore() {
   _mprogLog('questoes', s.correct, s.total);
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — TABS NAVIGATION
-// ═══════════════════════════════════════════════════════
 function showMegaSection(id, btn) {
   document.querySelectorAll('.mega-section').forEach(function(s){ s.classList.remove('active'); });
   document.querySelectorAll('#mega-tabs .tab-btn').forEach(function(b){ b.classList.remove('active'); });
@@ -155,17 +152,19 @@ function showMegaSection(id, btn) {
     if (!anyActive) {
       document.querySelector('#gf-caps-mega-sec-downloads .gf-cap-btn').classList.add('active');
     }
-    // Auto-generate on first visit
+    // Auto-generate on first visit (lazy-load gf.js if needed)
     var preview = document.getElementById('gf-preview-mega-sec-downloads');
     if (preview && preview.style.display === 'none') {
-      gfGenerar('mega-sec-downloads');
+      if (typeof gfGenerar === 'function') {
+        gfGenerar('mega-sec-downloads');
+      } else {
+        lazyLoad('gf.js', function() { gfGenerar('mega-sec-downloads'); });
+      }
     }
   }
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — GERADOR (same as questoes but different container + score)
-// ═══════════════════════════════════════════════════════
 var mgenState = { answered:{}, score:{correct:0,total:0} };
 var _mgenLevel = 'medio';
 
@@ -291,9 +290,7 @@ function _pickTipo(tipo) {
   return tipo;
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — UNIFIED RENDERER (generic, handles any container+prefix+scoreCallback)
-// ═══════════════════════════════════════════════════════
 var _megaRenderStates = {}; // keyed by prefix
 
 function _renderMegaQuestionsTo(exercicios, containerId, prefix, onScore) {
@@ -413,9 +410,7 @@ function gerarMega() {
   });
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — FLASHCARDS (merged from all selected caps)
-// ═══════════════════════════════════════════════════════
 var _mfcCards = [];
 var _mfcOrder = [];
 var _mfcIdx = 0;
@@ -499,38 +494,7 @@ function mfcShuffle() {
 }
 function mfcReset() { _mfcIdx=0; mfcRenderCard(); }
 
-// ═══════════════════════════════════════════════════════
-// MEGA — JOGOS: Relâmpago + VF
-// ═══════════════════════════════════════════════════════
-var _mvfScore = {correct:0, total:0};
-
-function _getMegaRelPool(n) {
-  // pull from relampago banks of each selected cap + banco questoes
-  var pool = [];
-  capitulosSelecionados.forEach(function(cap) {
-    if (cap===4 && typeof BANCO4!=='undefined') {
-      BANCO4.relampago.forEach(function(q){
-        pool.push({cap:4, enun:q.q, opts:q.opts, correct:q.c, expl:q.fb||''});
-      });
-    } else {
-      // generate mc questions dynamically for caps 1-3
-      var qs = [];
-      if(cap===1) qs=_megaGetCap1(8,'medio','mc');
-      else if(cap===2) qs=_megaGetCap2(8,'medio','mc');
-      else if(cap===3) qs=_megaGetCap3(8,'medio','mc');
-      qs.forEach(function(q){ pool.push({cap:cap, enun:q.enun, opcoes:q.opcoes, resposta:q.resposta, expl:q.expl||'', _isMc:true}); });
-    }
-  });
-  return pool.sort(function(){return Math.random()-.5;}).slice(0,n);
-}
-
-
-
-
-
-// ═══════════════════════════════════════════════════════
 // MEGA — EXAME CRONOMETRADO
-// ═══════════════════════════════════════════════════════
 var _mexameState = {level:'medio', timer:null, timeLeft:900, exercicios:[], answered:{}, score:{correct:0,total:0}};
 
 function mexameSetLevel(btn) {
@@ -588,15 +552,13 @@ function mexameStop() {
   var total = _mexameState.exercicios.length;
   var pct = total>0 ? Math.round(s.correct/total*100) : 0;
   var nota = pct>=90?'Excelente!':pct>=75?'Muito Bom!':pct>=50?'Suficiente':'Continua a treinar';
-  document.getElementById('mexame-emoji').innerHTML = pct>=90?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>':pct>=75?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span>':pct>=50?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg></span>':'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13.4 10.6-1.35 1.35A2.92 2.92 0 0 1 10 13a2.92 2.92 0 0 1-2.06-.86L5 9.2A2 2 0 0 1 5 6.38L11 2l3 3"/><path d="m15.5 17.5 3-3a1 1 0 0 0 0-1.41L12.5 7.09a1 1 0 0 0-1.42 0l-3 3L15.5 17.5z"/><path d="M16.5 22 19 19.5l-2.5-2.5-2.5 2.5 2.5 2.5z"/></svg></span>';
+  document.getElementById('mexame-emoji').innerHTML = pct>=90?'<i class="ph ph-trophy"></i>':pct>=75?'<i class="ph ph-smiley"></i>':pct>=50?'<i class="ph ph-thumbs-up"></i>':'<i class="ph ph-wrench"></i>';
   document.getElementById('mexame-nota').textContent = pct+'% — '+nota;
   document.getElementById('mexame-detalhe').textContent = s.correct+' correctas em '+total+' questões de '+capitulosSelecionados.length+' capítulo(s)';
   _mprogLog('exame', s.correct, total);
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — PROGRESSO
-// ═══════════════════════════════════════════════════════
 var _mprogData = { sessions: [] };
 var _mprogSessionLog = {};
 
@@ -610,7 +572,7 @@ function _mprogLog(section, correct, total) {
 
 function _mprogRender() {
   var secs = ['questoes','gerador','jogos','exame'];
-  var labels = {questoes:'<span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span> Questões',gerador:'<span class="ico ico-sm"><svg><use href="#ico-dices"/></svg></span> Gerador',jogos:'<span class="ico ico-sm"><svg><use href="#ico-gamepad"/></svg></span> Jogos',exame:'<span class="ico ico-sm"><svg><use href="#ico-timer"/></svg></span> Exame'};
+  var labels = {questoes:'<i class="ph ph-pencil-simple"></i> Questões',gerador:'<i class="ph ph-dice-five"></i> Gerador',jogos:'<i class="ph ph-game-controller"></i> Jogos',exame:'<i class="ph ph-timer"></i> Exame'};
   var cards = document.getElementById('mprog-cards');
   var html = '';
   var totalC=0, totalT=0;
@@ -627,7 +589,7 @@ function _mprogRender() {
   // total
   var totPct = totalT>0?Math.round(totalC/totalT*100):0;
   html += '<div style="background:linear-gradient(135deg,var(--c2-base),var(--c2-pale));border:2px solid rgba(81,104,96,.2);border-radius:14px;padding:1rem;text-align:center;box-shadow:var(--shadow-md);grid-column:1/-1">'
-    +'<div style="font-size:.75rem;font-weight:700;color:var(--c2-deep);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem"><span class="ico ico-sm"><svg><use href="#ico-trophy"/></svg></span> Total da Sessão</div>'
+    +'<div style="font-size:.75rem;font-weight:700;color:var(--c2-deep);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem"><i class="ph ph-trophy"></i> Total da Sessão</div>'
     +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:2.2rem;font-weight:900;color:var(--c2-deep)">'+(totalT>0?totPct+'%':'—')+'</div>'
     +'<div style="font-size:.85rem;color:var(--c2-deep);font-weight:600">'+totalC+' certas em '+totalT+' questões</div>'
     +'</div>';
@@ -646,9 +608,7 @@ function mprogReset() {
   _mprogRender();
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — SHOW VIEW (updated to init flashcards flag)
-// ═══════════════════════════════════════════════════════
 function showMegaView() {
   if (capitulosSelecionados.length === 0) return;
   _hideAllViews();
@@ -662,7 +622,7 @@ function showMegaView() {
   chips.innerHTML = sorted.map(function(c){
     return '<span style="font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--c2-base);color:var(--c2-deep);border:1px solid rgba(81,104,96,.2)">'+CAP_INFO[c].emoji+' Cap.'+c+'</span>';
   }).join('');
-  document.getElementById('mega-bar-title').innerHTML = '<span class="ico ico-sm"><svg><use href="#ico-target"/></svg></span> Estudo: '+sorted.map(function(c){return 'Cap.'+c;}).join(' + ');
+  document.getElementById('mega-bar-title').innerHTML = '<i class="ph ph-target"></i> Estudo: '+sorted.map(function(c){return 'Cap.'+c;}).join(' + ');
   document.getElementById('mega-header-desc').innerHTML = 'Exercícios baralhados de '+sorted.length+' capítulo(s) — '+sorted.map(function(c){return CAP_INFO[c].emoji;}).join(' ');
   // reset tabs to teoria (first tab)
   document.querySelectorAll('.mega-section').forEach(function(s){ s.classList.remove('active'); });
@@ -679,9 +639,7 @@ function showMegaView() {
   setTimeout(_megaAddPdfButtons, 100);
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — POPULATE: Clone real content from individual chapters
-// ═══════════════════════════════════════════════════════
 
 // Generic cloner: copies full section content from a chapter view, wraps it with a cap header
 function _megaCloneSection(caps, sourceIds, containerId) {
@@ -871,56 +829,23 @@ function _capSectionHeader(cap, cor) {
     + '</div>';
 }
 
-function downloadFichaCompleta() {
+function _megaDownloadDoc(type) {
   var caps = _getMegaCaps();
   if (!caps || caps.length === 0) return;
   var capColors = { 1:'#516860', 2:'#7a6860', 3:'#3d5c54', 4:'#2d3530' };
   var now = new Date().toLocaleDateString('pt-PT');
-  var body = '<h1>Ficha de Trabalho Completa · Matemática 7.º Ano</h1>'
-    + '<div class="meta">Data: '+now+' &nbsp;|&nbsp; Nome: __________________________________ &nbsp;|&nbsp; Turma: _____</div>'
-    + '<div class="box" style="margin-bottom:1.5rem"><strong>Capítulos incluídos:</strong> ' + caps.map(function(c){ return 'Cap. '+c; }).join(', ') + '</div>';
-  caps.forEach(function(c) {
-    body += _capSectionHeader(c, capColors[c] || '#516860');
-    body += _buildFichaCompletaCapHTML(c);
-  });
-  var html = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>Ficha Completa — Todos os Capítulos</title>'
-    + '</head><body>' + body
-    + '<div class="doc-footer"><span>3ponto14.pt</span><span>Matemática 7.º Ano — Ficha Multi-Capítulo</span></div></div></body></html>';
-  htmlToPdfDownload(html, 'ficha_completa_mat7_todos_caps.pdf');
-}
-
-function downloadResumoCompleto() {
-  var caps = _getMegaCaps();
-  if (!caps || caps.length === 0) return;
-  var capColors = { 1:'#516860', 2:'#7a6860', 3:'#3d5c54', 4:'#2d3530' };
-  var now = new Date().toLocaleDateString('pt-PT');
-  var body = '<h1>Resumo Teórico Completo · Matemática 7.º Ano</h1>'
+  var cfg = {
+    ficha:  { title:'Ficha de Trabalho Completa', builder:_buildFichaCompletaCapHTML, file:'ficha_completa' },
+    resumo: { title:'Resumo Teórico Completo',   builder:_buildResumoCapHTML,        file:'resumo_teorico' },
+    testes: { title:'Testes de Avaliação',        builder:_buildTesteCapHTML,         file:'testes' }
+  }[type];
+  var body = '<h1>'+cfg.title+' · Matemática 7.º Ano</h1>'
     + '<div class="meta">Data: '+now+' &nbsp;|&nbsp; Capítulos: ' + caps.map(function(c){ return 'Cap. '+c; }).join(', ') + '</div>';
-  caps.forEach(function(c) {
-    body += _capSectionHeader(c, capColors[c] || '#516860');
-    body += _buildResumoCapHTML(c);
-  });
-  var html = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>Resumo Teórico — Todos os Capítulos</title>'
-    + '</head><body>' + body
-    + '<footer>3ponto14 · Matemática 7.º Ano · Resumo Teórico Multi-Capítulo</footer></body></html>';
-  htmlToPdfDownload(html, 'resumo_teorico_mat7_todos_caps.pdf');
-}
-
-function downloadTestesCompleto() {
-  var caps = _getMegaCaps();
-  if (!caps || caps.length === 0) return;
-  var capColors = { 1:'#516860', 2:'#7a6860', 3:'#3d5c54', 4:'#2d3530' };
-  var now = new Date().toLocaleDateString('pt-PT');
-  var body = '<h1>Testes de Avaliação · Matemática 7.º Ano</h1>'
-    + '<div class="meta">Data: '+now+' &nbsp;|&nbsp; Capítulos: ' + caps.map(function(c){ return 'Cap. '+c; }).join(', ') + '</div>';
-  caps.forEach(function(c) {
-    body += _capSectionHeader(c, capColors[c] || '#516860');
-    body += _buildTesteCapHTML(c);
-  });
-  var html = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>Testes — Todos os Capítulos</title>'
-    + '</head><body>' + body
-    + '<footer>3ponto14 · Matemática 7.º Ano · Testes Multi-Capítulo</footer></body></html>';
-  htmlToPdfDownload(html, 'testes_mat7_todos_caps.pdf');
+  if (type==='ficha') body += '<div class="box" style="margin-bottom:1.5rem"><strong>Capítulos incluídos:</strong> ' + caps.map(function(c){ return 'Cap. '+c; }).join(', ') + '</div>';
+  caps.forEach(function(c) { body += _capSectionHeader(c, capColors[c]||'#516860') + cfg.builder(c); });
+  var html = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>'+cfg.title+'</title></head><body>' + body
+    + '<footer>3ponto14 · Matemática 7.º Ano</footer></body></html>';
+  htmlToPdfDownload(html, cfg.file+'_mat7_todos_caps.pdf');
 }
 
 // Helper wrappers for caps 2, 3 — extract inner content from existing builders
@@ -1025,9 +950,7 @@ function _buildTeste3() {
 <div class="ex"><div class="ex-num">8.</div><p>Uma figura é composta por um paralelogramo (base 8 cm, altura 5 cm) ao qual se junta um semicírculo de raio 4 cm. Calcula a área total (π ≈ 3,14).</p><div class="linha"></div><div class="linha"></div></div>`;
 }
 
-// ═══════════════════════════════════════════════════════
 // MEGA — PDF PER SECTION + COMBINED DOWNLOAD
-// ═══════════════════════════════════════════════════════
 
 // Add "Guardar PDF" button to each mega section header on view open
 function _megaAddPdfButtons() {
@@ -1040,7 +963,7 @@ function _megaAddPdfButtons() {
     var btn = document.createElement('button');
     btn.className = 'btn btn-ghost mega-pdf-btn';
     btn.style.cssText = 'margin-top:.75rem;font-size:.78rem;display:inline-flex;align-items:center;gap:6px';
-    btn.innerHTML = '<span class="ico ico-sm"><svg><use href="#ico-download"/></svg></span> Guardar como PDF';
+    btn.innerHTML = '<i class="ph ph-download-simple"></i> Guardar como PDF';
     btn.onclick = function() { _megaDownloadSection(secId); };
     header.appendChild(btn);
   });
@@ -1072,108 +995,73 @@ function _megaDownloadSection(secId) {
   document.head.appendChild(style);
 })();
 
-// ═══════════════════════════════════════════════════════════════
-// EDUPT — PROGRESS MANAGER v2  (localStorage persistente)
-// ═══════════════════════════════════════════════════════════════
-const ProgressManager = (function () {
-  const KEY = 'edupt_progress_v2';
-  const XP = { teoria:10, quiz:20, quiz_bonus:15, jogo:15, flashcard:8, ficha:5 };
-  const CAP_NAMES = { cap1:'Cap. 1 — Inteiros', cap2:'Cap. 2 — Racionais', cap3:'Cap. 3 — Geometria', cap4:'Cap. 4 — Álgebra' };
+// ProgressManager is now defined in shared.js
 
-  function _emptyChap(id) {
-    return { id, teoria:false, quiz:{tentativas:0,melhorPct:0}, jogo:false, flashcard:false, ficha:false, xp:0 };
-  }
-  function _load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || { caps:{}, streak:0, lastDay:null, totalXp:0 }; }
-    catch(e) { return { caps:{}, streak:0, lastDay:null, totalXp:0 }; }
-  }
-  function _save(d) {
-    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e) {}
-  }
-  function _updateStreak(d) {
-    var today = new Date().toISOString().slice(0,10);
-    if (d.lastDay === today) return;
-    var yest = new Date(Date.now()-86400000).toISOString().slice(0,10);
-    d.streak = d.lastDay === yest ? (d.streak||0)+1 : 1;
-    d.lastDay = today;
-  }
-  function _fire(capId, tipo, xpGanho) {
-    document.dispatchEvent(new CustomEvent('edupt:progress', { detail:{ capId, tipo, xpGanho } }));
-    pmUpdateTopbar();
-  }
+// ── Reta wrappers for mega.html ──
+// mega.html uses the prefix 'mega-reta' instead of 'reta' used in cap1.html.
+// These wrappers delegate to the same drawing helpers (_drawReta, _retaPoints)
+// defined in cap1.js, adapting the element IDs accordingly.
+var _megaRetaPoints = [];
 
-  function record(capId, tipo, opts) {
-    opts = opts || {};
-    var d = _load();
-    if (!d.caps[capId]) d.caps[capId] = _emptyChap(capId);
-    var cap = d.caps[capId];
-    var xpG = 0;
-    if (tipo === 'teoria' && !cap.teoria) {
-      cap.teoria = true; xpG = XP.teoria;
-    } else if (tipo === 'quiz') {
-      var pct = opts.total > 0 ? Math.round((opts.pontuacao||0)/opts.total*100) : 0;
-      cap.quiz.tentativas++;
-      xpG = XP.quiz;
-      if (pct > cap.quiz.melhorPct) {
-        if (cap.quiz.melhorPct === 0) xpG += XP.quiz_bonus;
-        cap.quiz.melhorPct = pct;
-      }
-    } else if (tipo === 'jogo' && !cap.jogo) {
-      cap.jogo = true; xpG = XP.jogo;
-    } else if (tipo === 'flashcard' && !cap.flashcard) {
-      cap.flashcard = true; xpG = XP.flashcard;
-    } else if (tipo === 'ficha' && !cap.ficha) {
-      cap.ficha = true; xpG = XP.ficha;
-    }
-    cap.xp = (cap.xp||0) + xpG;
-    d.totalXp = (d.totalXp||0) + xpG;
-    _updateStreak(d);
-    _save(d);
-    _fire(capId, tipo, xpG);
-    return xpG;
+function retaAddPointFor(prefix) {
+  var inp = document.getElementById(prefix + '-val');
+  var v = parseInt(inp ? inp.value : '');
+  if (isNaN(v) || v < -10 || v > 10) {
+    if (typeof eduToast === 'function') eduToast('Introduz um inteiro entre \u221210 e 10.', 'warn');
+    return;
   }
+  if (_megaRetaPoints.indexOf(v) < 0) _megaRetaPoints.push(v);
+  if (typeof _drawReta === 'function') _drawReta(prefix + '-svg', _megaRetaPoints, [-10, 10]);
+  var list = document.getElementById(prefix + '-points-list');
+  if (list) list.innerHTML = _megaRetaPoints.sort(function(a, b){ return a - b; }).map(function(p) {
+    return '<span style="background:var(--c2-pale);border:1.5px solid var(--c2-mid);border-radius:20px;padding:3px 10px;font-family:\'JetBrains Mono\',monospace;font-size:.85rem;color:var(--c2-deep)">' + p + '</span>';
+  }).join('');
+  if (inp) inp.value = '';
+}
 
-  function getCap(capId) { return _load().caps[capId] || null; }
+function retaClearFor(prefix) {
+  _megaRetaPoints = [];
+  var svg = document.getElementById(prefix + '-svg');
+  if (svg) svg.innerHTML = '';
+  var list = document.getElementById(prefix + '-points-list');
+  if (list) list.innerHTML = '';
+  if (typeof _drawReta === 'function') _drawReta(prefix + '-svg', [], [-10, 10]);
+}
 
-  function getCapPct(capId) {
-    var cap = getCap(capId);
-    if (!cap) return 0;
-    var itens = [cap.teoria, cap.quiz.tentativas>0, cap.jogo, cap.flashcard, cap.ficha];
-    return Math.round(itens.filter(Boolean).length / itens.length * 100);
+function retaAnimarFor(prefix) {
+  var aEl = document.getElementById(prefix + '-op-a');
+  var bEl = document.getElementById(prefix + '-op-b');
+  var opEl = document.getElementById(prefix + '-op');
+  var a = parseFloat(aEl ? aEl.value : '');
+  var b = parseFloat(bEl ? bEl.value : '');
+  var op = opEl ? opEl.value : '+';
+  if (isNaN(a) || isNaN(b)) {
+    if (typeof eduToast === 'function') eduToast('Introduz os dois valores!', 'warn');
+    return;
   }
-
-  function getSummary() {
-    var d = _load();
-    var caps = Object.values(d.caps);
-    return {
-      totalXp: d.totalXp||0,
-      streak: d.streak||0,
-      lastDay: d.lastDay,
-      capsCompletas: caps.filter(function(c){ return c.teoria && c.quiz.tentativas>0 && c.jogo; }).length,
-      caps: d.caps
-    };
+  var result = op === '+' ? a + b : a - b;
+  var W = 700, pad = 40;
+  var rMin = Math.min(-10, a, b, result) - 2, rMax = Math.max(10, a, b, result) + 2;
+  var scale = (W - 2 * pad) / (rMax - rMin);
+  function px(n) { return pad + (n - rMin) * scale; }
+  var arrowColor = op === '+' ? '#516860' : '#AB9790';
+  var html = '<defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#7a8099"/></marker>';
+  html += '<marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="' + arrowColor + '"/></marker></defs>';
+  html += '<line x1="' + pad + '" y1="60" x2="' + (W - pad) + '" y2="60" stroke="#7a8099" stroke-width="2" marker-end="url(#arr2)"/>';
+  for (var i = Math.ceil(rMin); i <= Math.floor(rMax); i++) {
+    var x = px(i);
+    html += '<line x1="' + x + '" y1="55" x2="' + x + '" y2="65" stroke="#7a8099" stroke-width="1"/>';
+    if (i % 2 === 0 || (rMax - rMin) < 15) html += '<text x="' + x + '" y="80" text-anchor="middle" font-size="10" fill="#7a8099" font-family="JetBrains Mono,monospace">' + i + '</text>';
   }
-
-  function exportJSON() {
-    var blob = new Blob([JSON.stringify(_load(),null,2)], {type:'application/json'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'edupt_progresso.json';
-    a.click();
-  }
-
-  function reset() {
-    if (!confirm('Apagar todo o progresso guardado? Esta acção não pode ser revertida.')) return;
-    try { localStorage.removeItem(KEY); } catch(e) {}
-    _fire(null, 'reset', 0);
-  }
-
-  return { record, getCap, getCapPct, getSummary, exportJSON, reset, CAP_NAMES };
-})();
-
-// Flush any _pmRecord calls that arrived before ProgressManager was defined
-if (typeof _pmQueue !== 'undefined') {
-  _pmQueue.forEach(function(args){ ProgressManager.record.apply(ProgressManager, args); });
-  _pmQueue = [];
+  html += '<circle cx="' + px(a) + '" cy="60" r="6" fill="#516860" stroke="white" stroke-width="2"/>';
+  html += '<text x="' + px(a) + '" y="45" text-anchor="middle" font-size="11" fill="#516860" font-weight="700">' + a + '</text>';
+  html += '<path d="M ' + px(a) + ' 40 Q ' + ((px(a) + px(result)) / 2) + ' 20 ' + px(result) + ' 40" fill="none" stroke="' + arrowColor + '" stroke-width="2" marker-end="url(#arr3)"/>';
+  html += '<text x="' + ((px(a) + px(result)) / 2) + '" y="15" text-anchor="middle" font-size="11" fill="' + arrowColor + '" font-weight="700">' + op + b + '</text>';
+  html += '<circle cx="' + px(result) + '" cy="60" r="8" fill="' + arrowColor + '" stroke="white" stroke-width="2"/>';
+  html += '<text x="' + px(result) + '" y="45" text-anchor="middle" font-size="11" fill="' + arrowColor + '" font-weight="700">' + result + '</text>';
+  var animSvg = document.getElementById(prefix + '-anim-svg');
+  if (animSvg) animSvg.innerHTML = html;
+  var res = document.getElementById(prefix + '-anim-result');
+  if (res) res.textContent = a + ' ' + op + ' ' + b + ' = ' + result;
 }
 

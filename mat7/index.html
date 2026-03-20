@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="3ponto14 — Centro de Estudos. Recursos interativos, exercícios, fichas e explicações para Matemática 7.º ano, alinhados com o currículo português.">
+<meta name="theme-color" content="#516860">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="3ponto14 · Centro de Estudos">
+<meta property="og:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://3ponto14.pt/mat7">
+<meta property="og:image" content="https://3ponto14.pt/og-mat7.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3ponto14 · Centro de Estudos">
+<meta name="twitter:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
+<meta name="twitter:image" content="https://3ponto14.pt/og-mat7.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23516860'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='serif'>eP</text></svg>">
+<title>Matemática 7.º Ano · 3ponto14</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+
+</head>
+<body>
+
+
+
+<!-- UX: Scroll to top + Section indicator -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+<div class="section-indicator" id="sectionIndicator"></div>
+
+
+
+<div id="view-mat7" class="math-view active" >
+
+
+<!-- ── Top bar ── -->
+<div class="mat7-hub-bar">
+  <button class="mat7-hub-bar-back" onclick="showPortalFromMat7()" aria-label="Voltar ao portal">←</button>
+  <div class="mat7-hub-logo">3ponto<span class="pi">14</span></div>
+  <span class="mat7-hub-disc">Matemática</span>
+  <span class="mat7-hub-year">7.º Ano</span>
+</div>
+
+<!-- ── Tab bar ── -->
+<div class="mat7-hub-tabbar" id="mat7-hub-tabbar">
+  <button class="mat7-hub-tab active" data-tab="fichas"   onclick="mat7SwitchTab('fichas',this)">  <span class="mat7-hub-tab-icon"><i class="ph ph-file"></i></span> Fichas</button>
+  <button class="mat7-hub-tab"        data-tab="resumo"   onclick="mat7SwitchTab('resumo',this)">  <span class="mat7-hub-tab-icon"><i class="ph ph-book-open-text"></i></span> Resumo</button>
+  <button class="mat7-hub-tab"        data-tab="exercicios" onclick="mat7SwitchTab('exercicios',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-pencil-simple"></i></span> Exercícios</button>
+
+  <button class="mat7-hub-tab"        data-tab="jogos"    onclick="mat7SwitchTab('jogos',this)">  <span class="mat7-hub-tab-icon"><i class="ph ph-game-controller"></i></span> Jogos</button>
+  <button class="mat7-hub-tab"        data-tab="quiz"     onclick="mat7SwitchTab('quiz',this)">   <span class="mat7-hub-tab-icon"><i class="ph ph-star"></i></span> ⚡ Quiz</button>
+  <button class="mat7-hub-tab"        data-tab="flashcards" onclick="mat7SwitchTab('flashcards',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-cards"></i></span> Flashcards</button>
+  <button class="mat7-hub-tab"        data-tab="exame"    onclick="mat7SwitchTab('exame',this)">  <span class="mat7-hub-tab-icon">⏱</span> Teste</button>
+  <button class="mat7-hub-tab"        data-tab="reta"     onclick="mat7SwitchTab('reta',this)">   <span class="mat7-hub-tab-icon"><i class="ph ph-ruler"></i></span> Reta</button>
+  <button class="mat7-hub-tab"        data-tab="progresso" onclick="mat7SwitchTab('progresso',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-trophy"></i></span> Progresso</button>
+</div>
+
+<main class="mat7-hub-main">
+
+<!-- ══════════════════════════════════════════
+     PANEL: FICHAS (default)
+══════════════════════════════════════════ -->
+<div class="mat7-panel active" id="mat7p-fichas">
+  <div class="mat7-panel-heading">Gerador de Fichas</div>
+  <div class="mat7-panel-sub">Escolhe os capítulos e subtemas — gera e descarrega uma ficha PDF personalizada</div>
+  <!-- Existing gf panel embedded -->
+  <div id="mat7-downloads" class="mat7-dl-panel">
+    <div class="gf-row mb-4">
+      <div class="gf-col">
+        <div class="gf-label">Capítulos a incluir</div>
+        <div class="gf-caps mt-1.5" id="gf-caps-mat7-downloads" style="display:block">
+          <!-- Generated by _mat7BuildSelectors() -->
+        </div>
+      </div>
+    </div>
+    <div class="gf-row mb-4">
+      <div class="gf-col">
+        <div class="gf-label">O que incluir</div>
+        <div class="gf-types mt-1.5" id="gf-types-mat7-downloads">
+          <button class="gf-type-btn active" data-type="resumo" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Resumo teórico</button>
+          <button class="gf-type-btn active" data-type="exercicios" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Exercícios</button>
+          <button class="gf-type-btn active" data-type="teste" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Teste de avaliação</button>
+          <button class="gf-type-btn" data-type="minitestes" onclick="gfToggleType(this)"><span class="gf-tick"></span> Minitestes</button>
+          <button class="gf-type-btn" data-type="solucoes" onclick="gfToggleType(this)"><span class="gf-tick"></span> Soluções</button>
+        </div>
+      </div>
+    </div>
+    <div class="gf-row mb-5">
+      <div class="gf-col">
+        <div class="gf-label">Nível de dificuldade</div>
+        <div class="gf-dif-row mt-1.5" id="gf-dif-mat7-downloads">
+          <button class="gf-dif-btn active" data-dif="facil" onclick="gfToggleDif(this,'mat7-downloads')"><span class="status-dot status-dot--easy"></span> Fácil</button>
+          <button class="gf-dif-btn" data-dif="medio" onclick="gfToggleDif(this,'mat7-downloads')"><span class="status-dot status-dot--medium"></span> Médio</button>
+          <button class="gf-dif-btn" data-dif="dificil" onclick="gfToggleDif(this,'mat7-downloads')"><span class="status-dot status-dot--hard"></span> Difícil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="flex items-center gap-3 flex-wrap mt-2">
+      <button class="gf-gen-btn" onclick="gfAction('mat7-downloads')">
+        <i class="ph ph-download-simple"></i> Guardar como PDF
+      </button>
+      <button class="gf-gen-btn gf-gen-btn--html" onclick="gfActionHTML('mat7-downloads')">
+        <i class="ph ph-code"></i> Guardar como HTML
+      </button>
+      <button class="gf-share-btn" id="gf-share-btn-mat7-downloads" onclick="gfCopiarLink('mat7-downloads')" title="Copiar link com estas configurações">
+        <i class="ph ph-share-network"></i> <span id="gf-share-label-mat7-downloads">Copiar link</span>
+      </button>
+      <span id="gf-status-mat7-downloads" class="gf-status"></span>
+    </div>
+  <div id="gf-preview-mat7-downloads" class="mt-4" style="display:none">
+    <div class="gf-preview" id="gf-content-mat7-downloads"></div>
+  </div>
+</div><!-- /panel fichas -->
+
+<!-- ══════════════════════════════════════════
+     PANEL: RESUMO
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-resumo">
+
+  <!-- selector bar (sticky dentro do panel) -->
+  <div id="mat7-resumo-selector" class="mat7-resumo-sticky">
+  <div class="mb-4">
+    <div class="gf-label">Capítulos e subtemas</div>
+    <div id="mat7-caps-resumo" style="display:block">
+      <!-- Generated by _mat7BuildSelectors() -->
+    </div>
+  </div>
+  </div>
+
+  <!-- inline theory content -->
+  <div id="mat7-resumo-content">
+    <div class="text-center py-10 px-4 text-[var(--ink4)]">
+      <div class="text-sm font-semibold text-[var(--ink3)] mb-1.5">Escolhe um capítulo e subtema acima</div>
+      <div class="text-xs">O resumo teórico aparece aqui — definições, exemplos e fórmulas</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: EXERCÍCIOS
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-exercicios">
+  <div class="mat7-panel-heading">Exercícios</div>
+
+  <!-- ── Mode toggle ── -->
+  <div class="flex gap-2 mb-5 bg-[var(--cream2)] rounded-xl p-1">
+    <button id="exmode-btn-ex" onclick="exModeSwitch('exercicios')"
+      style="flex:1;padding:8px 0;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;background:var(--sage-dark);color:#fff;box-shadow:0 2px 8px rgba(81,104,96,.25)">
+      ✏️ Exercícios
+    </button>
+    <button id="exmode-btn-mini" onclick="exModeSwitch('minitestes')"
+      style="flex:1;padding:8px 0;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:var(--ink3)">
+      📋 Minitestes
+    </button>
+  </div>
+
+  <!-- ── Exercícios section ── -->
+  <div id="exmode-section-exercicios">
+    <div class="mat7-panel-sub mb-4">Questões geradas automaticamente com correção imediata</div>
+    <div class="mb-4">
+      <div class="gf-label">Capítulos e subtemas</div>
+      <div id="mat7-caps-exercicios" style="display:block">
+        <!-- Generated by _mat7BuildSelectors() -->
+      </div>
+    </div>
+    <div id="mat7-inline-exercicios" class="mat7-inline-content"></div>
+  </div>
+
+  <!-- ── Minitestes section ── -->
+  <div id="exmode-section-minitestes" class="hidden">
+    <div class="mat7-panel-sub mb-4">Minitestes por tema com correção automática</div>
+    <div class="mb-4">
+      <div class="gf-label">Capítulo</div>
+      <div id="mat7-caps-minitestes" style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <!-- Generated by _mat7BuildSelectors() -->
+      </div>
+    </div>
+    <div id="mat7-inline-minitestes" class="mat7-inline-content"></div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: TESTES
+══════════════════════════════════════════ -->
+
+
+<!-- ══════════════════════════════════════════
+     PANEL: MINITESTES
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-jogos">
+  <div class="mat7-panel-heading">Jogos Matemáticos</div>
+  <div class="mat7-panel-sub">Escolhe o capítulo — os jogos interativos aparecem abaixo</div>
+
+  <div class="mb-4">
+    <div class="gf-label">Capítulos e subtemas</div>
+    <div id="mat7-caps-jogos" style="display:block">
+      <!-- Generated by _mat7BuildSelectors() -->
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-jogos" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: FLASHCARDS
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-flashcards">
+  <div class="mat7-panel-heading">Flashcards</div>
+  <div class="mat7-panel-sub">Repetição espaçada — escolhe o capítulo e os cartões aparecem abaixo</div>
+
+  <div class="mb-4">
+    <div class="gf-label">Capítulos e subtemas</div>
+    <div id="mat7-caps-flashcards" style="display:block">
+      <!-- Generated by _mat7BuildSelectors() -->
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-flashcards" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: EXAME
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-exame">
+  <div class="mat7-panel-heading">Teste</div>
+  <div class="mat7-panel-sub">Teste cronometrado — escolhe o capítulo e inicia abaixo</div>
+
+  <div class="mb-4">
+    <div class="gf-label">Capítulos e subtemas</div>
+    <div id="mat7-caps-exame" style="display:block">
+      <!-- Generated by _mat7BuildSelectors() -->
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-exame" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: RETA NUMÉRICA
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-reta">
+  <div class="mat7-panel-heading">Reta Numérica Interativa</div>
+  <div class="mat7-panel-sub">Visualiza inteiros, coloca pontos e anima operações</div>
+
+  <div class="mb-4">
+    <div class="gf-label">Capítulos e subtemas</div>
+    <div id="mat7-caps-reta" style="display:block">
+      <!-- Generated by _mat7BuildSelectors() -->
+    </div>
+  </div>
+
+  <!-- Content loads here -->
+  <div id="mat7-inline-reta" class="mat7-inline-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: PROGRESSO
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-progresso">
+  <div class="mat7-panel-heading">O Teu Progresso</div>
+  <div class="mat7-panel-sub">Visão global de todos os capítulos — desempenho, erros e treino direcionado</div>
+  <div id="mat7-progresso-unified"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: MODO QUIZ ⚡
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-quiz">
+  <div class="mat7-panel-heading">⚡ Modo Quiz</div>
+  <div class="mat7-panel-sub">Questões de escolha múltipla geradas em tempo real — 3 vidas, streak e game over · Podes selecionar vários capítulos para misturar</div>
+
+  <div class="mb-4">
+    <div class="gf-label">Capítulo</div>
+    <div id="mat7-caps-quiz" style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <!-- Generated by _mat7BuildSelectors() -->
+    </div>
+  </div>
+
+  <div id="mat7-inline-quiz" class="mat7-inline-content" style="display:block">
+    <div id="qg-hub-app"></div>
+  </div>
+</div>
+
+</main>
+
+
+<!-- ── Multi-cap selector (hidden) ── -->
+<div class="mega-config-bar hidden">
+  <span class="exam-label">Selecionar capítulos:</span>
+  <div id="mat7-cap1" onclick="toggleCapSel(1)" class="toggle-link">
+    <span id="chkbox-cap1" class="mat7-chk-box checkbox-icon"></span>
+    <span>Cap. 1 · Inteiros</span>
+  </div>
+  <div id="mat7-cap2" onclick="toggleCapSel(2)" class="toggle-link">
+    <span id="chkbox-cap2" class="mat7-chk-box checkbox-icon"></span>
+    <span>Cap. 2 · Racionais</span>
+  </div>
+  <div id="mat7-cap3" onclick="toggleCapSel(3)" class="toggle-link">
+    <span id="chkbox-cap3" class="mat7-chk-box checkbox-icon"></span>
+    <span>Cap. 3 · Geometria</span>
+  </div>
+  <div id="mat7-cap4" onclick="toggleCapSel(4)" class="toggle-link">
+    <span id="chkbox-cap4" class="mat7-chk-box checkbox-icon"></span>
+    <span>Cap. 4 · Álgebra</span>
+  </div>
+  <button id="btn-todos" onclick="selecionarTodos(this)" class="mat7-sel-all-btn">
+    <span id="btn-todos-icon">☐</span><span> Selecionar Todos</span>
+  </button>
+</div>
+
+<!-- ── Mega View FAB ── -->
+<button id="mega-fab" class="mega-fab hidden" onclick="showMegaView()" title="Ver resumo multi-capítulo">
+  <i class="ph ph-book-open-text"></i>
+  Mega Resumo
+  <span class="fab-badge" id="fab-badge">0</span>
+</button>
+
+</div><!-- /view-mat7 -->
+
+<!-- ═══════════════ MEGA VIEW ═══════════════ -->
+
+<!-- PRINT HEADER (hidden on screen) -->
+<div id="print-header">
+  <div class="ph-logo">3ponto<em>14</em> · Centro de Estudos</div>
+  <div class="ph-meta">Matemática · 7.º Ano · Ficha de Estudo</div>
+  <div class="ph-fields">
+    <div class="ph-field"><span class="ph-field-label">Nome:</span><div class="ph-field-line ph-field-line--nome"></div></div>
+    <div class="ph-field"><span class="ph-field-label">N.º:</span><div class="ph-field-line ph-field-line--num"></div></div>
+    <div class="ph-field"><span class="ph-field-label">Turma:</span><div class="ph-field-line ph-field-line--turma"></div></div>
+    <div class="ph-field"><span class="ph-field-label">Data:</span><div class="ph-field-line ph-field-line--data"></div></div>
+  </div>
+</div>
+
+<!-- Pomodoro + Calculator injected by widgets.js -->
+<div id="inject-pomodoro"></div>
+
+
+<!-- INJECT BUTTONS INTO TOPBAR — done after DOM ready -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     v33 FEATURES: Modo Escuro · Tamanho Texto ·
+════════════════════════════════════════════════════════════ -->
+
+</div>
+
+<div id="inject-calc"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ESCAPE ROOM v2 — SALA VISUAL ÚNICA
+════════════════════════════════════════════════════════════ -->
+
+
+
+<!-- ── Unified Flashcard stub (ufc-* IDs used by _uniFC_render) ── -->
+<div id="ufc-stub" class="hidden" aria-hidden="true">
+  <span id="ufc-cap-label"></span>
+  <span id="ufc-tag"></span>
+  <span id="ufc-q"></span>
+  <span id="ufc-a"></span>
+  <span id="ufc-counter"></span>
+  <div id="ufc-prog"></div>
+  <div id="ufc-inner">
+    <div id="ufc-front"></div>
+    <div id="ufc-back"></div>
+  </div>
+  <button id="ufc-flip-btn" tabindex="-1" onclick="_uniFC_flip()">Virar</button>
+  <button tabindex="-1" onclick="_uniFC_prev()" aria-label="Carta anterior">←</button>
+  <button tabindex="-1" onclick="_uniFC_next()" aria-label="Próxima carta">→</button>
+  <button tabindex="-1" onclick="_uniFC_shuffle()" aria-label="Baralhar cartas">↺</button>
+</div>
+
+
+
+<script src="../js/shared.js"></script>
+<script src="../js/mat7.js"></script>
+<script src="../js/systems.js"></script>
+<script src="../js/gf.js"></script>
+<script src="../js/widgets.js"></script>
+<script src="../js/fx.js"></script>
+<script src="../js/nav.js"></script>
+</body>
+</html>

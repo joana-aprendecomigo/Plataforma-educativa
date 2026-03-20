@@ -1,8 +1,6 @@
 /* ── gf.js — Gerador de Fichas Personalizado: custom worksheet generator used by mat7.html and mega.html ── */
 
-// ═══════════════════════════════════════════════════════════════
 // GERADOR DE FICHAS PERSONALIZADO
-// ═══════════════════════════════════════════════════════════════
 var _gfContent = {};
 
 function gfAction(secId) {
@@ -49,7 +47,6 @@ function gfAction(secId) {
   }, 40);
 }
 
-
 function gfToggleCap(btn, secId) {
   btn.classList.toggle('active');
   var caps = document.querySelectorAll('#gf-caps-' + secId + ' .gf-cap-btn.active');
@@ -92,7 +89,7 @@ function _buildSolucoesCapHTML(cap) {
 
   if(cap===1){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Soluções Completas — Capítulo 1 · Números Inteiros</strong><br><span style="font-size:.8rem;opacity:.75">Todas as respostas com raciocínio detalhado</span></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 1 · Números Inteiros</strong><br><span style="font-size:.8rem;opacity:.75">Todas as respostas com raciocínio detalhado</span></div>'
     + G('Ficha Completa · Grupo 1 — Representação de Situações Reais')
     + sol('1.','Temperatura 8° abaixo de zero','−8','Abaixo = negativo; o número inteiro é −8')
     + sol('','Empresa lucrou 500 €','+500','Lucro = ganho = positivo')
@@ -176,7 +173,7 @@ function _buildSolucoesCapHTML(cap) {
   }
   if(cap===2){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Soluções Completas — Capítulo 2 · Números Racionais</strong></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 2 · Números Racionais</strong></div>'
     + G('Ficha Completa · Grupo 1 — Conjuntos de Números Racionais')
     + sol('1a.','3/2 … ℚ⁺','3/2 ∈ ℚ⁺','3/2 = 1,5 &gt; 0, logo é racional positivo.')
     + sol('1b.','0 … ℤ','0 ∈ ℤ','O zero é inteiro e também racional.')
@@ -224,7 +221,7 @@ function _buildSolucoesCapHTML(cap) {
   }
   if(cap===3){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Soluções Completas — Capítulo 3 · Geometria</strong></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 3 · Geometria</strong></div>'
     + G('Ficha Completa · Grupo 1 — Ângulos Internos de Polígonos')
     + sol('1a.','Soma ângulos internos: Triângulo','(3−2)×180° = 180°','Fórmula: (n−2)×180°. Para n=3: (3−2)×180=1×180=180°.')
     + sol('1b.','Hexágono','(6−2)×180° = 720°','(6−2)×180=4×180=720°.')
@@ -257,7 +254,7 @@ function _buildSolucoesCapHTML(cap) {
   }
   if(cap===4){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Soluções Completas — Capítulo 4 · Álgebra (Sequências, Expressões e Equações)</strong></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 4 · Álgebra (Sequências, Expressões e Equações)</strong></div>'
     + G('Sequências')
     + sol('','Como identificar o tipo de sequência','Aritmética: diferença constante (r). Geométrica: razão constante (q).','Ex aritmética: 3,7,11,15,… → r=+4. Ex geométrica: 2,6,18,54,… → q=3.')
     + sol('','Termo geral (aritmética)','tₙ = t₁ + (n−1)×r','Para 3,7,11,…: t₁=3, r=4. t₁₀ = 3+(10−1)×4 = 3+36 = 39.')
@@ -298,7 +295,7 @@ function gfGetDifficulty(secId) {
 
 // ── Sync Gerador de Fichas caps with checkbox selection ──
 function _syncMat7GfCaps() {
-  var capNames = {1:'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 L22 22 L2 2 Z"/></svg></span> Cap. 1 · Inteiros', 2:'½ Cap. 2 · Racionais', 3:'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z"/><path d="m7.5 10.5 2 2"/><path d="m10.5 7.5 2 2"/><path d="m13.5 4.5 2 2"/><path d="m4.5 13.5 2 2"/></svg></span> Cap. 3 · Geometria', 4:'𝑥 Cap. 4 · Álgebra'};
+  var capNames = {1:'<i class="ph ph-triangle"></i> Cap. 1 · Inteiros', 2:'½ Cap. 2 · Racionais', 3:'<i class="ph ph-ruler"></i> Cap. 3 · Geometria', 4:'𝑥 Cap. 4 · Álgebra'};
   var hasCap = false;
   [1,2,3,4].forEach(function(c) {
     var chip = document.getElementById('mat7-gf-cap-chip-' + c);
@@ -331,10 +328,7 @@ function mat7GfGenerate() {
 // ─── Gerador Dinâmico de Exercícios ───────────────────────────────────────────
 // Números sempre diferentes em cada geração (Math.random)
 
-
-// ═══════════════════════════════════════════════════════
 // GERADOR DE FICHAS — SUBTEMAS TOGGLE (INLINE TRAYS)
-// ═══════════════════════════════════════════════════════
 
 function gfStToggleTray(capBtn, secId, cap) {
   var tray = document.getElementById('gf-st-' + cap + '-' + secId);
@@ -381,7 +375,6 @@ function gfGetSubtemas(secId) {
   });
   return needsFilter ? result : null;
 }
-
 
 function _gfGenerarBase(secId) {
   var sec = document.getElementById(secId);
@@ -482,7 +475,7 @@ function _gfGenerarBase(secId) {
   // ── Bloco de soluções no fim ──
   if (hasSolucoes && solucoesHtml) {
     mainHtml += '<div style="page-break-before:always;margin-top:2rem">'
-      + '<h2><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Soluções</h2>'
+      + '<h2><i class="ph ph-key"></i> Soluções</h2>'
       + solucoesHtml
       + '</div>';
   }
@@ -532,19 +525,22 @@ function _buildDinamicoCapHTML(cap, dif) {
   return '';
 }
 
+// ── Shared helpers for _dinamicoN functions ───────────────────────────────────
+function _dinamicoLinha() { return '<div class="linha"></div>'; }
+function _dinamicoRow(n, q, espacos) {
+  return '<div class="ex"><div class="ex-num">'+n+'.</div><p>'+q+'</p>'+(espacos!==false?_dinamicoLinha():'')+'</div>';
+}
+
 // ── Cap 1 — Números Inteiros ──────────────────────────────────────────────────
 function _dinamico1(dif) {
   var R=_RND, now=new Date().toLocaleDateString('pt-PT');
   var ex='', sol='';
 
-  function row(n,q,espacos){ return '<div class="ex"><div class="ex-num">'+n+'.</div><p>'+q+'</p>'+(espacos!==false?'<div class="linha"></div>':'')+'</div>'; }
-  function linha(){ return '<div class="linha"></div>'; }
-
   if (dif==='facil') {
     // Exercício 1 — Representar inteiros (situações simples)
     var temp=R.int(1,9), andar=R.int(1,5), saldo=R.int(10,50), prof=R.int(5,20), alt=R.int(100,500);
     ex+='<h2>Grupo 1 — Representação com Números Inteiros</h2>';
-    ex+=row(1,'Representa cada situação com um número inteiro:<br>'
+    ex+=_dinamicoRow(1,'Representa cada situação com um número inteiro:<br>'
       +'a) A temperatura desceu '+temp+' graus abaixo de zero &nbsp; b) O '+andar+'.º andar de uma garagem subterrânea<br>'
       +'c) Uma conta com saldo positivo de '+saldo+' € &nbsp; d) Um mergulhador a '+prof+' m de profundidade<br>'
       +'e) Um avião a '+alt+' m de altitude');
@@ -553,12 +549,12 @@ function _dinamico1(dif) {
     // Exercício 2 — Valor absoluto
     var v1=R.int(1,12),v2=R.int(1,12),v3=R.int(1,12),v4=R.int(1,12);
     ex+='<h2>Grupo 2 — Valor Absoluto e Simétrico</h2>';
-    ex+=row(2,'Calcula o valor absoluto:<br>'
+    ex+=_dinamicoRow(2,'Calcula o valor absoluto:<br>'
       +'a) |−'+v1+'| = _____ &nbsp;&nbsp; b) |+'+v2+'| = _____ &nbsp;&nbsp; c) |−'+v3+'| = _____ &nbsp;&nbsp; d) |+'+v4+'| = _____');
     sol+='<div class="ex"><strong>2.</strong> a) '+v1+' &nbsp; b) '+v2+' &nbsp; c) '+v3+' &nbsp; d) '+v4+'</div>';
 
     var s1=R.int(1,10),s2=R.int(1,10),s3=R.int(1,10);
-    ex+=row(3,'Indica o simétrico:<br>'
+    ex+=_dinamicoRow(3,'Indica o simétrico:<br>'
       +'a) sim(−'+s1+') = _____ &nbsp;&nbsp; b) sim(+'+s2+') = _____ &nbsp;&nbsp; c) sim(−'+s3+') = _____');
     sol+='<div class="ex"><strong>3.</strong> a) +'+s1+' &nbsp; b) −'+s2+' &nbsp; c) +'+s3+'</div>';
 
@@ -566,14 +562,14 @@ function _dinamico1(dif) {
     var a1=R.int(1,9),b1=R.int(1,9),a2=R.int(1,9),b2=R.int(1,9),a3=R.int(1,9),b3=R.int(1,9);
     var r1=(-a1)+(+b1), r2=(-a2)+(-b2), r3=(+a3)+(-b3);
     ex+='<h2>Grupo 3 — Adição de Inteiros</h2>';
-    ex+=row(4,'Calcula:<br>'
+    ex+=_dinamicoRow(4,'Calcula:<br>'
       +'a) (−'+a1+') + (+'+b1+') = _____ &nbsp;&nbsp; b) (−'+a2+') + (−'+b2+') = _____ &nbsp;&nbsp; c) (+'+a3+') + (−'+b3+') = _____');
     sol+='<div class="ex"><strong>4.</strong> a) '+r1+' &nbsp; b) '+(-(a2+b2))+' &nbsp; c) '+r3+'</div>';
 
     // Exercício 5 — Subtração simples
     var c1=R.int(2,9),d1=R.int(1,c1),c2=R.int(2,9),d2=R.int(1,9);
     ex+='<h2>Grupo 4 — Subtração de Inteiros</h2>';
-    ex+=row(5,'Calcula:<br>'
+    ex+=_dinamicoRow(5,'Calcula:<br>'
       +'a) (+'+c1+') − (−'+d1+') = _____ &nbsp;&nbsp; b) (−'+c2+') − (+'+d2+') = _____');
     sol+='<div class="ex"><strong>5.</strong> a) '+(c1+d1)+' &nbsp; b) '+(-(c2+d2))+'</div>';
 
@@ -582,13 +578,13 @@ function _dinamico1(dif) {
     while(nums.length<6){var n=R.int(-8,8); if(!nums.includes(n)) nums.push(n);}
     var sorted=[...nums].sort((a,b)=>a-b);
     ex+='<h2>Grupo 5 — Ordenação</h2>';
-    ex+=row(6,'Ordena os números por ordem crescente: '+nums.join(', '));
+    ex+=_dinamicoRow(6,'Ordena os números por ordem crescente: '+nums.join(', '));
     sol+='<div class="ex"><strong>6.</strong> '+sorted.join(' &lt; ')+'</div>';
 
   } else if (dif==='medio') {
     var v1=R.int(3,15),v2=R.int(3,15),v3=R.int(3,15),v4=R.int(3,15),v5=R.int(3,15);
     ex+='<h2>Grupo 1 — Valor Absoluto e Operações</h2>';
-    ex+=row(1,'Calcula:<br>'
+    ex+=_dinamicoRow(1,'Calcula:<br>'
       +'a) |−'+v1+'| + |−'+v2+'| = _____ &nbsp;&nbsp; b) |+'+v3+'| − |−'+v4+'| = _____ &nbsp;&nbsp; c) |−'+v5+'| × |−2| = _____');
     var ra=v1+v2,rb=v3-v4,rc=v5*2;
     sol+='<div class="ex"><strong>1.</strong> a) '+ra+' &nbsp; b) '+rb+' &nbsp; c) '+rc+'</div>';
@@ -596,14 +592,14 @@ function _dinamico1(dif) {
     var a=R.int(2,12),b=R.int(2,12),c=R.int(2,12),d=R.int(2,12),e=R.int(2,12);
     var r1=(-a)+(+b), r2=(-a)+(-b), r3=(+c)+(-d), r4=(-c)+(-d)+(+e);
     ex+='<h2>Grupo 2 — Adição e Subtração</h2>';
-    ex+=row(2,'Calcula:<br>'
+    ex+=_dinamicoRow(2,'Calcula:<br>'
       +'a) (−'+a+') + (+'+b+') = _____ &nbsp;&nbsp; b) (−'+a+') + (−'+b+') = _____ &nbsp;&nbsp; c) (+'+c+') + (−'+d+') = _____<br>'
       +'d) (−'+c+') + (−'+d+') + (+'+e+') = _____');
     sol+='<div class="ex"><strong>2.</strong> a) '+r1+' &nbsp; b) '+(-(a+b))+' &nbsp; c) '+r3+' &nbsp; d) '+r4+'</div>';
 
     var p=R.int(2,10),q=R.int(2,8),s=R.int(2,10),t=R.int(2,8);
     var s1=p+q, s2=-(s+t), s3_base=R.int(3,10),s3_sub=R.int(1,s3_base);
-    ex+=row(3,'Calcula:<br>'
+    ex+=_dinamicoRow(3,'Calcula:<br>'
       +'a) (+'+p+') − (−'+q+') = _____ &nbsp;&nbsp; b) (−'+s+') − (+'+t+') = _____<br>'
       +'c) (−'+s3_base+') − (−'+s3_sub+') = _____');
     sol+='<div class="ex"><strong>3.</strong> a) '+s1+' &nbsp; b) '+s2+' &nbsp; c) '+(-(s3_base-s3_sub))+'</div>';
@@ -613,7 +609,7 @@ function _dinamico1(dif) {
     var ex4a=(-(+x+(-y))); // −(+x − y)
     var ex4b=x-y+(-z);
     ex+='<h2>Grupo 3 — Expressões com Parênteses</h2>';
-    ex+=row(4,'Remove os parênteses e calcula:<br>'
+    ex+=_dinamicoRow(4,'Remove os parênteses e calcula:<br>'
       +'a) −(+'+x+' − '+y+') = _____ &nbsp;&nbsp; b) '+x+' − '+y+' + (−'+z+') = _____');
     sol+='<div class="ex"><strong>4.</strong> a) '+(-x+y)+' &nbsp; b) '+(x-y-z)+'</div>';
 
@@ -621,13 +617,13 @@ function _dinamico1(dif) {
     var temp0=R.neg(3,8),subida=R.int(5,15),descida=R.int(2,8);
     var tempFinal=temp0+subida-descida;
     ex+='<h2>Grupo 4 — Problema</h2>';
-    ex+=row(5,'Às 6h a temperatura era de '+temp0+'°C. Ao longo do dia subiu '+subida+'°C e depois desceu '+descida+'°C. Qual é a temperatura final?');
+    ex+=_dinamicoRow(5,'Às 6h a temperatura era de '+temp0+'°C. Ao longo do dia subiu '+subida+'°C e depois desceu '+descida+'°C. Qual é a temperatura final?');
     sol+='<div class="ex"><strong>5.</strong> '+temp0+' + '+subida+' − '+descida+' = <strong>'+tempFinal+' °C</strong></div>';
 
     // Adição algébrica
     var nums5=[R.int(-12,12),R.int(-12,12),R.int(-12,12),R.int(-12,12),R.int(-12,12)];
     var sum5=nums5.reduce((a,b)=>a+b,0);
-    ex+=row(6,'Simplifica usando adição algébrica: &nbsp;'+nums5.map(_RND.sign).join(' '));
+    ex+=_dinamicoRow(6,'Simplifica usando adição algébrica: &nbsp;'+nums5.map(_RND.sign).join(' '));
     sol+='<div class="ex"><strong>6.</strong> '+sum5+'</div>';
 
   } else { // difícil
@@ -635,39 +631,39 @@ function _dinamico1(dif) {
     ex+='<h2>Grupo 1 — Expressões com Parênteses Múltiplos</h2>';
     // −[a − (b − c)]
     var inner1=b-c, bracket1=a-inner1, res1=-bracket1;
-    ex+=row(1,'Calcula:<br>'
+    ex+=_dinamicoRow(1,'Calcula:<br>'
       +'a) −['+a+' − ('+b+' − '+c+')] = _____<br>'
       +'b) '+a+' − ['+b+' − (−'+c+' + '+d+')] = _____');
     var inner2=-c+d, bracket2=b-inner2, res2=a-bracket2;
     sol+='<div class="ex"><strong>1.</strong> a) '+res1+' &nbsp; b) '+res2+'</div>';
 
     var f=R.int(2,6),g=R.int(2,5),h=R.int(1,4);
-    ex+=row(2,'Simplifica com chavetas:<br>'
+    ex+=_dinamicoRow(2,'Simplifica com chavetas:<br>'
       +'a) '+f+' − {'+g+' − [−'+h+' + ('+f+' − '+g+')]} = _____');
     var ip=f-g, ib=-h+ip, res2b=f-(g-ib);
     sol+='<div class="ex"><strong>2.</strong> a) '+res2b+'</div>';
 
     var aa=R.neg(2,5), bb=R.neg(2,5);
     ex+='<h2>Grupo 2 — Valor Numérico</h2>';
-    ex+=row(3,'Para a = '+aa+' e b = '+bb+', calcula:<br>'
+    ex+=_dinamicoRow(3,'Para a = '+aa+' e b = '+bb+', calcula:<br>'
       +'a) a + b = _____ &nbsp;&nbsp; b) a − b = _____ &nbsp;&nbsp; c) |a| + |b| = _____ &nbsp;&nbsp; d) −(a − b) + a = _____');
     var va_b=aa+bb,va_minus_b=aa-bb,va_abs=Math.abs(aa)+Math.abs(bb),vd=-(aa-bb)+aa;
     sol+='<div class="ex"><strong>3.</strong> a) '+va_b+' &nbsp; b) '+va_minus_b+' &nbsp; c) '+va_abs+' &nbsp; d) '+vd+'</div>';
 
     var alt1=R.int(2000,5000),prof1=R.int(10,200);
     ex+='<h2>Grupo 3 — Problemas</h2>';
-    ex+=row(4,'O ponto A tem altitude +'+alt1+' m e o ponto B tem −'+prof1+' m. Qual a diferença de cotas entre A e B? Apresenta o cálculo.');
+    ex+=_dinamicoRow(4,'O ponto A tem altitude +'+alt1+' m e o ponto B tem −'+prof1+' m. Qual a diferença de cotas entre A e B? Apresenta o cálculo.');
     sol+='<div class="ex"><strong>4.</strong> '+alt1+' − (−'+prof1+') = '+alt1+' + '+prof1+' = <strong>'+(alt1+prof1)+' m</strong></div>';
 
     var posIni=R.neg(1,10),lances=[R.neg(2,8),R.neg(2,8),R.neg(2,8)];
     var posFinal=posIni+lances.reduce((a,b)=>a+b,0);
-    ex+=row(5,'Num jogo, o jogador começa na posição '+posIni+'. Nos 3 lances obteve: '+lances.map(_RND.sign).join(', ')+'. Em que posição fica? Mostra todos os cálculos.');
+    ex+=_dinamicoRow(5,'Num jogo, o jogador começa na posição '+posIni+'. Nos 3 lances obteve: '+lances.map(_RND.sign).join(', ')+'. Em que posição fica? Mostra todos os cálculos.');
     sol+='<div class="ex"><strong>5.</strong> '+posIni+' + ('+lances.map(_RND.sign).join(') + (')+') = <strong>'+posFinal+'</strong></div>';
 
     var nums6=[R.int(-15,15),R.int(-15,15),R.int(-15,15),R.int(-15,15),R.int(-15,15),R.int(-15,15)];
     var sum6=nums6.reduce((a,b)=>a+b,0);
     ex+='<h2>Grupo 4 — Adição Algébrica</h2>';
-    ex+=row(6,'Simplifica: '+nums6.map(_RND.sign).join(' ') + ' = _____');
+    ex+=_dinamicoRow(6,'Simplifica: '+nums6.map(_RND.sign).join(' ') + ' = _____');
     sol+='<div class="ex"><strong>6.</strong> '+sum6+'</div>';
   }
 
@@ -678,9 +674,6 @@ function _dinamico1(dif) {
 function _dinamico2(dif) {
   var R=_RND;
   var ex='', sol='';
-
-  function linha(){return '<div class="linha"></div>';}
-  function row(n,q){return '<div class="ex"><div class="ex-num">'+n+'.</div><p>'+q+'</p>'+linha()+'</div>';}
 
   // Helper: gcd
   function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a;}
@@ -701,7 +694,7 @@ function _dinamico2(dif) {
     var p1n=picked[0],p1d=picked[1],p2n=picked2[0],p2d=picked2[1];
     var v1=p1n/p1d,v2=p2n/p2d;
     var sym=v1>v2?'&gt;':v1<v2?'&lt;':'=';
-    ex+=row(1,'Compara usando &lt;, &gt; ou =:<br>a) '+p1n+'/'+p1d+' ___ '+p2n+'/'+p2d+'&nbsp;&nbsp; b) −'+p1n+'/'+p1d+' ___ 0&nbsp;&nbsp; c) −1/2 ___ −1/3');
+    ex+=_dinamicoRow(1,'Compara usando &lt;, &gt; ou =:<br>a) '+p1n+'/'+p1d+' ___ '+p2n+'/'+p2d+'&nbsp;&nbsp; b) −'+p1n+'/'+p1d+' ___ 0&nbsp;&nbsp; c) −1/2 ___ −1/3');
     sol+='<div class="ex"><strong>1.</strong> a) '+sym+' &nbsp; b) &lt; (negativo é sempre &lt; 0) &nbsp; c) &lt; (|−1/2|=0,5 &gt; |−1/3|≈0,33, logo −1/2 &lt; −1/3)</div>';
 
     ex+='<h2>Grupo 2 — Adição e Subtração de Frações</h2>';
@@ -710,7 +703,7 @@ function _dinamico2(dif) {
     var p=R.pick(pairs);
     var sumN=p[0]*p[3]+p[2]*p[1],sumD=p[1]*p[3];
     var diffN=p[0]*p[3]-p[2]*p[1];
-    ex+=row(2,'Calcula (fração irredutível):<br>'
+    ex+=_dinamicoRow(2,'Calcula (fração irredutível):<br>'
       +'a) '+p[0]+'/'+p[1]+' + '+p[2]+'/'+p[3]+' = _____ &nbsp;&nbsp; b) '+p[0]+'/'+p[1]+' − '+p[2]+'/'+p[3]+' = _____');
     sol+='<div class="ex"><strong>2.</strong> a) '+frac(sumN,sumD)+' &nbsp; b) '+frac(diffN,sumD)+'</div>';
 
@@ -718,13 +711,13 @@ function _dinamico2(dif) {
     var pcts=[10,20,25,50,5],amounts=[40,80,120,200,60,150];
     var pct=R.pick(pcts),amt=R.pick(amounts);
     var res_pct=(pct/100)*amt;
-    ex+=row(3,'Calcula:<br>a) '+pct+'% de '+amt+' = _____ &nbsp;&nbsp; b) Converte 3/4 para percentagem &nbsp;&nbsp; c) Converte 0,65 para percentagem');
+    ex+=_dinamicoRow(3,'Calcula:<br>a) '+pct+'% de '+amt+' = _____ &nbsp;&nbsp; b) Converte 3/4 para percentagem &nbsp;&nbsp; c) Converte 0,65 para percentagem');
     sol+='<div class="ex"><strong>3.</strong> a) '+res_pct+' &nbsp; b) 75% &nbsp; c) 65%</div>';
 
     ex+='<h2>Grupo 4 — Potências</h2>';
     var bases=[2,3,5,10],exps=[2,3,4];
     var base=R.pick(bases),exp=R.pick(exps);
-    ex+=row(4,'Calcula:<br>a) '+base+'<sup>'+exp+'</sup> = _____ &nbsp;&nbsp; b) 10<sup>3</sup> × 10<sup>2</sup> = _____ &nbsp;&nbsp; c) 10<sup>6</sup> ÷ 10<sup>2</sup> = _____');
+    ex+=_dinamicoRow(4,'Calcula:<br>a) '+base+'<sup>'+exp+'</sup> = _____ &nbsp;&nbsp; b) 10<sup>3</sup> × 10<sup>2</sup> = _____ &nbsp;&nbsp; c) 10<sup>6</sup> ÷ 10<sup>2</sup> = _____');
     sol+='<div class="ex"><strong>4.</strong> a) '+Math.pow(base,exp)+' &nbsp; b) 10<sup>5</sup> = 100 000 &nbsp; c) 10<sup>4</sup> = 10 000</div>';
 
   } else if (dif==='medio') {
@@ -734,32 +727,32 @@ function _dinamico2(dif) {
     var s=R.pick(sets);
     var n1=s[0],d1=s[1],n2=s[2],d2=s[3];
     var sumN2=n1*d2+n2*d1,diffN2=n1*d2-n2*d1,prodN=n1*n2,prodD=d1*d2;
-    ex+=row(1,'Calcula (resultado em fração irredutível):<br>'
+    ex+=_dinamicoRow(1,'Calcula (resultado em fração irredutível):<br>'
       +'a) '+n1+'/'+d1+' + '+n2+'/'+d2+' &nbsp;&nbsp; b) '+n1+'/'+d1+' − '+n2+'/'+d2+' &nbsp;&nbsp; c) '+n1+'/'+d1+' × '+n2+'/'+d2+'');
     sol+='<div class="ex"><strong>1.</strong> a) '+frac(sumN2,d1*d2)+' &nbsp; b) '+frac(diffN2,d1*d2)+' &nbsp; c) '+frac(prodN,prodD)+'</div>';
 
     var negSets=[[1,2,1,4],[1,3,1,6],[2,3,1,3]];
     var ns=R.pick(negSets);
     var neg_sum=ns[0]*ns[3]-ns[2]*ns[1];
-    ex+=row(2,'Calcula:<br>a) −'+ns[0]+'/'+ns[1]+' + (−'+ns[2]+'/'+ns[3]+') &nbsp;&nbsp; b) −'+ns[0]+'/'+ns[1]+' − (−'+ns[2]+'/'+ns[3]+')');
+    ex+=_dinamicoRow(2,'Calcula:<br>a) −'+ns[0]+'/'+ns[1]+' + (−'+ns[2]+'/'+ns[3]+') &nbsp;&nbsp; b) −'+ns[0]+'/'+ns[1]+' − (−'+ns[2]+'/'+ns[3]+')');
     sol+='<div class="ex"><strong>2.</strong> a) '+frac(-(ns[0]*ns[3]+ns[2]*ns[1]),ns[1]*ns[3])+' &nbsp; b) '+frac(-ns[0]*ns[3]+ns[2]*ns[1],ns[1]*ns[3])+'</div>';
 
     ex+='<h2>Grupo 2 — Percentagens Avançadas</h2>';
     var price=R.pick([80,120,150,200,250,300]);
     var disc=R.pick([10,15,20,25,30]);
     var after=price*(1-disc/100);
-    ex+=row(3,'Um artigo custa '+price+' €. Há um desconto de '+disc+'%. Qual o preço final?');
+    ex+=_dinamicoRow(3,'Um artigo custa '+price+' €. Há um desconto de '+disc+'%. Qual o preço final?');
     sol+='<div class="ex"><strong>3.</strong> '+price+' × (1 − '+disc+'/100) = '+price+' × '+(1-disc/100)+' = <strong>'+after+' €</strong></div>';
 
     var total=R.pick([500,800,1000,1200,2000]);
     var part=R.pick([100,150,200,250,400,600]);
     var pctResult=Math.round(part/total*100*10)/10;
-    ex+=row(4,'Num grupo de '+total+' alunos, '+part+' são do 7.º ano. Que percentagem representa?');
+    ex+=_dinamicoRow(4,'Num grupo de '+total+' alunos, '+part+' são do 7.º ano. Que percentagem representa?');
     sol+='<div class="ex"><strong>4.</strong> '+part+'/'+total+' × 100 = <strong>'+pctResult+'%</strong></div>';
 
     ex+='<h2>Grupo 3 — Potências e Notação Científica</h2>';
     var m1=R.int(1,9),e1=R.int(2,5),m2=R.int(1,9),e2=R.int(2,5);
-    ex+=row(5,'Calcula e escreve em notação científica:<br>'
+    ex+=_dinamicoRow(5,'Calcula e escreve em notação científica:<br>'
       +'a) ('+m1+' × 10<sup>'+e1+'</sup>) × ('+m2+' × 10<sup>'+e2+'</sup>) &nbsp;&nbsp; b) Escreve '+R.pick([25000,340000,1500,72000])+' em notação científica');
     var prodM=m1*m2,prodE=e1+e2;
     var prodNorm=prodM>=10?prodM/10+'×10<sup>'+(prodE+1)+'</sup>':''+prodM+'×10<sup>'+prodE+'</sup>';
@@ -773,7 +766,7 @@ function _dinamico2(dif) {
     var numA=s3[0]*s3[3]+s3[2]*s3[1];
     var denA=s3[1]*s3[3];
     var numFinal=numA*s3[4], denFinal=denA*s3[5];
-    ex+=row(1,'Calcula (fração irredutível):<br>'
+    ex+=_dinamicoRow(1,'Calcula (fração irredutível):<br>'
       +'a) ('+s3[0]+'/'+s3[1]+' + '+s3[2]+'/'+s3[3]+') × '+s3[4]+'/'+s3[5]+'<br>'
       +'b) −2/3 + (3/4 − 1/2) × 4/3');
     sol+='<div class="ex"><strong>1.</strong> a) '+frac(numFinal,denFinal)+' &nbsp; b) −2/3 + (1/4)×(4/3) = −2/3 + 1/3 = −1/3</div>';
@@ -781,17 +774,17 @@ function _dinamico2(dif) {
     ex+='<h2>Grupo 2 — Percentagem: Variação e Problemas</h2>';
     var vi=R.pick([200,400,500,800,1000]), vf_pct=R.pick([10,15,20,25,30]);
     var vf=vi*(1+vf_pct/100);
-    ex+=row(2,'Uma ação de bolsa valorizou '+vf_pct+'% e passou a valer '+vf+' €. Qual era o valor inicial? (Confirma a tua resposta)');
+    ex+=_dinamicoRow(2,'Uma ação de bolsa valorizou '+vf_pct+'% e passou a valer '+vf+' €. Qual era o valor inicial? (Confirma a tua resposta)');
     sol+='<div class="ex"><strong>2.</strong> Vi × 1,'+String(vf_pct).padStart(2,'0')+' = '+vf+' → Vi = '+vf+' ÷ '+(1+vf_pct/100)+' = <strong>'+vi+' €</strong>. Verif: '+vi+' × '+(1+vf_pct/100)+' = '+vf+' ✓</div>';
 
-    ex+=row(3,'Numa turma de '+R.pick([24,25,28,30])+' alunos, '+R.pick([40,50,60,75])+'% são raparigas. Quantas raparigas há? E quantos rapazes?');
+    ex+=_dinamicoRow(3,'Numa turma de '+R.pick([24,25,28,30])+' alunos, '+R.pick([40,50,60,75])+'% são raparigas. Quantas raparigas há? E quantos rapazes?');
     ex+='<h2>Grupo 3 — Potências: Regras e Notação</h2>';
     var b1=R.pick([2,3,5]),e_a=R.int(3,6),e_b=R.int(2,4);
-    ex+=row(4,'Simplifica: '+b1+'<sup>'+e_a+'</sup> × '+b1+'<sup>'+e_b+'</sup> ÷ '+b1+'<sup>'+(e_b-1)+'</sup> = _____');
+    ex+=_dinamicoRow(4,'Simplifica: '+b1+'<sup>'+e_a+'</sup> × '+b1+'<sup>'+e_b+'</sup> ÷ '+b1+'<sup>'+(e_b-1)+'</sup> = _____');
     sol+='<div class="ex"><strong>4.</strong> '+b1+'<sup>'+(e_a+e_b-(e_b-1))+'</sup> = '+b1+'<sup>'+(e_a+1)+'</sup> = '+Math.pow(b1,e_a+1)+'</div>';
 
     var val=R.pick([3600000,48000000,0.00025,0.0000081]);
-    ex+=row(5,'Escreve em notação científica e indica a ordem de grandeza: '+val);
+    ex+=_dinamicoRow(5,'Escreve em notação científica e indica a ordem de grandeza: '+val);
   }
 
   return {ex:ex, sol:sol};
@@ -801,26 +794,24 @@ function _dinamico2(dif) {
 function _dinamico3(dif) {
   var R=_RND;
   var ex='', sol='';
-  function linha(){return '<div class="linha"></div>';}
-  function row(n,q){return '<div class="ex"><div class="ex-num">'+n+'.</div><p>'+q+'</p>'+linha()+'</div>';}
 
   if (dif==='facil') {
     ex+='<h2>Grupo 1 — Ângulos Internos de Polígonos</h2>';
     var n1=R.pick([3,4,5,6]),n2=R.pick([7,8,9,10]);
     var s1=(n1-2)*180,s2=(n2-2)*180;
-    ex+=row(1,'Calcula a soma dos ângulos internos de:<br>a) Polígono com '+n1+' lados &nbsp;&nbsp; b) Polígono com '+n2+' lados');
+    ex+=_dinamicoRow(1,'Calcula a soma dos ângulos internos de:<br>a) Polígono com '+n1+' lados &nbsp;&nbsp; b) Polígono com '+n2+' lados');
     sol+='<div class="ex"><strong>1.</strong> a) ('+n1+'−2)×180° = '+s1+'° &nbsp; b) ('+n2+'−2)×180° = '+s2+'°</div>';
 
     var n3=R.pick([4,5,6,8]);
     var eachAngle=((n3-2)*180)/n3;
-    ex+=row(2,'Num polígono regular com '+n3+' lados, qual a amplitude de cada ângulo interno?');
+    ex+=_dinamicoRow(2,'Num polígono regular com '+n3+' lados, qual a amplitude de cada ângulo interno?');
     sol+='<div class="ex"><strong>2.</strong> ('+n3+'−2)×180°÷'+n3+' = '+eachAngle+'°</div>';
 
     ex+='<h2>Grupo 2 — Áreas Simples</h2>';
     var b=R.int(4,14),h=R.int(3,10);
     var b2=R.int(4,14),h2=R.int(3,10);
     var r=R.int(3,8);
-    ex+=row(3,'Calcula a área de:<br>'
+    ex+=_dinamicoRow(3,'Calcula a área de:<br>'
       +'a) Retângulo: base = '+b+' cm, altura = '+h+' cm<br>'
       +'b) Triângulo: base = '+b2+' cm, altura = '+h2+' cm<br>'
       +'c) Círculo com raio = '+r+' cm (π ≈ 3,14)');
@@ -829,7 +820,7 @@ function _dinamico3(dif) {
     ex+='<h2>Grupo 3 — Ângulos em Retas Paralelas</h2>';
     var ang=R.pick([35,40,50,55,65,70,75,80]);
     var sup=180-ang,alt=ang,cor=ang,coin=sup;
-    ex+=row(4,'Duas retas paralelas são cortadas por uma secante. Um ângulo mede '+ang+'°. Indica:<br>'
+    ex+=_dinamicoRow(4,'Duas retas paralelas são cortadas por uma secante. Um ângulo mede '+ang+'°. Indica:<br>'
       +'a) O ângulo alterno interno &nbsp;&nbsp; b) O ângulo co-interno &nbsp;&nbsp; c) O ângulo correspondente');
     sol+='<div class="ex"><strong>4.</strong> a) '+alt+'° (igual) &nbsp; b) '+coin+'° (suplementar: 180°−'+ang+'°) &nbsp; c) '+cor+'° (igual)</div>';
 
@@ -837,17 +828,17 @@ function _dinamico3(dif) {
     ex+='<h2>Grupo 1 — Polígonos: Ângulos e Propriedades</h2>';
     var sumTarget=R.pick([720,900,1080,1260,1440,1620]);
     var nSides=sumTarget/180+2;
-    ex+=row(1,'Determina o número de lados de um polígono cuja soma dos ângulos internos é '+sumTarget+'°.');
+    ex+=_dinamicoRow(1,'Determina o número de lados de um polígono cuja soma dos ângulos internos é '+sumTarget+'°.');
     sol+='<div class="ex"><strong>1.</strong> (n−2)×180 = '+sumTarget+' → n−2 = '+(sumTarget/180)+' → <strong>n = '+nSides+'</strong></div>';
 
     var extAngle=R.pick([24,30,36,40,45,60]);
     var nExt=360/extAngle;
-    ex+=row(2,'Um polígono regular tem ângulo externo de '+extAngle+'°. Quantos lados tem? Como se classifica?');
+    ex+=_dinamicoRow(2,'Um polígono regular tem ângulo externo de '+extAngle+'°. Quantos lados tem? Como se classifica?');
     sol+='<div class="ex"><strong>2.</strong> n = 360°÷'+extAngle+'° = '+nExt+' lados.</div>';
 
     var angA=R.int(95,130);
     var angB=180-angA,angC=angA,angD=angB;
-    ex+=row(3,'Num paralelogramo [ABCD], o ângulo A mede '+angA+'°. Determina os ângulos B, C e D.');
+    ex+=_dinamicoRow(3,'Num paralelogramo [ABCD], o ângulo A mede '+angA+'°. Determina os ângulos B, C e D.');
     sol+='<div class="ex"><strong>3.</strong> B = 180°−'+angA+'° = '+angB+'°; C = '+angA+'° (oposto a A); D = '+angD+'°</div>';
 
     ex+='<h2>Grupo 2 — Áreas de Figuras Compostas</h2>';
@@ -855,15 +846,15 @@ function _dinamico3(dif) {
     var areaT=(b1+b2)/2*hT;
     var rl=R.int(5,12),rl2=R.int(4,10);
     var areaLos=rl*rl2/2;
-    ex+=row(4,'Calcula a área do trapézio com bases '+b1+' cm e '+b2+' cm, altura '+hT+' cm.');
-    ex+=row(5,'Calcula a área do losango com diagonais '+rl+' cm e '+rl2+' cm.');
+    ex+=_dinamicoRow(4,'Calcula a área do trapézio com bases '+b1+' cm e '+b2+' cm, altura '+hT+' cm.');
+    ex+=_dinamicoRow(5,'Calcula a área do losango com diagonais '+rl+' cm e '+rl2+' cm.');
     sol+='<div class="ex"><strong>4.</strong> ('+b1+'+'+b2+')÷2 × '+hT+' = '+areaT+' cm²<br><strong>5.</strong> '+rl+'×'+rl2+'÷2 = '+areaLos+' cm²</div>';
 
     var angPent=[];
     for(var i=0;i<4;i++) angPent.push(R.int(90,135));
     var sumPent=(5-2)*180;
     var fif=sumPent-angPent.reduce((a,b)=>a+b,0);
-    ex+=row(6,'Num pentágono, quatro dos ângulos internos medem '+angPent.join('°, ')+'°. Determina o quinto ângulo.');
+    ex+=_dinamicoRow(6,'Num pentágono, quatro dos ângulos internos medem '+angPent.join('°, ')+'°. Determina o quinto ângulo.');
     sol+='<div class="ex"><strong>6.</strong> Soma=(5−2)×180=540°. 5.º = 540−('+angPent.join('+')+') = <strong>'+fif+'°</strong></div>';
 
   } else { // difícil
@@ -871,12 +862,12 @@ function _dinamico3(dif) {
     var int1=R.int(80,140),int2=R.int(60,120),int3=R.int(70,130);
     var falta=360-int1-int2-int3;
     if(falta<30||falta>170){int1=100;int2=80;int3=95;falta=85;}
-    ex+=row(1,'Num quadrilátero, três ângulos internos medem '+int1+'°, '+int2+'° e '+int3+'°. Qual é o quarto ângulo?');
+    ex+=_dinamicoRow(1,'Num quadrilátero, três ângulos internos medem '+int1+'°, '+int2+'° e '+int3+'°. Qual é o quarto ângulo?');
     sol+='<div class="ex"><strong>1.</strong> Soma quadrilátero = 360°. 4.º = 360−('+int1+'+'+int2+'+'+int3+') = <strong>'+falta+'°</strong></div>';
 
     var n_poly=R.int(7,15);
     var ext_each=Math.round(360/n_poly*10)/10;
-    ex+=row(2,'Um polígono regular tem '+n_poly+' lados. Calcula: a) a soma dos ângulos internos; b) cada ângulo interno; c) cada ângulo externo.');
+    ex+=_dinamicoRow(2,'Um polígono regular tem '+n_poly+' lados. Calcula: a) a soma dos ângulos internos; b) cada ângulo interno; c) cada ângulo externo.');
     var sum_int=(n_poly-2)*180, each_int=Math.round(sum_int/n_poly*10)/10;
     sol+='<div class="ex"><strong>2.</strong> a) '+(n_poly-2)+'×180 = '+sum_int+'° &nbsp; b) '+sum_int+'÷'+n_poly+' = '+each_int+'° &nbsp; c) 360÷'+n_poly+' = '+ext_each+'°</div>';
 
@@ -886,12 +877,12 @@ function _dinamico3(dif) {
     var areaRect=bRect*hRect;
     var areaSemi=Math.round(3.14*rSemi*rSemi/2*100)/100;
     var total=Math.round((areaRect+areaSemi)*100)/100;
-    ex+=row(3,'Uma figura é composta por um retângulo de '+bRect+' cm × '+hRect+' cm ao qual se une um semicírculo de raio '+rSemi+' cm (π≈3,14). Calcula a área total.');
+    ex+=_dinamicoRow(3,'Uma figura é composta por um retângulo de '+bRect+' cm × '+hRect+' cm ao qual se une um semicírculo de raio '+rSemi+' cm (π≈3,14). Calcula a área total.');
     sol+='<div class="ex"><strong>3.</strong> Retângulo: '+areaRect+' cm². Semicírculo: π×'+rSemi+'²÷2 = '+areaSemi+' cm². Total = <strong>'+total+' cm²</strong></div>';
 
     var b_comp=R.int(10,20),h_comp=R.int(6,12),b_tri=b_comp,h_tri=R.int(4,8);
     var a_para=b_comp*h_comp, a_tri=b_tri*h_tri/2;
-    ex+=row(4,'Um paralelogramo de base '+b_comp+' cm e altura '+h_comp+' cm tem um triângulo (mesma base, altura '+h_tri+' cm) removido. Qual a área restante?');
+    ex+=_dinamicoRow(4,'Um paralelogramo de base '+b_comp+' cm e altura '+h_comp+' cm tem um triângulo (mesma base, altura '+h_tri+' cm) removido. Qual a área restante?');
     sol+='<div class="ex"><strong>4.</strong> Paralelogramo: '+a_para+' cm². Triângulo: '+a_tri+' cm². Resto = <strong>'+(a_para-a_tri)+' cm²</strong></div>';
   }
 
@@ -902,33 +893,31 @@ function _dinamico3(dif) {
 function _dinamico4(dif) {
   var R=_RND;
   var ex='', sol='';
-  function linha(){return '<div class="linha"></div>';}
-  function row(n,q){return '<div class="ex"><div class="ex-num">'+n+'.</div><p>'+q+'</p>'+linha()+'</div>';}
 
   if (dif==='facil') {
     ex+='<h2>Grupo 1 — Sequências</h2>';
     var start=R.int(1,10),step=R.int(1,6);
     var seq=[start,start+step,start+2*step,start+3*step,start+4*step];
     var t8=start+7*step,t10=start+9*step;
-    ex+=row(1,'Considera a sequência: '+seq.join(', ')+', …<br>'
+    ex+=_dinamicoRow(1,'Considera a sequência: '+seq.join(', ')+', …<br>'
       +'a) Qual é a razão? &nbsp;&nbsp; b) Indica o 8.º termo &nbsp;&nbsp; c) Indica o 10.º termo');
     sol+='<div class="ex"><strong>1.</strong> a) Razão = '+step+' &nbsp; b) t₈ = '+start+' + 7×'+step+' = '+t8+' &nbsp; c) t₁₀ = '+t10+'</div>';
 
     var startG=R.pick([2,3,1]),ratioG=R.pick([2,3]);
     var seqG=[startG,startG*ratioG,startG*ratioG*ratioG,startG*Math.pow(ratioG,3),startG*Math.pow(ratioG,4)];
-    ex+=row(2,'Sequência geométrica: '+seqG.join(', ')+', …<br>a) Qual é a razão? &nbsp;&nbsp; b) Indica o 6.º termo');
+    ex+=_dinamicoRow(2,'Sequência geométrica: '+seqG.join(', ')+', …<br>a) Qual é a razão? &nbsp;&nbsp; b) Indica o 6.º termo');
     sol+='<div class="ex"><strong>2.</strong> a) Razão = '+ratioG+' &nbsp; b) t₆ = '+startG+'×'+ratioG+'⁵ = '+startG*Math.pow(ratioG,5)+'</div>';
 
     ex+='<h2>Grupo 2 — Expressões Algébricas Simples</h2>';
     var a=R.int(2,8),b=R.int(2,8),c=R.int(1,5);
-    ex+=row(3,'Simplifica:<br>a) '+a+'x + '+b+'x = _____ &nbsp;&nbsp; b) '+a+'x − '+c+'x = _____ &nbsp;&nbsp; c) '+a+'x + '+b+'y − '+c+'x + y = _____');
+    ex+=_dinamicoRow(3,'Simplifica:<br>a) '+a+'x + '+b+'x = _____ &nbsp;&nbsp; b) '+a+'x − '+c+'x = _____ &nbsp;&nbsp; c) '+a+'x + '+b+'y − '+c+'x + y = _____');
     sol+='<div class="ex"><strong>3.</strong> a) '+(a+b)+'x &nbsp; b) '+(a-c)+'x &nbsp; c) '+(a-c)+'x + '+(b+1)+'y</div>';
 
     ex+='<h2>Grupo 3 — Equações Simples</h2>';
     var coef=R.int(2,6),result=R.int(6,30),x1=Math.round(result/coef);
     if(coef*x1!==result){coef=2;result=10;x1=5;}
     var add=R.int(1,8),res2=R.int(10,25),x2=res2-add;
-    ex+=row(4,'Resolve:<br>a) '+coef+'x = '+result+' &nbsp;&nbsp;&nbsp; b) x + '+add+' = '+res2);
+    ex+=_dinamicoRow(4,'Resolve:<br>a) '+coef+'x = '+result+' &nbsp;&nbsp;&nbsp; b) x + '+add+' = '+res2);
     sol+='<div class="ex"><strong>4.</strong> a) x = '+result+'÷'+coef+' = <strong>'+x1+'</strong>. Verif: '+coef+'×'+x1+'='+result+' ✓ &nbsp; b) x = '+res2+'−'+add+' = <strong>'+x2+'</strong>. Verif: '+x2+'+'+add+'='+res2+' ✓</div>';
 
   } else if (dif==='medio') {
@@ -936,53 +925,53 @@ function _dinamico4(dif) {
     var t1=R.int(2,10),r=R.int(-4,5);
     if(r===0)r=3;
     var seq5=[t1,t1+r,t1+2*r,t1+3*r,t1+4*r];
-    ex+=row(1,'Sequência: '+seq5.join(', ')+', …<br>'
+    ex+=_dinamicoRow(1,'Sequência: '+seq5.join(', ')+', …<br>'
       +'a) Tipo (aritmética/geométrica) e razão &nbsp;&nbsp; b) Fórmula do termo geral &nbsp;&nbsp; c) t₁₂ = ?');
     var t12=t1+11*r;
     sol+='<div class="ex"><strong>1.</strong> a) Aritmética, r = '+r+' &nbsp; b) tₙ = '+t1+' + (n−1)×('+r+') &nbsp; c) t₁₂ = '+t12+'</div>';
 
     ex+='<h2>Grupo 2 — Expressões Algébricas</h2>';
     var a=R.int(2,6),b=R.int(1,5),c=R.int(2,6),d=R.int(1,5);
-    ex+=row(2,'Simplifica: ('+a+'x² − '+b+'x + 3) + ('+c+'x² + '+d+'x − 1)');
+    ex+=_dinamicoRow(2,'Simplifica: ('+a+'x² − '+b+'x + 3) + ('+c+'x² + '+d+'x − 1)');
     sol+='<div class="ex"><strong>2.</strong> '+(a+c)+'x² + '+(-b+d)+'x + 2</div>';
 
     var xVal=R.neg(2,4),yVal=R.neg(2,4);
-    ex+=row(3,'Para x = '+xVal+' e y = '+yVal+', calcula o valor numérico de: '+a+'x − '+b+'y + '+c);
+    ex+=_dinamicoRow(3,'Para x = '+xVal+' e y = '+yVal+', calcula o valor numérico de: '+a+'x − '+b+'y + '+c);
     sol+='<div class="ex"><strong>3.</strong> '+a+'×('+xVal+') − '+b+'×('+yVal+') + '+c+' = '+(a*xVal - b*yVal + c)+'</div>';
 
     ex+='<h2>Grupo 3 — Equações do 1.º Grau</h2>';
     var coef1=R.int(2,5),add1=R.int(2,8),result1=R.int(10,25);
     var x_eq1=(result1-add1)/coef1;
     if(!Number.isInteger(x_eq1)){coef1=3;add1=5;result1=14;x_eq1=3;}
-    ex+=row(4,'Resolve:<br>a) '+coef1+'x + '+add1+' = '+result1+' &nbsp;&nbsp;&nbsp; b) '+coef1+'x − '+add1+' = '+result1);
+    ex+=_dinamicoRow(4,'Resolve:<br>a) '+coef1+'x + '+add1+' = '+result1+' &nbsp;&nbsp;&nbsp; b) '+coef1+'x − '+add1+' = '+result1);
     var x_eq1b=(result1+add1)/coef1;
     sol+='<div class="ex"><strong>4.</strong> a) x = ('+result1+'−'+add1+')÷'+coef1+' = <strong>'+(result1-add1)/coef1+'</strong> &nbsp; b) x = ('+result1+'+'+add1+')÷'+coef1+' = <strong>'+x_eq1b+'</strong></div>';
 
     var c2=R.int(2,4),v2=R.int(3,8),add2=R.int(1,5);
     var rhs2=c2*v2+add2;
-    ex+=row(5,'Resolve a equação e verifica: '+c2+'(x + '+add2+') = '+rhs2);
+    ex+=_dinamicoRow(5,'Resolve a equação e verifica: '+c2+'(x + '+add2+') = '+rhs2);
     sol+='<div class="ex"><strong>5.</strong> '+c2+'x + '+(c2*add2)+' = '+rhs2+' → '+c2+'x = '+(rhs2-c2*add2)+' → x = <strong>'+v2+'</strong>. Verif: '+c2+'×('+v2+'+'+add2+') = '+c2*(v2+add2)+' = '+rhs2+' ✓</div>';
 
   } else { // difícil
     ex+='<h2>Grupo 1 — Sequências Complexas</h2>';
     var a1=R.int(1,5),d1=R.int(2,8);
-    ex+=row(1,'Numa sequência aritmética, t₃ = '+(a1+2*d1)+' e t₇ = '+(a1+6*d1)+'.<br>a) Determina a razão e o 1.º termo &nbsp;&nbsp; b) Qual é o termo geral? &nbsp;&nbsp; c) Para que valor de n é tₙ = '+(a1+19*d1)+'?');
+    ex+=_dinamicoRow(1,'Numa sequência aritmética, t₃ = '+(a1+2*d1)+' e t₇ = '+(a1+6*d1)+'.<br>a) Determina a razão e o 1.º termo &nbsp;&nbsp; b) Qual é o termo geral? &nbsp;&nbsp; c) Para que valor de n é tₙ = '+(a1+19*d1)+'?');
     sol+='<div class="ex"><strong>1.</strong> a) r = [('+a1+'+6×'+d1+') − ('+a1+'+2×'+d1+')]÷4 = '+d1+'; t₁ = '+a1+' &nbsp; b) tₙ = '+a1+' + (n−1)×'+d1+' &nbsp; c) n = 20</div>';
 
     ex+='<h2>Grupo 2 — Equações com Frações e Parênteses</h2>';
     var sol2=R.int(2,8);
     var lhs_coef=R.int(2,4),rhs_add=R.int(5,15);
     var lhs_add=rhs_add-lhs_coef*sol2; // lhs_coef*x + lhs_add = rhs_add
-    ex+=row(2,'Resolve: '+lhs_coef+'x + ('+lhs_add+') = '+rhs_add+' &nbsp; (verifica a resposta)');
+    ex+=_dinamicoRow(2,'Resolve: '+lhs_coef+'x + ('+lhs_add+') = '+rhs_add+' &nbsp; (verifica a resposta)');
     sol+='<div class="ex"><strong>2.</strong> '+lhs_coef+'x = '+(rhs_add-lhs_add)+' → x = <strong>'+sol2+'</strong>. Verif: '+lhs_coef+'×'+sol2+'+'+lhs_add+' = '+rhs_add+' ✓</div>';
 
     var s3=R.int(1,6);
     var a3=R.int(2,5),b3=R.int(2,5);
     var rhs3=a3*s3-b3;
-    ex+=row(3,'Resolve: '+a3+'x − '+b3+' = '+rhs3);
+    ex+=_dinamicoRow(3,'Resolve: '+a3+'x − '+b3+' = '+rhs3);
     sol+='<div class="ex"><strong>3.</strong> '+a3+'x = '+(rhs3+b3)+' → x = <strong>'+s3+'</strong>.</div>';
 
-    ex+=row(4,'Resolve a equação de 1.º grau: 2(3x − 1) = 5x + 4');
+    ex+=_dinamicoRow(4,'Resolve a equação de 1.º grau: 2(3x − 1) = 5x + 4');
     sol+='<div class="ex"><strong>4.</strong> 6x−2=5x+4 → x = <strong>6</strong>. Verif: 2×(18−1)=34; 5×6+4=34 ✓</div>';
 
     ex+='<h2>Grupo 3 — Problema com Equação</h2>';
@@ -991,16 +980,20 @@ function _dinamico4(dif) {
     var menor=(total-diff)/2;
     if(!Number.isInteger(menor)){total=40;diff=10;menor=15;}
     var maior=menor+diff;
-    ex+=row(5,'A soma de dois números consecutivos (diferença de '+diff+') é '+total+'. Determina os dois números. Define uma variável e escreve a equação.');
+    ex+=_dinamicoRow(5,'A soma de dois números consecutivos (diferença de '+diff+') é '+total+'. Determina os dois números. Define uma variável e escreve a equação.');
     sol+='<div class="ex"><strong>5.</strong> Seja x o menor. x + (x+'+diff+') = '+total+' → 2x = '+(total-diff)+' → x = <strong>'+menor+'</strong>. Os números são <strong>'+menor+'</strong> e <strong>'+maior+'</strong>.</div>';
   }
 
   return {ex:ex, sol:sol};
 }
 
-// ═══════════════════════════════════════════════════════
+// ── Dispatch helper for _dinamicoN ───────────────────────────────────────────
+function _dinamico(cap, dif) {
+  var fns = { 1: _dinamico1, 2: _dinamico2, 3: _dinamico3, 4: _dinamico4 };
+  return fns[cap] ? fns[cap](dif) : { ex: '', sol: '' };
+}
+
 // GERADORES POR SUBTEMA — cap1..4
-// ═══════════════════════════════════════════════════════
 
 function _gfSubtema1(st, dif, n) {
   var R = _RND; var ex = '', sol = '';
@@ -1151,7 +1144,6 @@ function _gfSubtema4(st, dif, n) {
   return {ex:ex, sol:sol};
 }
 
-
 // ─── gfGenerar: subtema-aware override ─────────────────────────────────────────
 function gfGenerar(secId) {
   var stFilter = gfGetSubtemas(secId);
@@ -1229,7 +1221,7 @@ function gfGenerar(secId) {
   if (hasSolucoes && solucoesHtml) {
     mainHtml += '<div style="page-break-before:always;margin-top:2rem">'
       + '<div style="border:3px solid #3d5c54;border-radius:14px;padding:1rem 1.5rem;margin-bottom:1.5rem;background:#f0faf4">'
-      + '<div style="font-family:Montserrat,sans-serif;font-size:1rem;font-weight:800;color:#2d3530"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> SOLUÇÕES</div></div>'
+      + '<div style="font-family:Montserrat,sans-serif;font-size:1rem;font-weight:800;color:#2d3530"><i class="ph ph-key"></i> SOLUÇÕES</div></div>'
       + solucoesHtml + '</div>';
   }
 
@@ -1242,7 +1234,6 @@ function gfGenerar(secId) {
   if (previewWrap) previewWrap.style.display = 'block';
   if (statusEl) { statusEl.textContent = '✓ Ficha com subtemas gerada'; statusEl.style.color = 'var(--c1-mid)'; }
 }
-
 
 function gfDownload(secId) {
   var content = _gfContent[secId];
@@ -1366,9 +1357,7 @@ function gfDownloadHTML(secId) {
   setTimeout(function(){ URL.revokeObjectURL(url); }, 5000);
 }
 
-// ═══════════════════════════════════════════════════════════════
 // EDUPT — ERROR TRACKER  (registo persistente de erros por questão)
-// ═══════════════════════════════════════════════════════════════
 const ErrorTracker = (function(){
   const KEY = 'edupt_errors_v1';
   const CAP_LABELS = {cap1:'Cap. 1',cap2:'Cap. 2',cap3:'Cap. 3',cap4:'Cap. 4'};
@@ -1433,102 +1422,68 @@ if (typeof _etQueue !== 'undefined') {
   _etQueue = [];
 }
 
-// ── Render error panel ────────────────────────────────────────
-function etRenderPanel(containerId, capId){
-  var container = document.getElementById(containerId);
-  if(!container) return;
-  var _filter = container._etFilter || 'all';
-  var all  = ErrorTracker.getErrors(capId, 1);
-  var hot  = all.filter(function(r){ return r.erros>=3; });
-  var warn = all.filter(function(r){ return r.erros>=1 && r.erros<3; });
-  var shown = _filter==='hot' ? hot : _filter==='revisao' ? warn : all;
-
-  container.innerHTML =
-    '<div class="et-header">' +
-      '<div class="et-title">' +
-        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
-        '\u00a0Onde erro mais' +
-        (hot.length>0 ? ' <span class="et-badge">'+hot.length+' cr\u00edticas</span>' : '') +
-      '</div>' +
-      '<button class="et-clear-btn" onclick="ErrorTracker.clearCap(\''+capId+'\');etRenderPanel(\''+containerId+'\',\''+capId+'\')">Limpar</button>' +
-    '</div>' +
-    '<div class="et-filters" style="margin-bottom:1rem">' +
-      '<button class="et-filter'+(_filter==='all'?' active':'')+'" onclick="document.getElementById(\''+containerId+'\')._etFilter=\'all\';etRenderPanel(\''+containerId+'\',\''+capId+'\')">Todas ('+all.length+')</button>' +
-      '<button class="et-filter'+(_filter==='hot'?' active':'')+'" onclick="document.getElementById(\''+containerId+'\')._etFilter=\'hot\';etRenderPanel(\''+containerId+'\',\''+capId+'\')">Cr\u00edticas 3+ ('+hot.length+')</button>' +
-      '<button class="et-filter'+(_filter==='revisao'?' active-warn':'')+'" onclick="document.getElementById(\''+containerId+'\')._etFilter=\'revisao\';etRenderPanel(\''+containerId+'\',\''+capId+'\')">A rever 1-2 ('+warn.length+')</button>' +
-    '</div>' +
-    (shown.length===0
-      ? '<div class="et-empty">'+(all.length===0 ? 'Ainda sem erros registados \u2014 responde a questões para veres aqui as tuas dificuldades.' : 'Sem questões nesta categoria.')+'</div>'
-      : shown.slice(0,15).map(function(r,i){
-          var tot = r.erros+r.acertos;
-          var pct = tot>0 ? Math.round(r.erros/tot*100) : 0;
-          var cls = r.erros>=3 ? 'hot' : 'warn';
-          var barCol = r.erros>=3 ? 'var(--wrong)' : '#f59e0b';
-          return '<div class="et-item '+cls+'">' +
-            '<div class="et-rank">'+(i+1)+'</div>' +
-            '<div class="et-body">' +
-              '<div class="et-q">'+r.texto+(r.texto.length>=140?'\u2026':'')+'</div>' +
-              '<div class="et-meta">' +
-                '<span class="et-cap-tag">'+ErrorTracker.CAP_LABELS[r.capId]+'</span>' +
-                '<span class="et-section-tag">'+(ErrorTracker.SEC_LABELS[r.secKey]||r.secKey)+'</span>' +
-                (r.ultima ? '<span class="et-section-tag">\u00b7 '+r.ultima+'</span>' : '') +
-              '</div>' +
-              '<div class="et-bar-wrap"><div class="et-bar" style="width:'+pct+'%;background:'+barCol+'"></div></div>' +
-            '</div>' +
-            '<div class="et-stats">' +
-              '<div class="et-ratio">'+r.erros+'\u00d7</div>' +
-              '<div class="et-ratio-label">erros</div>' +
-              (r.acertos>0 ? '<div style="font-size:.63rem;color:var(--c1-mid);margin-top:2px">'+r.acertos+'\u2713</div>' : '') +
-            '</div>' +
-          '</div>';
-        }).join('')
-    );
-}
-
-// ── Render combined error panel for multiple caps (MEGA mode) ─
-function etRenderMegaPanel(containerId, capIds) {
+// ── Render error panel (unified: single cap or mega/multi-cap mode) ───────────
+function _etRenderPanel(containerId, capIdOrIds) {
   var container = document.getElementById(containerId);
   if (!container) return;
   var _filter = container._etFilter || 'all';
+  var isMega = Array.isArray(capIdOrIds);
 
-  // Merge errors from all selected caps
   var all = [];
-  if (!capIds || capIds.length === 0) {
-    // show nothing yet
-    container.innerHTML = '<div class="et-empty">Seleciona capítulos e responde a questões para ver os erros aqui.</div>';
-    return;
+  if (isMega) {
+    if (!capIdOrIds || capIdOrIds.length === 0) {
+      container.innerHTML = '<div class="et-empty">Seleciona cap\u00edtulos e responde a quest\u00f5es para ver os erros aqui.</div>';
+      return;
+    }
+    capIdOrIds.forEach(function(capId) {
+      ErrorTracker.getErrors(capId, 1).forEach(function(r) { all.push(r); });
+    });
+    // Also include errors from MEGA-only questions
+    ErrorTracker.getErrors('mega', 1).forEach(function(r) { all.push(r); });
+    // Sort combined list by error count descending
+    all.sort(function(a, b) { return b.erros - a.erros || a.acertos - b.acertos; });
+  } else {
+    all = ErrorTracker.getErrors(capIdOrIds, 1);
   }
-  capIds.forEach(function(capId) {
-    ErrorTracker.getErrors(capId, 1).forEach(function(r) { all.push(r); });
-  });
-  // Also include 'mega' capId errors from MEGA-only questions
-  ErrorTracker.getErrors('mega', 1).forEach(function(r) { all.push(r); });
-  // Sort combined
-  all.sort(function(a,b){ return b.erros - a.erros || a.acertos - b.acertos; });
 
-  var hot  = all.filter(function(r){ return r.erros >= 3; });
-  var warn = all.filter(function(r){ return r.erros >= 1 && r.erros < 3; });
+  var hot  = all.filter(function(r) { return r.erros >= 3; });
+  var warn = all.filter(function(r) { return r.erros >= 1 && r.erros < 3; });
   var shown = _filter === 'hot' ? hot : _filter === 'revisao' ? warn : all;
+  var limit = isMega ? 20 : 15;
 
-  var capLabel = capIds.map(function(c){ return ErrorTracker.CAP_LABELS[c] || c; }).join(' + ');
+  var titleExtra = isMega
+    ? ' \u2014 ' + capIdOrIds.map(function(c) { return ErrorTracker.CAP_LABELS[c] || c; }).join(' + ')
+    : '';
+
+  var clearOnclick = isMega
+    ? '(window._etMegaCapIds||[]).forEach(function(c){ErrorTracker.clearCap(c);});ErrorTracker.clearCap(\'mega\');etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])'
+    : 'ErrorTracker.clearCap(\'' + capIdOrIds + '\');etRenderPanel(\'' + containerId + '\',\'' + capIdOrIds + '\')';
+
+  var filterOnclick = isMega
+    ? function(f) { return 'document.getElementById(\'et-mega\')._etFilter=\'' + f + '\';etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])'; }
+    : function(f) { return 'document.getElementById(\'' + containerId + '\')._etFilter=\'' + f + '\';etRenderPanel(\'' + containerId + '\',\'' + capIdOrIds + '\')'; };
+
+  var emptyMsg = all.length === 0
+    ? (isMega ? 'Ainda sem erros registados nestes cap\u00edtulos.' : 'Ainda sem erros registados \u2014 responde a quest\u00f5es para veres aqui as tuas dificuldades.')
+    : 'Sem quest\u00f5es nesta categoria.';
 
   container.innerHTML =
     '<div class="et-header">' +
       '<div class="et-title">' +
-        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
-        '\u00a0Onde erro mais \u2014 ' + capLabel +
+        '<i class="ph ph-info" style="flex-shrink:0"></i>' +
+        '\u00a0Onde erro mais' + titleExtra +
         (hot.length > 0 ? ' <span class="et-badge">' + hot.length + ' cr\u00edticas</span>' : '') +
       '</div>' +
-      '<button class="et-clear-btn" onclick="(window._etMegaCapIds||[]).forEach(function(c){ErrorTracker.clearCap(c);});ErrorTracker.clearCap(\'mega\');etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])">Limpar</button>' +
+      '<button class="et-clear-btn" onclick="' + clearOnclick + '">Limpar</button>' +
     '</div>' +
     '<div class="et-filters" style="margin-bottom:1rem">' +
-      '<button class="et-filter' + (_filter==='all'?' active':'') + '" onclick="document.getElementById(\'et-mega\')._etFilter=\'all\';etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])">Todas (' + all.length + ')</button>' +
-      '<button class="et-filter' + (_filter==='hot'?' active':'') + '" onclick="document.getElementById(\'et-mega\')._etFilter=\'hot\';etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])">Cr\u00edticas 3+ (' + hot.length + ')</button>' +
-      '<button class="et-filter' + (_filter==='revisao'?' active-warn':'') + '" onclick="document.getElementById(\'et-mega\')._etFilter=\'revisao\';etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])">A rever 1-2 (' + warn.length + ')</button>' +
+      '<button class="et-filter' + (_filter==='all' ? ' active' : '') + '" onclick="' + filterOnclick('all') + '">Todas (' + all.length + ')</button>' +
+      '<button class="et-filter' + (_filter==='hot' ? ' active' : '') + '" onclick="' + filterOnclick('hot') + '">Cr\u00edticas 3+ (' + hot.length + ')</button>' +
+      '<button class="et-filter' + (_filter==='revisao' ? ' active-warn' : '') + '" onclick="' + filterOnclick('revisao') + '">A rever 1-2 (' + warn.length + ')</button>' +
     '</div>' +
     (shown.length === 0
-      ? '<div class="et-empty">' + (all.length === 0 ? 'Ainda sem erros registados nestes cap\u00edtulos.' : 'Sem quest\u00f5es nesta categoria.') + '</div>'
-      : shown.slice(0,20).map(function(r, i) {
+      ? '<div class="et-empty">' + emptyMsg + '</div>'
+      : shown.slice(0, limit).map(function(r, i) {
           var tot = r.erros + r.acertos;
           var pct = tot > 0 ? Math.round(r.erros / tot * 100) : 0;
           var cls = r.erros >= 3 ? 'hot' : 'warn';
@@ -1552,9 +1507,14 @@ function etRenderMegaPanel(containerId, capIds) {
           '</div>';
         }).join('')
     );
-  // Store capIds on window so filter buttons can re-render
-  window._etMegaCapIds = capIds;
+
+  // In mega mode, store capIds on window so filter buttons can re-render
+  if (isMega) { window._etMegaCapIds = capIdOrIds; }
 }
+
+// Backward-compatible aliases
+function etRenderPanel(containerId, capId) { _etRenderPanel(containerId, capId); }
+function etRenderMegaPanel(containerId, capIds) { _etRenderPanel(containerId, capIds); }
 document.addEventListener('DOMContentLoaded', function(){
   var panels = [
     {secId:'sec-progresso',  cid:'et-cap1', capId:'cap1'},

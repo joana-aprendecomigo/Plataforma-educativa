@@ -1,7 +1,5 @@
 /* ── Block 7 (from line 15631) ── */
-// ═══════════════════════════════════════════════════════════════
 // ESCAPE ROOM v2 — SALA VISUAL ÚNICA
-// ═══════════════════════════════════════════════════════════════
 (function(){
 'use strict';
 
@@ -11,7 +9,6 @@ function pick(a){return a[Math.floor(Math.random()*a.length)];}
 function shuffle(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
 function gcd(a,b){return b===0?a:gcd(b,a%b);}
 function lcm(a,b){return a*b/gcd(a,b);}
-function fmt(s){var m=Math.floor(s/60),sec=s%60;return m+':'+(sec<10?'0':'')+sec;}
 
 // ── Puzzle generators (one per object) ───────────────────────
 var PUZZLES = {
@@ -693,7 +690,6 @@ var ER_THEMES = {
 // ── Scene SVG (dynamic, set by active theme) ──────────────────
 var SCENE_SVG = ER_THEMES.minecraft.buildScene();
 
-
 // ── GameEscapeRoom constructor ────────────────────────────────
 function GameEscapeRoom(panelId, qFn){
   this.id     = panelId;
@@ -812,7 +808,6 @@ GameEscapeRoom.prototype._startGame = function(themeId){
   this._timer = setInterval(function(){ self._tick(); }, 1000);
   this._renderScene();
 };
-
 
 // ── Timer ─────────────────────────────────────────────────────
 GameEscapeRoom.prototype._tick = function(){

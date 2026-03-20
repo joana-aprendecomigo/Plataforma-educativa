@@ -5,7 +5,6 @@ function showMathView4(){
   document.title = 'Cap. 4 — Álgebra · 3ponto14';
   showSection4('temas4', document.querySelector('#tabs4 .tab-btn'));
   window.scrollTo(0,0);
-  if(typeof initCap4==='function')initCap4();
 }
 function showSection4(id,btn){
   document.querySelectorAll('#sec-temas4,#sec-teoria4,#sec-questoes4,#sec-minitestes4,#sec-teste4,#sec-gerador4,#sec-jogos4,#sec-flashcards4,#sec-exame4,#sec-progresso4,#sec-downloads4,#sec-quiz-game4').forEach(s=>s.classList.remove('active'));
@@ -26,9 +25,7 @@ function showSection4(id,btn){
   if(c4) pmRenderWidget('cap4',c4);
 }
 
-// ═══════════════════════════════════════════
 // DATA BANK
-// ═══════════════════════════════════════════
 var BANCO4={
   questoes:[
     // TEMA 1: Sequências
@@ -187,9 +184,7 @@ var BANCO4={
   ]
 };
 
-// ═══════════════════════════════════════════
 // QUIZ ENGINE
-// ═══════════════════════════════════════════
 var scores4={};
 function getScore4(prefix){return scores4[prefix]||(scores4[prefix]={correct:0,total:0});}
 function updateScoreBar4(prefix){
@@ -259,7 +254,7 @@ function ans4(prefix,idx,btn,chosen,correct){
     fb.style.display='block';
     var bgC=isCorrect?'#edf7ed':'#fdf0ef';
     var brC=isCorrect?'#4caf50':'#e57373';
-    var icon=isCorrect?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>':'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>';
+    var icon=isCorrect?'<i class="ph ph-check-circle"></i>':'<i class="ph ph-x-circle"></i>';
     var color=isCorrect?'var(--correct)':'var(--wrong)';
     var status=isCorrect?'Correto!':'Incorreto.';
     var q=null;
@@ -268,18 +263,12 @@ function ans4(prefix,idx,btn,chosen,correct){
     else if(prefix==='t4')q=BANCO4.teste[idx];
     var explHtml='';
     if(q&&q.fb){
-      explHtml='<div style="margin-top:8px;padding:10px 14px;background:rgba(255,255,255,.7);border-radius:8px;border-left:3px solid '+brC+';font-size:.85rem;line-height:1.6;color:var(--ink2)"><strong style="color:'+color+';font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:3px">'+(isCorrect?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span> Porquê?':'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span> Resolução')+'</strong>'+q.fb+'</div>';
+      explHtml='<div style="margin-top:8px;padding:10px 14px;background:rgba(255,255,255,.7);border-radius:8px;border-left:3px solid '+brC+';font-size:.85rem;line-height:1.6;color:var(--ink2)"><strong style="color:'+color+';font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:3px">'+(isCorrect?'<i class="ph ph-lightbulb"></i> Porquê?':'<i class="ph ph-lightbulb"></i> Resolução')+'</strong>'+q.fb+'</div>';
     }
     fb.innerHTML='<div style="display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:'+bgC+';border:1.5px solid '+brC+';border-radius:10px"><span style="font-size:1.3rem;flex-shrink:0;line-height:1">'+icon+'</span><div style="flex:1"><strong style="color:'+color+';font-size:.92rem">'+status+'</strong>'+explHtml+'</div></div>';
   }
   updateScoreBar4(prefix);
   {var _q4=null;if(prefix==='q4')_q4=BANCO4.questoes[idx];else if(prefix.startsWith('mini'))_q4=BANCO4.minitestes[parseInt(prefix.replace('mini',''))][idx];else if(prefix==='t4')_q4=BANCO4.teste[idx];_etRecord('cap4','q',key,_q4?_q4.en:key,isCorrect);}
-}
-function novoRelampago4() {
-  relScores4 = {correct:0,total:0}; relDone4 = {};
-  var r = document.getElementById('relampago4-result');
-  if (r) r.style.display = 'none';
-  if (typeof renderQuestoes4 === 'function') renderQuestoes4();
 }
 
 function buildEx4(tema,dif){
@@ -490,9 +479,7 @@ function showMini4(idx,btn){
 }
 function renderTeste4(){qData4={};renderQuestions4(BANCO4.teste,'t4-container','t4');}
 
-// ═══════════════════════════════════════════
 // FLASHCARDS
-// ═══════════════════════════════════════════
 var fc4Idx=0,fc4Flipped=false,fc4Order=[];
 function initFlashcards4(){
   fc4Order=BANCO4.flashcards.map(function(_,i){return i;});
@@ -527,9 +514,7 @@ function fc4Shuffle(){
   fc4Idx=0;fc4Show4();
 }
 
-// ═══════════════════════════════════════════
 // JOGO DAS EQUAÇÕES
-// ═══════════════════════════════════════════
 var eqList4=[
   {eq:'x + 3 = 7',sol:4},{eq:'2x = 10',sol:5},{eq:'x - 5 = 0',sol:5},
   {eq:'3x = 9',sol:3},{eq:'x + 8 = 3',sol:-5},{eq:'-2x = 6',sol:-3},
@@ -537,16 +522,6 @@ var eqList4=[
   {eq:'2x + 1 = 7',sol:3},{eq:'3x - 2 = 7',sol:3},{eq:'x - 10 = -3',sol:7}
 ];
 var selEq4=null,jogoScore4=0,jogoCount4=0;
-function selectEq4(i,e){
-  var tile=document.getElementById('eq-tile4-'+i);
-  if(tile.classList.contains('used'))return;
-  selEq4={idx:i,eq:e};
-  document.getElementById('eq-selected4').textContent='Equação: '+e.eq;
-  document.getElementById('eq-answer4').value='';
-  document.getElementById('eq-feedback4').textContent='';
-  document.getElementById('eq-input-area4').style.display='flex';
-  document.getElementById('eq-answer4').focus();
-}
 
 function checkEq4(){
   if(!selEq4)return;
@@ -572,68 +547,7 @@ function checkEq4(){
   }
 }
 
-// ═══════════════════════════════════════════
-// RELÂMPAGO
-// ═══════════════════════════════════════════
-var relScores4={correct:0,total:0};
-var relDone4={};
-function ansRel4(qIdx,chosen,correct,btn,fb){
-  if(relDone4[qIdx])return;relDone4[qIdx]=true;
-  var isC=chosen===correct;
-  relScores4.total++;
-  if(isC)relScores4.correct++;
-  _etRecord('cap4','rel','rel4-'+qIdx,(function(){var el=document.getElementById('rq4-'+qIdx);return el?el.querySelector('.q-text')?el.querySelector('.q-text').textContent.trim().slice(0,140):String(qIdx):String(qIdx);})(),isC);
-  var parent=btn.closest('.relampago-q');
-  parent.querySelectorAll('.relampago-opt').forEach(function(b,j){
-    b.disabled=true;
-    if(j===correct)b.classList.add('correct');
-    else if(j===chosen&&!isC)b.classList.add('wrong');
-  });
-  var fbEl=document.getElementById('rfb4-'+qIdx);
-  if(fbEl){
-    var bgC=isC?'#edf7ed':'#fdf0ef';var brC=isC?'#4caf50':'#e57373';
-    fbEl.innerHTML='<div style="display:flex;align-items:flex-start;gap:8px;padding:10px 14px;background:'+bgC+';border:1px solid '+brC+';border-radius:8px;margin-top:6px"><span style="font-size:1rem">'+(isC?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>':'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>')+'</span><div style="flex:1;font-size:.83rem;line-height:1.5"><strong style="color:'+(isC?'var(--correct)':'var(--wrong)')+'">'+( isC?'Correto!':'Incorreto.')+'</strong><br><span style="color:var(--ink3)">'+fb+'</span></div></div>';
-  }
-  document.getElementById('rel4-score').textContent=relScores4.correct;
-  document.getElementById('rel4-total').textContent='/ '+relScores4.total;
-  document.getElementById('rel4-prog').style.width=Math.round(relScores4.correct/10*100)+'%';
-  if(relScores4.total>=10){
-    setTimeout(function(){
-      var r=document.getElementById('relampago4-result');
-      r.style.display='block';
-      var pct=Math.round(relScores4.correct/10*100);
-      r.innerHTML='<div class="highlight-box '+(pct>=70?'green':'orange')+'"><strong>'+relScores4.correct+'/10 ('+pct+'%)</strong> — '+(pct>=80?'Excelente! <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>':pct>=60?'Bom trabalho! <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg></span>':'Continua a praticar! <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13.4 10.6-1.35 1.35A2.92 2.92 0 0 1 10 13a2.92 2.92 0 0 1-2.06-.86L5 9.2A2 2 0 0 1 5 6.38L11 2l3 3"/><path d="m15.5 17.5 3-3a1 1 0 0 0 0-1.41L12.5 7.09a1 1 0 0 0-1.42 0l-3 3L15.5 17.5z"/><path d="M16.5 22 19 19.5l-2.5-2.5-2.5 2.5 2.5 2.5z"/></svg></span>')+'<br><button class="btn btn-ghost" onclick="relDone4={};novoRelampago4()" style="margin-top:.5rem">↺ Tentar de novo</button></div>';
-      _pmRecord('cap4','quiz',{pontuacao:relScores4.correct,total:10});
-      _pmRecord('cap4','jogo');
-    },400);
-  }
-}
-var vfDone4={};
-function ansVF4(idx,chosen,correct,btn,fb){
-  if(vfDone4[idx])return;vfDone4[idx]=true;
-  var isC=chosen===correct;
-  var vfS4={correct:parseInt(document.getElementById('vf4-score').textContent)||0,total:parseInt((document.getElementById('vf4-total').textContent||'/ 0').replace('/ ',''))||0};
-  vfS4.total++;if(isC)vfS4.correct++;
-  var parent=btn.closest('.relampago-q');
-  parent.querySelectorAll('.relampago-opt').forEach(function(b){
-    b.disabled=true;
-    var isV=b.textContent.trim()==='Verdadeiro';
-    if(isV===correct)b.classList.add('correct');
-    else if(isV===chosen&&!isC)b.classList.add('wrong');
-  });
-  var fbEl=document.getElementById('vffb4-'+idx);
-  if(fbEl){
-    var bgC=isC?'#edf7ed':'#fdf0ef';var brC=isC?'#4caf50':'#e57373';
-    fbEl.innerHTML='<div style="display:flex;align-items:flex-start;gap:8px;padding:10px 14px;background:'+bgC+';border:1px solid '+brC+';border-radius:8px;margin-top:6px"><span style="font-size:1rem">'+(isC?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>':'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>')+'</span><div style="flex:1;font-size:.83rem;line-height:1.5"><strong style="color:'+(isC?'var(--correct)':'var(--wrong)')+'">'+( isC?'Correto!':'Incorreto.')+'</strong><br><span style="color:var(--ink3)">'+fb+'</span></div></div>';
-  }
-  document.getElementById('vf4-score').textContent=vfS4.correct;
-  document.getElementById('vf4-total').textContent='/ '+vfS4.total;
-  document.getElementById('vf4-prog').style.width=Math.round(vfS4.correct/6*100)+'%';
-}
-
-// ═══════════════════════════════════════════
 // GERADOR
-// ═══════════════════════════════════════════
 var fichaContent4='';
 function gerarFicha4(){
   var tema=parseInt(document.getElementById('gen4-tema').value);
@@ -675,9 +589,7 @@ function downloadFicha4(){
   htmlToPdfDownload(fullHtml, 'ficha_cap4_mat7.pdf');
 }
 
-// ═══════════════════════════════════════════
 // EXAME
-// ═══════════════════════════════════════════
 var exameTimer4=null,exameLevel4='medio',exameStarted4=false;
 function exame4SetLevel(btn){
   document.querySelectorAll('#exame4-config .gen-level-btn').forEach(function(b){b.classList.remove('active');});
@@ -714,12 +626,10 @@ function exame4Submit(){
   var pct=s.total>0?Math.round(s.correct/s.total*100):0;
   var res=document.getElementById('exame4-result');
   res.style.display='block';
-  res.innerHTML='<div class="card"><div class="card-title">Resultado do Exame</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:2.5rem;font-weight:900;color:'+(pct>=70?'var(--correct)':'var(--wrong)')+'">'+pct+'%</div><p style="margin:.5rem 0;color:var(--ink3)">'+s.correct+' corretas de '+s.total+' questões</p><div class="highlight-box '+(pct>=70?'green':'orange')+'" style="margin-top:1rem">'+(pct>=80?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> Excelente preparação!':pct>=60?'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg></span> Bom resultado — continua a praticar!':'<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13.4 10.6-1.35 1.35A2.92 2.92 0 0 1 10 13a2.92 2.92 0 0 1-2.06-.86L5 9.2A2 2 0 0 1 5 6.38L11 2l3 3"/><path d="m15.5 17.5 3-3a1 1 0 0 0 0-1.41L12.5 7.09a1 1 0 0 0-1.42 0l-3 3L15.5 17.5z"/><path d="M16.5 22 19 19.5l-2.5-2.5-2.5 2.5 2.5 2.5z"/></svg></span> Revê a teoria e volta a tentar!')+'</div><div style="margin-top:1rem;display:flex;gap:.75rem"><button class="btn btn-primary" onclick="document.getElementById(\'exame4-config\').style.display=\'block\';document.getElementById(\'exame4-result\').style.display=\'none\'">↺ Novo Exame</button><button class="btn btn-ghost" onclick="showSection4(\'teoria4\',document.querySelector(\'#tabs4 .tab-btn\'))"><span class=\"ico ico-sm\"><svg><use href=\"#ico-book-open\"/></svg></span> Rever Teoria</button></div></div>';
+  res.innerHTML='<div class="card"><div class="card-title">Resultado do Exame</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:2.5rem;font-weight:900;color:'+(pct>=70?'var(--correct)':'var(--wrong)')+'">'+pct+'%</div><p style="margin:.5rem 0;color:var(--ink3)">'+s.correct+' corretas de '+s.total+' questões</p><div class="highlight-box '+(pct>=70?'green':'orange')+'" style="margin-top:1rem">'+(pct>=80?'<i class="ph ph-star"></i> Excelente preparação!':pct>=60?'<i class="ph ph-thumbs-up"></i> Bom resultado — continua a praticar!':'<i class="ph ph-wrench"></i> Revê a teoria e volta a tentar!')+'</div><div style="margin-top:1rem;display:flex;gap:.75rem"><button class="btn btn-primary" onclick="document.getElementById(\'exame4-config\').style.display=\'block\';document.getElementById(\'exame4-result\').style.display=\'none\'">↺ Novo Exame</button><button class="btn btn-ghost" onclick="showSection4(\'teoria4\',document.querySelector(\'#tabs4 .tab-btn\'))"><i class="ph ph-book-open-text"></i> Rever Teoria</button></div></div>';
 }
 
-// ═══════════════════════════════════════════
 // PROGRESSO
-// ═══════════════════════════════════════════
 function saveProgData4(prefix,data){
   try{var p=JSON.parse(localStorage.getItem('edupt_cap4')||'{}');p[prefix]=data;p['last_updated']=new Date().toLocaleDateString('pt-PT');localStorage.setItem('edupt_cap4',JSON.stringify(p));}catch(e){}
   setTimeout(_progRefreshBars, 80);
@@ -764,91 +674,42 @@ function resetProg4(){
   scores4={};renderProg4();
 }
 
-// ═══════════════════════════════════════════
-// DOWNLOADS
-// ═══════════════════════════════════════════
-function dl4(type){
-  var content='';var filename='';var title='';
-  if(type==='ficha-completa'){title='Ficha de Trabalho Completa — Cap. 4';filename='ficha_completa_cap4_mat7.html';content=buildFichaCompleta4();}
-  else if(type==='teste'){title='Teste de Avaliação — Cap. 4';filename='teste_cap4_mat7.html';content=buildTeste4HTML();}
-  else if(type==='mini-seq'){title='Minitestes 1 e 2 — Sequências';filename='mini_seq_cap4_mat7.html';content=buildMini4HTML([1,2]);}
-  else if(type==='mini-alg'){title='Minitestes 3 e 4 — Álgebra';filename='mini_alg_cap4_mat7.html';content=buildMini4HTML([3,4]);}
-  else if(type==='mini-eq'){title='Minitestes 5 a 8 — Equações';filename='mini_eq_cap4_mat7.html';content=buildMini4HTML([5,6,7,8]);}
-  else if(type==='resumo'){title='Resumo Teórico — Cap. 4';filename='resumo_cap4_mat7.html';content=buildResumo4();}
-  else if(type==='ficha-desen'){title='Ficha de Desenvolvimento — Cap. 4';filename='ficha_desen_cap4_mat7.html';content=buildFichaDesen4();}
-  var wrap='<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>'+title+'</title><style>body{font-family:Montserrat,Georgia,sans-serif;max-width:720px;margin:2rem auto;padding:1.5rem;color:#2a2724;line-height:1.6}h1{font-family:Georgia,serif;font-size:1.5rem;margin-bottom:.25rem;color:#2a2724}h2{font-family:Georgia,serif;font-size:1.15rem;color:#516860;border-bottom:2px solid #edf4f1;padding-bottom:.4rem;margin:1.5rem 0 .75rem}.q{margin-bottom:1.5rem;padding:1rem 1.25rem;border:1px solid #ddd;border-radius:8px;break-inside:avoid}.q p{margin:.2rem 0;font-size:.88rem}.formula{background:#f0eeec;border:1px solid #ccc;border-radius:6px;padding:.5rem 1rem;font-family:\'Courier New\',monospace;margin:.5rem 0;text-align:center}.answer{color:#516860;font-weight:700}.footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #ddd;font-size:.75rem;color:#999;text-align:center}@media print{body{margin:.5cm}.q{page-break-inside:avoid}}</style></head><body>';
-  wrap+='<h1>3ponto14 · Matemática 7.º Ano · Capítulo 4</h1><h2>'+title+'</h2><hr style="margin:1rem 0;border-color:#eee">';
-  wrap+=content;
-  wrap+='<div class="footer">3π · Centro de Estudos · Online e Presencial · 3ponto14</div></body></html>';
-  var blob=new Blob([wrap],{type:'text/html'});
-  htmlToPdfDownload(wrap, filename.replace('.html','.pdf'));
-}
-function buildFichaCompleta4(){
-  var h='';
-  var qs=BANCO4.questoes.concat(BANCO4.teste.slice(0,5));
-  qs.forEach(function(q,i){
-    h+='<div class="q"><p><strong>'+(i+1)+'. '+q.en+'</strong></p>';
-    if(q.opts)q.opts.forEach(function(o){h+='<p>'+o+'</p>';});
-    h+='<p style="color:#999;font-size:.78rem;margin-top:.5rem">Resposta: ___________________</p></div>';
-  });
-  return h;
-}
-function buildTeste4HTML(){
-  var h='<p style="font-size:.82rem;color:#999">Duração: 45 minutos · Avaliação: 100 pontos</p><br>';
-  BANCO4.teste.forEach(function(q,i){
-    h+='<div class="q"><p><strong>'+(i+1)+'. '+q.en.replace(/<[^>]+>/g,'')+'</strong></p>';
-    if(q.opts)q.opts.forEach(function(o){h+='<p>'+o+'</p>';});
-    h+='</div>';
-  });
-  return h;
-}
-function buildMini4HTML(idxs){
-  var h='';
-  idxs.forEach(function(idx){
-    var m=BANCO4.minitestes[idx];if(!m)return;
-    h+='<h2>Miniteste '+idx+'</h2>';
-    m.forEach(function(q,i){
-      h+='<div class="q"><p><strong>'+(i+1)+'. '+q.en+'</strong></p>';
-      q.opts.forEach(function(o){h+='<p>'+o+'</p>';});
-      h+='</div>';
-    });
-  });
-  return h;
-}
-function buildResumo4(){
-  return '<h2>1. Sequências e Termo Geral</h2>'+
-'<p>Uma <strong>sequência numérica</strong> é uma lista ordenada de números. O <strong>termo geral a<sub>n</sub></strong> permite calcular qualquer termo a partir da posição n.</p>'+
-'<div class="formula">Sequência aritmética: a<sub>n</sub> = a₁ + (n−1)×r</div>'+
-'<p><em>Dica:</em> Calcula a diferença entre termos consecutivos (razão r), depois usa a fórmula.</p>'+
-'<h2>2. Expressões Algébricas</h2>'+
-'<p>Combinação de números, variáveis e operações. <strong>Termos semelhantes</strong> = mesma parte literal.</p>'+
-'<table><tr><th>Expressão</th><th>Coeficiente</th><th>Parte literal</th></tr><tr><td>3x</td><td>3</td><td>x</td></tr><tr><td>−7ab</td><td>−7</td><td>ab</td></tr></table>'+
-'<h2>3. Simplificação</h2>'+
-'<p>Soma coeficientes dos termos semelhantes. <strong>Distributiva:</strong> a(b+c) = ab+ac</p>'+
-'<h2>4. Equações do 1.º Grau</h2>'+
-'<div class="formula">Princípio aditivo: a = b ⟺ a ± k = b ± k</div>'+
-'<div class="formula">Princípio multiplicativo: a = b ⟺ a·k = b·k (k ≠ 0)</div>'+
-'<p><strong>Estratégia:</strong> Distribuir → Passar incógnitas para um lado → Isolar x → Verificar</p>'+
-'<h2>5. Classificação de Equações</h2>'+
-'<table><tr><th>Tipo</th><th>Forma</th><th>Solução</th></tr>'+
-'<tr><td><strong>PD</strong></td><td>cx=k (c≠0)</td><td>S={k/c}</td></tr>'+
-'<tr><td><strong>I</strong></td><td>0x=k (k≠0)</td><td>S=∅</td></tr>'+
-'<tr><td><strong>PI</strong></td><td>0x=0</td><td>S=ℝ</td></tr></table>'+
-'<h2>6. Resolução de Problemas</h2>'+
-'<p>1) Definir variável → 2) Traduzir em equação → 3) Resolver → 4) Verificar no contexto</p>';
-}
-function buildFichaDesen4(){
-  return '<h2>Ficha de Desenvolvimento — Desafios do Capítulo 4</h2>'+
-'<p style="color:#666;margin-bottom:1.5rem"><em>Problemas avançados — preparação para provas de aferição</em></p>'+
-'<div class="q"><p><strong>1.</strong> Termo geral: a) 3,7,11,15,… b) 10,15,20,25,… c) −6,−8,−10,… d) 1,4,9,16,25,… e) 1/2,2/3,3/4,…</p></div>'+
-'<div class="q"><p><strong>2.</strong> Duas expressões cuja soma seja: Expressões: 3x+1, −4x+2, x−3, 2x+5, −x−2, x+8. a) −x+3 b) x+8 c) 0</p></div>'+
-'<div class="q"><p><strong>3.</strong> Resolve e classifica: a) x+4=12 b) 5x−4=−x c) 5x+3=x+3 d) 3a+2=5a+2−2a e) 2(x−3)=4x−6−2x f) 3(2x+1)−x=5x+3</p></div>'+
-'<div class="q"><p><strong>4.</strong> Auscultadores: fio de x cm e x+10 cm. Distância máxima 80 cm. Determina x.</p></div>'+
-'<div class="q"><p><strong>5.</strong> Dois pares consecutivos: dobro do menor = soma do maior com 10.</p></div>'+
-'<div class="q"><p><strong>6. ★</strong> O João tem x anos. A mãe tem o triplo. Daqui a 12 anos, a mãe terá o dobro do João. Calcula as idades.</p></div>'+
-'<div class="q"><p><strong>7. ★</strong> Retângulo: perímetro 56 cm, comprimento excede largura em 8 cm. Dimensões e área.</p></div>'+
-'<div class="q"><p><strong>8. ★</strong> Soma de 3 ímpares consecutivos = 81. Determina os números.</p></div>'+
-'<div class="q"><p><strong>9. ★</strong> Loja: desconto 20% + 5€ extra. Preço final = 35€. Preço original?</p></div>'+
-'<div class="q"><p><strong>10. ★★</strong> Para que valores de a e b, ax+b=2x+6 é: a) PD? b) Impossível? c) PI?</p></div>';
-}
+// ── Topic grid data ──
+var _c4Teoria = "showSection4('teoria4',document.querySelector('#tabs4 .tab-btn:nth-child(2)'))";
+var _cap4Topics = [
+  {id:'tr4-1', num:'01', title:'Sequências — Termo Geral', open:true, subs:[
+    {onclick:_c4Teoria, label:'Definição e termo geral', icon:'ph-book-open-text'},
+    {onclick:_c4Teoria, label:'Sequências aritméticas', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-2', num:'02', title:'Problemas com o Termo Geral', subs:[
+    {onclick:_c4Teoria, label:'Aplicar aₙ a contextos reais', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-3', num:'03', title:'Expressões Algébricas', subs:[
+    {onclick:_c4Teoria, label:'Monómios e polinómios', icon:'ph-book-open-text'},
+    {onclick:_c4Teoria, label:'Valor numérico', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-4', num:'04', title:'Simplificação de Expressões', subs:[
+    {onclick:_c4Teoria, label:'Reduzir termos semelhantes', icon:'ph-book-open-text'},
+    {onclick:_c4Teoria, label:'Expressão do perímetro/área', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-5', num:'05', title:'Equações — Conceitos Fundamentais', subs:[
+    {onclick:_c4Teoria, label:'1.º grau, incógnita, solução', icon:'ph-book-open-text'},
+    {onclick:_c4Teoria, label:'Verificar soluções', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-6', num:'06', title:'Princípios de Equivalência', subs:[
+    {onclick:_c4Teoria, label:'Adição/subtração de membros', icon:'ph-book-open-text'},
+    {onclick:_c4Teoria, label:'Multiplicação/divisão', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-7', num:'07', title:'Classificação de Equações', subs:[
+    {onclick:_c4Teoria, label:'PD / Impossível / PI', icon:'ph-book-open-text'}
+  ]},
+  {id:'tr4-8', num:'08', title:'Problemas com Equações', subs:[
+    {onclick:_c4Teoria, label:'Traduzir enunciado → equação', icon:'ph-book-open-text'},
+    {onclick:_c4Teoria, label:'Resolver e verificar', icon:'ph-book-open-text'}
+  ]}
+];
+(function(){
+  var el = document.getElementById('cap4-topics-grid');
+  if (el) el.innerHTML = _tplTopicGrid(_cap4Topics);
+})()
 

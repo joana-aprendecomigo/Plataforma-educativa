@@ -7,6 +7,105 @@ var _mat7Subtemas = {
   4: ['Sequências e termo geral', 'Expressões algébricas', 'Simplificação', 'Equações do 1.º grau', 'Inequações']
 };
 
+// ═══ CAP SELECTOR BUILDER — generates chapter/subtema selector HTML ═══
+var _capMeta = [
+  {n:1, icon:'±', label:'Cap. 1 · Inteiros'},
+  {n:2, icon:'½', label:'Cap. 2 · Racionais'},
+  {n:3, icon:'<i class="ph ph-triangle"></i>', label:'Cap. 3 · Geometria'},
+  {n:4, icon:'𝑥', label:'Cap. 4 · Álgebra'}
+];
+// Short subtema labels per chapter (mat7 tabs use these)
+var _capStShort = {
+  1: ['Conjunto ℤ','Valor absoluto','Adição','Subtração','Parênteses'],
+  2: ['Comparação','Adição/Subt.','Percentagens','Potências','Not. Científica'],
+  3: ['Ângulos','Triângulos','Semelhança','Áreas','Circunferência'],
+  4: ['Sequências','Expressões','Simplificação','Equações','Inequações']
+};
+// Fichas panel uses slightly different labels
+var _capStFichas = {
+  1: ['Conjunto ℤ','Valor absoluto','Adição','Subtração','Parênteses'],
+  2: ['Comparação','Adição/Subtração','Percentagens','Potências','Not. Científica'],
+  3: ['Ângulos internos','Ângulos externos','Retas paralelas','Quadriláteros','Áreas'],
+  4: ['Sequências','Expressões','Equações','Problemas']
+};
+
+/**
+ * Build cap selector HTML.
+ * @param {string} tab - tab identifier (e.g. 'resumo', 'jogos')
+ * @param {object} opts - { type:'mat7tab'|'gf'|'simple', panelId:string, caps:[1,2,3,4], stData:object, numbered:boolean }
+ */
+function _buildCapSelHTML(tab, opts) {
+  var type = opts.type || 'mat7tab';
+  var panelId = opts.panelId || tab;
+  var caps = opts.caps || [1,2,3,4];
+  var stData = opts.stData || _capStShort;
+  var numbered = opts.numbered || false;
+  var h = '';
+  caps.forEach(function(cn, ci) {
+    var m = _capMeta[cn-1];
+    var isFirst = (ci === 0);
+    // Cap button
+    if (type === 'simple') {
+      var handler = opts.handler ? opts.handler.replace('{cap}', cn) : "mat7TabCapClick('"+tab+"',"+cn+",this)";
+      h += '<button class="gf-cap-btn'+(isFirst?' active':'')+'" data-cap="'+cn+'" onclick="'+handler+'">'+m.icon+' '+m.label+'</button>';
+      return;
+    }
+    h += '<div class="gf-cap-block"><div class="gf-cap-row">';
+    if (type === 'gf') {
+      h += '<button class="gf-cap-btn active" data-cap="'+cn+'" onclick="gfToggleCap(this,\''+panelId+'\');gfStToggleTray(this,\''+panelId+'\','+cn+')">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
+    } else {
+      h += '<button class="gf-cap-btn'+(isFirst?' active':'')+'" data-cap="'+cn+'" onclick="mat7TabCapClick(\''+tab+'\','+cn+',this)">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
+    }
+    h += '</div>';
+    // Subtema tray
+    var sts = stData[cn] || [];
+    if (sts.length > 0) {
+      var trayId = type === 'gf' ? 'gf-st-'+cn+'-'+panelId : 'mat7-st-'+cn+'-'+tab;
+      var trayHidden = (type === 'gf' || isFirst) ? '' : ' hidden';
+      h += '<div class="gf-st-tray'+trayHidden+'" id="'+trayId+'"><span class="gf-st-tray-label">Subtemas:</span>';
+      sts.forEach(function(st, si) {
+        var mark = numbered ? '<span class="gf-st-num">'+(si+1)+'</span>' : '<span class="gf-st-check">✓</span>';
+        if (type === 'gf') {
+          h += '<button class="gf-st-chip active" data-cap="'+cn+'" data-st="'+(si+1)+'" onclick="this.classList.toggle(\'active\')">'+mark+st+'</button>';
+        } else {
+          h += '<button class="gf-st-chip active" data-cap="'+cn+'" data-st="'+(si+1)+'" onclick="mat7TabStClick(this,\''+tab+'\','+cn+')">'+mark+st+'</button>';
+        }
+      });
+      // Todos/Nenhum actions
+      if (type === 'gf') {
+        h += '<div class="gf-st-tray-actions"><button class="gf-st-tray-action" onclick="gfStAll(\''+panelId+'\','+cn+',true)">Todos</button><button class="gf-st-tray-action" onclick="gfStAll(\''+panelId+'\','+cn+',false)">Nenhum</button></div>';
+      } else {
+        h += '<div class="gf-st-tray-actions"><button class="gf-st-tray-action" onclick="mat7TabStAll(\''+tab+'\','+cn+',true);mat7TabReload(\''+tab+'\')">Todos</button><button class="gf-st-tray-action" onclick="mat7TabStAll(\''+tab+'\','+cn+',false);mat7TabReload(\''+tab+'\')">Nenhum</button></div>';
+      }
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+  return h;
+}
+
+// Populate all cap selectors on page load
+function _mat7BuildSelectors() {
+  var sets = [
+    {id:'gf-caps-mat7-downloads', tab:'fichas', opts:{type:'gf', panelId:'mat7-downloads', stData:_capStFichas}},
+    {id:'mat7-caps-resumo',      tab:'resumo', opts:{type:'mat7tab'}},
+    {id:'mat7-caps-exercicios',  tab:'exercicios', opts:{type:'mat7tab', numbered:true}},
+    {id:'mat7-caps-minitestes',  tab:'minitestes', opts:{type:'simple'}},
+    {id:'mat7-caps-jogos',       tab:'jogos', opts:{type:'mat7tab'}},
+    {id:'mat7-caps-flashcards',  tab:'flashcards', opts:{type:'mat7tab'}},
+    {id:'mat7-caps-exame',       tab:'exame', opts:{type:'mat7tab'}},
+    {id:'mat7-caps-reta',        tab:'reta', opts:{type:'mat7tab', caps:[1]}},
+    {id:'mat7-caps-quiz',        tab:'quiz', opts:{type:'simple', handler:"qgHubSelectCap({cap},this)"}}
+  ];
+  sets.forEach(function(s) {
+    var el = document.getElementById(s.id);
+    if (el) el.innerHTML = _buildCapSelHTML(s.tab, s.opts);
+  });
+}
+// Auto-run when DOM is ready
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _mat7BuildSelectors);
+else _mat7BuildSelectors();
+
 // Section scroll targets per tab and cap
 var _mat7Targets = {
   resumo:      { 1:'bloco1-resumo', 2:'sec-temas2', 3:'sec-temas3', 4:'sec-temas4' },
@@ -74,12 +173,9 @@ var _mat7InitMap = {
 // Uses DOM move (not clone) so all event handlers stay alive
 var _mat7MovedSections = {}; // track where we moved sections: { tab: [ {el, parent}, ... ] }
 
-
-// ═══════════════════════════════════════════════════════════
 // MULTI-CAP UNIFIED RENDERING
 // When multiple chapters are selected, merge content into one
 // unified component instead of stacking separate sections.
-// ═══════════════════════════════════════════════════════════
 
 var _mat7CapNames = {1:'Cap. 1 · Inteiros', 2:'Cap. 2 · Racionais', 3:'Cap. 3 · Geometria', 4:'Cap. 4 · Álgebra'};
 
@@ -115,7 +211,7 @@ function mat7RenderUnifiedFlashcards(caps, inlineEl) {
   var secFC = document.getElementById('sec-flashcards');
   if (secFC) {
     var h2 = secFC.querySelector('.sec-header h2');
-    if (h2) h2.innerHTML = '<span class="num"><span class="ico"><svg><use href="#ico-layers"/></svg></span></span> Flashcards — ' + caps.length + ' Capítulos';
+    if (h2) h2.innerHTML = '<span class="num"><i class="ph ph-stack"></i></span> Flashcards — ' + caps.length + ' Capítulos';
     var p = secFC.querySelector('.sec-header p');
     if (p) p.textContent = merged.length + ' cartões misturados de ' + caps.length + ' capítulos — com repetição espaçada';
   }
@@ -196,7 +292,7 @@ function mat7RenderUnifiedJogos(caps, inlineEl) {
   var capStr = caps.map(function(c){ return _mat7CapNames[c]; }).join(' + ');
 
   inlineEl.innerHTML = [
-    '<div class="sec-header"><h2><span class="ico ico-sm"><svg><use href="#ico-gamepad"/></svg></span> Jogo do 24 — Multi-Capítulo</h2>',
+    '<div class="sec-header"><h2><i class="ph ph-game-controller"></i> Jogo do 24 — Multi-Capítulo</h2>',
     '<p>Um único jogo com números de ' + capStr + '</p></div>',
     '<div id="j24-wrap-unified"></div>'
   ].join('\n');
@@ -207,7 +303,6 @@ function mat7RenderUnifiedJogos(caps, inlineEl) {
     _j24AutoInit('j24-wrap-unified', level);
   }
 }
-
 
 // ── UNIFIED EXERCÍCIOS ──────────────────────────────────────
 function mat7RenderUnifiedExercicios(caps, inlineEl) {
@@ -280,7 +375,7 @@ function mat7RenderUnifiedExercicios(caps, inlineEl) {
     var levelLabel = level === 'facil' ? 'Fácil' : level === 'dificil' ? 'Difícil' : 'Médio';
 
     var html = [
-      '<div class="sec-header"><h2><span class="ico ico-sm"><svg><use href="#ico-pencil"/></svg></span> Exercícios — ' + capLabels + '</h2>',
+      '<div class="sec-header"><h2><i class="ph ph-pencil-simple"></i> Exercícios — ' + capLabels + '</h2>',
       '<p>' + exercicios.length + ' questões · nível ' + levelLabel + ' · mistura de todos os tipos</p></div>',
       '<div class="level-bar" style="margin-bottom:1.25rem">',
       '  <div class="gen-level-group">',
@@ -332,7 +427,6 @@ function mat7RenderUnifiedExercicios(caps, inlineEl) {
   renderUnifiedQuiz(currentLevel);
 }
 
-
 function mat7LoadInline(tab) {
   var inlineEl = document.getElementById('mat7-inline-' + tab);
   if (!inlineEl) return;
@@ -362,7 +456,6 @@ function mat7LoadInline(tab) {
       return;
     }
   }
-  // ─────────────────────────────────────────────────────────
   
   caps.forEach(function(cap) {
     var secId = (_mat7SecMap[tab] || {})[cap];
@@ -442,7 +535,6 @@ function mat7SwitchTab(tab, btn) {
   else if (_mat7SecMap[tab]) mat7LoadInline(tab);
 }
 
-
 function exModeSwitch(mode) {
   var secEx   = document.getElementById('exmode-section-exercicios');
   var secMini = document.getElementById('exmode-section-minitestes');
@@ -463,30 +555,6 @@ function exModeSwitch(mode) {
   else        { mat7LoadInline('minitestes'); }
 }
 
-function mat7CapSelect(tab, cap, btn) {
-  if (tab === 'resumo') {
-    // Resumo: single-select (theory content is per-chapter)
-    var row = document.getElementById('mat7-caps-' + tab);
-    if (row) row.querySelectorAll('.mat7-cap-btn').forEach(function(b){ b.classList.remove('active'); });
-    if (btn) btn.classList.add('active');
-    _mat7Sel[tab] = cap;
-    mat7RenderSt(tab, cap);
-    mat7RenderResumoInline();
-    return;
-  }
-  // Multi-select toggle for all other tabs
-  if (btn) btn.classList.toggle('active');
-  // Ensure at least one is selected
-  var row = document.getElementById('mat7-caps-' + tab);
-  var anyActive = row && row.querySelector('.mat7-cap-btn.active');
-  if (!anyActive && btn) btn.classList.add('active');
-  // Update subtema row for first active cap
-  var caps = _mat7GetActiveCaps(tab);
-  _mat7Sel[tab] = caps.length === 1 ? caps[0] : caps;
-  mat7RenderSt(tab, caps[0]);
-  // Reload inline content
-  if (_mat7SecMap[tab]) mat7LoadInline(tab);
-}
 
 function mat7RenderSt(tab, cap) {
   var stRow = document.getElementById('mat7-st-' + tab);
@@ -512,14 +580,6 @@ function mat7StSelect(btn, tab) {
 // ═══ TESTES — novo sistema cap+subtema igual ao gerador de fichas ═══
 var _testeDif = 'facil';
 
-function testeSetDif(dif) {
-  _testeDif = dif;
-  ['facil','medio','dificil'].forEach(function(d) {
-    var btn = document.getElementById('tst-dif-' + d);
-    if (btn) btn.classList.toggle('active', d === dif);
-  });
-  testeReloadFromGf();
-}
 
 function testeReloadFromGf() {
   // Read active caps from the new gf-style selector
@@ -660,16 +720,6 @@ function mat7RenderResumoInline() {
   dest.appendChild(clone);
 }
 
-// mat7Go is no longer needed — content loads inline automatically
-// Keep as stub in case anything still references it
-function mat7Go(section) {
-  var tabMap = { questoes:'exercicios', miniteste:'exercicios', teste:'testes', resumo:'resumo', jogos:'jogos', flashcards:'flashcards', exame:'exame' };
-  var tab = tabMap[section] || section;
-  // Switch to the right hub tab and load content
-  var tabBtn = document.querySelector('.mat7-hub-tab[data-tab="' + tab + '"]');
-  mat7SwitchTab(tab, tabBtn);
-}
-
 // Return moved sections for a specific tab
 function mat7ReturnSections(tab) {
   var prevArr = _mat7MovedSections[tab];
@@ -683,14 +733,6 @@ function mat7ReturnSections(tab) {
     });
   }
   _mat7MovedSections[tab] = [];
-}
-
-// Return all moved sections to their original DOM parents
-function mat7ReturnAllSections() {
-  Object.keys(_mat7MovedSections).forEach(function(tab) {
-    mat7ReturnSections(tab);
-  });
-  _mat7MovedSections = {};
 }
 
 // Init subtema rows on load — content is rendered lazily when tab is first opened
@@ -780,14 +822,77 @@ function mat7TabStAll(tab, cap, selectAll) {
   mat7TabReload(tab);
 }
 
-// Obtém os subtemas activos (array de índices 1-based) por cap num tab
-// Retorna [] se todos activos (sem filtro), ou lista de st ids
-function mat7TabGetActiveSts(tab, cap) {
-  var tray = document.getElementById('mat7-st-' + cap + '-' + tab);
-  if (!tray) return [];
-  var all  = tray.querySelectorAll('.gf-st-chip');
-  var active = tray.querySelectorAll('.gf-st-chip.active');
-  if (active.length === all.length) return []; // todos — sem filtro
-  return Array.from(active).map(function(c){ return parseInt(c.dataset.st); });
+// ── Multi-cap selector (mat7.html standalone — no mega.js loaded) ──
+var capitulosSelecionados = [];
+var _TODOS_CAPS = [1, 2, 3, 4];
+
+function updateFAB() {
+  var fab = document.getElementById('mega-fab');
+  var badge = document.getElementById('fab-badge');
+  var n = capitulosSelecionados.length;
+  if (badge) badge.textContent = n;
+  var insideMega = document.getElementById('view-mega') && document.getElementById('view-mega').style.display !== 'none';
+  if (fab) {
+    if (n > 0 && !insideMega) { fab.classList.add('visible'); }
+    else { fab.classList.remove('visible'); }
+  }
+  var btnTodos = document.getElementById('btn-todos');
+  var iconTodos = document.getElementById('btn-todos-icon');
+  if (!btnTodos) return;
+  var allSelected = _TODOS_CAPS.every(function(c){ return capitulosSelecionados.indexOf(c) !== -1; });
+  if (allSelected) {
+    btnTodos.style.background = 'linear-gradient(135deg,var(--c2-mid),var(--c2-deep))';
+    btnTodos.style.color = '#fff';
+    btnTodos.style.borderColor = 'transparent';
+    if (iconTodos) iconTodos.textContent = '\u2713';
+    btnTodos.childNodes[1] && (btnTodos.childNodes[1].textContent = ' Desselecionar Todos');
+  } else {
+    btnTodos.style.background = 'linear-gradient(135deg,var(--c2-base),var(--c2-pale))';
+    btnTodos.style.color = 'var(--c2-deep)';
+    btnTodos.style.borderColor = 'rgba(81,104,96,.25)';
+    if (iconTodos) iconTodos.textContent = '\u2610';
+    btnTodos.childNodes[1] && (btnTodos.childNodes[1].textContent = ' Selecionar Todos os Cap\u00edtulos');
+  }
 }
+
+function toggleCapSel(capNum) {
+  var card = document.getElementById('mat7-cap' + capNum);
+  var chkBox = document.getElementById('chkbox-cap' + capNum);
+  var idx = capitulosSelecionados.indexOf(capNum);
+  if (idx === -1) {
+    capitulosSelecionados.push(capNum);
+    if (chkBox) chkBox.classList.add('checked');
+    if (card) card.classList.add('cap-selected');
+  } else {
+    capitulosSelecionados.splice(idx, 1);
+    if (chkBox) chkBox.classList.remove('checked');
+    if (card) card.classList.remove('cap-selected');
+  }
+  updateFAB();
+}
+
+function selecionarTodos(btn) {
+  var allSelected = _TODOS_CAPS.every(function(c){ return capitulosSelecionados.indexOf(c) !== -1; });
+  if (allSelected) {
+    _TODOS_CAPS.forEach(function(c){
+      capitulosSelecionados.splice(capitulosSelecionados.indexOf(c), 1);
+      var card = document.getElementById('mat7-cap' + c);
+      var chkBox = document.getElementById('chkbox-cap' + c);
+      if (card) card.classList.remove('cap-selected');
+      if (chkBox) chkBox.classList.remove('checked');
+    });
+  } else {
+    _TODOS_CAPS.forEach(function(c){
+      if (capitulosSelecionados.indexOf(c) === -1) {
+        capitulosSelecionados.push(c);
+        var card = document.getElementById('mat7-cap' + c);
+        var chkBox = document.getElementById('chkbox-cap' + c);
+        if (card) card.classList.add('cap-selected');
+        if (chkBox) chkBox.classList.add('checked');
+      }
+    });
+  }
+  updateFAB();
+}
+
 

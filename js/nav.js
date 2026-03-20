@@ -1,27 +1,48 @@
-/* ── Multi-page navigation overrides ──────────────────────────────
-   Loaded after main.js on every page so these definitions win.
-   main.js defines show*View() as DOM show/hide — here we redirect
-   to the corresponding HTML page instead.
+/* ── Multi-page navigation ────────────────────────────────────────
+   Canonical navigation functions for the multi-page app.
+   nav.js is loaded last on every page so these definitions win
+   over any same-named functions in page-specific scripts.
 ─────────────────────────────────────────────────────────────────── */
 
-function showPortalView()     { window.location.href = 'index.html'; }
-function showPortalView2()    { window.location.href = 'index.html'; }
-function showPortalFromMat7() { window.location.href = 'index.html'; }
+/* ── Path helpers ─────────────────────────────────────────────────
+   Detect whether we are inside the mat7/ subdirectory so that all
+   navigation functions resolve paths correctly regardless of the
+   current page location.
+─────────────────────────────────────────────────────────────────── */
+var _inMat7 = window.location.pathname.indexOf('/mat7/') !== -1 ||
+              window.location.pathname.endsWith('/mat7');
+var _rootPath = _inMat7 ? '../' : '';
+var _mat7Path = _inMat7 ? '' : 'mat7/';
 
-function showMat7View()       { window.location.href = 'mat7.html'; }
-function showMat7FromMega()   { window.location.href = 'mat7.html'; }
+/* ── Portal (index.html at root) ── */
+function showPortalView() { window.location.href = _rootPath + 'index.html'; }
+// Backward-compat aliases (all do the same thing)
+var showPortalView2    = showPortalView;
+var showPortalFromMat7 = showPortalView;
 
-function showMathView()       { window.location.href = 'cap1.html'; }
-function showMathView2()      { window.location.href = 'cap2.html'; }
-function showMathView3()      { window.location.href = 'cap3.html'; }
-function showMathView4()      { window.location.href = 'cap4.html'; }
+/* ── Mat7 hub ── */
+function showMat7View() { window.location.href = _mat7Path + 'index.html'; }
+// Backward-compat alias
+var showMat7FromMega = showMat7View;
+
+/* ── Chapter pages ── */
+function showMathView()  { window.location.href = _mat7Path + 'cap1.html'; }
+function showMathView2() { window.location.href = _mat7Path + 'cap2.html'; }
+function showMathView3() { window.location.href = _mat7Path + 'cap3.html'; }
+function showMathView4() { window.location.href = _mat7Path + 'cap4.html'; }
 
 function goToChapter(n) {
-  window.location.href = 'cap' + n + '.html';
+  window.location.href = _mat7Path + 'cap' + n + '.html';
 }
 
 function handleSubj(e, action) {
-  var map = { math7: 'mat7.html', math: 'cap1.html', math2: 'cap2.html', math3: 'cap3.html', math4: 'cap4.html' };
+  var map = {
+    math7: _mat7Path + 'index.html',
+    math:  _mat7Path + 'cap1.html',
+    math2: _mat7Path + 'cap2.html',
+    math3: _mat7Path + 'cap3.html',
+    math4: _mat7Path + 'cap4.html'
+  };
   if (map[action]) window.location.href = map[action];
 }
 
@@ -35,18 +56,21 @@ function showMegaView() {
   });
   if (sel.length === 0) sel = [1,2,3,4]; // default: all
   localStorage.setItem('megaSelectedCaps', JSON.stringify(sel));
-  window.location.href = 'mega.html';
+  window.location.href = _mat7Path + 'mega.html';
 }
 
 // showGeradorFichas — go to mat7 fichas tab
 function showGeradorFichas(capNum) {
   localStorage.setItem('mat7OpenTab', 'fichas');
   if (capNum) localStorage.setItem('mat7GeradorCap', capNum);
-  window.location.href = 'mat7.html';
+  window.location.href = _mat7Path + 'index.html';
 }
 
-// On mat7.html: restore requested tab on load
-if (window.location.pathname.endsWith('mat7.html') || window.location.pathname === '/') {
+// On mat7 hub page: restore requested tab on load
+var _isMat7Hub = window.location.pathname.endsWith('/mat7/index.html') ||
+                 window.location.pathname.endsWith('/mat7/') ||
+                 window.location.pathname === '/';
+if (_isMat7Hub) {
   document.addEventListener('DOMContentLoaded', function() {
     var tab = localStorage.getItem('mat7OpenTab');
     if (tab) {
