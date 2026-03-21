@@ -31,8 +31,8 @@ function gfAction(secId) {
   var capNums = [];
   if (sec) sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b) { capNums.push(parseInt(b.dataset.cap)); });
   capNums.sort(function(a, b) { return a - b; });
-  var capNames = {1:'Inteiros',2:'Racionais',3:'Geometria',4:'\u00c1lgebra'};
-  var capLabels = capNums.map(function(c) { return 'Cap. ' + c + ' \u00b7 ' + (capNames[c]||''); });
+  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções'};
+  var capLabels = capNums.map(function(c) { return capNames[c]||''; });
   var titleShort = capLabels.join(' + ') || 'Ficha';
   var now = new Date().toLocaleDateString('pt-PT');
 
@@ -130,7 +130,7 @@ function gfToggleType(btn) {
   }
 }
 
-var _CAP_NAMES_GF = {1:'Cap. 1 \u2014 Inteiros', 2:'Cap. 2 \u2014 Racionais', 3:'Cap. 3 \u2014 Geometria', 4:'Cap. 4 \u2014 \u00c1lgebra'};
+var _CAP_NAMES_GF = {1:'N\u00fameros Inteiros', 2:'N\u00fameros Racionais', 3:'Geometria', 4:'Equa\u00e7\u00f5es', 5:'Sequ\u00eancias', 6:'Fun\u00e7\u00f5es'};
 
 function _buildSolucoesCapHTML(cap) {
   var S = '<div style="font-family:Georgia,serif;font-size:.88rem;line-height:1.75;color:#1a1a2e">';
@@ -141,7 +141,7 @@ function _buildSolucoesCapHTML(cap) {
 
   if(cap===1){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 1 · Números Inteiros</strong><br><span style="font-size:.8rem;opacity:.75">Todas as respostas com raciocínio detalhado</span></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Números Inteiros</strong><br><span style="font-size:.8rem;opacity:.75">Todas as respostas com raciocínio detalhado</span></div>'
     + G('Ficha Completa · Grupo 1 — Representação de Situações Reais')
     + sol('1.','Temperatura 8° abaixo de zero','−8','Abaixo = negativo; o número inteiro é −8')
     + sol('','Empresa lucrou 500 €','+500','Lucro = ganho = positivo')
@@ -225,7 +225,7 @@ function _buildSolucoesCapHTML(cap) {
   }
   if(cap===2){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 2 · Números Racionais</strong></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Números Racionais</strong></div>'
     + G('Ficha Completa · Grupo 1 — Conjuntos de Números Racionais')
     + sol('1a.','3/2 … ℚ⁺','3/2 ∈ ℚ⁺','3/2 = 1,5 &gt; 0, logo é racional positivo.')
     + sol('1b.','0 … ℤ','0 ∈ ℤ','O zero é inteiro e também racional.')
@@ -273,7 +273,7 @@ function _buildSolucoesCapHTML(cap) {
   }
   if(cap===3){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 3 · Geometria</strong></div>'
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Geometria</strong></div>'
     + G('Ficha Completa · Grupo 1 — Ângulos Internos de Polígonos')
     + sol('1a.','Soma ângulos internos: Triângulo','(3−2)×180° = 180°','Fórmula: (n−2)×180°. Para n=3: (3−2)×180=1×180=180°.')
     + sol('1b.','Hexágono','(6−2)×180° = 720°','(6−2)×180=4×180=720°.')
@@ -306,11 +306,7 @@ function _buildSolucoesCapHTML(cap) {
   }
   if(cap===4){
     return S
-    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Capítulo 4 · Álgebra (Sequências, Expressões e Equações)</strong></div>'
-    + G('Sequências')
-    + sol('','Como identificar o tipo de sequência','Aritmética: diferença constante (r). Geométrica: razão constante (q).','Ex aritmética: 3,7,11,15,… → r=+4. Ex geométrica: 2,6,18,54,… → q=3.')
-    + sol('','Termo geral (aritmética)','tₙ = t₁ + (n−1)×r','Para 3,7,11,…: t₁=3, r=4. t₁₀ = 3+(10−1)×4 = 3+36 = 39.')
-    + sol('','Termo geral (geométrica)','tₙ = t₁ × qⁿ⁻¹','Para 2,6,18,…: t₁=2, q=3. t₅ = 2×3⁴ = 2×81 = 162.')
+    + '<div style="background:#2d3530;color:#fff;border-radius:10px;padding:1rem 1.5rem;margin-bottom:1rem"><strong style="font-size:1rem"><i class="ph ph-key"></i> Soluções Completas — Equações</strong></div>'
     + G('Expressões Algébricas')
     + sol('','Monómio semelhante','Mesma parte literal (mesmas letras e expoentes)','3x²y e −7x²y são semelhantes. 3x²y e 3xy² não são (expoentes diferentes).')
     + sol('','Redução de termos semelhantes','Somam-se os coeficientes','5x + 3x − 2x = (5+3−2)x = 6x &nbsp;|&nbsp; 4a² − a² = 3a²')
@@ -347,7 +343,7 @@ function gfGetDifficulty(secId) {
 
 // ── Sync Gerador de Fichas caps with checkbox selection ──
 function _syncMat7GfCaps() {
-  var capNames = {1:'<i class="ph ph-triangle"></i> Cap. 1 · Inteiros', 2:'½ Cap. 2 · Racionais', 3:'<i class="ph ph-ruler"></i> Cap. 3 · Geometria', 4:'𝑥 Cap. 4 · Álgebra'};
+  var capNames = {1:'<i class="ph ph-triangle"></i> Números Inteiros', 2:'½ Números Racionais', 3:'<i class="ph ph-ruler"></i> Geometria', 4:'𝑥 Equações'};
   var hasCap = false;
   [1,2,3,4].forEach(function(c) {
     var chip = document.getElementById('mat7-gf-cap-chip-' + c);
@@ -964,20 +960,17 @@ function _dinamico4(dif) {
   var ex='', sol='';
 
   if (dif==='facil') {
-    ex+='<h2>Grupo 1 — Sequências</h2>';
-    var start=R.int(1,10),step=R.int(1,6);
-    var seq=[start,start+step,start+2*step,start+3*step,start+4*step];
-    var t8=start+7*step,t10=start+9*step;
-    ex+=_dinamicoRow(1,'Considera a sequência: '+seq.join(', ')+', …<br>'
-      +'a) Qual é a razão? &nbsp;&nbsp; b) Indica o 8.º termo &nbsp;&nbsp; c) Indica o 10.º termo');
-    sol+='<div class="ex"><strong>1.</strong> a) Razão = '+step+' &nbsp; b) t₈ = '+start+' + 7×'+step+' = '+t8+' &nbsp; c) t₁₀ = '+t10+'</div>';
+    ex+='<h2>Grupo 1 — Expressões Algébricas</h2>';
+    var a_f=R.int(2,6),b_f=R.int(1,5),xv_f=R.int(1,5);
+    var val_f=a_f*xv_f+b_f;
+    ex+=_dinamicoRow(1,'a) Escreve a expressão algébrica para «o dobro de um número adicionado de '+b_f+'» &nbsp;&nbsp; b) Calcula o valor numérico de '+a_f+'x + '+b_f+' para x = '+xv_f);
+    sol+='<div class="ex"><strong>1.</strong> a) 2x + '+b_f+' &nbsp; b) '+a_f+'×'+xv_f+' + '+b_f+' = '+val_f+'</div>';
 
-    var startG=R.pick([2,3,1]),ratioG=R.pick([2,3]);
-    var seqG=[startG,startG*ratioG,startG*ratioG*ratioG,startG*Math.pow(ratioG,3),startG*Math.pow(ratioG,4)];
-    ex+=_dinamicoRow(2,'Sequência geométrica: '+seqG.join(', ')+', …<br>a) Qual é a razão? &nbsp;&nbsp; b) Indica o 6.º termo');
-    sol+='<div class="ex"><strong>2.</strong> a) Razão = '+ratioG+' &nbsp; b) t₆ = '+startG+'×'+ratioG+'⁵ = '+startG*Math.pow(ratioG,5)+'</div>';
+    var a2_f=R.int(2,5),b2_f=R.int(1,4);
+    ex+=_dinamicoRow(2,'Traduz para linguagem corrente: '+a2_f+'x + '+b2_f);
+    sol+='<div class="ex"><strong>2.</strong> «A soma do '+(a2_f===2?'dobro':a2_f===3?'triplo':'quádruplo')+' de um número com '+b2_f+'»</div>';
 
-    ex+='<h2>Grupo 2 — Expressões Algébricas Simples</h2>';
+    ex+='<h2>Grupo 2 — Simplificação</h2>';
     var a=R.int(2,8),b=R.int(2,8),c=R.int(1,5);
     ex+=_dinamicoRow(3,'Simplifica:<br>a) '+a+'x + '+b+'x = _____ &nbsp;&nbsp; b) '+a+'x − '+c+'x = _____ &nbsp;&nbsp; c) '+a+'x + '+b+'y − '+c+'x + y = _____');
     sol+='<div class="ex"><strong>3.</strong> a) '+(a+b)+'x &nbsp; b) '+(a-c)+'x &nbsp; c) '+(a-c)+'x + '+(b+1)+'y</div>';
@@ -990,14 +983,11 @@ function _dinamico4(dif) {
     sol+='<div class="ex"><strong>4.</strong> a) x = '+result+'÷'+coef+' = <strong>'+x1+'</strong>. Verif: '+coef+'×'+x1+'='+result+' ✓ &nbsp; b) x = '+res2+'−'+add+' = <strong>'+x2+'</strong>. Verif: '+x2+'+'+add+'='+res2+' ✓</div>';
 
   } else if (dif==='medio') {
-    ex+='<h2>Grupo 1 — Sequências e Termo Geral</h2>';
-    var t1=R.int(2,10),r=R.int(-4,5);
-    if(r===0)r=3;
-    var seq5=[t1,t1+r,t1+2*r,t1+3*r,t1+4*r];
-    ex+=_dinamicoRow(1,'Sequência: '+seq5.join(', ')+', …<br>'
-      +'a) Tipo (aritmética/geométrica) e razão &nbsp;&nbsp; b) Fórmula do termo geral &nbsp;&nbsp; c) t₁₂ = ?');
-    var t12=t1+11*r;
-    sol+='<div class="ex"><strong>1.</strong> a) Aritmética, r = '+r+' &nbsp; b) tₙ = '+t1+' + (n−1)×('+r+') &nbsp; c) t₁₂ = '+t12+'</div>';
+    ex+='<h2>Grupo 1 — Expressões Algébricas</h2>';
+    var a0=R.int(2,6),b0=R.int(1,5),c0=R.int(2,6);
+    ex+=_dinamicoRow(1,'Traduz por uma expressão algébrica:<br>'
+      +'a) O triplo de um número x, diminuído de '+b0+' &nbsp;&nbsp; b) A soma de '+a0+' com o dobro de y &nbsp;&nbsp; c) O quociente de n por '+c0+', aumentado de '+b0);
+    sol+='<div class="ex"><strong>1.</strong> a) 3x − '+b0+' &nbsp; b) '+a0+' + 2y &nbsp; c) n÷'+c0+' + '+b0+'</div>';
 
     ex+='<h2>Grupo 2 — Expressões Algébricas</h2>';
     var a=R.int(2,6),b=R.int(1,5),c=R.int(2,6),d=R.int(1,5);
@@ -1022,10 +1012,13 @@ function _dinamico4(dif) {
     sol+='<div class="ex"><strong>5.</strong> '+c2+'x + '+(c2*add2)+' = '+rhs2+' → '+c2+'x = '+(rhs2-c2*add2)+' → x = <strong>'+v2+'</strong>. Verif: '+c2+'×('+v2+'+'+add2+') = '+c2*(v2+add2)+' = '+rhs2+' ✓</div>';
 
   } else { // difícil
-    ex+='<h2>Grupo 1 — Sequências Complexas</h2>';
-    var a1=R.int(1,5),d1=R.int(2,8);
-    ex+=_dinamicoRow(1,'Numa sequência aritmética, t₃ = '+(a1+2*d1)+' e t₇ = '+(a1+6*d1)+'.<br>a) Determina a razão e o 1.º termo &nbsp;&nbsp; b) Qual é o termo geral? &nbsp;&nbsp; c) Para que valor de n é tₙ = '+(a1+19*d1)+'?');
-    sol+='<div class="ex"><strong>1.</strong> a) r = [('+a1+'+6×'+d1+') − ('+a1+'+2×'+d1+')]÷4 = '+d1+'; t₁ = '+a1+' &nbsp; b) tₙ = '+a1+' + (n−1)×'+d1+' &nbsp; c) n = 20</div>';
+    ex+='<h2>Grupo 1 — Expressões e Monómios</h2>';
+    var a1=R.int(2,5),b1=R.int(1,4),c1=R.int(2,5),d1=R.int(1,4);
+    ex+=_dinamicoRow(1,'Simplifica as expressões:<br>'
+      +'a) '+a1+'x² + '+b1+'x − '+(a1-1)+'x² + '+d1+'x &nbsp;&nbsp; b) '+c1+'(2x − '+b1+') − '+a1+'x &nbsp;&nbsp; c) Identifica os monómios, coeficientes e partes literais em: '+a1+'x²y − '+c1+'xy + '+b1);
+    var simpA=(a1-(a1-1)),simpAx=(b1+d1);
+    var simpB=(2*c1-a1),simpBc=(c1*b1);
+    sol+='<div class="ex"><strong>1.</strong> a) '+simpA+'x² + '+simpAx+'x &nbsp; b) '+simpB+'x − '+simpBc+' &nbsp; c) Monómios: '+a1+'x²y (coef. '+a1+', p.l. x²y), −'+c1+'xy (coef. −'+c1+', p.l. xy), '+b1+' (coef. '+b1+', s/ p.l.)</div>';
 
     ex+='<h2>Grupo 2 — Equações com Frações e Parênteses</h2>';
     var sol2=R.int(2,8);
@@ -1056,9 +1049,132 @@ function _dinamico4(dif) {
   return {ex:ex, sol:sol};
 }
 
+// ── Cap 5 — Sequências ───────────────────────────────────────────────────────
+function _dinamico5(dif) {
+  var R = _RND; var ex = '', sol = '';
+
+  if (dif === 'facil') {
+    ex+='<h2>Grupo 1 — Termo Geral</h2>';
+    var a1=R.int(1,5),d1=R.int(2,6);
+    var seq=[a1,a1+d1,a1+2*d1,a1+3*d1,a1+4*d1];
+    ex+=_dinamicoRow(1,'Considera a sequência: '+seq.join(', ')+', …<br>a) Indica a razão da sequência &nbsp;&nbsp; b) Escreve o termo geral a<sub>n</sub> &nbsp;&nbsp; c) Calcula a<sub>10</sub>');
+    var a10=a1+9*d1;
+    sol+='<div class="ex"><strong>1.</strong> a) r = '+d1+' &nbsp; b) a<sub>n</sub> = '+a1+' + (n−1)×'+d1+' = '+d1+'n + '+(a1-d1)+' &nbsp; c) a<sub>10</sub> = '+a10+'</div>';
+
+    var b1=R.int(2,8),bm=R.int(2,5);
+    ex+=_dinamicoRow(2,'O termo geral de uma sequência é a<sub>n</sub> = '+bm+'n + '+b1+'. Calcula os primeiros 5 termos.');
+    var t1=bm+b1,t2=2*bm+b1,t3=3*bm+b1,t4=4*bm+b1,t5=5*bm+b1;
+    sol+='<div class="ex"><strong>2.</strong> '+t1+', '+t2+', '+t3+', '+t4+', '+t5+'</div>';
+
+    ex+='<h2>Grupo 2 — Problemas</h2>';
+    var sp=R.int(2,6);
+    ex+=_dinamicoRow(3,'Uma formiga avança '+sp+' cm por segundo. Após n segundos, a distância é a<sub>n</sub> = '+sp+'n.<br>a) Que distância percorre em 8 segundos? &nbsp;&nbsp; b) Após quantos segundos percorreu '+(sp*15)+' cm?');
+    sol+='<div class="ex"><strong>3.</strong> a) a<sub>8</sub> = '+sp+'×8 = '+(sp*8)+' cm &nbsp; b) '+sp+'n = '+(sp*15)+' → n = 15 segundos</div>';
+
+  } else if (dif === 'medio') {
+    ex+='<h2>Grupo 1 — Termo Geral e Razão</h2>';
+    var a1=R.int(1,8),d1=R.int(-5,5);
+    if(d1===0)d1=3;
+    var seq=[a1,a1+d1,a1+2*d1,a1+3*d1,a1+4*d1];
+    ex+=_dinamicoRow(1,'Sequência: '+seq.join(', ')+', …<br>a) Tipo (aritmética/geométrica) e razão &nbsp;&nbsp; b) Fórmula do termo geral &nbsp;&nbsp; c) a<sub>12</sub> = ?');
+    var a12=a1+11*d1;
+    sol+='<div class="ex"><strong>1.</strong> a) Aritmética, r = '+d1+' &nbsp; b) a<sub>n</sub> = '+a1+' + (n−1)×('+d1+') &nbsp; c) a<sub>12</sub> = '+a12+'</div>';
+
+    ex+='<h2>Grupo 2 — Identificar o Termo Geral</h2>';
+    var m=R.int(2,5),c=R.int(-3,3);
+    var s2=[m+c,2*m+c,3*m+c,4*m+c,5*m+c];
+    ex+=_dinamicoRow(2,'Escreve o termo geral da sequência: '+s2.join(', ')+', …');
+    sol+='<div class="ex"><strong>2.</strong> a<sub>n</sub> = '+m+'n'+(c>=0?' + '+c:' − '+Math.abs(c))+'</div>';
+
+    ex+='<h2>Grupo 3 — Problema</h2>';
+    var h0=R.int(50,200),rate=R.int(5,20);
+    ex+=_dinamicoRow(3,'Um balão sobe '+rate+' metros por minuto a partir de '+h0+' m de altitude.<br>a) Escreve o termo geral da sequência de altitudes &nbsp;&nbsp; b) Qual a altitude após 10 minutos?');
+    sol+='<div class="ex"><strong>3.</strong> a) a<sub>n</sub> = '+h0+' + '+rate+'n &nbsp; b) a<sub>10</sub> = '+h0+' + '+(rate*10)+' = '+(h0+rate*10)+' m</div>';
+
+  } else {
+    ex+='<h2>Grupo 1 — Sequências Complexas</h2>';
+    var a1=R.int(1,5),d1=R.int(2,8);
+    ex+=_dinamicoRow(1,'Numa sequência aritmética, a<sub>3</sub> = '+(a1+2*d1)+' e a<sub>7</sub> = '+(a1+6*d1)+'.<br>a) Determina a razão e o 1.º termo &nbsp;&nbsp; b) Qual é o termo geral? &nbsp;&nbsp; c) Para que valor de n é a<sub>n</sub> = '+(a1+19*d1)+'?');
+    sol+='<div class="ex"><strong>1.</strong> a) r = '+d1+'; a<sub>1</sub> = '+a1+' &nbsp; b) a<sub>n</sub> = '+a1+' + (n−1)×'+d1+' &nbsp; c) n = 20</div>';
+
+    ex+='<h2>Grupo 2 — Soma de Termos</h2>';
+    var n1=R.int(5,15),t1=R.int(1,5),r1=R.int(2,5);
+    var an=t1+(n1-1)*r1;
+    var soma=n1*(t1+an)/2;
+    ex+=_dinamicoRow(2,'Calcula a soma dos primeiros '+n1+' termos da sequência aritmética com a<sub>1</sub> = '+t1+' e razão '+r1+'.');
+    sol+='<div class="ex"><strong>2.</strong> a<sub>'+n1+'</sub> = '+t1+' + '+(n1-1)+'×'+r1+' = '+an+'. S<sub>'+n1+'</sub> = '+n1+'×('+t1+'+'+an+')/2 = <strong>'+soma+'</strong></div>';
+
+    ex+='<h2>Grupo 3 — Problema Avançado</h2>';
+    var total=R.int(30,60);
+    ex+=_dinamicoRow(3,'Os primeiros n termos de uma sequência aritmética com a<sub>1</sub>=1 e r=2 somam '+total+'. Determina n.');
+    sol+='<div class="ex"><strong>3.</strong> S<sub>n</sub> = n(1+2n−1)/2 = n² = '+total+'. n = √'+total+'. Verifica se n é inteiro.</div>';
+  }
+
+  return {ex:ex, sol:sol};
+}
+
+// ── Cap 6 — Funções ───────────────────────────────────────────────────────────
+function _dinamico6(dif) {
+  var R = _RND; var ex = '', sol = '';
+
+  if (dif === 'facil') {
+    ex += '<h2>Grupo 1 — Referencial Cartesiano</h2>';
+    var x1=R.int(1,6),y1=R.int(1,6);
+    ex += _dinamicoRow(1,'Representa no referencial os pontos A('+x1+', '+y1+'), B(−'+x1+', '+y1+') e C('+x1+', −'+y1+'). Indica o quadrante de cada ponto.');
+    sol += '<div class="ex"><strong>1.</strong> A('+x1+', '+y1+'): 1.º Q &nbsp; B(−'+x1+', '+y1+'): 2.º Q &nbsp; C('+x1+', −'+y1+'): 4.º Q</div>';
+
+    ex += '<h2>Grupo 2 — Conceito de Função</h2>';
+    var k=R.int(2,5);
+    ex += _dinamicoRow(2,'A função f é definida por f(x) = '+k+'x. Calcula f(0), f(1), f(3) e f(−2).');
+    sol += '<div class="ex"><strong>2.</strong> f(0) = 0 &nbsp; f(1) = '+k+' &nbsp; f(3) = '+(3*k)+' &nbsp; f(\u22122) = '+(-2*k)+'</div>';
+
+    ex += '<h2>Grupo 3 — Proporcionalidade Direta</h2>';
+    var kp=R.int(2,6),xp=R.int(3,10);
+    ex += _dinamicoRow(3,'Numa tabela: x = '+xp+', y = '+(kp*xp)+'. Confirma que y = kx e determina k. Depois calcula y para x = '+(xp+2)+'.');
+    sol += '<div class="ex"><strong>3.</strong> k = '+(kp*xp)+'/'+xp+' = '+kp+' &nbsp; Para x = '+(xp+2)+': y = '+kp+'×'+(xp+2)+' = '+(kp*(xp+2))+'</div>';
+
+  } else if (dif === 'medio') {
+    ex += '<h2>Grupo 1 — Referencial e Simétricos</h2>';
+    var a=R.int(1,5),b=R.int(1,5);
+    ex += _dinamicoRow(1,'Dado o ponto P('+a+', '+b+'): a) Indica o seu simétrico em relação ao eixo Ox &nbsp;&nbsp; b) Em relação ao eixo Oy &nbsp;&nbsp; c) Em relação à origem O.');
+    sol += '<div class="ex"><strong>1.</strong> a) ('+a+', −'+b+') &nbsp; b) (−'+a+', '+b+') &nbsp; c) (−'+a+', −'+b+')</div>';
+
+    ex += '<h2>Grupo 2 — Gráfico de Função</h2>';
+    var m=R.int(1,4),cb=R.int(-3,3);
+    var y2=2*m+cb;
+    ex += _dinamicoRow(2,'Traça o gráfico de f(x) = '+m+'x'+(cb>=0?' + '+cb:' − '+Math.abs(cb))+'. Indica a ordenada na origem e calcula f(2).');
+    sol += '<div class="ex"><strong>2.</strong> Ordenada na origem: b = '+cb+'. f(2) = '+m+'×2'+(cb>=0?'+':'')+''+cb+' = '+y2+'</div>';
+
+    ex += '<h2>Grupo 3 — Proporcionalidade Direta</h2>';
+    var x3=R.int(4,9),y3=R.int(8,30);
+    ex += _dinamicoRow(3,'O gráfico de y = kx passa pelo ponto ('+x3+', '+y3+'). Determina k e calcula y para x = '+(x3+3)+'.');
+    sol += '<div class="ex"><strong>3.</strong> k = '+y3+'/'+x3+' = '+(y3/x3).toFixed(1)+'. Para x = '+(x3+3)+': y = '+(y3/x3*(x3+3)).toFixed(1)+'</div>';
+
+  } else {
+    ex += '<h2>Grupo 1 — Funções e Gráficos</h2>';
+    var m=R.int(2,5),b=R.int(-4,4);
+    ex += _dinamicoRow(1,'A função f(x) = '+m+'x'+(b>=0?' + '+b:' − '+Math.abs(b))+': a) É crescente ou decrescente? b) Calcula o zero da função. c) Qual é a ordenada na origem?');
+    var zero = -b/m;
+    sol += '<div class="ex"><strong>1.</strong> a) Crescente (m = '+m+' > 0). b) '+m+'x'+(b>=0?'+':'')+''+b+' = 0 → x = '+zero.toFixed(1)+' c) b = '+b+'</div>';
+
+    ex += '<h2>Grupo 2 — Proporcionalidade e Contexto</h2>';
+    var kc=R.int(3,8),xc=R.int(5,12);
+    ex += _dinamicoRow(2,'Um táxi cobra '+kc+' €/km. a) Escreve a função custo y = f(x). b) Quanto custa uma viagem de '+xc+' km? c) Para que distância o custo é '+(kc*20)+' €?');
+    sol += '<div class="ex"><strong>2.</strong> a) y = '+kc+'x &nbsp; b) y = '+kc+'×'+xc+' = '+(kc*xc)+' € &nbsp; c) '+kc+'x = '+(kc*20)+' → x = 20 km</div>';
+
+    ex += '<h2>Grupo 3 — Interseção de Retas</h2>';
+    var m1=R.int(1,3),b1=R.int(1,4),m2=m1+R.int(1,2),b2=b1-R.int(1,3);
+    ex += _dinamicoRow(3,'Determina o ponto de interseção de f₁(x) = '+m1+'x + '+b1+' e f₂(x) = '+m2+'x'+(b2>=0?' + '+b2:' − '+Math.abs(b2))+'.');
+    var xi=(b1-b2)/(m2-m1), yi=m1*xi+b1;
+    sol += '<div class="ex"><strong>3.</strong> '+m1+'x + '+b1+' = '+m2+'x'+(b2>=0?'+':'')+''+b2+' → x = '+xi.toFixed(1)+' → y = '+yi.toFixed(1)+'. Ponto: ('+xi.toFixed(1)+', '+yi.toFixed(1)+')</div>';
+  }
+
+  return { ex: ex, sol: sol };
+}
+
 // ── Dispatch helper for _dinamicoN ───────────────────────────────────────────
 function _dinamico(cap, dif) {
-  var fns = { 1: _dinamico1, 2: _dinamico2, 3: _dinamico3, 4: _dinamico4 };
+  var fns = { 1: _dinamico1, 2: _dinamico2, 3: _dinamico3, 4: _dinamico4, 5: _dinamico5, 6: _dinamico6 };
   return fns[cap] ? fns[cap](dif) : { ex: '', sol: '' };
 }
 
@@ -1186,15 +1302,14 @@ function _gfSubtema3(st, dif, n) {
 function _gfSubtema4(st, dif, n) {
   var R = _RND; var ex = '', sol = '';
   function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
-  var titles={1:'Sequências e Termo Geral',2:'Expressões Algébricas',3:'Equações do 1.º Grau',4:'Problemas com Equações'};
+  var titles={1:'Expressões Algébricas',2:'Simplificação de Expressões',3:'Equações do 1.º Grau',4:'Problemas com Equações'};
   ex+='<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+titles[st]+'</h3>';
   for (var i=1;i<=n;i++) {
     if (st===1) {
-      var t1=R.int(2,10),r=R.int(2,6);
-      var seq=[t1,t1+r,t1+2*r,t1+3*r,t1+4*r];
-      var t8=t1+7*r,t12=t1+11*r;
-      ex+=row(i,'Sequência aritmética: '+seq.join(', ')+', …&nbsp;&nbsp; a) Razão = _____&nbsp; b) 8.º termo = _____&nbsp; c) Fórmula: tₙ = _____&nbsp; d) t₁₂ = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) r='+r+'&nbsp; b) '+t8+'&nbsp; c) tₙ='+t1+'+(n−1)×'+r+'&nbsp; d) '+t12+'</div>';
+      var a1=R.int(2,7),b1=R.int(1,5),xv1=R.int(1,5);
+      var val1=a1*xv1+b1;
+      ex+=row(i,'a) Escreve a expressão algébrica para «o '+(['dobro','triplo','quádruplo'])[R.int(0,2)]+' de x adicionado de '+b1+'» = _____&nbsp;&nbsp; b) Calcula o valor numérico de '+a1+'x + '+b1+' para x = '+xv1+' = _____');
+      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+a1+'x + '+b1+'</strong>&nbsp; b) '+a1+'×'+xv1+'+'+b1+' = <strong>'+val1+'</strong></div>';
     } else if (st===2) {
       var a=R.int(2,7),b=R.int(1,5),c=R.int(2,7),d=R.int(1,5);
       var xv=R.neg(1,4),yv=R.neg(1,4);
@@ -1321,8 +1436,8 @@ function gfDownload(secId) {
     sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b){ capNums.push(parseInt(b.dataset.cap)); });
   }
   capNums.sort(function(a,b){return a-b;});
-  var capNames = {1:'Inteiros',2:'Racionais',3:'Geometria',4:'Álgebra'};
-  var capLabels = capNums.map(function(c){ return 'Cap. '+c+' · '+(capNames[c]||''); });
+  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções'};
+  var capLabels = capNums.map(function(c){ return capNames[c]||''; });
   var titleShort = capLabels.join(' + ') || 'Ficha';
   var docTitle = '3ponto14 · Matemática 7.º Ano · ' + titleShort;
   var now = new Date().toLocaleDateString('pt-PT');
@@ -1394,8 +1509,8 @@ function gfDownloadHTML(secId) {
   var capNums = [];
   if (sec) sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b){ capNums.push(parseInt(b.dataset.cap)); });
   capNums.sort(function(a,b){ return a-b; });
-  var capNames = {1:'Inteiros',2:'Racionais',3:'Geometria',4:'Álgebra'};
-  var capLabels = capNums.map(function(c){ return 'Cap. '+c+' · '+(capNames[c]||''); });
+  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções'};
+  var capLabels = capNums.map(function(c){ return capNames[c]||''; });
   var titleShort = capLabels.join(' + ') || 'Ficha';
   var docTitle = '3ponto14 · Matemática 7.º Ano · ' + titleShort;
   var now = new Date().toLocaleDateString('pt-PT');
@@ -1436,7 +1551,7 @@ function gfDownloadHTML(secId) {
 // EDUPT — ERROR TRACKER  (registo persistente de erros por questão)
 const ErrorTracker = (function(){
   const KEY = 'edupt_errors_v1';
-  const CAP_LABELS = {cap1:'Cap. 1',cap2:'Cap. 2',cap3:'Cap. 3',cap4:'Cap. 4'};
+  const CAP_LABELS = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'};
   const SEC_LABELS = {q:'Questões-aula',m:'Miniteste',t:'Teste',rel:'Relâmpago',vf:'V/F'};
 
   function _load(){

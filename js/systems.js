@@ -647,17 +647,29 @@ function _gQuestionPool(cap, level) {
       {q:'Área paralelogramo base=7, alt=3 = ?', opts:['21','10','42','20'], ans:0},
       {q:'Polígono com 3 lados tem soma interna de?', opts:['180°','360°','90°','270°'], ans:0},
     ],
-    4: [ // Álgebra
-      {q:'Se aₙ = 2n+1, a₄ = ?', opts:['9','7','8','10'], ans:0},
+    4: [ // Equações
       {q:'3x + 5 = 14, x = ?', opts:['3','4','2','5'], ans:0},
       {q:'2x − 4 = 6, x = ?', opts:['5','2','4','3'], ans:0},
       {q:'Simplifica: 4x − x = ?', opts:['3x','4x','x','5x'], ans:0},
-      {q:'Se aₙ = 3n−2, a₅ = ?', opts:['13','15','10','12'], ans:0},
       {q:'7 − 2x = 1, x = ?', opts:['3','4','2','6'], ans:0},
       {q:'Valor de 2x²−1 para x=3?', opts:['17','11','5','19'], ans:0},
       {q:'Reduz: 5a + 3b − 2a − b = ?', opts:['3a+2b','7a+4b','3a+4b','2a+2b'], ans:0},
       {q:'Equação impossível: 2x+3=2x+?', opts:['5','3','0','2x'], ans:0},
+      {q:'x + 5 = −2, x = ?', opts:['−7','3','7','−3'], ans:0},
+      {q:'5x = 20, x = ?', opts:['4','5','3','100'], ans:0},
+      {q:'Perímetro pentágono regular = 15, lado = ?', opts:['3','5','10','15'], ans:0},
+    ],
+    5: [ // Sequências
+      {q:'Se aₙ = 2n+1, a₄ = ?', opts:['9','7','8','10'], ans:0},
+      {q:'Se aₙ = 3n−2, a₅ = ?', opts:['13','15','10','12'], ans:0},
       {q:'Razão da sequência: 5, 8, 11, 14…?', opts:['3','2','4','5'], ans:0},
+      {q:'Se aₙ = 4n−3, a₁₀ = ?', opts:['37','40','33','43'], ans:0},
+      {q:'Sequência: 2, 6, 18, 54… Razão = ?', opts:['3','4','2','6'], ans:0},
+      {q:'Se aₙ = n², a₅ = ?', opts:['25','10','20','15'], ans:0},
+      {q:'Seq. aritmética: 1, 4, 7, 10… a₈ = ?', opts:['22','25','19','28'], ans:0},
+      {q:'Se aₙ = −2n+10, a₃ = ?', opts:['4','6','8','16'], ans:0},
+      {q:'Quantos termos: 1, 3, 5, …, 99?', opts:['49','50','51','99'], ans:0},
+      {q:'Se aₙ = 5n, a₆ = ?', opts:['30','25','35','20'], ans:0},
     ],
   };
   // Multi-cap: mix
@@ -807,17 +819,37 @@ var profAnswers = {
       {q:'8', r:'65,12 cm²', expl:'Paralelogramo: 8×5 = 40. Semicírculo: π×4²/2 = 25,12. Total: 65,12 cm².'}
     ]
   },
-  4: { // Cap 4 - Sequências, Expressões e Equações
-    titulo: 'Sequências, Expressões Algébricas e Equações — 7.º Ano',
+  4: { // Cap 4 - Equações
+    titulo: 'Expressões Algébricas e Equações — 7.º Ano',
     respostas: [
-      {q:'Termo geral', r:'Encontrar a regra que dá o n-ésimo termo', expl:'Ex: 2, 5, 8, 11… → aₙ = 3n − 1. Verificar: a₁ = 3(1)−1 = 2 ✓'},
       {q:'Expressões algébricas', r:'Simplificar juntando termos semelhantes', expl:'Ex: 3x + 2y − x + 5y = 2x + 7y. Só se juntam termos com a mesma parte literal.'},
       {q:'Equações 1.º grau', r:'Isolar a incógnita: passar termos, dividir pelo coeficiente', expl:'Ex: 2x + 3 = 11 → 2x = 8 → x = 4. Verificação: 2(4)+3 = 11 ✓.'},
       {q:'Classificação', r:'Possível determinada (1 solução) | Impossível (0 soluções) | Indeterminada (∞ soluções)', expl:'PD: 2x = 6 → x=3 | PI: 0x = 5 (impossível) | PID: 0x = 0 (qualquer x).'}
     ],
     teste_respostas: [
-      {q:'Sequências', r:'Identificar padrão, escrever termo geral, calcular termos', expl:'Verificar sempre substituindo n = 1, 2, 3 para confirmar.'},
       {q:'Equações', r:'Resolver passo a passo mostrando todas as transformações', expl:'IAVE exige: cada passo justificado. Resposta sem desenvolvimento = 0 pontos.'}
+    ]
+  },
+  5: { // Cap 5 - Sequências
+    titulo: 'Sequências e Termo Geral — 7.º Ano',
+    respostas: [
+      {q:'Termo geral', r:'Encontrar a regra que dá o n-ésimo termo', expl:'Ex: 2, 5, 8, 11… → aₙ = 3n − 1. Verificar: a₁ = 3(1)−1 = 2 ✓'},
+      {q:'Sequências aritméticas', r:'Diferença constante entre termos consecutivos', expl:'aₙ = a₁ + (n−1)×r. Verificar sempre com n=1,2,3.'},
+      {q:'Problemas', r:'Modelar situações reais com sequências', expl:'Identificar padrão, escrever termo geral, resolver para n.'}
+    ],
+    teste_respostas: [
+      {q:'Sequências', r:'Identificar padrão, escrever termo geral, calcular termos', expl:'Verificar sempre substituindo n = 1, 2, 3 para confirmar.'}
+    ]
+  },
+  6: { // Cap 6 - Funções
+    titulo: 'Funções — 7.º Ano',
+    respostas: [
+      {q:'Referencial cartesiano', r:'Par ordenado (x, y): abcissa x, ordenada y', expl:'Mover x na horizontal, y na vertical a partir da origem.'},
+      {q:'Função', r:'A cada x do domínio corresponde exatamente um y', expl:'Verificar: um x não pode ter duas imagens diferentes.'},
+      {q:'Proporcionalidade direta', r:'y = kx, com k constante de proporcionalidade', expl:'Gráfico: reta que passa pela origem. k = y/x é sempre igual.'}
+    ],
+    teste_respostas: [
+      {q:'Funções', r:'Identificar domínio, imagem, expressão analítica e gráfico', expl:'Atenção à diferença entre função e relação não-funcional.'}
     ]
   }
 };
@@ -878,26 +910,37 @@ var searchIdx=[
   {t:'Números Inteiros — Conjunto ℤ',k:'inteiros conjuntos Z ordenação',c:1,a:'math'},
   {t:'Valor Absoluto e Simétrico',k:'valor absoluto simétrico módulo',c:1,a:'math'},
   {t:'Adição e Subtração de Inteiros',k:'adição subtração inteiros soma',c:1,a:'math'},
-  {t:'Questões-aula Cap. 1',k:'questões exercícios quiz inteiros',c:1,a:'math'},
-  {t:'Minitestes Cap. 1',k:'miniteste teste rápido',c:1,a:'math'},
-  {t:'Jogos Cap. 1',k:'jogos interativo',c:1,a:'math'},
+  {t:'Questões-aula Inteiros',k:'questões exercícios quiz inteiros',c:1,a:'math'},
+  {t:'Minitestes Inteiros',k:'miniteste teste rápido',c:1,a:'math'},
+  {t:'Jogos Inteiros',k:'jogos interativo',c:1,a:'math'},
   {t:'Números Racionais — Frações',k:'racionais frações Q comparar',c:2,a:'math2'},
   {t:'Percentagens',k:'percentagem desconto aumento',c:2,a:'math2'},
   {t:'Potências e Notação Científica',k:'potências notação científica expoente',c:2,a:'math2'},
-  {t:'Questões-aula Cap. 2',k:'questões exercícios racionais',c:2,a:'math2'},
+  {t:'Questões-aula Racionais',k:'questões exercícios racionais',c:2,a:'math2'},
   {t:'Geometria — Ângulos',k:'geometria ângulos graus triângulo',c:3,a:'math3'},
   {t:'Quadriláteros e Áreas',k:'quadriláteros área perímetro retângulo',c:3,a:'math3'},
-  {t:'Questões-aula Cap. 3',k:'questões geometria',c:3,a:'math3'},
-  {t:'Sequências e Termo Geral',k:'sequência termo geral sucessão aritmética',c:4,a:'math4'},
+  {t:'Questões-aula Geometria',k:'questões geometria',c:3,a:'math3'},
+  {t:'Sequências e Termo Geral',k:'sequência termo geral sucessão aritmética',c:5,a:'math5'},
   {t:'Expressões Algébricas',k:'expressão algébrica monómio variável simplificar',c:4,a:'math4'},
   {t:'Equações do 1.º Grau',k:'equação resolver incógnita primeiro grau',c:4,a:'math4'},
   {t:'Classificação de Equações',k:'classificar possível impossível indeterminada PD PI',c:4,a:'math4'},
-  {t:'Questões-aula Cap. 4',k:'questões equações sequências',c:4,a:'math4'},
-  {t:'Downloads Cap. 1',k:'download ficha PDF imprimir inteiros',c:1,a:'math'},
-  {t:'Downloads Cap. 2',k:'download ficha PDF racionais',c:2,a:'math2'},
-  {t:'Downloads Cap. 3',k:'download ficha PDF geometria',c:3,a:'math3'},
-  {t:'Downloads Cap. 4',k:'download ficha PDF equações',c:4,a:'math4'},
-  {t:'Flashcards Cap. 4',k:'flashcards cartões revisão equações',c:4,a:'math4'},
+  {t:'Questões-aula Equações',k:'questões equações sequências',c:4,a:'math4'},
+  {t:'Downloads Inteiros',k:'download ficha PDF imprimir inteiros',c:1,a:'math'},
+  {t:'Downloads Racionais',k:'download ficha PDF racionais',c:2,a:'math2'},
+  {t:'Downloads Geometria',k:'download ficha PDF geometria',c:3,a:'math3'},
+  {t:'Downloads Equações',k:'download ficha PDF equações',c:4,a:'math4'},
+  {t:'Flashcards Equações',k:'flashcards cartões revisão equações',c:4,a:'math4'},
+  {t:'Sequências — Teoria',k:'sequência termo geral aritmética geométrica razão',c:5,a:'math5'},
+  {t:'Questões Sequências',k:'questões exercícios sequências termo',c:5,a:'math5'},
+  {t:'Downloads Sequências',k:'download ficha PDF sequências',c:5,a:'math5'},
+  {t:'Flashcards Sequências',k:'flashcards cartões revisão sequências',c:5,a:'math5'},
+  {t:'Funções — Referencial Cartesiano',k:'funções referencial cartesiano eixos abcissa ordenada ponto',c:6,a:'math6'},
+  {t:'Funções — Conceito',k:'função domínio contradomínio imagem f(x) relação',c:6,a:'math6'},
+  {t:'Funções — Gráficos',k:'gráfico função reta linear proporcionalidade',c:6,a:'math6'},
+  {t:'Proporcionalidade Direta',k:'proporcionalidade direta y=kx constante razão',c:6,a:'math6'},
+  {t:'Questões Funções',k:'questões exercícios funções gráficos',c:6,a:'math6'},
+  {t:'Downloads Funções',k:'download ficha PDF funções',c:6,a:'math6'},
+  {t:'Flashcards Funções',k:'flashcards cartões revisão funções',c:6,a:'math6'},
   {t:'Exame Simulado',k:'exame simulado tempo cronómetro',c:1,a:'math'}
 ];
 var _searchTimer;
@@ -1313,16 +1356,19 @@ function _progRecolherTudo() {
     xpTotal: (pm.totalXp || 0),
     streakDias: (pm.streak || 0),
     capitulos: {
-      'Cap. 1 · Inteiros':  secTotals(typeof _progData  !== 'undefined' ? _progData  : null),
-      'Cap. 2 · Racionais': secTotals(typeof _progData2 !== 'undefined' ? _progData2 : null),
-      'Cap. 3 · Geometria': secTotals(typeof _progData3 !== 'undefined' ? _progData3 : null),
-      'Cap. 4 · Álgebra':   cap4Totals()
+      'Números Inteiros':  secTotals(typeof _progData  !== 'undefined' ? _progData  : null),
+      'Números Racionais': secTotals(typeof _progData2 !== 'undefined' ? _progData2 : null),
+      'Geometria': secTotals(typeof _progData3 !== 'undefined' ? _progData3 : null),
+      'Equações':   cap4Totals(),
+      'Sequências': (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap5')||'{}');}catch(e){} return p; })(),
+      'Funções':    (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap6')||'{}');}catch(e){} return p; })()
     },
     historico: {
       cap1: (typeof _progData  !== 'undefined' ? _progData.log  : []),
       cap2: (typeof _progData2 !== 'undefined' ? _progData2.log : []),
       cap3: (typeof _progData3 !== 'undefined' ? _progData3.log : []),
-      cap4: (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap4')||'{}');}catch(e){} return p.last_updated ? p : null; })()
+      cap4: (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap4')||'{}');}catch(e){} return p.last_updated ? p : null; })(),
+      cap5: (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap5')||'{}');}catch(e){} return p.last_updated ? p : null; })()
     }
   };
 }
@@ -1406,7 +1452,7 @@ var _TREINO_BUILDERS = {
       var correctIdx = labels.indexOf(correctLetter);
       var opcoes = (ex.opts||[]).map(function(o){ return o.replace(/^[A-D]\)\s*/,''); });
       var resposta = correctIdx >= 0 ? opcoes[correctIdx] : opcoes[0];
-      return { tipo:'mc', tema:'Cap. 4 · Tema '+temaNum, enun:ex.en||'', opcoes:opcoes, resposta:resposta, expl:ex.fb||'' };
+      return { tipo:'mc', tema:'Equações · Tema '+temaNum, enun:ex.en||'', opcoes:opcoes, resposta:resposta, expl:ex.fb||'' };
     } catch(e) { return null; }
   }
 };
@@ -1467,7 +1513,7 @@ function _treinoRenderExercicios(exercicios, containerId) {
   exercicios.forEach(function(ex, i) {
     var qid = 'treino-q-' + i;
     _treinoState[qid] = { answered: false };
-    var capLabel = {cap1:'Cap. 1',cap2:'Cap. 2',cap3:'Cap. 3',cap4:'Cap. 4'}[ex._capId]||'';
+    var capLabel = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'}[ex._capId]||'';
     var temaShort = (ex.tema||'').replace(/^(Tema \d+\s*[—\-]?\s*)/,'').trim() || ex.tema;
     html += '<div class="quiz-question" id="' + qid + '" style="margin-bottom:1rem">';
     html += '<div class="q-number" style="color:var(--cs-deep)">' + capLabel + ' · ' + (temaShort||ex.tema||'') + '</div>';
@@ -1548,7 +1594,7 @@ function gerarFichaTreino() {
   }
 
   var now = new Date().toLocaleDateString('pt-PT');
-  var capNames = {cap1:'Cap. 1 — Inteiros',cap2:'Cap. 2 — Racionais',cap3:'Cap. 3 — Geometria',cap4:'Cap. 4 — Álgebra'};
+  var capNames = {cap1:'Números Inteiros',cap2:'Números Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'};
 
   // Group exercises by cap for sections
   var byCap = {};
@@ -1580,7 +1626,7 @@ function gerarFichaTreino() {
   // Temas em foco
   body += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px">';
   grupos.forEach(function(g) {
-    var capLabel = {cap1:'Cap.1',cap2:'Cap.2',cap3:'Cap.3',cap4:'Cap.4'}[g.capId]||'';
+    var capLabel = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'}[g.capId]||'';
     var temaLabel = g.tema ? g.tema.replace(/^Tema \d+\s*[—\-]?\s*/,'').trim() : 'Tema '+g.temaNum;
     body += '<span style="font-size:.72rem;font-weight:700;background:#f5f0ee;color:#7a6860;border:1px solid #e0d8d4;padding:3px 10px;border-radius:999px">'
           + capLabel+' · '+temaLabel+' ('+g.erros+'✗)</span>';
@@ -1669,10 +1715,12 @@ function _limparTudoProgresso() {
 
 function _progGetCapTotals() {
   var keys = [
-    { num:1, name:'Cap. 1 · Inteiros',  key:'edupt_cap1' },
-    { num:2, name:'Cap. 2 · Racionais', key:'edupt_cap2' },
-    { num:3, name:'Cap. 3 · Geometria', key:'edupt_cap3' },
-    { num:4, name:'Cap. 4 · Álgebra',   key:'edupt_cap4' }
+    { num:1, name:'Números Inteiros',  key:'edupt_cap1' },
+    { num:2, name:'Números Racionais', key:'edupt_cap2' },
+    { num:3, name:'Geometria', key:'edupt_cap3' },
+    { num:4, name:'Equações',   key:'edupt_cap4' },
+    { num:5, name:'Sequências', key:'edupt_cap5' },
+    { num:6, name:'Funções',    key:'edupt_cap6' }
   ];
   return keys.map(function(k) {
     var raw = {};

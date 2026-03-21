@@ -448,7 +448,7 @@ _capRegisterWrappers(3, {
   showMathView3: function(){
     _hideAllViews();
     document.getElementById('view-math3').style.display='block';
-    document.title='Cap. 3 — Geometria · 3ponto14';
+    document.title='Geometria · 3ponto14';
     showSection3('temas3',document.querySelector('#tabs3 .tab-btn'));
     window.scrollTo(0,0);
     var q=document.getElementById('q3-container');if(q&&!q.innerHTML)gerarQuestoes3();

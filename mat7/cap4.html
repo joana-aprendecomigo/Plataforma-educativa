@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Recursos interativos com exercícios práticos de Matemática 7.º ano — fichas, jogos, quizzes e preparação para exames.">
 <meta name="twitter:image" content="https://3ponto14.pt/og-mat7.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23516860'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='serif'>eP</text></svg>">
-<title>Cap. 4 · Álgebra · 3ponto14</title>
+<title>Equações · 3ponto14</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link rel="stylesheet" href="../css/styles.css">
@@ -44,20 +44,21 @@
 
   <!-- Chapter header (preserved for cap 4 unique style) -->
   <header class="ch-header">
-    <div class="ch-eyebrow"><i class="ph ph-table"></i> Capítulo 4 · Matemática 7.º Ano</div>
-    <h1 class="ch-title">Sequências, Expressões<br><span class="accent">Algébricas e Equações</span></h1>
-    <p class="ch-sub">8 subtemas · 26 questões-aula · 8 minitestes · teste de avaliação · jogos e flashcards</p>
+    <div class="ch-eyebrow"><i class="ph ph-equals"></i> Equações · Matemática 7.º Ano</div>
+    <h1 class="ch-title">Equações do<br><span class="accent">1.º Grau</span></h1>
+    <p class="ch-sub">6 subtemas · questões-aula · 6 minitestes · teste de avaliação · jogos e flashcards</p>
     <div class="ch-chips">
-      <span class="ch-chip active">Sequências</span>
       <span class="ch-chip active">Expressões Algébricas</span>
       <span class="ch-chip active">Simplificação</span>
       <span class="ch-chip active">Equações</span>
+      <span class="ch-chip active">Princípios de Equivalência</span>
       <span class="ch-chip active">Classificação</span>
+      <span class="ch-chip active">Problemas</span>
     </div>
     <div class="ch-stats">
-      <div class="ch-stat"><div class="n hero-stat"><span class="n" data-count="8">8</span></div><div class="l">Subtemas</div></div>
-      <div class="ch-stat"><div class="n hero-stat"><span class="n" data-count="26">26</span></div><div class="l">Questões-aula</div></div>
-      <div class="ch-stat"><div class="n hero-stat"><span class="n" data-count="8">8</span></div><div class="l">Minitestes</div></div>
+      <div class="ch-stat"><div class="n hero-stat"><span class="n" data-count="6">6</span></div><div class="l">Subtemas</div></div>
+      <div class="ch-stat"><div class="n hero-stat"><span class="n" data-count="20">20</span></div><div class="l">Questões-aula</div></div>
+      <div class="ch-stat"><div class="n hero-stat"><span class="n" data-count="6">6</span></div><div class="l">Minitestes</div></div>
     </div>
   </header>
 
@@ -96,7 +97,7 @@
   <div class="section4" id="sec-teoria4">
     <div class="sec-header">
       <h2><span class="num"><i class="ph ph-book-open-text"></i></span> Teoria</h2>
-      <p>8 subtemas — do termo geral das sequências à resolução de problemas com equações</p>
+      <p>6 subtemas — das expressões algébricas à resolução de problemas com equações</p>
     </div>
     <div class="topic-tools">
       <div class="topic-tool" onclick="showSection4('questoes4',document.querySelector('#tabs4 .tab-btn:nth-child(3)'))"><span class="tt-icon"><i class="ph ph-pencil-simple"></i></span> Questões-aula</div>
@@ -109,33 +110,6 @@
     <!-- SUBTEMA 1 -->
     <div class="subtema-header">
       <div class="subtema-num">1</div>
-      <div class="subtema-title">Sequências — Termo Geral de uma Sequência ou Sucessão</div>
-    </div>
-    <div class="def-block">
-      <div class="def-row"><span class="def-tag def">Definição</span><div class="def-text">Uma <strong>sequência numérica</strong> (ou sucessão) é uma lista <em>ordenada</em> de números. Cada número chama-se <strong>termo</strong>. O termo de ordem n escreve-se <strong>aₙ</strong> (lê-se «a índice n»).</div></div>
-      <div class="def-row"><span class="def-tag def">Definição</span><div class="def-text">O <strong>termo geral</strong> (aₙ) é uma expressão algébrica que permite calcular qualquer termo da sequência a partir da sua ordem n.</div></div>
-      <div class="formula">aₙ = expressão em n &nbsp;&nbsp;(n = 1, 2, 3, 4, …)</div>
-      <div class="def-row"><span class="def-tag prop">Propriedade</span><div class="def-text">Numa <strong>sequência aritmética</strong>, a diferença entre dois termos consecutivos é sempre constante — essa constante chama-se <strong>razão (r)</strong>.</div></div>
-      <div class="formula">aₙ = a₁ + (n − 1) × r &nbsp;&nbsp; ou &nbsp;&nbsp; aₙ = r·n + (a₁ − r)</div>
-      <div class="def-row"><span class="def-tag ex">Exemplo</span><div class="def-text">Sequência: 2, 5, 8, 11, 14, … → razão r = 3 → <strong>aₙ = 3n − 1</strong><br>Verificação: a₁ = 3(1)−1 = 2 ✓ &nbsp; a₄ = 3(4)−1 = 11 ✓</div></div>
-      <div class="def-row"><span class="def-tag nota">Nota</span><div class="def-text">Para encontrar o termo geral: 1) calcula a razão r = a₂ − a₁; 2) usa a fórmula aₙ = r·n + b onde b = a₁ − r; 3) verifica com vários termos.</div></div>
-    </div>
-
-    <!-- SUBTEMA 2 -->
-    <div class="subtema-header">
-      <div class="subtema-num">2</div>
-      <div class="subtema-title">Resolução de Problemas com o Termo Geral</div>
-    </div>
-    <div class="def-block">
-      <div class="def-row"><span class="def-tag prop">Estratégia</span><div class="def-text">Para resolver problemas com sequências: <strong>1)</strong> Conta os elementos em cada figura; <strong>2)</strong> Organiza os dados numa tabela; <strong>3)</strong> Identifica a razão r; <strong>4)</strong> Escreve o termo geral; <strong>5)</strong> Usa-o para responder.</div></div>
-      <div class="def-row"><span class="def-tag ex">Exemplo</span><div class="def-text">Sequência de pássaros em «V»: 3, 5, 7, 9, … → r = 2 → <strong>aₙ = 2n + 1</strong><br>Figura 7: a₇ = 2(7)+1 = <strong>15 pássaros</strong></div></div>
-      <div class="highlight-box orange"><i class="ph ph-warning"></i> Atenção: verifica sempre se o valor que encontras faz sentido no contexto do problema. Se obtiveres um número fracionário para «quantidade de objetos», provavelmente há um erro!</div>
-      <div class="def-row"><span class="def-tag ex">Exemplo</span><div class="def-text">A Sara usa o telemóvel 2h45min (=165 min) e a Inês 3h10min (=190 min). A Sara reduz 15 min/dia, a Inês 20 min/dia.<br>Sara ao fim de n dias: 165 − 15n &nbsp; · &nbsp; Inês: 190 − 20n<br>Igualar: 165 − 15n = 190 − 20n → 5n = 25 → <strong>n = 5 dias</strong></div></div>
-    </div>
-
-    <!-- SUBTEMA 3 -->
-    <div class="subtema-header">
-      <div class="subtema-num">3</div>
       <div class="subtema-title">Expressões Algébricas</div>
     </div>
     <div class="def-block">
@@ -150,9 +124,9 @@
       <div class="def-row"><span class="def-tag nota">Nota</span><div class="def-text">Para calcular o valor numérico: substitui a variável pelo valor dado e efetua as operações respeitando as regras de prioridade (parênteses primeiro, depois ×/÷, depois +/−).</div></div>
     </div>
 
-    <!-- SUBTEMA 4 -->
+    <!-- SUBTEMA 2 -->
     <div class="subtema-header">
-      <div class="subtema-num">4</div>
+      <div class="subtema-num">2</div>
       <div class="subtema-title">Simplificação de Expressões Algébricas</div>
     </div>
     <div class="def-block">
@@ -162,9 +136,9 @@
       <div class="def-row"><span class="def-tag prop">Aplicação</span><div class="def-text">Perímetro de figuras: a soma de todos os lados pode ser simplificada. Ex: terreno com lados x+4, 2, 5x−3, 2, 2x+3 → P = (x+4)+(2)+(5x−3)+(2)+(2x+3) = <strong>8x + 8</strong></div></div>
     </div>
 
-    <!-- SUBTEMA 5 -->
+    <!-- SUBTEMA 3 -->
     <div class="subtema-header">
-      <div class="subtema-num">5</div>
+      <div class="subtema-num">3</div>
       <div class="subtema-title">Equações — Conceitos Fundamentais</div>
     </div>
     <div class="def-block">
@@ -180,9 +154,9 @@
       <div class="def-row"><span class="def-tag ex">Exemplo</span><div class="def-text">Verificar que x=5 é solução de 3x−1=2x+4:<br>1.º membro: 3(5)−1 = 14 · 2.º membro: 2(5)+4 = 14 · 14=14 ✓ &nbsp; Logo <strong>x=5 é solução</strong>.</div></div>
     </div>
 
-    <!-- SUBTEMA 6 -->
+    <!-- SUBTEMA 4 -->
     <div class="subtema-header">
-      <div class="subtema-num">6</div>
+      <div class="subtema-num">4</div>
       <div class="subtema-title">Equações Equivalentes — Princípios de Equivalência</div>
     </div>
     <div class="def-block">
@@ -194,9 +168,9 @@
       <div class="def-row"><span class="def-tag ex">Exemplo</span><div class="def-text">Resolve (2/3)x − 2 = 4:<br>(2/3)x = 6 → x = 6 ÷ (2/3) = 6 × (3/2) = <strong>9</strong> · S = {9}</div></div>
     </div>
 
-    <!-- SUBTEMA 7 -->
+    <!-- SUBTEMA 5 -->
     <div class="subtema-header">
-      <div class="subtema-num">7</div>
+      <div class="subtema-num">5</div>
       <div class="subtema-title">Classificação de Equações</div>
     </div>
     <div class="def-block">
@@ -211,9 +185,9 @@
       </div>
     </div>
 
-    <!-- SUBTEMA 8 -->
+    <!-- SUBTEMA 6 -->
     <div class="subtema-header">
-      <div class="subtema-num">8</div>
+      <div class="subtema-num">6</div>
       <div class="subtema-title">Resolução de Problemas com Equações</div>
     </div>
     <div class="def-block">
@@ -232,16 +206,15 @@
       </h3>
       <p class="desafio-sub">Para alunos que querem ir mais longe — preparação para provas de aferição e testes exigentes.</p>
       <div class="def-block desafio-card">
-        <div class="def-row"><span class="def-tag prop">Avançado</span><div class="def-text"><strong>Soma dos n primeiros termos</strong> de uma PA: S<sub>n</sub> = n(a₁ + aₙ)/2. Para encontrar aₙ a partir de Sₙ: <strong>aₙ = Sₙ − S<sub>n−1</sub></strong></div></div>
-        <div class="formula">S<sub>n</sub> = n(a₁ + aₙ) / 2 &nbsp;&nbsp; ou &nbsp;&nbsp; S<sub>n</sub> = n(2a₁ + (n−1)r) / 2</div>
         <div class="def-row"><span class="def-tag prop">Avançado</span><div class="def-text"><strong>Equações com parâmetros:</strong> Em (a−k)x = b, o tipo depende de (a−k): se ≠0 → PD; se =0 e b≠0 → I; se =0 e b=0 → PI.</div></div>
+        <div class="def-row"><span class="def-tag prop">Avançado</span><div class="def-text"><strong>Equações com parênteses:</strong> Usa a propriedade distributiva antes de resolver. Ex: 3(2x − 1) − 2(x + 4) = 5 → 6x − 3 − 2x − 8 = 5 → 4x = 16 → x = 4.</div></div>
       </div>
       <div class="desafio-card">
         <strong class="text-[#92400e]">Problemas de Investigação:</strong>
         <ol class="mt-3 pl-6 text-[#78350f] text-sm leading-relaxed">
           <li>O João tem x anos, a mãe o triplo. Daqui a 12 anos a mãe terá o dobro. Resolve.</li>
           <li>Para que valores de k, a equação k(x−1) = 2x + k tem solução única? Quando é impossível?</li>
-          <li>Duas torneiras enchem um tanque: a 1.ª em 6h, a 2.ª em 4h. Juntas, quanto tempo demora?</li>
+          <li>Um retângulo e um pentágono regular têm o mesmo perímetro. O retângulo tem lados (2x+1) e x. O pentágono tem lado (x+1). Qual é o perímetro?</li>
         </ol>
       </div>
     </div>
@@ -281,17 +254,15 @@
 
 
 <div class="section-divider section4" id="sec-minitestes4" >
-<div class="sec-header"><div class="flex-1"><h2><span class="num"><i class="ph ph-file-text"></i></span> Minitestes</h2><p>8 minitestes, um por subtema — 4 a 5 questões de escolha múltipla cada</p></div></div>
+<div class="sec-header"><div class="flex-1"><h2><span class="num"><i class="ph ph-file-text"></i></span> Minitestes</h2><p>6 minitestes, um por subtema — 4 a 5 questões de escolha múltipla cada</p></div></div>
     <div id="mini-tabs4">
-      <button class="tab-btn active" onclick="showMini4(0,this)"><i class="ph ph-book-open-text"></i> Capítulo completo</button>
-      <button class="tab-btn" onclick="showMini4(1,this)">① Mini 1 — Sequências</button>
-      <button class="tab-btn" onclick="showMini4(2,this)">② Mini 2 — Prob. Seq.</button>
-      <button class="tab-btn" onclick="showMini4(3,this)">③ Mini 3 — Exp. Alg.</button>
-      <button class="tab-btn" onclick="showMini4(4,this)">④ Mini 4 — Simplif.</button>
-      <button class="tab-btn" onclick="showMini4(5,this)">⑤ Mini 5 — Equações</button>
-      <button class="tab-btn" onclick="showMini4(6,this)"><span class="text-sm"><i class="ph ph-notebook"></i></span> Mini 6 — Equiv.</button>
-      <button class="tab-btn" onclick="showMini4(7,this)"><span class="text-sm"><i class="ph ph-notebook"></i></span> Mini 7 — Classif.</button>
-      <button class="tab-btn" onclick="showMini4(8,this)">⑧ Mini 8 — Problemas</button>
+      <button class="tab-btn active" onclick="showMini4(0,this)"><i class="ph ph-book-open-text"></i> Todos os subtemas</button>
+      <button class="tab-btn" onclick="showMini4(1,this)">① Exp. Algébricas</button>
+      <button class="tab-btn" onclick="showMini4(2,this)">② Simplificação</button>
+      <button class="tab-btn" onclick="showMini4(3,this)">③ Equações</button>
+      <button class="tab-btn" onclick="showMini4(4,this)">④ Equivalência</button>
+      <button class="tab-btn" onclick="showMini4(5,this)">⑤ Classificação</button>
+      <button class="tab-btn" onclick="showMini4(6,this)">⑥ Problemas</button>
     </div>
     <div class="score-bar">
       <div><div class="score-num" id="m4-score">0</div><div class="score-label">certas</div></div>
@@ -327,14 +298,12 @@
         <div><div class="ai-label">Subtema</div>
           <select class="ai-select" id="gen4-tema">
             <option value="0">Todos os subtemas</option>
-            <option value="1">1 — Sequências / Termo Geral</option>
-            <option value="2">2 — Problemas com Sequências</option>
-            <option value="3">3 — Expressões Algébricas</option>
-            <option value="4">4 — Simplificação</option>
-            <option value="5">5 — Equações</option>
-            <option value="6">6 — Equações Equivalentes</option>
-            <option value="7">7 — Classificação</option>
-            <option value="8">8 — Problemas com Equações</option>
+            <option value="1">1 — Expressões Algébricas</option>
+            <option value="2">2 — Simplificação</option>
+            <option value="3">3 — Equações</option>
+            <option value="4">4 — Equações Equivalentes</option>
+            <option value="5">5 — Classificação</option>
+            <option value="6">6 — Problemas com Equações</option>
           </select>
         </div>
         <div><div class="ai-label">Tipo</div>
@@ -373,7 +342,7 @@
   <div class="section4" id="sec-jogos4">
   <div class="sec-header">
     <h2><span class="num"><i class="ph ph-game-controller"></i></span> Jogos</h2>
-    <p>5 jogos matemáticos interativos — treina com álgebra</p>
+    <p>5 jogos matemáticos interativos — treina equações</p>
   </div>
   <div id="j24-wrap-cap4"></div>
 </div>
@@ -382,7 +351,7 @@
   <div class="section4" id="sec-quiz-game4">
     <div class="sec-header">
       <h2><span class="num"><i class="ph ph-trophy"></i></span> ⚡ Modo Quiz</h2>
-      <p>Questões de escolha múltipla — Álgebra — 3 vidas, streak e game over</p>
+      <p>Questões de escolha múltipla — Equações — 3 vidas, streak e game over</p>
     </div>
     <div id="qg-app4"></div>
   </div>
@@ -477,7 +446,7 @@
       <div class="card-title">Desempenho por Capítulo</div>
       <div id="prog4-caps" class="flex-col-list"></div>
       <div class="mt-5 border-t border-[var(--border)] pt-4">
-      <div class="card-title text-xs mb-2">Detalhe — Cap. 4 · Álgebra</div>
+      <div class="card-title text-xs mb-2">Detalhe — Equações</div>
       <div id="prog4-rows"></div>
       </div>
       <div class="mt-5 pt-4 border-t border-[var(--border)] flex flex-wrap gap-3">        <button class="btn btn-ghost" onclick="progDownloadPDF()" title="Gerar PDF para imprimir"><i class="ph ph-file"></i> PDF</button>

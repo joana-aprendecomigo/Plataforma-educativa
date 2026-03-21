@@ -108,7 +108,7 @@ function _parseFillVal(v) { return parseFloat(String(v).replace(',', '.')); }
 var ProgressManager = (function () {
   var KEY = 'edupt_progress_v2';
   var XP = { teoria:10, quiz:20, quiz_bonus:15, jogo:15, flashcard:8, ficha:5 };
-  var CAP_NAMES = { cap1:'Cap. 1 — Inteiros', cap2:'Cap. 2 — Racionais', cap3:'Cap. 3 — Geometria', cap4:'Cap. 4 — Álgebra' };
+  var CAP_NAMES = { cap1:'Números Inteiros', cap2:'Números Racionais', cap3:'Geometria', cap4:'Equações', cap5:'Sequências', cap6:'Funções' };
 
   function _emptyChap(id) {
     return { id:id, teoria:false, quiz:{tentativas:0,melhorPct:0}, jogo:false, flashcard:false, ficha:false, xp:0 };
@@ -1428,11 +1428,12 @@ function calcExpression() {
 // ═══ CHAPTER NAV BAR — generated from data ═══
 function _buildChapterNav(activeCap) {
   var caps = [
-    {n:1, label:'Cap. 1 · Inteiros'},
-    {n:2, label:'Cap. 2 · Racionais'},
-    {n:3, label:'Cap. 3 · Geometria'},
-    {n:4, label:'Cap. 4 · Álgebra'},
-    {n:5, label:'Cap. 5 · Estatística', locked:true}
+    {n:1, label:'Números Inteiros'},
+    {n:2, label:'Números Racionais'},
+    {n:3, label:'Geometria'},
+    {n:4, label:'Equações'},
+    {n:5, label:'Sequências'},
+    {n:6, label:'Estatística', locked:true}
   ];
   var h = '<button class="ch-back-link" onclick="showMat7View()">← Capítulos</button><div class="ch-nav-divider"></div>';
   caps.forEach(function(c) {

@@ -4,29 +4,37 @@ var _mat7Subtemas = {
   1: ['Conjunto ℤ', 'Valor absoluto e simétrico', 'Adição de inteiros', 'Subtração de inteiros', 'Expressões com parênteses'],
   2: ['Comparação e ordenação', 'Adição e subtração de frações', 'Percentagens', 'Potências', 'Notação científica'],
   3: ['Ângulos internos de polígonos', 'Triângulos e congruência', 'Semelhança de triângulos', 'Áreas de figuras planas', 'Circunferência'],
-  4: ['Sequências e termo geral', 'Expressões algébricas', 'Simplificação', 'Equações do 1.º grau', 'Inequações']
+  4: ['Sequências e termo geral', 'Expressões algébricas', 'Simplificação', 'Equações do 1.º grau', 'Inequações'],
+  5: ['Sequências e Termo Geral', 'Problemas com Sequências'],
+  6: ['Referencial Cartesiano', 'Conceito de Função', 'Representação Gráfica', 'Formas de Representar', 'Proporcionalidade Direta', 'Gráficos em Contexto Real']
 };
 
 // ═══ CAP SELECTOR BUILDER — generates chapter/subtema selector HTML ═══
 var _capMeta = [
-  {n:1, icon:'±', label:'Cap. 1 · Inteiros'},
-  {n:2, icon:'½', label:'Cap. 2 · Racionais'},
-  {n:3, icon:'<i class="ph ph-triangle"></i>', label:'Cap. 3 · Geometria'},
-  {n:4, icon:'𝑥', label:'Cap. 4 · Álgebra'}
+  {n:1, icon:'±', label:'Números Inteiros'},
+  {n:2, icon:'½', label:'Números Racionais'},
+  {n:3, icon:'<i class="ph ph-triangle"></i>', label:'Geometria'},
+  {n:4, icon:'𝑥', label:'Equações'},
+  {n:5, icon:'<i class="ph ph-list-numbers"></i>', label:'Sequências'},
+  {n:6, icon:'<i class="ph ph-chart-line"></i>', label:'Funções'}
 ];
 // Short subtema labels per chapter (mat7 tabs use these)
 var _capStShort = {
   1: ['Conjunto ℤ','Valor absoluto','Adição','Subtração','Parênteses'],
   2: ['Comparação','Adição/Subt.','Percentagens','Potências','Not. Científica'],
   3: ['Ângulos','Triângulos','Semelhança','Áreas','Circunferência'],
-  4: ['Sequências','Expressões','Simplificação','Equações','Inequações']
+  4: ['Sequências','Expressões','Simplificação','Equações','Inequações'],
+  5: ['Termo Geral','Problemas com Sequências'],
+  6: ['Referencial','Conceito de Função','Representação Gráfica','Formas de Representar','Prop. Direta','Gráficos Reais']
 };
 // Fichas panel uses slightly different labels
 var _capStFichas = {
   1: ['Conjunto ℤ','Valor absoluto','Adição','Subtração','Parênteses'],
   2: ['Comparação','Adição/Subtração','Percentagens','Potências','Not. Científica'],
   3: ['Ângulos internos','Ângulos externos','Retas paralelas','Quadriláteros','Áreas'],
-  4: ['Sequências','Expressões','Equações','Problemas']
+  4: ['Sequências','Expressões','Equações','Problemas'],
+  5: ['Termo Geral','Sequências Aritméticas','Problemas'],
+  6: ['Referencial','Função','Gráfica','Formas','Prop. Direta','Contexto Real']
 };
 
 /**
@@ -37,7 +45,7 @@ var _capStFichas = {
 function _buildCapSelHTML(tab, opts) {
   var type = opts.type || 'mat7tab';
   var panelId = opts.panelId || tab;
-  var caps = opts.caps || [1,2,3,4];
+  var caps = opts.caps || [1,2,3,4,5,6];
   var stData = opts.stData || _capStShort;
   var numbered = opts.numbered || false;
   var h = '';
@@ -106,13 +114,13 @@ else _mat7BuildSelectors();
 
 // Section scroll targets per tab and cap
 var _mat7Targets = {
-  resumo:      { 1:'bloco1-resumo', 2:'sec-temas2', 3:'sec-temas3', 4:'sec-temas4' },
-  questoes:    { 1:'sec-questoes',  2:'sec-questoes2', 3:'sec-questoes3', 4:'sec-questoes4' },
-  miniteste:   { 1:'sec-minitestes', 2:'sec-minitestes2', 3:'sec-minitestes3', 4:'sec-minitestes4' },
-  teste:       { 1:'sec-teste',     2:'sec-teste2', 3:'sec-teste3', 4:'sec-teste4' },
-  jogos:       { 1:'sec-jogos',     2:'sec-jogos2', 3:'sec-jogos3', 4:'sec-jogos4' },
-  flashcards:  { 1:'sec-flashcards',2:'sec-flashcards2', 3:'sec-flashcards3', 4:'sec-flashcards4' },
-  exame:       { 1:'sec-exame',     2:'sec-exame2', 3:'sec-exame3', 4:'sec-exame4' }
+  resumo:      { 1:'bloco1-resumo', 2:'sec-temas2', 3:'sec-temas3', 4:'sec-temas4', 5:'sec-temas5', 6:'sec-temas6' },
+  questoes:    { 1:'sec-questoes',  2:'sec-questoes2', 3:'sec-questoes3', 4:'sec-questoes4', 5:'sec-questoes5', 6:'sec-questoes6' },
+  miniteste:   { 1:'sec-minitestes', 2:'sec-minitestes2', 3:'sec-minitestes3', 4:'sec-minitestes4', 5:'sec-minitestes5', 6:'sec-minitestes6' },
+  teste:       { 1:'sec-teste',     2:'sec-teste2', 3:'sec-teste3', 4:'sec-teste4', 5:'sec-teste5', 6:'sec-teste6' },
+  jogos:       { 1:'sec-jogos',     2:'sec-jogos2', 3:'sec-jogos3', 4:'sec-jogos4', 5:'sec-jogos5', 6:'sec-jogos6' },
+  flashcards:  { 1:'sec-flashcards',2:'sec-flashcards2', 3:'sec-flashcards3', 4:'sec-flashcards4', 5:'sec-flashcards5', 6:'sec-flashcards6' },
+  exame:       { 1:'sec-exame',     2:'sec-exame2', 3:'sec-exame3', 4:'sec-exame4', 5:'sec-exame5', 6:'sec-exame6' }
 };
 
 // Current selections per tab
@@ -120,13 +128,13 @@ var _mat7Sel = { resumo:1, exercicios:1, testes:1, jogos:1, flashcards:1, exame:
 
 // ── Map: which section ID to grab from which view, per cap ──
 var _mat7SecMap = {
-  exercicios: { 1:'sec-questoes',    2:'sec-questoes2',   3:'sec-questoes3',   4:'sec-questoes4' },
-  minitestes: { 1:'sec-minitestes',  2:'sec-minitestes2', 3:'sec-minitestes3', 4:'sec-minitestes4' },
-  jogos:      { 1:'sec-jogos',       2:'sec-jogos2',      3:'sec-jogos3',      4:'sec-jogos4' },
-  flashcards: { 1:'sec-flashcards',  2:'sec-flashcards2', 3:'sec-flashcards3', 4:'sec-flashcards4' },
-  exame:      { 1:'sec-exame',       2:'sec-exame2',      3:'sec-exame3',      4:'sec-exame4' },
+  exercicios: { 1:'sec-questoes',    2:'sec-questoes2',   3:'sec-questoes3',   4:'sec-questoes4',  5:'sec-questoes5',  6:'sec-questoes6' },
+  minitestes: { 1:'sec-minitestes',  2:'sec-minitestes2', 3:'sec-minitestes3', 4:'sec-minitestes4', 5:'sec-minitestes5', 6:'sec-minitestes6' },
+  jogos:      { 1:'sec-jogos',       2:'sec-jogos2',      3:'sec-jogos3',      4:'sec-jogos4',     5:'sec-jogos5',     6:'sec-jogos6' },
+  flashcards: { 1:'sec-flashcards',  2:'sec-flashcards2', 3:'sec-flashcards3', 4:'sec-flashcards4', 5:'sec-flashcards5', 6:'sec-flashcards6' },
+  exame:      { 1:'sec-exame',       2:'sec-exame2',      3:'sec-exame3',      4:'sec-exame4',     5:'sec-exame5',     6:'sec-exame6' },
   // progresso: handled by renderProgressoUnificado — not in secMap
-  quiz:       { 1:'sec-quiz-game',   2:'sec-quiz-game2',  3:'sec-quiz-game3',  4:'sec-quiz-game4' }
+  quiz:       { 1:'sec-quiz-game',   2:'sec-quiz-game2',  3:'sec-quiz-game3',  4:'sec-quiz-game4', 5:'sec-quiz-game5', 6:'sec-quiz-game6' }
 };
 
 // ── Init functions per section ──
@@ -162,7 +170,21 @@ var _mat7InitMap = {
   'sec-quiz-game':   function(){ if(typeof qgStartForCap==='function') qgStartForCap(1); },
   'sec-quiz-game2':  function(){ if(typeof qgStartForCap==='function') qgStartForCap(2); },
   'sec-quiz-game3':  function(){ if(typeof qgStartForCap==='function') qgStartForCap(3); },
-  'sec-quiz-game4':  function(){ if(typeof qgStartForCap==='function') qgStartForCap(4); }
+  'sec-quiz-game4':  function(){ if(typeof qgStartForCap==='function') qgStartForCap(4); },
+  'sec-questoes5':   function(){ var el=document.getElementById('q5-container');  if(el && !el.innerHTML && typeof renderQuestoes5==='function') renderQuestoes5(); if(typeof showMini5==='function'&&document.getElementById('m5-container')&&!document.getElementById('m5-container').innerHTML)showMini5(0,null); if(typeof renderTeste5==='function'&&document.getElementById('t5-container')&&!document.getElementById('t5-container').innerHTML)renderTeste5(); },
+  'sec-minitestes5': function(){ var el=document.getElementById('m5-container');  if(el && !el.innerHTML && typeof showMini5==='function') showMini5(0,null); },
+  'sec-teste5':      function(){ var el=document.getElementById('t5-container');  if(el && !el.innerHTML && typeof renderTeste5==='function') renderTeste5(); },
+  'sec-jogos5':      function(){ if(typeof _gInited!=='undefined') delete _gInited['j24-wrap-cap5']; if(typeof _j24AutoInit==='function') _j24AutoInit('j24-wrap-cap5','dificil'); },
+  'sec-flashcards5': function(){ if(typeof initFlashcards5==='function') initFlashcards5(); },
+  'sec-exame5':      function(){ var c=document.getElementById('exame5-config');var r=document.getElementById('exame5-running');var rs=document.getElementById('exame5-result');if(c)c.style.display='block';if(r)r.style.display='none';if(rs)rs.style.display='none'; },
+  'sec-quiz-game5':  function(){ if(typeof qgStartForCap==='function') qgStartForCap(5); },
+  'sec-questoes6':   function(){ var el=document.getElementById('q6-container');  if(el && !el.innerHTML && typeof renderQuestoes6==='function') renderQuestoes6(); if(typeof showMini6==='function'&&document.getElementById('m6-container')&&!document.getElementById('m6-container').innerHTML)showMini6(0,null); if(typeof renderTeste6==='function'&&document.getElementById('t6-container')&&!document.getElementById('t6-container').innerHTML)renderTeste6(); },
+  'sec-minitestes6': function(){ var el=document.getElementById('m6-container');  if(el && !el.innerHTML && typeof showMini6==='function') showMini6(0,null); },
+  'sec-teste6':      function(){ var el=document.getElementById('t6-container');  if(el && !el.innerHTML && typeof renderTeste6==='function') renderTeste6(); },
+  'sec-jogos6':      function(){ if(typeof _gInited!=='undefined') delete _gInited['j24-wrap-cap6']; if(typeof _j24AutoInit==='function') _j24AutoInit('j24-wrap-cap6','dificil'); },
+  'sec-flashcards6': function(){ if(typeof initFlashcards6==='function') initFlashcards6(); },
+  'sec-exame6':      function(){ var c=document.getElementById('exame6-config');var r=document.getElementById('exame6-running');var rs=document.getElementById('exame6-result');if(c)c.style.display='block';if(r)r.style.display='none';if(rs)rs.style.display='none'; },
+  'sec-quiz-game6':  function(){ if(typeof qgStartForCap==='function') qgStartForCap(6); }
 };
 
 // ── Load content inline into a hub panel ──
@@ -173,7 +195,7 @@ var _mat7MovedSections = {}; // track where we moved sections: { tab: [ {el, par
 // When multiple chapters are selected, merge content into one
 // unified component instead of stacking separate sections.
 
-var _mat7CapNames = {1:'Cap. 1 · Inteiros', 2:'Cap. 2 · Racionais', 3:'Cap. 3 · Geometria', 4:'Cap. 4 · Álgebra'};
+var _mat7CapNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências', 6:'Funções'};
 
 // ── UNIFIED FLASHCARDS ──────────────────────────────────────
 var _uniFC = { cards: [], idx: 0, flipped: false };
@@ -302,7 +324,7 @@ function mat7RenderUnifiedJogos(caps, inlineEl) {
 
 // ── UNIFIED EXERCÍCIOS ──────────────────────────────────────
 function mat7RenderUnifiedExercicios(caps, inlineEl) {
-  var capNames = _mat7CapNames || {1:'Cap. 1',2:'Cap. 2',3:'Cap. 3',4:'Cap. 4'};
+  var capNames = _mat7CapNames || {1:'Inteiros',2:'Racionais',3:'Geometria',4:'Equações',5:'Sequências'};
   var currentLevel = 'medio';
 
   function buildMixedQuiz(level) {
@@ -472,7 +494,7 @@ function mat7LoadInline(tab) {
     }
     if (caps.length > 1) {
       var capLabel = document.createElement('div');
-      var capNames = {1:'Cap. 1 · Inteiros', 2:'Cap. 2 · Racionais', 3:'Cap. 3 · Geometria', 4:'Cap. 4 · Álgebra'};
+      var capNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências'};
       capLabel.style.cssText = 'font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:800;color:var(--sage-dark);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem';
       capLabel.innerHTML = '<span style="width:28px;height:28px;border-radius:50%;background:var(--sage-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900">' + cap + '</span> ' + (capNames[cap] || 'Cap. ' + cap);
       inlineEl.appendChild(capLabel);
@@ -576,7 +598,7 @@ function testeReloadFromGf() {
   inlineEl.innerHTML = '';
 
   var loaded = false;
-  var capNames = {1:'Cap. 1 · Inteiros', 2:'Cap. 2 · Racionais', 3:'Cap. 3 · Geometria', 4:'Cap. 4 · Álgebra'};
+  var capNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências'};
 
   activeCaps.forEach(function(cap) {
     var secId = secMap[cap];
@@ -623,7 +645,7 @@ function mat7RenderResumoInline() {
   var stIdx = stChip ? parseInt(stChip.dataset.st) : 0; // 0 = all
 
   // Source section IDs per cap
-  var srcIds = { 1: 'sec-teoria', 2: 'sec-teoria2', 3: 'sec-teoria3', 4: 'sec-teoria4' };
+  var srcIds = { 1: 'sec-teoria', 2: 'sec-teoria2', 3: 'sec-teoria3', 4: 'sec-teoria4', 5: 'sec-teoria5', 6: 'sec-teoria6' };
   var srcEl = document.getElementById(srcIds[cap]);
   var dest = document.getElementById('mat7-resumo-content');
   if (!dest) return;

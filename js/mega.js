@@ -4,10 +4,12 @@
 var capitulosSelecionados = [];
 
 var CAP_INFO = {
-  1: { nome: 'Cap. 1 — Números Inteiros',    emoji: '<i class="ph ph-hash"></i>', color: 'var(--c2-mid)' },
-  2: { nome: 'Cap. 2 — Números Racionais',   emoji: '<i class="ph ph-calculator"></i>', color: 'var(--c3-mid)' },
-  3: { nome: 'Cap. 3 — Geometria',           emoji: '<i class="ph ph-ruler"></i>', color: 'var(--c1-mid)' },
-  4: { nome: 'Cap. 4 — Seq., Expr. e Eq.',   emoji: '<i class="ph ph-sparkle"></i>', color: '#516860'       },
+  1: { nome: 'Números Inteiros',    emoji: '<i class="ph ph-hash"></i>', color: 'var(--c2-mid)' },
+  2: { nome: 'Números Racionais',   emoji: '<i class="ph ph-calculator"></i>', color: 'var(--c3-mid)' },
+  3: { nome: 'Geometria',           emoji: '<i class="ph ph-ruler"></i>', color: 'var(--c1-mid)' },
+  4: { nome: 'Equações',   emoji: '<i class="ph ph-sparkle"></i>', color: '#516860'       },
+  5: { nome: 'Sequências', emoji: '<i class="ph ph-list-numbers"></i>', color: 'var(--c5-mid)' },
+  6: { nome: 'Funções',    emoji: '<i class="ph ph-chart-line"></i>',  color: 'var(--c6-mid)' }
 };
 
 // ── Issue 1: Toggle Checkbox ──
@@ -28,7 +30,7 @@ function toggleCapSel(capNum) {
 }
 
 // ── Selecionar / Desselecionar Todos ──
-var _TODOS_CAPS = [1, 2, 3, 4];
+var _TODOS_CAPS = [1, 2, 3, 4, 5, 6];
 function selecionarTodos(btn) {
   var allSelected = _TODOS_CAPS.every(function(c){ return capitulosSelecionados.indexOf(c) !== -1; });
   if (allSelected) {
@@ -187,6 +189,8 @@ function gerarMegaGerador() {
     else if (cap === 2) qs = _megaGetCap2(perCap * 2, dif, tipo);
     else if (cap === 3) qs = _megaGetCap3(perCap * 2, dif, tipo);
     else if (cap === 4) qs = _megaGetCap4(perCap * 2, tipo, dif);
+    else if (cap === 5) qs = _megaGetCap5(perCap * 2, tipo, dif);
+    else if (cap === 6) qs = _megaGetCap6(perCap * 2, tipo, dif);
     allQ = allQ.concat(qs);
   });
   // Fisher-Yates shuffle before slicing
@@ -220,7 +224,7 @@ function _megaGetCap1(n, dif, tipo) {
     else tp = _pickTipo(tipo);
     try {
       var ex = buildExercicio(t, tp, lv.min, lv.max, i+1, dif);
-      if (ex) { ex._cap=1; ex._capLabel=CAP_INFO[1].emoji+' Cap. 1'; ex._dif=dif; qs.push(ex); }
+      if (ex) { ex._cap=1; ex._capLabel=CAP_INFO[1].emoji+' Inteiros'; ex._dif=dif; qs.push(ex); }
     } catch(e){}
   }
   return qs.slice(0,n);
@@ -233,7 +237,7 @@ function _megaGetCap2(n, dif, tipo) {
     var tp = _pickTipo(tipo);
     try {
       var ex = buildEx2(t, tp, dif);
-      if (ex) { ex._cap=2; ex._capLabel=CAP_INFO[2].emoji+' Cap. 2'; qs.push(ex); }
+      if (ex) { ex._cap=2; ex._capLabel=CAP_INFO[2].emoji+' Racionais'; qs.push(ex); }
     } catch(e){}
   }
   return qs.slice(0,n);
@@ -246,7 +250,7 @@ function _megaGetCap3(n, dif, tipo) {
     var tp = _pickTipo(tipo);
     try {
       var ex = buildEx3(t, tp, dif);
-      if (ex) { ex._cap=3; ex._capLabel=CAP_INFO[3].emoji+' Cap. 3'; qs.push(ex); }
+      if (ex) { ex._cap=3; ex._capLabel=CAP_INFO[3].emoji+' Geometria'; qs.push(ex); }
     } catch(e){}
   }
   return qs.slice(0,n);
@@ -275,13 +279,39 @@ function _megaGetCap4(n, tipo, dif) {
     while (altPool.length < n && attempts < n * 4) {
       attempts++;
       var ex = buildEx4(temas[Math.floor(Math.random()*temas.length)], dif);
-      if (ex) { ex._cap = 4; ex._capLabel = CAP_INFO[4].emoji+' Cap. 4'; altPool.push(ex); }
+      if (ex) { ex._cap = 4; ex._capLabel = CAP_INFO[4].emoji+' Equações'; altPool.push(ex); }
     }
     if (altPool.length >= n) return altPool.slice(0, n);
   }
   return pool.slice(0, n).map(function(q){
-    return { _cap:4, _capLabel:CAP_INFO[4].emoji+' Cap. 4',
-      tema:'Cap. 4 · Tema '+q.tema, tipo:'mc_banco',
+    return { _cap:4, _capLabel:CAP_INFO[4].emoji+' Equações',
+      tema:'Equações · Tema '+q.tema, tipo:'mc_banco',
+      enun:q.enunciado, opcoes:q.opts, resposta:q.correct, expl:q.fb||'' };
+  });
+}
+function _megaGetCap5(n, tipo, dif) {
+  if (typeof BANCO5 === 'undefined') return [];
+  var pool = BANCO5.questoes.slice();
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+  }
+  return pool.slice(0, n).map(function(q){
+    return { _cap:5, _capLabel:CAP_INFO[5].emoji+' Sequências',
+      tema:'Sequências · Tema '+q.tema, tipo:'mc_banco',
+      enun:q.enunciado, opcoes:q.opts, resposta:q.correct, expl:q.fb||'' };
+  });
+}
+function _megaGetCap6(n, tipo, dif) {
+  if (typeof BANCO6 === 'undefined') return [];
+  var pool = BANCO6.questoes.slice();
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+  }
+  return pool.slice(0, n).map(function(q){
+    return { _cap:6, _capLabel:CAP_INFO[6].emoji+' Funções',
+      tema:'Funções · Tema '+q.tema, tipo:'mc_banco',
       enun:q.enunciado, opcoes:q.opts, resposta:q.correct, expl:q.fb||'' };
   });
 }
@@ -765,8 +795,8 @@ function _megaPopulateDownloads(caps) {
   // Update info banner
   var infoEl = document.getElementById('mega-dl-caps-info');
   if (infoEl) {
-    var capNomes = { 1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Sequências, Expressões e Equações' };
-    infoEl.textContent = 'Capítulos incluídos: ' + caps.map(function(c){ return 'Cap. '+c+' — '+capNomes[c]; }).join(' · ');
+    var capNomes = { 1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências', 6:'Funções' };
+    infoEl.textContent = 'Capítulos incluídos: ' + caps.map(function(c){ return capNomes[c]; }).join(' · ');
   }
 }
 
@@ -823,7 +853,7 @@ function _buildTesteCapHTML(cap) {
 }
 
 function _capSectionHeader(cap, cor) {
-  var nomes = { 1:'Capítulo 1 — Números Inteiros', 2:'Capítulo 2 — Números Racionais', 3:'Capítulo 3 — Geometria', 4:'Capítulo 4 — Sequências, Expressões e Equações' };
+  var nomes = { 1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências', 6:'Funções' };
   return '<div style="margin:3rem 0 1.5rem;padding:1.25rem 1.5rem;background:'+cor+';border-radius:10px">'
     + '<h2 style="margin:0;font-family:Georgia,serif;font-size:1.5rem;color:white;letter-spacing:-.02em">'+nomes[cap]+'</h2>'
     + '</div>';
@@ -833,6 +863,7 @@ function _megaDownloadDoc(type) {
   var caps = _getMegaCaps();
   if (!caps || caps.length === 0) return;
   var capColors = { 1:'#516860', 2:'#7a6860', 3:'#3d5c54', 4:'#2d3530' };
+  var nomes = { 1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências', 6:'Funções' };
   var now = new Date().toLocaleDateString('pt-PT');
   var cfg = {
     ficha:  { title:'Ficha de Trabalho Completa', builder:_buildFichaCompletaCapHTML, file:'ficha_completa' },
@@ -840,8 +871,8 @@ function _megaDownloadDoc(type) {
     testes: { title:'Testes de Avaliação',        builder:_buildTesteCapHTML,         file:'testes' }
   }[type];
   var body = '<h1>'+cfg.title+' · Matemática 7.º Ano</h1>'
-    + '<div class="meta">Data: '+now+' &nbsp;|&nbsp; Capítulos: ' + caps.map(function(c){ return 'Cap. '+c; }).join(', ') + '</div>';
-  if (type==='ficha') body += '<div class="box" style="margin-bottom:1.5rem"><strong>Capítulos incluídos:</strong> ' + caps.map(function(c){ return 'Cap. '+c; }).join(', ') + '</div>';
+    + '<div class="meta">Data: '+now+' &nbsp;|&nbsp; Capítulos: ' + caps.map(function(c){ return nomes[c]||('Cap. '+c); }).join(', ') + '</div>';
+  if (type==='ficha') body += '<div class="box" style="margin-bottom:1.5rem"><strong>Capítulos incluídos:</strong> ' + caps.map(function(c){ return nomes[c]||('Cap. '+c); }).join(', ') + '</div>';
   caps.forEach(function(c) { body += _capSectionHeader(c, capColors[c]||'#516860') + cfg.builder(c); });
   var html = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>'+cfg.title+'</title></head><body>' + body
     + '<footer>3ponto14 · Matemática 7.º Ano</footer></body></html>';
