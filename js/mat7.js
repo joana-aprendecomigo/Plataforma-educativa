@@ -206,7 +206,9 @@ function mat7RenderUnifiedFlashcards(caps, inlineEl) {
     1: typeof FC_CARDS_CAP1 !== 'undefined' ? FC_CARDS_CAP1 : (typeof FC1_CARDS !== 'undefined' ? FC1_CARDS : []),
     2: typeof FC2_CARDS !== 'undefined' ? FC2_CARDS : [],
     3: typeof FC3_CARDS !== 'undefined' ? FC3_CARDS : [],
-    4: typeof BANCO4 !== 'undefined' && BANCO4.flashcards ? BANCO4.flashcards : []
+    4: typeof BANCO4 !== 'undefined' && BANCO4.flashcards ? BANCO4.flashcards : [],
+    5: typeof BANCO5 !== 'undefined' && BANCO5.flashcards ? BANCO5.flashcards : [],
+    6: typeof BANCO6 !== 'undefined' && BANCO6.flashcards ? BANCO6.flashcards : []
   };
   var merged = [];
   caps.forEach(function(cap) {
@@ -338,34 +340,51 @@ function mat7RenderUnifiedExercicios(caps, inlineEl) {
 
     caps.forEach(function(cap) {
       var capExs = [];
-      var temas = ['1','2','3','4','5'];
 
-      // Build a varied plan mixing fill, mc, vf, contexto
-      var tipos = ['fill','mc','fill','mc','vf','fill','mc','fill','mc','fill',
-                   'mc','fill','vf','mc','fill','mc','fill','mc','vf','fill'];
+      // BANCO-based chapters (5 and 6): pick from pre-made question bank
+      if (cap === 5 && typeof BANCO5 !== 'undefined' && BANCO5.questoes) {
+        var pool5 = BANCO5.questoes.slice();
+        for (var _b5i = pool5.length-1; _b5i > 0; _b5i--) { var _b5j=Math.floor(Math.random()*(_b5i+1)); var _b5t=pool5[_b5i]; pool5[_b5i]=pool5[_b5j]; pool5[_b5j]=_b5t; }
+        pool5.slice(0, numPerCap).forEach(function(q) {
+          capExs.push({enun:q.enunciado||q.en||'',opcoes:q.opts||[],resposta:q.correct||q.c||'',tipo:'mc',expl:q.fb||'',_capId:5,_capLabel:capNames[5]||'Sequências'});
+        });
+      } else if (cap === 6 && typeof BANCO6 !== 'undefined' && BANCO6.questoes) {
+        var pool6 = BANCO6.questoes.slice();
+        for (var _b6i = pool6.length-1; _b6i > 0; _b6i--) { var _b6j=Math.floor(Math.random()*(_b6i+1)); var _b6t=pool6[_b6i]; pool6[_b6i]=pool6[_b6j]; pool6[_b6j]=_b6t; }
+        pool6.slice(0, numPerCap).forEach(function(q) {
+          capExs.push({enun:q.enunciado||q.en||'',opcoes:q.opts||[],resposta:q.correct||q.c||'',tipo:'mc',expl:q.fb||'',_capId:6,_capLabel:capNames[6]||'Funções'});
+        });
+      } else {
+        // Procedural generation for caps 1–4
+        var temas = ['1','2','3','4','5'];
 
-      for (var i = 0; i < numPerCap; i++) {
-        var tema = temas[i % temas.length];
-        var tipo = tipos[i % tipos.length];
-        var ex = null;
-        if (cap === 4) {
-          if (typeof buildEx4 === 'function') ex = buildEx4(tema, dif);
-        } else if (cap === 3) {
-          if (typeof buildEx3 === 'function') ex = buildEx3(tema, tipo, dif);
-        } else if (cap === 2) {
-          var t2 = tipo === 'fill' ? 'fill_frac' : tipo;
-          if (typeof buildEx2 === 'function') ex = buildEx2(tema, t2, dif);
-        } else {
-          if (typeof buildExercicio === 'function') {
-            ex = buildExercicio(tema, tipo, min, max, capExs.length+1, dif)
-              || buildExercicio(tema, 'fill', min, max, capExs.length+1, dif);
+        // Build a varied plan mixing fill, mc, vf, contexto
+        var tipos = ['fill','mc','fill','mc','vf','fill','mc','fill','mc','fill',
+                     'mc','fill','vf','mc','fill','mc','fill','mc','vf','fill'];
+
+        for (var i = 0; i < numPerCap; i++) {
+          var tema = temas[i % temas.length];
+          var tipo = tipos[i % tipos.length];
+          var ex = null;
+          if (cap === 4) {
+            if (typeof buildEx4 === 'function') ex = buildEx4(tema, dif);
+          } else if (cap === 3) {
+            if (typeof buildEx3 === 'function') ex = buildEx3(tema, tipo, dif);
+          } else if (cap === 2) {
+            var t2 = tipo === 'fill' ? 'fill_frac' : tipo;
+            if (typeof buildEx2 === 'function') ex = buildEx2(tema, t2, dif);
+          } else {
+            if (typeof buildExercicio === 'function') {
+              ex = buildExercicio(tema, tipo, min, max, capExs.length+1, dif)
+                || buildExercicio(tema, 'fill', min, max, capExs.length+1, dif);
+            }
           }
-        }
-        if (ex) {
-          ex._capId = cap;
-          ex._capLabel = capNames[cap];
-          ex.num = allExs.length + capExs.length + 1;
-          capExs.push(ex);
+          if (ex) {
+            ex._capId = cap;
+            ex._capLabel = capNames[cap];
+            ex.num = allExs.length + capExs.length + 1;
+            capExs.push(ex);
+          }
         }
       }
       // Shuffle cap questions (Fisher-Yates)
@@ -494,7 +513,7 @@ function mat7LoadInline(tab) {
     }
     if (caps.length > 1) {
       var capLabel = document.createElement('div');
-      var capNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências'};
+      var capNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências', 6:'Funções'};
       capLabel.style.cssText = 'font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:800;color:var(--sage-dark);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem';
       capLabel.innerHTML = '<span style="width:28px;height:28px;border-radius:50%;background:var(--sage-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900">' + cap + '</span> ' + (capNames[cap] || 'Cap. ' + cap);
       inlineEl.appendChild(capLabel);
@@ -583,12 +602,14 @@ function testeReloadFromGf() {
   if (!activeCaps.length) activeCaps = [1];
 
   // Map cap → section
-  var secMap = { 1:'sec-teste', 2:'sec-teste2', 3:'sec-teste3', 4:'sec-teste4' };
+  var secMap = { 1:'sec-teste', 2:'sec-teste2', 3:'sec-teste3', 4:'sec-teste4', 5:'sec-teste5', 6:'sec-teste6' };
   var initMap = {
     'sec-teste':  function(){ var el=document.getElementById('t-container');  if(el && !el.innerHTML && typeof gerarTeste==='function') gerarTeste(); },
     'sec-teste2': function(){ var el=document.getElementById('t2-container'); if(el && !el.innerHTML && typeof gerarTeste2==='function') gerarTeste2(); },
     'sec-teste3': function(){ var el=document.getElementById('t3-container'); if(el && !el.innerHTML && typeof gerarTeste3==='function') gerarTeste3(); },
-    'sec-teste4': function(){ var el=document.getElementById('t4-container'); if(el && !el.innerHTML && typeof renderTeste4==='function') renderTeste4(); }
+    'sec-teste4': function(){ var el=document.getElementById('t4-container'); if(el && !el.innerHTML && typeof renderTeste4==='function') renderTeste4(); },
+    'sec-teste5': function(){ var el=document.getElementById('t5-container'); if(el && !el.innerHTML && typeof renderTeste5==='function') renderTeste5(); },
+    'sec-teste6': function(){ var el=document.getElementById('t6-container'); if(el && !el.innerHTML && typeof renderTeste6==='function') renderTeste6(); }
   };
 
   // Return previously moved sections
@@ -598,7 +619,7 @@ function testeReloadFromGf() {
   inlineEl.innerHTML = '';
 
   var loaded = false;
-  var capNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências'};
+  var capNames = {1:'Números Inteiros', 2:'Números Racionais', 3:'Geometria', 4:'Equações', 5:'Sequências', 6:'Funções'};
 
   activeCaps.forEach(function(cap) {
     var secId = secMap[cap];
@@ -674,8 +695,8 @@ function mat7RenderResumoInline() {
     } else if (cap === 3) {
       // Cap3: ids are topic3-1, topic3-2, ...
       topicEl = clone.querySelector('#topic3-' + stIdx);
-    } else if (cap === 4) {
-      // Cap4: uses .subtema-header with .subtema-num text content
+    } else if (cap === 4 || cap === 5 || cap === 6) {
+      // Cap4/5/6: use .subtema-header with .subtema-num text content
       var headers = clone.querySelectorAll('.subtema-header');
       headers.forEach(function(h) {
         var numEl = h.querySelector('.subtema-num');
@@ -684,7 +705,7 @@ function mat7RenderResumoInline() {
           topicEl.appendChild(h.cloneNode(true));
           // grab next sibling def-block(s)
           var sib = h.nextElementSibling;
-          while (sib && !sib.classList.contains('subtema-header')) {
+          while (sib && !sib.classList.contains('subtema-header') && !sib.classList.contains('desafio-wrap')) {
             topicEl.appendChild(sib.cloneNode(true));
             sib = sib.nextElementSibling;
           }
