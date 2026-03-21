@@ -330,13 +330,49 @@ window.CAP_DATA[1] = {
                tipos: ['contexto','fill','mc','fill','contexto','mc','fill','contexto','mc','fill','mc','contexto','fill','mc','vf','mc','mc','fill','contexto','fill'] }
   },
   miniPlans: {
-    0: [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'}]
+    0: [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'}],
+    1: [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'},{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'}],
+    2: [{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'}],
+    3: [{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'}],
+    4: [{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'}],
+    5: [{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'}],
+    6: [{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'fill'},{t:'6',tipo:'contexto'}]
   },
   testePlans: {
     subtema0: {
       facil:   [{t:'1',tipo:'vf'},{t:'2',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'}],
       medio:   [{t:'1',tipo:'vf'},{t:'2',tipo:'fill'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'5',tipo:'mc'},{t:'5',tipo:'fill'},{t:'6',tipo:'fill'},{t:'6',tipo:'vf'}],
       dificil: [{t:'1',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'3',tipo:'fill'},{t:'3',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'contexto'}]
+    },
+    subtema1: {
+      facil:   [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'},{t:'1',tipo:'vf'},{t:'1',tipo:'mc'}],
+      medio:   [{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'},{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'}],
+      dificil: [{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'},{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'},{t:'1',tipo:'contexto'},{t:'1',tipo:'vf'},{t:'1',tipo:'mc'},{t:'1',tipo:'fill'}]
+    },
+    subtema2: {
+      facil:   [{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'}],
+      medio:   [{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'}],
+      dificil: [{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'},{t:'2',tipo:'vf'},{t:'2',tipo:'contexto'},{t:'2',tipo:'fill'},{t:'2',tipo:'mc'}]
+    },
+    subtema3: {
+      facil:   [{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'}],
+      medio:   [{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'}],
+      dificil: [{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'},{t:'3',tipo:'vf'},{t:'3',tipo:'contexto'},{t:'3',tipo:'fill'},{t:'3',tipo:'mc'}]
+    },
+    subtema4: {
+      facil:   [{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'}],
+      medio:   [{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'}],
+      dificil: [{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'},{t:'4',tipo:'vf'},{t:'4',tipo:'contexto'},{t:'4',tipo:'fill'},{t:'4',tipo:'mc'}]
+    },
+    subtema5: {
+      facil:   [{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'}],
+      medio:   [{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'}],
+      dificil: [{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'},{t:'5',tipo:'vf'},{t:'5',tipo:'contexto'},{t:'5',tipo:'fill'},{t:'5',tipo:'mc'}]
+    },
+    subtema6: {
+      facil:   [{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'}],
+      medio:   [{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'contexto'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'contexto'}],
+      dificil: [{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'contexto'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'},{t:'6',tipo:'vf'},{t:'6',tipo:'contexto'},{t:'6',tipo:'fill'},{t:'6',tipo:'mc'}]
     }
   }
 };
@@ -464,6 +500,7 @@ var _cap1SubtemaTitulos = {
   '3:mesmo_sinal': 'Adição — Mesmo Sinal', '3:sinais_dif': 'Adição — Sinais Diferentes', '3:contexto': 'Adição — Problemas de Contexto',
   '4:subtracao': 'Subtração de Inteiros', '4:adicao_alg': 'Adição Algébrica', '4:simplificar': 'Simplificar Expressões',
   '5:retirar_par': 'Retirar Parênteses', '5:valor_num': 'Valor Numérico', '5:colchetes': 'Colchetes e Chavetas',
+  '6:comutativa': 'Propriedade Comutativa', '6:associativa': 'Propriedade Associativa', '6:elementos': 'Elemento Neutro e Simétrico',
 };
 
 function _cap1SubtemaGerador(tema, sub) {
@@ -527,13 +564,33 @@ function _cap1SubtemaGerador(tema, sub) {
         enun:'Calcula: −['+vca+' − ('+fmt(vcb)+' − '+fmt(vcc)+')] = ?', resposta:resc,
         expl:'Passo 1: ('+fmt(vcb)+'−'+fmt(vcc)+')='+inner+'. Passo 2: ['+vca+'−('+inner+')]='+bracket+'. Passo 3: −['+bracket+']='+resc+'.' };
     }
+    else if (tema==='6' && sub==='comutativa') {
+      var c6a=rndNZ(1,10), c6b=rndNZ(1,8);
+      var sC6a=Math.random()<0.5?c6a:-c6a, sC6b=Math.random()<0.5?c6b:-c6b;
+      if (i%3===0) ex={num:i+1,tema:'Tema 6',tipo:'mc',enun:'Qual propriedade ilustra: ('+sC6a+') + ('+sC6b+') = ('+sC6b+') + ('+sC6a+')?',opcoes:shuffle(['Comutativa','Associativa','Elemento neutro','Elemento simétrico']),resposta:'Comutativa',expl:'Propriedade comutativa: a + b = b + a.'};
+      else if (i%3===1) ex={num:i+1,tema:'Tema 6',tipo:'fill',enun:'Completa (propriedade comutativa): ('+sC6a+') + ('+sC6b+') = ('+sC6b+') + ___',resposta:sC6a,expl:'Propriedade comutativa: a + b = b + a. O valor em falta é '+sC6a+'.'};
+      else ex={num:i+1,tema:'Tema 6',tipo:'vf',enun:'Verdadeiro ou Falso: ('+sC6a+') + ('+sC6b+') = ('+sC6b+') + ('+sC6a+').',resposta:'V',expl:'Verdadeiro. Propriedade comutativa: a + b = b + a.'};
+    }
+    else if (tema==='6' && sub==='associativa') {
+      var a6s=rndNZ(1,8), b6s=rndNZ(1,6), c6s=rndNZ(1,5);
+      var sA6=Math.random()<0.5?a6s:-a6s, sB6=Math.random()<0.5?b6s:-b6s, sC6=Math.random()<0.5?c6s:-c6s;
+      if (i%3===0) ex={num:i+1,tema:'Tema 6',tipo:'mc',enun:'Qual propriedade ilustra: [('+sA6+') + ('+sB6+')] + ('+sC6+') = ('+sA6+') + [('+sB6+') + ('+sC6+')]?',opcoes:shuffle(['Comutativa','Associativa','Elemento neutro','Elemento simétrico']),resposta:'Associativa',expl:'Propriedade associativa: (a + b) + c = a + (b + c).'};
+      else if (i%3===1) ex={num:i+1,tema:'Tema 6',tipo:'fill',enun:'Completa (propriedade associativa): [('+sA6+') + ('+sB6+')] + ('+sC6+') = ('+sA6+') + (___ + ('+sC6+'))',resposta:sB6,expl:'Propriedade associativa: (a + b) + c = a + (b + c). O valor em falta é '+sB6+'.'};
+      else ex={num:i+1,tema:'Tema 6',tipo:'vf',enun:'Verdadeiro ou Falso: [('+sA6+') + ('+sB6+')] + ('+sC6+') = ('+sA6+') + [('+sB6+') + ('+sC6+')].',resposta:'V',expl:'Verdadeiro. Propriedade associativa: (a + b) + c = a + (b + c).'};
+    }
+    else if (tema==='6' && sub==='elementos') {
+      var e6=rndNZ(1,12), sE6=Math.random()<0.5?e6:-e6;
+      if (i%3===0) ex={num:i+1,tema:'Tema 6',tipo:'fill',enun:'Elemento neutro: ('+sE6+') + ___ = '+sE6,resposta:0,expl:'O elemento neutro da adição é o 0: a + 0 = a.'};
+      else if (i%3===1) ex={num:i+1,tema:'Tema 6',tipo:'fill',enun:'Elemento simétrico: ('+sE6+') + ___ = 0',resposta:-sE6,expl:'O simétrico de '+sE6+' é '+(-sE6)+'. a + (−a) = 0.'};
+      else ex={num:i+1,tema:'Tema 6',tipo:'mc',enun:'Qual é o simétrico de '+sE6+'?',opcoes:shuffle([String(-sE6),String(sE6),String(sE6+1),String(-sE6-1)]),resposta:String(-sE6),expl:'O simétrico de '+sE6+' é '+(-sE6)+': '+sE6+' + ('+(-sE6)+') = 0.'};
+    }
     else ex = buildExercicio(tema, i%2===0?'mc':'fill', min, max, i+1, dif);
     if (ex) exs.push(ex);
   }
   return exs;
 }
 
-function abrirSubtema(tema, sub) {
+function abrirSubtema1(tema, sub) {
   _stAnswered = {}; _stScore = { correct: 0, total: 0 };
   var titulo = _cap1SubtemaTitulos[tema+':'+sub] || 'Prática';
   window._stContext = { titulo: titulo, gerador: function(){ return _cap1SubtemaGerador(tema, sub); } };
@@ -543,29 +600,34 @@ function abrirSubtema(tema, sub) {
 // ── Topic grid data (rendered by _tplTopicGrid from chapter-engine.js) ──
 var _cap1Topics = [
   {id:'tr1', num:'01', title:'Números Inteiros', subs:[
-    {onclick:"abrirSubtema('1','inteiros')", label:'Conjunto dos inteiros (ℤ)'},
-    {onclick:"abrirSubtema('1','representacao')", label:'Representar situações com inteiros'},
-    {onclick:"abrirSubtema('1','ordenacao')", label:'Ordenar inteiros na reta'}
+    {onclick:"abrirSubtema1('1','inteiros')", label:'Conjunto dos inteiros (ℤ)'},
+    {onclick:"abrirSubtema1('1','representacao')", label:'Representar situações com inteiros'},
+    {onclick:"abrirSubtema1('1','ordenacao')", label:'Ordenar inteiros na reta'}
   ]},
   {id:'tr2', num:'02', title:'Valor Absoluto e Simétrico', subs:[
-    {onclick:"abrirSubtema('2','absoluto')", label:'Valor absoluto |a|'},
-    {onclick:"abrirSubtema('2','simetrico')", label:'Simétrico de um número'},
-    {onclick:"abrirSubtema('2','comparar')", label:'Comparar usando |a|'}
+    {onclick:"abrirSubtema1('2','absoluto')", label:'Valor absoluto |a|'},
+    {onclick:"abrirSubtema1('2','simetrico')", label:'Simétrico de um número'},
+    {onclick:"abrirSubtema1('2','comparar')", label:'Comparar usando |a|'}
   ]},
   {id:'tr3', num:'03', title:'Adição de Inteiros', subs:[
-    {onclick:"abrirSubtema('3','mesmo_sinal')", label:'Mesmo sinal'},
-    {onclick:"abrirSubtema('3','sinais_dif')", label:'Sinais diferentes'},
-    {onclick:"abrirSubtema('3','contexto')", label:'Problemas de contexto'}
+    {onclick:"abrirSubtema1('3','mesmo_sinal')", label:'Mesmo sinal'},
+    {onclick:"abrirSubtema1('3','sinais_dif')", label:'Sinais diferentes'},
+    {onclick:"abrirSubtema1('3','contexto')", label:'Problemas de contexto'}
   ]},
   {id:'tr4', num:'04', title:'Subtração e Adição Algébrica', subs:[
-    {onclick:"abrirSubtema('4','subtracao')", label:'Subtração de inteiros'},
-    {onclick:"abrirSubtema('4','adicao_alg')", label:'Adição algébrica'},
-    {onclick:"abrirSubtema('4','simplificar')", label:'Simplificar expressões'}
+    {onclick:"abrirSubtema1('4','subtracao')", label:'Subtração de inteiros'},
+    {onclick:"abrirSubtema1('4','adicao_alg')", label:'Adição algébrica'},
+    {onclick:"abrirSubtema1('4','simplificar')", label:'Simplificar expressões'}
   ]},
   {id:'tr5', num:'05', title:'Expressões com Parênteses', subs:[
-    {onclick:"abrirSubtema('5','retirar_par')", label:'Retirar parênteses'},
-    {onclick:"abrirSubtema('5','valor_num')", label:'Valor numérico'},
-    {onclick:"abrirSubtema('5','colchetes')", label:'Colchetes e chavetas'}
+    {onclick:"abrirSubtema1('5','retirar_par')", label:'Retirar parênteses'},
+    {onclick:"abrirSubtema1('5','valor_num')", label:'Valor numérico'},
+    {onclick:"abrirSubtema1('5','colchetes')", label:'Colchetes e chavetas'}
+  ]},
+  {id:'tr6', num:'06', title:'Propriedades da Adição', subs:[
+    {onclick:"abrirSubtema1('6','comutativa')", label:'Propriedade comutativa'},
+    {onclick:"abrirSubtema1('6','associativa')", label:'Propriedade associativa'},
+    {onclick:"abrirSubtema1('6','elementos')", label:'Elemento neutro e simétrico'}
   ]}
 ];
 (function(){

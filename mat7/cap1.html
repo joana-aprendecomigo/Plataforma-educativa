@@ -60,7 +60,7 @@
   <button class="tab-btn" onclick="showSection('reta', this)">Reta</button>
   <button class="tab-btn" onclick="showSection('calc-expr', this)">Calculadora</button>
   <button class="tab-btn" onclick="showSection('flashcards', this)">Flashcards</button>
-  <button class="tab-btn" onclick="showSection('exame', this)">Teste</button>
+  <button class="tab-btn" onclick="showSection('exame', this)">Exame</button>
   <button class="tab-btn" onclick="showSection('progresso', this)">Progresso</button>
 </nav>
 
@@ -74,7 +74,7 @@
   <h1 class="ch-main-title">
     Capítulo 1 — <em class="text-[var(--c2-mid)] italic">Números Inteiros</em>
   </h1>
-  <p class="ch-subtitle">Cinco subtemas · Teoria, exercícios e gerador de fichas</p>
+  <p class="ch-subtitle">Seis subtemas · Teoria, exercícios e gerador de fichas</p>
 </div>
 
 <!-- ══════════ BLOCK 1: RESUMO ══════════ -->
@@ -83,7 +83,7 @@
     <span class="block-badge">1</span>
     <div>
       <div class="block-title">Resumo</div>
-      <div class="block-desc">Teoria essencial dos 5 temas</div>
+      <div class="block-desc">Teoria essencial dos 6 temas</div>
     </div>
   </div>
 
@@ -118,7 +118,7 @@
 <div id="sec-teoria">
   <div class="sec-header mt-6">
     <h2><span class="num"><i class="ph ph-book-open-text"></i></span> Teoria</h2>
-    <p>Resumo dos cinco temas do capítulo</p>
+    <p>Resumo dos seis temas do capítulo</p>
   </div>
 
   <div id="topic-1">
@@ -346,7 +346,7 @@
 <div id="sec-questoes">
   <div class="sec-header">
     <div class="flex-1"><h2><span class="num level-badge level-badge--1">Nível 1</span> Questões-aula</h2>
-    <p>20 exercícios pelos 5 temas — escolhe o nível e gera novas questões a qualquer momento</p></div>
+    <p>20 exercícios pelos 6 temas — escolhe o nível e gera novas questões a qualquer momento</p></div>
   </div>
   <div class="level-bar">
     <div class="gen-level-group">
@@ -528,7 +528,7 @@ window.qaFichaShow = function(id, btn) {
 <div class="section-divider section" id="sec-minitestes" >
 <div class="sec-header">
     <div class="flex-1"><h2><span class="num level-badge level-badge--2">Nível 2</span> Minitestes</h2>
-    <p>5 minitestes, um por tema — escolhe o nível e gera novas questões</p></div>
+    <p>6 minitestes, um por tema — escolhe o nível e gera novas questões</p></div>
   </div>
   <div class="level-bar">
     <div class="gen-level-group">
@@ -546,6 +546,7 @@ window.qaFichaShow = function(id, btn) {
     <button class="tab-btn" onclick="showMiniDyn(3,this)">③ Mini 3 — Adição</button>
     <button class="tab-btn" onclick="showMiniDyn(4,this)">④ Mini 4 — Subtração</button>
     <button class="tab-btn" onclick="showMiniDyn(5,this)">⑤ Mini 5 — Parênteses</button>
+    <button class="tab-btn" onclick="showMiniDyn(6,this)">⑥ Mini 6 — Propriedades</button>
   </div>
   <div class="score-bar">
     <div><div class="score-num" id="m-score">0</div><div class="score-label">certas</div></div>
@@ -727,6 +728,7 @@ window.qaFichaShow = function(id, btn) {
     <button class="tab-btn" onclick="setTesteSubtema(3,this)">③ Adição</button>
     <button class="tab-btn" onclick="setTesteSubtema(4,this)">④ Subtração</button>
     <button class="tab-btn" onclick="setTesteSubtema(5,this)">⑤ Parênteses</button>
+    <button class="tab-btn" onclick="setTesteSubtema(6,this)">⑥ Propriedades</button>
   </div>
   <div class="score-bar">
     <div><div class="score-num" id="t-score">0</div><div class="score-label">certas</div></div>
@@ -757,7 +759,7 @@ window.qaFichaShow = function(id, btn) {
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.4rem .75rem;font-family:'JetBrains Mono',monospace;font-size:.85rem">
           <div>6.1. 15/5 <strong>∈</strong> ℕ</div>
           <div>6.2. −5 <strong>&lt;</strong> −(−6)</div>
-          <div>6.3. −(−2) <strong>∈</strong> ℤ⁻</div>
+          <div>6.3. −(−2) <strong>∉</strong> ℤ⁻</div>
           <div>6.4. −|−7| <strong>∈</strong> ℤ</div>
           <div>6.5. −7 <strong>&gt;</strong> −10</div>
           <div>6.6. |−3| <strong>=</strong> −(−2−1)</div>
@@ -856,7 +858,7 @@ window.qaFichaShow = function(id, btn) {
 
 
 <!-- ── Gerador Livre (dentro do bloco) ── -->
-<div id="sec-gerador" class="section-divider">
+<div id="sec-gerador" class="section-divider section">
   <div class="sec-header">
     <h2><i class="ph ph-dice-five"></i> Gerador de Exercícios</h2>
     <p>Exercícios novos gerados na hora — correção automática incluída</p>
@@ -872,6 +874,7 @@ window.qaFichaShow = function(id, btn) {
         <option value="3">Tema 3 — Adição de Inteiros</option>
         <option value="4">Tema 4 — Subtração e Adição Algébrica</option>
         <option value="5">Tema 5 — Expressões com Parênteses</option>
+        <option value="6">Tema 6 — Propriedades da Adição</option>
       </select>
       <select class="ai-select" id="gen-tipo">
         <option value="misto">Exercícios mistos</option>
@@ -961,9 +964,9 @@ window.qaFichaShow = function(id, btn) {
         <div style="font-size:.9rem;line-height:1.9;margin-top:.5rem">
           <p><strong>4.</strong> Completa com &gt;, &lt; ou =:</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.3rem;font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-left:1rem">
-            <div>4.1. −12 <strong>&gt;</strong> −13</div><div>4.2. −5 <strong>&gt;</strong> −(−5)</div>
-            <div>4.3. |−15| <strong>=</strong> −|15|</div><div>4.4. −12 <strong>=</strong> −(+12)</div>
-            <div>4.5. −1 <strong>&lt;</strong> 0</div><div>4.6. −(−10) <strong>=</strong> −|−10|</div>
+            <div>4.1. −12 <strong>&gt;</strong> −13</div><div>4.2. −5 <strong>&lt;</strong> −(−5)</div>
+            <div>4.3. |−15| <strong>&gt;</strong> −|15|</div><div>4.4. −12 <strong>=</strong> −(+12)</div>
+            <div>4.5. −1 <strong>&lt;</strong> 0</div><div>4.6. −(−10) <strong>&gt;</strong> −|−10|</div>
           </div>
           <p class="mt-2"><strong>5.</strong> Atletismo — Número de voltas:</p>
           <ul style="margin-left:1.25rem">

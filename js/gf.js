@@ -626,6 +626,15 @@ function _dinamico1(dif) {
     ex+=_dinamicoRow(6,'Simplifica usando adição algébrica: &nbsp;'+nums5.map(_RND.sign).join(' '));
     sol+='<div class="ex"><strong>6.</strong> '+sum5+'</div>';
 
+    var pm=R.int(2,9),qm=R.int(2,8),rm=R.int(1,7);
+    var sm=Math.random()<0.5?pm:-pm, tm=Math.random()<0.5?qm:-qm;
+    ex+='<h2>Grupo 7 — Propriedades da Adição</h2>';
+    ex+=_dinamicoRow(7,'Identifica a propriedade usada e completa:<br>'
+      +'a) ('+sm+') + ('+tm+') = ('+tm+') + _____  &nbsp;&nbsp; [Propriedade: _____]<br>'
+      +'b) ('+pm+') + ___ = '+pm+'  &nbsp;&nbsp; [Propriedade: _____]<br>'
+      +'c) ('+rm+') + (−'+rm+') = ___  &nbsp;&nbsp; [Propriedade: _____]');
+    sol+='<div class="ex"><strong>7.</strong> a) '+sm+'; Comutativa &nbsp; b) 0; Elemento neutro &nbsp; c) 0; Elemento simétrico</div>';
+
   } else { // difícil
     var a=R.int(5,20),b=R.int(5,15),c=R.int(3,12),d=R.int(2,8),e=R.int(2,6);
     ex+='<h2>Grupo 1 — Expressões com Parênteses Múltiplos</h2>';
@@ -665,6 +674,16 @@ function _dinamico1(dif) {
     ex+='<h2>Grupo 4 — Adição Algébrica</h2>';
     ex+=_dinamicoRow(6,'Simplifica: '+nums6.map(_RND.sign).join(' ') + ' = _____');
     sol+='<div class="ex"><strong>6.</strong> '+sum6+'</div>';
+
+    var pd=R.int(3,12),qd=R.int(2,8),rd=R.int(2,6),sd2=R.int(2,5);
+    var xd=Math.random()<0.5?pd:-pd, yd=Math.random()<0.5?qd:-qd;
+    ex+='<h2>Grupo 5 — Propriedades da Adição</h2>';
+    ex+=_dinamicoRow(7,'Justifica usando a propriedade adequada:<br>'
+      +'a) Completa: ('+xd+') + ('+yd+') + ('+(-xd)+') = ___ + ('+yd+')  &nbsp;&nbsp; [usa a propriedade: _____]<br>'
+      +'b) Simplifica: ('+pd+') + ('+qd+') + ('+(-pd)+') + ('+(-qd)+') = ___  &nbsp;&nbsp; [justifica o resultado]<br>'
+      +'c) Verifica que ('+rd+') + ('+(-rd)+') = 0 e identifica a propriedade');
+    sol+='<div class="ex"><strong>7.</strong> a) 0; Simétrico/Associativa &nbsp; b) 0; '
+      +'('+pd+')+(−'+pd+')=0 e ('+qd+')+(−'+qd+')=0, soma final = 0 &nbsp; c) Elemento simétrico</div>';
   }
 
   return {ex:ex, sol:sol};
@@ -998,7 +1017,7 @@ function _dinamico(cap, dif) {
 function _gfSubtema1(st, dif, n) {
   var R = _RND; var ex = '', sol = '';
   function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
-  var titles = {1:'Conjunto ℤ — Representação',2:'Valor Absoluto e Simétrico',3:'Adição de Inteiros',4:'Subtração de Inteiros',5:'Parênteses e Expressões'};
+  var titles = {1:'Conjunto ℤ — Representação',2:'Valor Absoluto e Simétrico',3:'Adição de Inteiros',4:'Subtração de Inteiros',5:'Parênteses e Expressões',6:'Propriedades da Adição'};
   ex += '<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+titles[st]+'</h3>';
   var lo = dif==='facil'?2:dif==='dificil'?8:4, hi = dif==='facil'?8:dif==='dificil'?20:15;
   for (var i=1;i<=n;i++) {
@@ -1019,6 +1038,13 @@ function _gfSubtema1(st, dif, n) {
     } else if (st===5) {
       ex+=row(i,'Remove parênteses e calcula: &nbsp; a) −('+a+' − '+b+') = _____ &nbsp; b) +(−'+a+' + '+b+') = _____ &nbsp; c) '+a+' − ('+b+' − '+c+') = _____');
       sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(b-a)+' &nbsp; b) '+(b-a)+' &nbsp; c) '+(a-b+c)+'</div>';
+    } else if (st===6) {
+      var sA6=Math.random()<0.5?a:-a, sB6=Math.random()<0.5?b:-b;
+      ex+=row(i,'Identifica a propriedade da adição usada em cada igualdade:<br>'
+        +'a) ('+sA6+') + ('+sB6+') = ('+sB6+') + ('+sA6+') &nbsp;&nbsp; [Propriedade: _____]<br>'
+        +'b) ('+a+') + 0 = '+a+' &nbsp;&nbsp; [Propriedade: _____]<br>'
+        +'c) ('+a+') + (−'+a+') = 0 &nbsp;&nbsp; [Propriedade: _____]');
+      sol+='<div class="ex"><strong>'+i+'.</strong> a) Comutativa &nbsp; b) Elemento neutro &nbsp; c) Elemento simétrico</div>';
     }
   }
   return {ex:ex, sol:sol};
