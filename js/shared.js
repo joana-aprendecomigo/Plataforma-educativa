@@ -11,7 +11,7 @@ function eduToast(msg,type){
   _toastTimer=setTimeout(function(){t.classList.remove('show');},2800);
 }
 function htmlToPdfDownload(htmlContent, filename) {
-  // Prefix filename: professor → "prof_NomeProfessor_", aluno → "NomeAluno_"
+  // Prefix filename
   if (_n) {
     var _safe = _n.replace(/[^a-zA-Z0-9áéíóúâêîôûãõàèìòùçÁÉÍÓÚÂÊÎÔÛÃÕÀÈÌÒÙÇ]/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
     if (_safe) {
@@ -19,81 +19,68 @@ function htmlToPdfDownload(htmlContent, filename) {
       filename = _prefix + filename;
     }
   }
-  var printStyle = [
-    '<style>',
-    '@media print{',
-    '  .no-print{display:none!important}',
-    '  body{background:#fff!important}',
-    '  h2{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}',
-    '  th{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}',
-    '  [style*="background"]{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}',
-    '  @page{size:A4;margin:12mm 15mm}',
-    '}',
-    '/* Auto-print overlay */',
-    '#_print_overlay{position:fixed;inset:0;background:rgba(247,245,242,.97);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;gap:1.5rem}',
-    '#_print_overlay h2{font-family:Cormorant Garamond,serif;font-size:1.8rem;font-weight:900;color:#2a2724;margin:0}',
-    '#_print_overlay p{color:#6b6560;font-size:.95rem;text-align:center;max-width:360px;line-height:1.6;margin:0}',
-    '#_print_overlay button{background:linear-gradient(135deg,#516860,#77998E);color:#fff;border:none;border-radius:999px;padding:14px 32px;font-family:Montserrat,sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(81,104,96,.35)}',
-    '#_print_overlay .hint{font-size:.78rem;color:#a09890;margin-top:-.5rem}',
-    '@media print{#_print_overlay{display:none!important}}',
-    '</style>'
-  ].join('\n');
 
-  // Inject overlay + auto-print script into the document
-  var autoScript = [
+  // Build a self-contained HTML file with a prominent "Guardar PDF" button
+  var printBtn = [
+    '<div id="_pdfbar" style="position:fixed;top:0;left:0;right:0;z-index:9999;',
+    'background:linear-gradient(135deg,#516860,#77998E);padding:14px 24px;',
+    'display:flex;align-items:center;justify-content:space-between;',
+    'font-family:Montserrat,sans-serif;box-shadow:0 2px 12px rgba(0,0,0,.18)">',
+    '  <span style="color:#fff;font-weight:700;font-size:1rem">',
+    '    3ponto14 &middot; Ficha de Trabalho',
+    '  </span>',
+    '  <button onclick="window.print()" style="background:#fff;color:#516860;',
+    '    border:none;border-radius:999px;padding:10px 28px;font-family:Montserrat,sans-serif;',
+    '    font-size:.95rem;font-weight:800;cursor:pointer;',
+    '    box-shadow:0 2px 8px rgba(0,0,0,.15)">',
+    '    \uD83D\uDCE5 Guardar como PDF',
+    '  </button>',
+    '</div>',
+    '<div style="height:60px"></div>',
+    '<style>',
+    '@media print {',
+    '  #_pdfbar, #_pdfbar + div { display:none !important; }',
+    '  body { padding-top: 0 !important; }',
+    '  h2, th, [style*="background"] {',
+    '    -webkit-print-color-adjust:exact !important;',
+    '    print-color-adjust:exact !important;',
+    '  }',
+    '  @page { size:A4; margin:12mm 15mm; }',
+    '}',
+    '</style>',
     '<script>',
     'window.addEventListener("load", function() {',
-    '  var ov = document.getElementById("_print_overlay");',
-    '  setTimeout(function() {',
-    '    if(ov) ov.style.display="none";',
-    '    window.print();',
-    '    if(ov) { setTimeout(function(){ ov.style.display="flex"; }, 300); }',
-    '  }, 600);',
+    '  setTimeout(function() { window.print(); }, 800);',
     '});',
-    'function _doPrint(){ var ov=document.getElementById("_print_overlay"); if(ov) ov.style.display="none"; window.print(); if(ov){ setTimeout(function(){ ov.style.display="flex"; },300); } }',
     '<\/script>'
   ].join('\n');
 
-  var overlay = [
-    '<div id="_print_overlay" class="no-print">',
-    '  <h2>A preparar PDF…</h2>',
-    '  <p>O diálogo de impressão vai abrir automaticamente.<br>Seleciona <strong>Guardar como PDF</strong> como destino.</p>',
-    '  <button onclick="_doPrint()">🖨 Imprimir / Guardar PDF</button>',
-    '  <span class="hint">Podes fechar esta janela depois de guardar.</span>',
-    '</div>'
-  ].join('\n');
-
-  // Inject into the HTML
+  // Inject the bar into the HTML document
   var html = htmlContent;
-  if (html.indexOf('</head>') !== -1) {
-    html = html.replace('</head>', printStyle + autoScript + '</head>');
-  } else {
-    html = printStyle + autoScript + html;
-  }
   if (html.indexOf('<body>') !== -1) {
-    html = html.replace('<body>', '<body>' + overlay);
+    html = html.replace('<body>', '<body>' + printBtn);
   } else if (html.indexOf('<body ') !== -1) {
-    html = html.replace(/<body([^>]*)>/, '<body$1>' + overlay);
+    html = html.replace(/<body([^>]*)>/, '<body$1>' + printBtn);
   } else {
-    html = overlay + html;
+    html = printBtn + html;
   }
 
+  // IMPORTANT: must be called synchronously from click handler (no setTimeout)
+  // so the browser allows the popup. Open in a new tab with the full document.
   var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
   var url = URL.createObjectURL(blob);
   var win = window.open(url, '_blank');
   if (!win) {
-    // Blocked by popup blocker — fallback to direct download
+    // If still blocked, try <a download> as fallback
     var a = document.createElement('a');
     a.href = url;
     a.download = filename.replace('.pdf', '.html');
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 5000);
-    eduToast('Descarregado como HTML — abre e usa Ctrl+P para PDF.', 'success');
-  } else {
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 120000);
+    if (typeof eduToast === 'function') eduToast('Ficheiro HTML descarregado. Abre-o no browser e usa Cmd+P para guardar como PDF.', 'success');
   }
+  setTimeout(function() { URL.revokeObjectURL(url); }, 120000);
 }
 
 // SHARED UTILITIES — used across chapter files

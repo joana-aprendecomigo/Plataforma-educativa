@@ -7,44 +7,96 @@ function gfAction(secId) {
   var status = document.getElementById('gf-status-' + secId);
   var previewWrap = document.getElementById('gf-preview-' + secId);
 
-  // Se ja existe conteudo gerado, descarrega imediatamente
-  if (_gfContent[secId]) {
-    gfDownload(secId);
-    if (status) { status.textContent = '✓ PDF aberto novamente'; status.style.color = 'var(--c1-mid)'; }
+  // Generate content
+  try {
+    gfGenerar(secId);
+  } catch(e) {
+    if (status) { status.textContent = 'Erro: ' + e.message; status.style.color = '#c0392b'; }
     return;
   }
 
-  if (status) { status.textContent = 'A gerar…'; status.style.color = ''; }
+  var content = _gfContent[secId];
+  if (!content) {
+    if (status) { status.textContent = 'Seleciona pelo menos um capitulo e um tipo de conteudo.'; status.style.color = '#c0392b'; }
+    return;
+  }
 
-  setTimeout(function() {
-    try {
-      gfGenerar(secId);
-    } catch(e) {
-      if (status) { status.textContent = 'Erro ao gerar. Tenta novamente.'; status.style.color = '#c0392b'; }
-      return;
-    }
+  // Show preview
+  var previewEl = document.getElementById('gf-content-' + secId);
+  if (previewEl) previewEl.innerHTML = content;
+  if (previewWrap) previewWrap.style.display = 'block';
 
-    var html = _gfContent[secId];
-    if (!html) {
-      if (status) { status.textContent = 'Seleciona pelo menos um capitulo e um tipo de conteudo.'; status.style.color = '#c0392b'; }
-      return;
-    }
+  // Build full self-contained HTML document with print button + auto-print
+  var sec = document.getElementById(secId);
+  var capNums = [];
+  if (sec) sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b) { capNums.push(parseInt(b.dataset.cap)); });
+  capNums.sort(function(a, b) { return a - b; });
+  var capNames = {1:'Inteiros',2:'Racionais',3:'Geometria',4:'\u00c1lgebra'};
+  var capLabels = capNums.map(function(c) { return 'Cap. ' + c + ' \u00b7 ' + (capNames[c]||''); });
+  var titleShort = capLabels.join(' + ') || 'Ficha';
+  var now = new Date().toLocaleDateString('pt-PT');
 
-    // Mostra pre-visualizacao
-    var previewEl = document.getElementById('gf-content-' + secId);
-    if (previewEl) previewEl.innerHTML = html;
-    if (previewWrap) previewWrap.style.display = 'block';
+  var fullHtml = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8">'
+    + '<title>3ponto14 \u00b7 ' + titleShort + '</title>'
+    + '<style>'
+    + 'body{font-family:Georgia,serif;max-width:800px;margin:0 auto;padding:2rem;padding-top:80px;color:#2a2724;font-size:.92rem;line-height:1.7}'
+    + 'h1{font-size:1.4rem;border-bottom:2px solid #516860;padding-bottom:.5rem;margin-bottom:1.5rem}'
+    + 'h2{font-size:1.1rem;margin-top:2rem;color:#516860}'
+    + 'h3{font-size:1rem;color:#3d5c54;border-left:3px solid #77998e;padding-left:8px;margin:1.25rem 0 .5rem}'
+    + '.doc-header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #516860;padding-bottom:1rem;margin-bottom:1.5rem}'
+    + '.doc-brand{font-size:.75rem;font-weight:700;color:#77998E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}'
+    + '.doc-title{font-family:Georgia,serif;font-size:1.2rem;font-weight:700;color:#2a2724}'
+    + '.doc-title em{display:block;font-size:.9rem;font-weight:400;color:#666}'
+    + '.doc-logo{font-size:2.5rem;font-weight:900;color:#516860;font-family:serif}'
+    + '.doc-meta{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem;padding:1rem;background:#f9f5ef;border-radius:8px}'
+    + '.doc-meta-item{display:flex;align-items:center;gap:.5rem}'
+    + '.doc-meta-label{font-size:.75rem;font-weight:700;color:#666;text-transform:uppercase}'
+    + '.doc-meta-line{width:120px;border-bottom:1px solid #999}'
+    + '.doc-footer{margin-top:3rem;padding-top:.75rem;border-top:1px solid #ccc;display:flex;justify-content:space-between;font-size:.72rem;color:#999}'
+    + '.ex{margin-bottom:1.5rem;padding:1rem;border:1px solid #e0dbd4;border-radius:6px}'
+    + '.ex-num{font-weight:700;color:#516860;font-size:.85rem;margin-bottom:.5rem}'
+    + '.linha{border-bottom:1px solid #bbb;margin-top:.6rem;min-height:22px}'
+    + '#_bar{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#516860,#77998E);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;font-family:Montserrat,Arial,sans-serif;box-shadow:0 2px 12px rgba(0,0,0,.18)}'
+    + '#_bar span{color:#fff;font-weight:700;font-size:1rem}'
+    + '#_bar button{background:#fff;color:#516860;border:none;border-radius:999px;padding:10px 28px;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}'
+    + '@media print{#_bar{display:none!important}body{padding-top:0!important}h2,th,[style*="background"]{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@page{size:A4;margin:12mm 15mm}}'
+    + '</style></head><body>'
+    + '<div id="_bar"><span>3ponto14 \u00b7 Ficha de Trabalho</span>'
+    + '<button onclick="window.print()">\uD83D\uDCE5 Guardar como PDF</button></div>'
+    + '<div class="doc-header"><div><div class="doc-brand">3ponto14 \u00b7 Matem\u00e1tica 7.\u00ba Ano</div>'
+    + '<div class="doc-title">Ficha de Trabalho<em>' + titleShort + '</em></div></div>'
+    + '<div class="doc-logo">3&#960;</div></div>'
+    + '<div class="doc-meta">'
+    + '<div class="doc-meta-item"><div class="doc-meta-label">Nome</div><div class="doc-meta-line"></div></div>'
+    + '<div class="doc-meta-item"><div class="doc-meta-label">Turma</div><div class="doc-meta-line"></div></div>'
+    + '<div class="doc-meta-item"><div class="doc-meta-label">Data</div><div class="doc-meta-line"></div></div>'
+    + '<div class="doc-meta-item"><div class="doc-meta-label">Classifica\u00e7\u00e3o</div><div class="doc-meta-line"></div></div>'
+    + '</div>'
+    + content
+    + '<div class="doc-footer"><span>3ponto14 \u00b7 Matem\u00e1tica 7.\u00ba Ano</span><span>' + now + '</span></div>'
+    + '<script>window.onload=function(){setTimeout(function(){window.print()},800)};<\/script>'
+    + '</body></html>';
 
-    if (status) { status.textContent = '✓ Ficha pronta — a abrir PDF…'; status.style.color = 'var(--c1-mid)'; }
+  // Open in new tab — MUST be synchronous with click (no setTimeout) for browser to allow it
+  var blob = new Blob([fullHtml], {type: 'text/html;charset=utf-8'});
+  var blobUrl = URL.createObjectURL(blob);
+  var win = window.open(blobUrl, '_blank');
 
-    // Descarrega
-    gfDownload(secId);
+  if (win) {
+    if (status) { status.textContent = '\u2713 Ficha aberta num novo separador \u2014 guarda como PDF no di\u00e1logo de impress\u00e3o'; status.style.color = 'var(--c1-mid)'; }
+  } else {
+    // Fallback: force download as HTML file
+    var a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = '3ponto14_mat7_' + (capNums.join('-') || 'ficha') + '_' + new Date().toISOString().slice(0, 10) + '.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    if (status) { status.textContent = '\u2713 Ficheiro HTML descarregado \u2014 abre-o no browser e usa Cmd+P'; status.style.color = 'var(--c1-mid)'; }
+  }
 
-    setTimeout(function() {
-      if (status) status.textContent = '✓ PDF aberto — clica de novo para regenerar';
-      _gfContent[secId] = null;
-    }, 1200);
-  }, 40);
+  setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 120000);
+  _gfContent[secId] = null;
 }
 
 function gfToggleCap(btn, secId) {
@@ -533,7 +585,7 @@ function _dinamicoRow(n, q, espacos) {
 
 // ── Cap 1 — Números Inteiros ──────────────────────────────────────────────────
 function _dinamico1(dif) {
-  var R=_RND, now=new Date().toLocaleDateString('pt-PT');
+  var R=_RND;
   var ex='', sol='';
 
   if (dif==='facil') {
@@ -560,7 +612,7 @@ function _dinamico1(dif) {
 
     // Exercício 4 — Adição simples
     var a1=R.int(1,9),b1=R.int(1,9),a2=R.int(1,9),b2=R.int(1,9),a3=R.int(1,9),b3=R.int(1,9);
-    var r1=(-a1)+(+b1), r2=(-a2)+(-b2), r3=(+a3)+(-b3);
+    var r1=(-a1)+(+b1), r3=(+a3)+(-b3);
     ex+='<h2>Grupo 3 — Adição de Inteiros</h2>';
     ex+=_dinamicoRow(4,'Calcula:<br>'
       +'a) (−'+a1+') + (+'+b1+') = _____ &nbsp;&nbsp; b) (−'+a2+') + (−'+b2+') = _____ &nbsp;&nbsp; c) (+'+a3+') + (−'+b3+') = _____');
@@ -575,8 +627,8 @@ function _dinamico1(dif) {
 
     // Exercício 6 — Ordenar
     var nums=[];
-    while(nums.length<6){var n=R.int(-8,8); if(!nums.includes(n)) nums.push(n);}
-    var sorted=[...nums].sort((a,b)=>a-b);
+    while(nums.length<6){var n=R.int(-8,8); if(nums.indexOf(n)<0) nums.push(n);}
+    var sorted=nums.slice().sort(function(a,b){return a-b;});
     ex+='<h2>Grupo 5 — Ordenação</h2>';
     ex+=_dinamicoRow(6,'Ordena os números por ordem crescente: '+nums.join(', '));
     sol+='<div class="ex"><strong>6.</strong> '+sorted.join(' &lt; ')+'</div>';
@@ -590,7 +642,7 @@ function _dinamico1(dif) {
     sol+='<div class="ex"><strong>1.</strong> a) '+ra+' &nbsp; b) '+rb+' &nbsp; c) '+rc+'</div>';
 
     var a=R.int(2,12),b=R.int(2,12),c=R.int(2,12),d=R.int(2,12),e=R.int(2,12);
-    var r1=(-a)+(+b), r2=(-a)+(-b), r3=(+c)+(-d), r4=(-c)+(-d)+(+e);
+    var r1=(-a)+(+b), r3=(+c)+(-d), r4=(-c)+(-d)+(+e);
     ex+='<h2>Grupo 2 — Adição e Subtração</h2>';
     ex+=_dinamicoRow(2,'Calcula:<br>'
       +'a) (−'+a+') + (+'+b+') = _____ &nbsp;&nbsp; b) (−'+a+') + (−'+b+') = _____ &nbsp;&nbsp; c) (+'+c+') + (−'+d+') = _____<br>'
@@ -605,9 +657,7 @@ function _dinamico1(dif) {
     sol+='<div class="ex"><strong>3.</strong> a) '+s1+' &nbsp; b) '+s2+' &nbsp; c) '+(-(s3_base-s3_sub))+'</div>';
 
     // Expressões algébricas com parênteses
-    var x=R.int(2,8),y=R.int(2,8),w=R.int(2,5),z=R.int(1,5);
-    var ex4a=(-(+x+(-y))); // −(+x − y)
-    var ex4b=x-y+(-z);
+    var x=R.int(2,8),y=R.int(2,8),z=R.int(1,5);
     ex+='<h2>Grupo 3 — Expressões com Parênteses</h2>';
     ex+=_dinamicoRow(4,'Remove os parênteses e calcula:<br>'
       +'a) −(+'+x+' − '+y+') = _____ &nbsp;&nbsp; b) '+x+' − '+y+' + (−'+z+') = _____');
@@ -622,7 +672,7 @@ function _dinamico1(dif) {
 
     // Adição algébrica
     var nums5=[R.int(-12,12),R.int(-12,12),R.int(-12,12),R.int(-12,12),R.int(-12,12)];
-    var sum5=nums5.reduce((a,b)=>a+b,0);
+    var sum5=nums5.reduce(function(a,b){return a+b;},0);
     ex+=_dinamicoRow(6,'Simplifica usando adição algébrica: &nbsp;'+nums5.map(_RND.sign).join(' '));
     sol+='<div class="ex"><strong>6.</strong> '+sum5+'</div>';
 
@@ -665,17 +715,17 @@ function _dinamico1(dif) {
     sol+='<div class="ex"><strong>4.</strong> '+alt1+' − (−'+prof1+') = '+alt1+' + '+prof1+' = <strong>'+(alt1+prof1)+' m</strong></div>';
 
     var posIni=R.neg(1,10),lances=[R.neg(2,8),R.neg(2,8),R.neg(2,8)];
-    var posFinal=posIni+lances.reduce((a,b)=>a+b,0);
+    var posFinal=posIni+lances.reduce(function(a,b){return a+b;},0);
     ex+=_dinamicoRow(5,'Num jogo, o jogador começa na posição '+posIni+'. Nos 3 lances obteve: '+lances.map(_RND.sign).join(', ')+'. Em que posição fica? Mostra todos os cálculos.');
     sol+='<div class="ex"><strong>5.</strong> '+posIni+' + ('+lances.map(_RND.sign).join(') + (')+') = <strong>'+posFinal+'</strong></div>';
 
     var nums6=[R.int(-15,15),R.int(-15,15),R.int(-15,15),R.int(-15,15),R.int(-15,15),R.int(-15,15)];
-    var sum6=nums6.reduce((a,b)=>a+b,0);
+    var sum6=nums6.reduce(function(a,b){return a+b;},0);
     ex+='<h2>Grupo 4 — Adição Algébrica</h2>';
     ex+=_dinamicoRow(6,'Simplifica: '+nums6.map(_RND.sign).join(' ') + ' = _____');
     sol+='<div class="ex"><strong>6.</strong> '+sum6+'</div>';
 
-    var pd=R.int(3,12),qd=R.int(2,8),rd=R.int(2,6),sd2=R.int(2,5);
+    var pd=R.int(3,12),qd=R.int(2,8),rd=R.int(2,6);
     var xd=Math.random()<0.5?pd:-pd, yd=Math.random()<0.5?qd:-qd;
     ex+='<h2>Grupo 5 — Propriedades da Adição</h2>';
     ex+=_dinamicoRow(7,'Justifica usando a propriedade adequada:<br>'
