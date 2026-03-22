@@ -1,4 +1,4 @@
-/* ── gf.js — Gerador de Fichas Personalizado: custom worksheet generator used by mat7.html and mega.html ── */
+/* ── gf.js — Gerador de Fichas Personalizado: custom worksheet generator used by mat7/index.html ── */
 
 // GERADOR DE FICHAS PERSONALIZADO
 var _gfContent = {};
@@ -130,7 +130,7 @@ function gfToggleType(btn) {
   }
 }
 
-var _CAP_NAMES_GF = {1:'N\u00fameros Inteiros', 2:'N\u00fameros Racionais', 3:'Geometria', 4:'Equa\u00e7\u00f5es', 5:'Sequ\u00eancias', 6:'Fun\u00e7\u00f5es'};
+var _CAP_NAMES_GF = {1:'N\u00fameros Inteiros', 2:'N\u00fameros Racionais', 3:'Geometria', 4:'Equa\u00e7\u00f5es', 5:'Sequ\u00eancias', 6:'Fun\u00e7\u00f5es', 7:'Figuras Semelhantes', 8:'Dados e Probabilidades'};
 
 function _buildSolucoesCapHTML(cap) {
   var S = '<div style="font-family:Georgia,serif;font-size:.88rem;line-height:1.75;color:#1a1a2e">';
@@ -1491,6 +1491,22 @@ function _gfSubtema4(st, dif, n) {
   return {ex:ex, sol:sol};
 }
 
+function _gfSubtema5(st, dif, n) {
+  return _dinamico5(dif);
+}
+
+function _gfSubtema6(st, dif, n) {
+  return _dinamico6(dif);
+}
+
+function _gfSubtema7(st, dif, n) {
+  return _dinamico7(dif);
+}
+
+function _gfSubtema8(st, dif, n) {
+  return _dinamico8(dif);
+}
+
 // ─── gfGenerar: subtema-aware override ─────────────────────────────────────────
 function gfGenerar(secId) {
   var stFilter = gfGetSubtemas(secId);
@@ -1541,6 +1557,10 @@ function gfGenerar(secId) {
           else if (cap===2) res = _gfSubtema2(st, dif, N_PER_ST);
           else if (cap===3) res = _gfSubtema3(st, dif, N_PER_ST);
           else if (cap===4) res = _gfSubtema4(st, dif, N_PER_ST);
+          else if (cap===5) res = _gfSubtema5(st, dif, N_PER_ST);
+          else if (cap===6) res = _gfSubtema6(st, dif, N_PER_ST);
+          else if (cap===7) res = _gfSubtema7(st, dif, N_PER_ST);
+          else if (cap===8) res = _gfSubtema8(st, dif, N_PER_ST);
         } catch(e){ console.warn('subtema err', cap, st, e); }
         if (res && res.ex) {
           capHtml += res.ex;
@@ -1705,10 +1725,10 @@ function gfDownloadHTML(secId) {
 }
 
 // EDUPT — ERROR TRACKER  (registo persistente de erros por questão)
-const ErrorTracker = (function(){
-  const KEY = 'edupt_errors_v1';
-  const CAP_LABELS = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'};
-  const SEC_LABELS = {q:'Questões-aula',m:'Miniteste',t:'Teste',rel:'Relâmpago',vf:'V/F'};
+var ErrorTracker = (function(){
+  var KEY = 'edupt_errors_v1';
+  var CAP_LABELS = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções',cap7:'Semelhança',cap8:'Dados'};
+  var SEC_LABELS = {q:'Questões-aula',m:'Miniteste',t:'Teste',rel:'Relâmpago',vf:'V/F'};
 
   function _load(){
     try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
@@ -1785,8 +1805,6 @@ function _etRenderPanel(containerId, capIdOrIds) {
     capIdOrIds.forEach(function(capId) {
       ErrorTracker.getErrors(capId, 1).forEach(function(r) { all.push(r); });
     });
-    // Also include errors from MEGA-only questions
-    ErrorTracker.getErrors('mega', 1).forEach(function(r) { all.push(r); });
     // Sort combined list by error count descending
     all.sort(function(a, b) { return b.erros - a.erros || a.acertos - b.acertos; });
   } else {
@@ -1802,12 +1820,17 @@ function _etRenderPanel(containerId, capIdOrIds) {
     ? ' \u2014 ' + capIdOrIds.map(function(c) { return ErrorTracker.CAP_LABELS[c] || c; }).join(' + ')
     : '';
 
-  var clearOnclick = isMega
-    ? '(window._etMegaCapIds||[]).forEach(function(c){ErrorTracker.clearCap(c);});ErrorTracker.clearCap(\'mega\');etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])'
-    : 'ErrorTracker.clearCap(\'' + capIdOrIds + '\');etRenderPanel(\'' + containerId + '\',\'' + capIdOrIds + '\')';
+  var clearOnclick;
+  if (isMega) {
+    var _clearParts = capIdOrIds.map(function(c) { return 'ErrorTracker.clearCap(\'' + c + '\')'; });
+    clearOnclick = _clearParts.join(';') + ';_etRenderPanel(\'' + containerId + '\',' + JSON.stringify(capIdOrIds) + ')';
+  } else {
+    clearOnclick = 'ErrorTracker.clearCap(\'' + capIdOrIds + '\');etRenderPanel(\'' + containerId + '\',\'' + capIdOrIds + '\')';
+  }
 
+  var _capIdsJson = isMega ? JSON.stringify(capIdOrIds) : null;
   var filterOnclick = isMega
-    ? function(f) { return 'document.getElementById(\'et-mega\')._etFilter=\'' + f + '\';etRenderMegaPanel(\'et-mega\',window._etMegaCapIds||[])'; }
+    ? function(f) { return 'document.getElementById(\'' + containerId + '\')._etFilter=\'' + f + '\';_etRenderPanel(\'' + containerId + '\',' + _capIdsJson + ')'; }
     : function(f) { return 'document.getElementById(\'' + containerId + '\')._etFilter=\'' + f + '\';etRenderPanel(\'' + containerId + '\',\'' + capIdOrIds + '\')'; };
 
   var emptyMsg = all.length === 0
@@ -1855,8 +1878,6 @@ function _etRenderPanel(containerId, capIdOrIds) {
         }).join('')
     );
 
-  // In mega mode, store capIds on window so filter buttons can re-render
-  if (isMega) { window._etMegaCapIds = capIdOrIds; }
 }
 
 // Backward-compatible aliases
@@ -1890,17 +1911,6 @@ document.addEventListener('DOMContentLoaded', function(){
   wrap('progRenderSection2', 'et-cap2', 'cap2');
   wrap('progRenderSection3', 'et-cap3', 'cap3');
   wrap('renderProg4',        'et-cap4', 'cap4');
-  // MEGA: wrap _mprogRender to show errors from all selected caps combined
-  var origMprog = window._mprogRender;
-  if (typeof origMprog === 'function') {
-    window._mprogRender = function() {
-      origMprog.apply(this, arguments);
-      // Render combined error panel for selected caps
-      var sel = typeof capitulosSelecionados !== 'undefined' ? capitulosSelecionados : [];
-      var capIds = sel.length > 0 ? sel.map(function(n){ return 'cap'+n; }) : null;
-      etRenderMegaPanel('et-mega', capIds);
-    };
-  }
 })();
 
 // ── Helper: extract question text from DOM ────────────────────

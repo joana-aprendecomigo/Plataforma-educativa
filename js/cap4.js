@@ -7,8 +7,8 @@ function showMathView4(){
   window.scrollTo(0,0);
 }
 function showSection4(id,btn){
-  document.querySelectorAll('#sec-temas4,#sec-teoria4,#sec-questoes4,#sec-minitestes4,#sec-teste4,#sec-gerador4,#sec-jogos4,#sec-flashcards4,#sec-exame4,#sec-progresso4,#sec-downloads4,#sec-quiz-game4').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('#tabs4 .tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#sec-temas4,#sec-teoria4,#sec-questoes4,#sec-minitestes4,#sec-teste4,#sec-gerador4,#sec-jogos4,#sec-flashcards4,#sec-exame4,#sec-progresso4,#sec-downloads4,#sec-quiz-game4').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('#tabs4 .tab-btn').forEach(function(b){b.classList.remove('active');});
   var _s4=document.getElementById('sec-'+id);if(_s4)_s4.classList.add('active');
   if(btn)btn.classList.add('active');
   window.scrollTo({top:document.getElementById('view-math4').offsetTop,behavior:'smooth'});
@@ -287,124 +287,124 @@ function ans4(prefix,idx,btn,chosen,correct){
 
 function buildEx4(tema,dif){
   tema=String(tema);
-  const easy=dif==='facil',hard=dif==='dificil';
+  var easy=dif==='facil',hard=dif==='dificil';
   function r4(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-  function sh4(a){return a.sort(()=>Math.random()-.5);}
+  function sh4(a){return a.sort(function(){return Math.random()-.5;});}
 
   // TEMA 1 & 2 — Expressões algébricas e simplificação
   if(tema==='1'||tema==='2'){
-    const r=r4(0,4);
+    var r=r4(0,4);
     if(r===0){
-      const a=r4(2,8),b=r4(1,6),x=r4(1,5);
-      const val=a*x+b;
-      return{en:`Calcula o valor numérico de ${a}x + ${b} para x = ${x}.`,
-        opts:sh4([`A) ${val}`,`B) ${a*x}`,`C) ${(a+b)*x}`,`D) ${val+a}`].slice(0,4)),
-        c:`A) ${val}`,fb:`Substitui x = ${x}:\n${a}×${x} + ${b} = ${a*x} + ${b} = ${val}.`};
+      var a=r4(2,8),b=r4(1,6),x=r4(1,5);
+      var val=a*x+b;
+      return{en:'Calcula o valor numérico de '+a+'x + '+b+' para x = '+x+'.',
+        opts:sh4(['A) '+val,'B) '+(a*x),'C) '+((a+b)*x),'D) '+(val+a)].slice(0,4)),
+        c:'A) '+val,fb:'Substitui x = '+x+':\n'+a+'×'+x+' + '+b+' = '+(a*x)+' + '+b+' = '+val+'.'};
     }
     if(r===1){
-      const a=r4(2,5),b=r4(1,4),c=r4(1,4);
-      const res=`${a+c}x + ${b}`;// simplify (a)x + b + cx = (a+c)x + b
-      return{en:`Simplifica: ${a}x + ${b} + ${c}x = ?`,
-        opts:sh4([`A) ${res}`,`B) ${a+b+c}x`,`C) ${a*c}x + ${b}`,`D) ${a}x + ${b+c}`].slice(0,4)),
-        c:`A) ${res}`,fb:`Agrupa os termos em x:\n${a}x + ${c}x = ${a+c}x.\nResultado: ${res}.`};
+      var a=r4(2,5),b=r4(1,4),c=r4(1,4);
+      var res=(a+c)+'x + '+b;// simplify (a)x + b + cx = (a+c)x + b
+      return{en:'Simplifica: '+a+'x + '+b+' + '+c+'x = ?',
+        opts:sh4(['A) '+res,'B) '+(a+b+c)+'x','C) '+(a*c)+'x + '+b,'D) '+a+'x + '+(b+c)].slice(0,4)),
+        c:'A) '+res,fb:'Agrupa os termos em x:\n'+a+'x + '+c+'x = '+(a+c)+'x.\nResultado: '+res+'.'};
     }
     if(r===2){
-      const a=r4(2,6),b=r4(1,5);
-      const perim=`${2*a+2*b}`; // or as expression
-      return{en:`Um retângulo tem comprimento ${a} cm e largura ${b} cm. Qual é o perímetro?`,
-        opts:sh4([`A) ${2*a+2*b} cm`,`B) ${a*b} cm`,`C) ${a+b} cm`,`D) ${2*(a+b)+2} cm`]),
-        c:`A) ${2*a+2*b} cm`,fb:`P = 2 × comprimento + 2 × largura = 2×${a} + 2×${b} = ${2*a} + ${2*b} = ${2*a+2*b} cm.`};
+      var a=r4(2,6),b=r4(1,5);
+      var perim=''+(2*a+2*b); // or as expression
+      return{en:'Um retângulo tem comprimento '+a+' cm e largura '+b+' cm. Qual é o perímetro?',
+        opts:sh4(['A) '+(2*a+2*b)+' cm','B) '+(a*b)+' cm','C) '+(a+b)+' cm','D) '+(2*(a+b)+2)+' cm']),
+        c:'A) '+(2*a+2*b)+' cm',fb:'P = 2 × comprimento + 2 × largura = 2×'+a+' + 2×'+b+' = '+(2*a)+' + '+(2*b)+' = '+(2*a+2*b)+' cm.'};
     }
     if(r===3){
       // distributiva
-      const a=r4(2,5),b=r4(1,4),c=r4(1,4);
-      const res1=a*b,res2=a*c;
-      return{en:`Expande: ${a}(${b}x + ${c}) = ?`,
-        opts:sh4([`A) ${res1}x + ${res2}`,`B) ${a+b}x + ${a+c}`,`C) ${res1}x + ${c}`,`D) ${b}x + ${res2}`]),
-        c:`A) ${res1}x + ${res2}`,fb:`Distributiva: ${a} × ${b}x = ${res1}x e ${a} × ${c} = ${res2}.\nResultado: ${res1}x + ${res2}.`};
+      var a=r4(2,5),b=r4(1,4),c=r4(1,4);
+      var res1=a*b,res2=a*c;
+      return{en:'Expande: '+a+'('+b+'x + '+c+') = ?',
+        opts:sh4(['A) '+res1+'x + '+res2,'B) '+(a+b)+'x + '+(a+c),'C) '+res1+'x + '+c,'D) '+b+'x + '+res2]),
+        c:'A) '+res1+'x + '+res2,fb:'Distributiva: '+a+' × '+b+'x = '+res1+'x e '+a+' × '+c+' = '+res2+'.\nResultado: '+res1+'x + '+res2+'.'};
     }
     // r===4: expressão do perímetro
-    const a=r4(2,5);
-    return{en:`Um quadrado tem lado (2x + ${a}) cm. Qual é a expressão do perímetro?`,
-      opts:sh4([`A) 8x + ${4*a}`,`B) 4x + ${a}`,`C) 2x + ${4*a}`,`D) 4x + ${4*a}`]),
-      c:`A) 8x + ${4*a}`,fb:`P = 4 × lado = 4 × (2x + ${a}) = 8x + ${4*a} cm.`};
+    var a=r4(2,5);
+    return{en:'Um quadrado tem lado (2x + '+a+') cm. Qual é a expressão do perímetro?',
+      opts:sh4(['A) 8x + '+(4*a),'B) 4x + '+a,'C) 2x + '+(4*a),'D) 4x + '+(4*a)]),
+      c:'A) 8x + '+(4*a),fb:'P = 4 × lado = 4 × (2x + '+a+') = 8x + '+(4*a)+' cm.'};
   }
 
   // TEMA 3 & 4 — Equações e equivalência
   if(tema==='3'||tema==='4'){
-    const r=r4(0,4);
+    var r=r4(0,4);
     if(r===0){
-      const sol=r4(easy?1:hard?-8:1,easy?5:hard?8:6);
-      const b=r4(1,5);const a=r4(2,4);
-      const rhs=a*sol+b;
-      return{en:`Resolve a equação: ${a}x + ${b} = ${rhs}`,
-        visual: svgBalanca(`${a}x + ${b}`, String(rhs)),
-        opts:sh4([`A) x = ${sol}`,`B) x = ${sol+1}`,`C) x = ${(rhs+b)/a}`,`D) x = ${sol-1}`]),
-        c:`A) x = ${sol}`,fb:`${a}x + ${b} = ${rhs}\n${a}x = ${rhs} − ${b} = ${rhs-b}\nx = ${rhs-b} ÷ ${a} = ${sol}.\nVerificação: ${a}×${sol} + ${b} = ${rhs} ✓`};
+      var sol=r4(easy?1:hard?-8:1,easy?5:hard?8:6);
+      var b=r4(1,5);var a=r4(2,4);
+      var rhs=a*sol+b;
+      return{en:'Resolve a equação: '+a+'x + '+b+' = '+rhs,
+        visual: svgBalanca(a+'x + '+b, String(rhs)),
+        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+((rhs+b)/a),'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:a+'x + '+b+' = '+rhs+'\n'+a+'x = '+rhs+' − '+b+' = '+(rhs-b)+'\nx = '+(rhs-b)+' ÷ '+a+' = '+sol+'.\nVerificação: '+a+'×'+sol+' + '+b+' = '+rhs+' ✓'};
     }
     if(r===1){
-      const sol=r4(1,easy?4:8);
-      const a=r4(2,4),b=r4(1,5),c=r4(1,3),d=r4(1,4);
-      const lhs=a*sol+b,rhs2=c*sol+d;
-      return{en:`Resolve: ${a}x + ${b} = ${lhs} (sabendo que ${c}x + ${d} = ${rhs2})`,
-        opts:sh4([`A) x = ${sol}`,`B) x = ${sol+1}`,`C) x = ${sol*2}`,`D) x = ${sol-1}`]),
-        c:`A) x = ${sol}`,fb:`${a}x = ${lhs} − ${b} = ${lhs-b}\nx = ${lhs-b} ÷ ${a} = ${sol}.`};
+      var sol=r4(1,easy?4:8);
+      var a=r4(2,4),b=r4(1,5),c=r4(1,3),d=r4(1,4);
+      var lhs=a*sol+b,rhs2=c*sol+d;
+      return{en:'Resolve: '+a+'x + '+b+' = '+lhs+' (sabendo que '+c+'x + '+d+' = '+rhs2+')',
+        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+(sol*2),'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:a+'x = '+lhs+' − '+b+' = '+(lhs-b)+'\nx = '+(lhs-b)+' ÷ '+a+' = '+sol+'.'};
     }
     if(r===2){
-      const sol=r4(1,easy?5:10);
-      const a=r4(2,4),b=r4(2,5);
-      const rhs=a*sol-b;
-      const rhsNeg=rhs<0;
-      return{en:`Resolve: ${a}x − ${b} = ${rhs}`,
-        opts:sh4([`A) x = ${sol}`,`B) x = ${(rhs-b)/a}`,`C) x = ${sol+1}`,`D) x = ${sol-1}`]),
-        c:`A) x = ${sol}`,fb:`${a}x − ${b} = ${rhs}\n${a}x = ${rhs} + ${b} = ${rhs+b}\nx = ${rhs+b} ÷ ${a} = ${sol}.\nVerificação: ${a}×${sol} − ${b} = ${a*sol-b} = ${rhs} ✓`};
+      var sol=r4(1,easy?5:10);
+      var a=r4(2,4),b=r4(2,5);
+      var rhs=a*sol-b;
+      var rhsNeg=rhs<0;
+      return{en:'Resolve: '+a+'x − '+b+' = '+rhs,
+        opts:sh4(['A) x = '+sol,'B) x = '+((rhs-b)/a),'C) x = '+(sol+1),'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:a+'x − '+b+' = '+rhs+'\n'+a+'x = '+rhs+' + '+b+' = '+(rhs+b)+'\nx = '+(rhs+b)+' ÷ '+a+' = '+sol+'.\nVerificação: '+a+'×'+sol+' − '+b+' = '+(a*sol-b)+' = '+rhs+' ✓'};
     }
     if(r===3){
-      const sol=r4(1,6);
-      const a=r4(2,4),b=r4(1,5),c=r4(1,3);
-      const rhs=(a-c)*sol+b;
-      return{en:`Resolve: ${a}x + ${b} = ${c}x + ${rhs+c*sol-(a-c)*sol}`,
-        opts:sh4([`A) x = ${sol}`,`B) x = ${sol+1}`,`C) x = ${rhs}`,`D) x = ${sol-1}`]),
-        c:`A) x = ${sol}`,fb:`${a}x + ${b} = ${c}x + ${rhs+c*sol-(a-c)*sol}\n${a}x − ${c}x = ${rhs+c*sol-(a-c)*sol} − ${b}\n${a-c}x = ${(a-c)*sol}\nx = ${sol}.`};
+      var sol=r4(1,6);
+      var a=r4(2,4),b=r4(1,5),c=r4(1,3);
+      var rhs=(a-c)*sol+b;
+      return{en:'Resolve: '+a+'x + '+b+' = '+c+'x + '+(rhs+c*sol-(a-c)*sol),
+        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+rhs,'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:a+'x + '+b+' = '+c+'x + '+(rhs+c*sol-(a-c)*sol)+'\n'+a+'x − '+c+'x = '+(rhs+c*sol-(a-c)*sol)+' − '+b+'\n'+(a-c)+'x = '+((a-c)*sol)+'\nx = '+sol+'.'};
     }
     // r===4: equação de problemas
-    const pPrice=r4(3,8)*5,q=r4(2,5),tot=pPrice*q;
-    return{en:`O Miguel comprou ${q} cadernos a p € cada e pagou ${tot} €. Qual é o preço p de cada caderno?`,
-      opts:sh4([`A) ${pPrice} €`,`B) ${tot+pPrice} €`,`C) ${tot-pPrice} €`,`D) ${pPrice*2} €`]),
-      c:`A) ${pPrice} €`,fb:`Equação: ${q}p = ${tot}.\np = ${tot} ÷ ${q} = ${pPrice} €.`};
+    var pPrice=r4(3,8)*5,q=r4(2,5),tot=pPrice*q;
+    return{en:'O Miguel comprou '+q+' cadernos a p € cada e pagou '+tot+' €. Qual é o preço p de cada caderno?',
+      opts:sh4(['A) '+pPrice+' €','B) '+(tot+pPrice)+' €','C) '+(tot-pPrice)+' €','D) '+(pPrice*2)+' €']),
+      c:'A) '+pPrice+' €',fb:'Equação: '+q+'p = '+tot+'.\np = '+tot+' ÷ '+q+' = '+pPrice+' €.'};
   }
 
   // TEMA 5 & 6 — Classificação e problemas
   if(tema==='5'||tema==='6'){
-    const r=r4(0,3);
+    var r=r4(0,3);
     if(r===0){
       // Equação com parênteses
-      const sol=r4(1,easy?4:8);
-      const a=r4(2,4),b=r4(1,4);
-      const rhs=a*(sol+b);
-      return{en:`Resolve: ${a}(x + ${b}) = ${rhs}`,
-        opts:sh4([`A) x = ${sol}`,`B) x = ${rhs/a}`,`C) x = ${sol+1}`,`D) x = ${sol-1}`]),
-        c:`A) x = ${sol}`,fb:`Divide ambos os membros por ${a}:\nx + ${b} = ${rhs}/${a} = ${rhs/a}.\nx = ${rhs/a} − ${b} = ${sol}.`};
+      var sol=r4(1,easy?4:8);
+      var a=r4(2,4),b=r4(1,4);
+      var rhs=a*(sol+b);
+      return{en:'Resolve: '+a+'(x + '+b+') = '+rhs,
+        opts:sh4(['A) x = '+sol,'B) x = '+(rhs/a),'C) x = '+(sol+1),'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:'Divide ambos os membros por '+a+':\nx + '+b+' = '+rhs+'/'+a+' = '+(rhs/a)+'.\nx = '+(rhs/a)+' − '+b+' = '+sol+'.'};
     }
     if(r===1){
       // Problema: duas quantidades
-      const x=r4(2,8),tot=r4(x+3,x+12);const y=tot-x;
-      return{en:`A soma de dois números é ${tot}. O maior é ${x} mais do que o menor. Qual é o menor número?`,
-        opts:sh4([`A) ${y}`,`B) ${x}`,`C) ${tot}`,`D) ${(tot-x)/2}`]),
-        c:`A) ${y}`,fb:`Sejam x (menor) e x + ${x} (maior).\nx + (x + ${x}) = ${tot}\n2x = ${tot-x}\nx = ${(tot-x)/2}.\nMenor = ${(tot-x)/2}, Maior = ${(tot-x)/2+x} = ${y+x}.\nHmmm... Verifica: ${(tot-x)/2} + ${(tot-x)/2+x} = ${tot} ✓`};
+      var x=r4(2,8),tot=r4(x+3,x+12);var y=tot-x;
+      return{en:'A soma de dois números é '+tot+'. O maior é '+x+' mais do que o menor. Qual é o menor número?',
+        opts:sh4(['A) '+y,'B) '+x,'C) '+tot,'D) '+((tot-x)/2)]),
+        c:'A) '+y,fb:'Sejam x (menor) e x + '+x+' (maior).\nx + (x + '+x+') = '+tot+'\n2x = '+(tot-x)+'\nx = '+((tot-x)/2)+'.\nMenor = '+((tot-x)/2)+', Maior = '+((tot-x)/2+x)+' = '+(y+x)+'.\nHmmm... Verifica: '+((tot-x)/2)+' + '+((tot-x)/2+x)+' = '+tot+' ✓'};
     }
     if(r===2){
-      const age=r4(8,15),diff=r4(2,5);
-      const parentAge=age+r4(20,25);
-      return{en:`A Inês tem ${age} anos e a mãe tem ${parentAge}. Daqui a quantos anos (x) será a mãe o dobro da idade da Inês?`,
-        opts:sh4([`A) ${parentAge-2*age}`,`B) ${parentAge-age}`,`C) ${age}`,`D) ${parentAge-2*age+1}`]),
-        c:`A) ${parentAge-2*age}`,fb:`${parentAge}+x = 2×(${age}+x)\n${parentAge}+x = ${2*age}+2x\n${parentAge}-${2*age} = x\nx = ${parentAge-2*age} anos.`};
+      var age=r4(8,15),diff=r4(2,5);
+      var parentAge=age+r4(20,25);
+      return{en:'A Inês tem '+age+' anos e a mãe tem '+parentAge+'. Daqui a quantos anos (x) será a mãe o dobro da idade da Inês?',
+        opts:sh4(['A) '+(parentAge-2*age),'B) '+(parentAge-age),'C) '+age,'D) '+(parentAge-2*age+1)]),
+        c:'A) '+(parentAge-2*age),fb:parentAge+'+x = 2×('+age+'+x)\n'+parentAge+'+x = '+(2*age)+'+2x\n'+parentAge+'-'+(2*age)+' = x\nx = '+(parentAge-2*age)+' anos.'};
     }
     // r===3: Equação impossível/indeterminada
-    const a=r4(2,5);
-    return{en:`Resolve a equação ${a}x − ${a*3} = ${a}x + ${a*2}. O que podes concluir?`,
+    var a=r4(2,5);
+    return{en:'Resolve a equação '+a+'x − '+(a*3)+' = '+a+'x + '+(a*2)+'. O que podes concluir?',
       opts:sh4(['A) Impossível (sem solução)','B) x = 0','C) Infinitas soluções','D) x = 5']),
-      c:'A) Impossível (sem solução)',fb:`${a}x − ${a*3} = ${a}x + ${a*2}.\nSubtrai ${a}x de ambos os membros:\n−${a*3} = ${a*2}.\nIsso é FALSO → equação IMPOSSÍVEL, não tem solução.`};
+      c:'A) Impossível (sem solução)',fb:a+'x − '+(a*3)+' = '+a+'x + '+(a*2)+'.\nSubtrai '+a+'x de ambos os membros:\n−'+(a*3)+' = '+(a*2)+'.\nIsso é FALSO → equação IMPOSSÍVEL, não tem solução.'};
   }
 
   // fallback
@@ -421,7 +421,7 @@ function renderQuestoes4(){
     var q=buildEx4(t,dif);if(q)allQ.push(q);
   });
   // Shuffle and take first 20
-  allQ=allQ.sort(()=>Math.random()-.5).slice(0,20);
+  allQ=allQ.sort(function(){return Math.random()-.5;}).slice(0,20);
   renderQuestions4(allQ,'q4-container','q4');
 }
 var currentMini4=0;
@@ -598,7 +598,7 @@ function exame4Submit(){
 
 // PROGRESSO
 function saveProgData4(prefix,data){
-  try{var p=JSON.parse(localStorage.getItem('edupt_cap4')||'{}');p[prefix]=data;p['last_updated']=new Date().toLocaleDateString('pt-PT');localStorage.setItem('edupt_cap4',JSON.stringify(p));}catch(e){}
+  try{var p=JSON.parse(localStorage.getItem('edupt_cap4')||'{}');p[prefix]=data;p['last_updated']=new Date().toLocaleDateString('pt-PT');p['lastActivity']=Date.now();localStorage.setItem('edupt_cap4',JSON.stringify(p));}catch(e){}
   setTimeout(_progRefreshBars, 80);
 }
 function renderProg4(){

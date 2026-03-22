@@ -22,8 +22,6 @@ var showPortalFromMat7 = showPortalView;
 
 /* ── Mat7 hub ── */
 function showMat7View() { window.location.href = _mat7Path + 'index.html'; }
-// Backward-compat alias
-var showMat7FromMega = showMat7View;
 
 /* ── Chapter pages ── */
 function showMathView()  { window.location.href = _mat7Path + 'cap1.html'; }

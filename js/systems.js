@@ -1351,7 +1351,7 @@ function goToChapter(n) {
     3: { id: 'view-math3', fn: function() { showMathView3 && showMathView3() || (document.getElementById('view-math3').style.display='block') } },
     4: { id: 'view-math4', fn: function() { showMathView4 && showMathView4() || (document.getElementById('view-math4').style.display='block') } }
   };
-  var allViews = ['view-portal','view-mat7','view-math','view-math2','view-math3','view-math4','view-mega'];
+  var allViews = ['view-portal','view-mat7','view-math','view-math2','view-math3','view-math4'];
   // Hide all views
   allViews.forEach(function(id) {
     var el = document.getElementById(id);
@@ -1907,8 +1907,7 @@ function renderProgressoUnificado() {
     { sel: '#view-math .tabs', view: '#view-math' },
     { sel: '#tabs2', view: '#view-math2' },
     { sel: '#tabs3', view: '#view-math3' },
-    { sel: '#tabs4', view: '#view-math4' },
-    { sel: '#view-mega .tabs', view: '#view-mega' }
+    { sel: '#tabs4', view: '#view-math4' }
   ];
   document.addEventListener('keydown', function(e) {
     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
