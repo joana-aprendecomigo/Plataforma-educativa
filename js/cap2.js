@@ -91,6 +91,29 @@ function buildEx2(tema,tipo,dif){
 
   // TEMA 3 — Adição e subtração de racionais
   if(tema==='3'){
+    // dificil: números mistos (número inteiro + fração)
+    if(hard && Math.random()<0.5){
+      var t3mi1=rnd2(1,3), t3mn1=rnd2(1,4), t3md1=rnd2(2,6);
+      var t3mi2=rnd2(1,3), t3mn2=rnd2(1,4), t3md2=rnd2(2,6);
+      // Convert to improper fractions: (int*den + num)/den
+      var t3ip=t3mi1*t3md1+t3mn1, t3iq=t3md1;
+      var t3jp=t3mi2*t3md2+t3mn2, t3jq=t3md2;
+      var t3lcmM=t3iq*t3jq/gcd2(t3iq,t3jq);
+      var t3rp=t3ip*(t3lcmM/t3iq)+t3jp*(t3lcmM/t3jq);
+      var t3rr=reduceFrac(t3rp,t3lcmM);
+      var t3enun=t3mi1+' '+fmtFracHTML(t3mn1,t3md1)+' + '+t3mi2+' '+fmtFracHTML(t3mn2,t3md2)+' = ?';
+      if(tipo==='fill'||tipo==='fill_frac'){
+        return{tema:'Tema 3',tipo:'fill_frac',
+          enun:'Calcula (números mistos): '+t3enun+'<br><small style="color:var(--ink4)">Escreve como p/q ou inteiro</small>',
+          resposta:fmtFrac(t3rr[0],t3rr[1]),
+          expl:'Converte para frações impróprias:\n'+t3mi1+' '+fmtFrac(t3mn1,t3md1)+' = '+fmtFrac(t3ip,t3iq)+'\n'+t3mi2+' '+fmtFrac(t3mn2,t3md2)+' = '+fmtFrac(t3jp,t3jq)+'\nReduz ao mmc ('+t3lcmM+') e soma: '+fmtFrac(t3rr[0],t3rr[1])+'.'};
+      }
+      var t3mw1=fmtFrac(t3rr[0]+1,t3rr[1]),t3mw2=fmtFrac(t3rr[0]-1,t3rr[1]),t3mw3=fmtFrac(t3mi1+t3mi2,1);
+      return{tema:'Tema 3',tipo:'mc',
+        enun:'Calcula (números mistos): '+t3enun,
+        opcoes:shuffle2([fmtFrac(t3rr[0],t3rr[1]),t3mw1,t3mw2,t3mw3]),resposta:fmtFrac(t3rr[0],t3rr[1]),
+        expl:'Converte para frações impróprias e soma com mmc('+t3iq+','+t3jq+') = '+t3lcmM+'.\nResultado: '+fmtFrac(t3rr[0],t3rr[1])+'.'};
+    }
     var t3a=randFracNZ(),t3b=randFracNZ();
     var t3lcm=t3a[1]*t3b[1]/gcd2(t3a[1],t3b[1]);
     var t3v=rnd2(0,3);
@@ -140,6 +163,61 @@ function buildEx2(tema,tipo,dif){
       opcoes:shuffle2([eqcor,fmtFrac(p3*mult+1,q3*mult),fmtFrac(p3+1,q3*mult),fmtFrac(p3*mult,q3*mult+1)]),
       resposta:eqcor,
       expl:'Multiplica numerador e denominador pelo mesmo número.\n'+fmtFrac(p3,q3)+' = '+fmtFrac(p3,q3)+' × '+fmtFrac(mult,mult)+' = '+fmtFrac(p3*mult,q3*mult)+'.\nPortanto '+eqcor+' é equivalente a '+fmtFrac(p3,q3)+'.'};
+  }
+
+  // TEMA 4 — Multiplicação e Divisão de Racionais
+  if(tema==='4'){
+    var t4a=randFracNZ(), t4b=randFracNZ();
+    var t4v=rnd2(0,2);
+    if(t4v===0){
+      // facil: fração × inteiro
+      var t4int=rndNZ2(2,8);
+      var t4p=t4a[0]*t4int, t4q=t4a[1];
+      var t4r=reduceFrac(t4p,t4q);
+      if(tipo==='fill'||tipo==='fill_frac'){
+        return{tema:'Tema 4',tipo:'fill_frac',
+          enun:'Calcula: '+fmtFracHTML(t4a[0],t4a[1])+' × '+t4int+' = ?<br><small style="color:var(--ink4)">Escreve como p/q ou inteiro</small>',
+          resposta:fmtFrac(t4r[0],t4r[1]),
+          expl:'Multiplica o numerador pelo inteiro: '+t4a[0]+' × '+t4int+' = '+t4p+'.\nResultado: '+fmtFrac(t4p,t4q)+' = '+fmtFrac(t4r[0],t4r[1])+'.'};
+      }
+      var t4w1=fmtFrac(t4r[0]+1,t4r[1]),t4w2=fmtFrac(t4a[0],t4a[1]*t4int),t4w3=fmtFrac(t4r[0]-1,t4r[1]<2?2:t4r[1]);
+      return{tema:'Tema 4',tipo:'mc',
+        enun:'Calcula: '+fmtFracHTML(t4a[0],t4a[1])+' × '+t4int+' = ?',
+        opcoes:shuffle2([fmtFrac(t4r[0],t4r[1]),t4w1,t4w2,t4w3]),resposta:fmtFrac(t4r[0],t4r[1]),
+        expl:fmtFrac(t4a[0],t4a[1])+' × '+t4int+' = '+fmtFrac(t4p,t4q)+' = '+fmtFrac(t4r[0],t4r[1])+'.'};
+    }
+    if(t4v===1){
+      // medio: fração × fração
+      var t4mp=t4a[0]*t4b[0], t4mq=t4a[1]*t4b[1];
+      var t4mr=reduceFrac(t4mp,t4mq);
+      if(tipo==='fill'||tipo==='fill_frac'){
+        return{tema:'Tema 4',tipo:'fill_frac',
+          enun:'Calcula: '+fmtFracHTML(t4a[0],t4a[1])+' × ('+fmtFracHTML(t4b[0],t4b[1])+') = ?<br><small style="color:var(--ink4)">Escreve como p/q ou inteiro</small>',
+          resposta:fmtFrac(t4mr[0],t4mr[1]),
+          expl:'Multiplica numeradores entre si e denominadores entre si.\n('+t4a[0]+'×'+t4b[0]+')/('+t4a[1]+'×'+t4b[1]+') = '+t4mp+'/'+t4mq+' = '+fmtFrac(t4mr[0],t4mr[1])+'.'};
+      }
+      var t4mw1=fmtFrac(t4a[0]+t4b[0],t4a[1]+t4b[1]),t4mw2=fmtFrac(t4mp+1,t4mq),t4mw3=fmtFrac(t4mr[0],t4mr[1]+1);
+      return{tema:'Tema 4',tipo:'mc',
+        enun:'Calcula: '+fmtFracHTML(t4a[0],t4a[1])+' × ('+fmtFracHTML(t4b[0],t4b[1])+') = ?',
+        opcoes:shuffle2([fmtFrac(t4mr[0],t4mr[1]),t4mw1,t4mw2,t4mw3]),resposta:fmtFrac(t4mr[0],t4mr[1]),
+        expl:'Numerador: '+t4a[0]+'×'+t4b[0]+' = '+t4mp+'. Denominador: '+t4a[1]+'×'+t4b[1]+' = '+t4mq+'.\nSimplificado: '+fmtFrac(t4mr[0],t4mr[1])+'.'};
+    }
+    // dificil: (a/b × c/d) ÷ (e/f) = a/b × c/d × f/e
+    var t4da=randFracNZ(),t4db=randFracNZ(),t4dc=randFracNZ();
+    var t4dp=t4da[0]*t4db[0]*t4dc[1];
+    var t4dq=t4da[1]*t4db[1]*t4dc[0];
+    var t4dr=reduceFrac(t4dp,t4dq);
+    if(tipo==='fill'||tipo==='fill_frac'){
+      return{tema:'Tema 4',tipo:'fill_frac',
+        enun:'Calcula: ('+fmtFracHTML(t4da[0],t4da[1])+' × '+fmtFracHTML(t4db[0],t4db[1])+') ÷ '+fmtFracHTML(t4dc[0],t4dc[1])+' = ?<br><small style="color:var(--ink4)">Escreve como p/q ou inteiro</small>',
+        resposta:fmtFrac(t4dr[0],t4dr[1]),
+        expl:'Divisão por fração = multiplicar pelo inverso.\n= '+fmtFrac(t4da[0],t4da[1])+' × '+fmtFrac(t4db[0],t4db[1])+' × '+fmtFrac(t4dc[1],t4dc[0])+'\n= '+fmtFrac(t4dp,t4dq)+' = '+fmtFrac(t4dr[0],t4dr[1])+'.'};
+    }
+    var t4dw1=fmtFrac(t4dr[0]+1,t4dr[1]),t4dw2=fmtFrac(t4dr[0],t4dr[1]+1),t4dw3=fmtFrac(t4da[0]*t4db[0]*t4dc[0],t4da[1]*t4db[1]*t4dc[1]);
+    return{tema:'Tema 4',tipo:'mc',
+      enun:'Calcula: ('+fmtFracHTML(t4da[0],t4da[1])+' × '+fmtFracHTML(t4db[0],t4db[1])+') ÷ '+fmtFracHTML(t4dc[0],t4dc[1])+' = ?',
+      opcoes:shuffle2([fmtFrac(t4dr[0],t4dr[1]),t4dw1,t4dw2,t4dw3]),resposta:fmtFrac(t4dr[0],t4dr[1]),
+      expl:'Divisão = multiplicar pelo inverso: ÷'+fmtFrac(t4dc[0],t4dc[1])+' = ×'+fmtFrac(t4dc[1],t4dc[0])+'.\nResultado: '+fmtFrac(t4dr[0],t4dr[1])+'.'};
   }
 
   // TEMA 5 — Percentagens

@@ -149,6 +149,7 @@ function renderQuestions5(questions,containerId,prefix){
         resposta: q.c || q.correct,
         tipo: 'mc',
         expl: q.fb || '',
+        visual: q.visual || q.vis || '',
         num: i + 1,
         _capId: '5',
         _banco5prefix: prefix,

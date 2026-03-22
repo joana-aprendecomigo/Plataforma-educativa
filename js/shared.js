@@ -1639,6 +1639,267 @@ function _initChapterNav() {
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _initChapterNav);
 else _initChapterNav();
 
+// ── SVG Visual Helpers ──────────────────────────────────────────────────────
+
+// Coordinate grid with optional points and line y=mx+b
+function svgCoordGrid(opts) {
+  opts = opts || {};
+  var W = opts.width || 280;
+  var H = opts.height || 280;
+  var xMin = (opts.xMin !== undefined) ? opts.xMin : -6;
+  var xMax = (opts.xMax !== undefined) ? opts.xMax : 6;
+  var yMin = (opts.yMin !== undefined) ? opts.yMin : -6;
+  var yMax = (opts.yMax !== undefined) ? opts.yMax : 6;
+  var pad = 28;
+  var gridC = opts.gridColor || '#e0e0e0';
+  var axisC = opts.axisColor || '#333';
+  var pts = opts.points || [];
+  var line = opts.line || null;
+
+  function px(x) { return pad + (x - xMin) / (xMax - xMin) * (W - 2 * pad); }
+  function py(y) { return H - pad - (y - yMin) / (yMax - yMin) * (H - 2 * pad); }
+
+  var svg = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;border-radius:8px;background:#fafafa;border:1px solid #e0e0e0">';
+
+  // Grid lines
+  var i;
+  for (i = Math.ceil(xMin); i <= Math.floor(xMax); i++) {
+    svg += '<line x1="' + px(i) + '" y1="' + pad + '" x2="' + px(i) + '" y2="' + (H - pad) + '" stroke="' + gridC + '" stroke-width="1"/>';
+  }
+  for (i = Math.ceil(yMin); i <= Math.floor(yMax); i++) {
+    svg += '<line x1="' + pad + '" y1="' + py(i) + '" x2="' + (W - pad) + '" y2="' + py(i) + '" stroke="' + gridC + '" stroke-width="1"/>';
+  }
+
+  // Axes
+  svg += '<line x1="' + pad + '" y1="' + py(0) + '" x2="' + (W - pad) + '" y2="' + py(0) + '" stroke="' + axisC + '" stroke-width="1.5"/>';
+  svg += '<line x1="' + px(0) + '" y1="' + pad + '" x2="' + px(0) + '" y2="' + (H - pad) + '" stroke="' + axisC + '" stroke-width="1.5"/>';
+
+  // Axis labels (every 2 units, skip 0)
+  for (i = xMin; i <= xMax; i++) {
+    if (i !== 0 && i % 2 === 0) {
+      svg += '<text x="' + px(i) + '" y="' + (py(0) + 14) + '" text-anchor="middle" font-size="9" fill="#666">' + i + '</text>';
+    }
+  }
+  for (i = yMin; i <= yMax; i++) {
+    if (i !== 0 && i % 2 === 0) {
+      svg += '<text x="' + (px(0) - 6) + '" y="' + (py(i) + 3) + '" text-anchor="end" font-size="9" fill="#666">' + i + '</text>';
+    }
+  }
+  svg += '<text x="' + (W - pad + 4) + '" y="' + (py(0) + 4) + '" font-size="11" fill="' + axisC + '">x</text>';
+  svg += '<text x="' + (px(0) + 4) + '" y="' + (pad - 4) + '" font-size="11" fill="' + axisC + '">y</text>';
+
+  // Line y = mx + b
+  if (line) {
+    var x1l = xMin, y1l = line.m * xMin + line.b;
+    var x2l = xMax, y2l = line.m * xMax + line.b;
+    // Clip to visible area
+    if (y1l < yMin) { x1l = xMin + (yMin - y1l) / line.m; y1l = yMin; }
+    if (y1l > yMax) { x1l = xMin + (yMax - y1l) / line.m; y1l = yMax; }
+    if (y2l < yMin) { x2l = xMax - (y2l - yMin) / line.m; y2l = yMin; }
+    if (y2l > yMax) { x2l = xMax - (y2l - yMax) / line.m; y2l = yMax; }
+    svg += '<line x1="' + px(x1l) + '" y1="' + py(y1l) + '" x2="' + px(x2l) + '" y2="' + py(y2l) + '" stroke="' + (line.color || '#2a7ae2') + '" stroke-width="2"/>';
+  }
+
+  // Points
+  var colors = ['#e05c5c','#2a7ae2','#2a9e5c','#e07c2a','#9e2ae0'];
+  for (i = 0; i < pts.length; i++) {
+    var p = pts[i];
+    var pc = p.color || colors[i % colors.length];
+    svg += '<circle cx="' + px(p.x) + '" cy="' + py(p.y) + '" r="5" fill="' + pc + '"/>';
+    if (p.label) {
+      var lx = px(p.x) + 7, ly = py(p.y) - 6;
+      svg += '<text x="' + lx + '" y="' + ly + '" font-size="11" font-weight="bold" fill="' + pc + '">' + p.label + '</text>';
+    }
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
+// Bar chart / histogram
+function svgHistogram(opts) {
+  opts = opts || {};
+  var labels = opts.labels || [];
+  var values = opts.values || [];
+  var color = opts.color || '#516860';
+  var W = opts.width || 320;
+  var H = opts.height || 200;
+  var padL = 36, padB = 36, padT = 16, padR = 12;
+  var n = labels.length;
+  if (!n) return '';
+
+  var maxVal = 0;
+  var j;
+  for (j = 0; j < values.length; j++) { if (values[j] > maxVal) maxVal = values[j]; }
+  maxVal = maxVal || 1;
+
+  var chartW = W - padL - padR;
+  var chartH = H - padB - padT;
+  var barW = Math.floor(chartW / n) - 4;
+
+  var svg = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#fafafa;border-radius:8px;border:1px solid #e0e0e0">';
+  if (opts.title) {
+    svg += '<text x="' + (W / 2) + '" y="12" text-anchor="middle" font-size="11" fill="#444">' + opts.title + '</text>';
+  }
+
+  // Bars
+  for (j = 0; j < n; j++) {
+    var bh = Math.round((values[j] / maxVal) * chartH);
+    var bx = padL + j * (chartW / n) + 2;
+    var by = padT + chartH - bh;
+    svg += '<rect x="' + bx + '" y="' + by + '" width="' + barW + '" height="' + bh + '" fill="' + color + '" rx="2"/>';
+    svg += '<text x="' + (bx + barW / 2) + '" y="' + (by - 3) + '" text-anchor="middle" font-size="9" fill="#444">' + values[j] + '</text>';
+    svg += '<text x="' + (bx + barW / 2) + '" y="' + (H - padB + 13) + '" text-anchor="middle" font-size="9" fill="#555">' + labels[j] + '</text>';
+  }
+
+  // Y axis
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT + chartH) + '" stroke="#999" stroke-width="1"/>';
+  svg += '<line x1="' + padL + '" y1="' + (padT + chartH) + '" x2="' + (W - padR) + '" y2="' + (padT + chartH) + '" stroke="#999" stroke-width="1"/>';
+
+  // Y ticks
+  var steps = 4, k;
+  for (k = 0; k <= steps; k++) {
+    var tv = Math.round(maxVal * k / steps);
+    var ty = padT + chartH - Math.round((tv / maxVal) * chartH);
+    svg += '<text x="' + (padL - 4) + '" y="' + (ty + 3) + '" text-anchor="end" font-size="8" fill="#666">' + tv + '</text>';
+    svg += '<line x1="' + (padL - 2) + '" y1="' + ty + '" x2="' + padL + '" y2="' + ty + '" stroke="#999" stroke-width="1"/>';
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
+// Stem-and-leaf table (caule-e-folhas)
+function svgStemLeaf(stems, leaves) {
+  var html = '<div style="display:inline-block;border:1px solid #ccc;border-radius:6px;overflow:hidden;font-family:JetBrains Mono,monospace;font-size:13px;background:#fafafa;margin:4px auto">';
+  html += '<table style="border-collapse:collapse;min-width:180px">';
+  html += '<thead><tr style="background:#f0f0f0"><th style="padding:5px 12px;border-right:2px solid #999;text-align:center">Caule</th><th style="padding:5px 12px;text-align:left">Folhas</th></tr></thead>';
+  html += '<tbody>';
+  var i;
+  for (i = 0; i < stems.length; i++) {
+    var rowLeaves = (leaves[i] || []).join('  ');
+    html += '<tr style="border-top:1px solid #e0e0e0"><td style="padding:4px 12px;border-right:2px solid #999;text-align:center;font-weight:bold">' + stems[i] + '</td><td style="padding:4px 12px">' + rowLeaves + '</td></tr>';
+  }
+  html += '</tbody></table></div>';
+  return html;
+}
+
+// Piecewise line graph (for real-world contexts like distance-time)
+function svgPiecewiseGraph(opts) {
+  opts = opts || {};
+  var W = opts.width || 300;
+  var H = opts.height || 200;
+  var segments = opts.segments || []; // [{x1,y1,x2,y2}]
+  var xLabel = opts.xLabel || 'Tempo';
+  var yLabel = opts.yLabel || 'Distância';
+  var padL = 44, padB = 32, padT = 16, padR = 16;
+  var xMax = opts.xMax || 10;
+  var yMax = opts.yMax || 10;
+
+  function px(x) { return padL + (x / xMax) * (W - padL - padR); }
+  function py(y) { return H - padB - (y / yMax) * (H - padB - padT); }
+
+  var svg = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#fafafa;border-radius:8px;border:1px solid #e0e0e0">';
+
+  // Grid
+  var i;
+  for (i = 0; i <= xMax; i += 2) {
+    svg += '<line x1="' + px(i) + '" y1="' + padT + '" x2="' + px(i) + '" y2="' + (H - padB) + '" stroke="#e8e8e8" stroke-width="1"/>';
+  }
+  for (i = 0; i <= yMax; i += 2) {
+    svg += '<line x1="' + padL + '" y1="' + py(i) + '" x2="' + (W - padR) + '" y2="' + py(i) + '" stroke="#e8e8e8" stroke-width="1"/>';
+  }
+
+  // Axes
+  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (H - padB) + '" stroke="#555" stroke-width="1.5"/>';
+  svg += '<line x1="' + padL + '" y1="' + (H - padB) + '" x2="' + (W - padR) + '" y2="' + (H - padB) + '" stroke="#555" stroke-width="1.5"/>';
+
+  // Axis titles
+  svg += '<text x="' + (W / 2) + '" y="' + (H - 4) + '" text-anchor="middle" font-size="10" fill="#555">' + xLabel + '</text>';
+  svg += '<text x="10" y="' + (H / 2) + '" text-anchor="middle" font-size="10" fill="#555" transform="rotate(-90,10,' + (H / 2) + ')">' + yLabel + '</text>';
+
+  // Segments
+  for (i = 0; i < segments.length; i++) {
+    var s = segments[i];
+    svg += '<line x1="' + px(s.x1) + '" y1="' + py(s.y1) + '" x2="' + px(s.x2) + '" y2="' + py(s.y2) + '" stroke="#2a7ae2" stroke-width="2.5" stroke-linecap="round"/>';
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
+// Two parallel lines cut by a transversal — 8 labeled angles
+// opts: {markedAngle:0-7, markedValue:65, width:320, height:200}
+function svgParallelLines(opts) {
+  opts = opts || {};
+  var W = opts.width || 320;
+  var H = opts.height || 200;
+  var marked = opts.markedAngle || 0; // 0-7
+  var val = opts.markedValue || 65;
+  var markedColor = '#e05c5c';
+
+  // Two horizontal parallel lines y1=60, y2=140; transversal from (60,20) to (260,180)
+  var y1 = Math.round(H * 0.30), y2 = Math.round(H * 0.70);
+  var tx1 = Math.round(W * 0.18), ty1 = Math.round(H * 0.08);
+  var tx2 = Math.round(W * 0.82), ty2 = Math.round(H * 0.92);
+
+  // Intersection points
+  // Line from (tx1,ty1) to (tx2,ty2): parametric t=0..1
+  // At y=y1: t1 = (y1-ty1)/(ty2-ty1)
+  var t1 = (y1 - ty1) / (ty2 - ty1);
+  var ix1 = Math.round(tx1 + t1 * (tx2 - tx1));
+  var t2 = (y2 - ty1) / (ty2 - ty1);
+  var ix2 = Math.round(tx1 + t2 * (tx2 - tx1));
+
+  var svg = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#fafafa;border-radius:8px;border:1px solid #e0e0e0">';
+
+  // Parallel lines r and s
+  svg += '<line x1="20" y1="' + y1 + '" x2="' + (W-20) + '" y2="' + y1 + '" stroke="#444" stroke-width="1.8"/>';
+  svg += '<line x1="20" y1="' + y2 + '" x2="' + (W-20) + '" y2="' + y2 + '" stroke="#444" stroke-width="1.8"/>';
+  svg += '<text x="14" y="' + (y1+4) + '" font-size="12" font-style="italic" fill="#444">r</text>';
+  svg += '<text x="14" y="' + (y2+4) + '" font-size="12" font-style="italic" fill="#444">s</text>';
+
+  // Transversal t
+  svg += '<line x1="' + tx1 + '" y1="' + ty1 + '" x2="' + tx2 + '" y2="' + ty2 + '" stroke="#444" stroke-width="1.8"/>';
+  svg += '<text x="' + (tx2+4) + '" y="' + (ty2+4) + '" font-size="12" font-style="italic" fill="#444">t</text>';
+
+  // Angle arc helper: draw small arc at intersection (cx,cy) for angle index 0-3 (top) or 4-7 (bottom)
+  // Angles at each intersection: 0=top-right, 1=bottom-right, 2=bottom-left, 3=top-left (top intersection)
+  //                               4=top-right, 5=bottom-right, 6=bottom-left, 7=top-left (bottom intersection)
+  var r = 14;
+  var intersections = [
+    {cx:ix1, cy:y1, angles:[
+      {label:'\u03b11', ax:ix1+r+2, ay:y1-8},
+      {label:'\u03b12', ax:ix1+r+2, ay:y1+14},
+      {label:'\u03b13', ax:ix1-r-14, ay:y1+14},
+      {label:'\u03b14', ax:ix1-r-14, ay:y1-8}
+    ]},
+    {cx:ix2, cy:y2, angles:[
+      {label:'\u03b21', ax:ix2+r+2, ay:y2-8},
+      {label:'\u03b22', ax:ix2+r+2, ay:y2+14},
+      {label:'\u03b23', ax:ix2-r-14, ay:y2+14},
+      {label:'\u03b24', ax:ix2-r-14, ay:y2-8}
+    ]}
+  ];
+
+  var i, j;
+  for (i = 0; i < 2; i++) {
+    var inter = intersections[i];
+    for (j = 0; j < 4; j++) {
+      var globalIdx = i * 4 + j;
+      var isMarked = (globalIdx === marked);
+      var a = inter.angles[j];
+      if (isMarked) {
+        svg += '<circle cx="' + inter.cx + '" cy="' + inter.cy + '" r="' + r + '" fill="' + markedColor + '" opacity="0.18"/>';
+      }
+      svg += '<text x="' + a.ax + '" y="' + a.ay + '" font-size="10" fill="' + (isMarked ? markedColor : '#555') + '" font-weight="' + (isMarked ? '700' : '400') + '">' + a.label + (isMarked ? '=' + val + '\u00b0' : '') + '</text>';
+    }
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
 // ── Inline worksheet generator for individual chapter pages (caps 5–8) ──
 // Calls _dinamico(cap, dif) from gf.js if available; otherwise calls window['_dinamicoN'](dif) directly.
 function _capGerarFichaInline(cap, nivelSelId, outputId, dlBtnId, capNome) {

@@ -76,15 +76,43 @@ function buildExercicio(tema, tipo, min, max, n, dif) {
     var a2 = rndNZ(Math.abs(min) || 1, Math.abs(max) || 8);
     var n2 = Math.random() < 0.5 ? a2 : -a2;
     if (tipo === 'fill') {
+      if (hard) {
+        // dificil: se |n| = k, quais os possíveis valores de n?
+        var k2h = rndNZ(2, Math.abs(max) || 10);
+        return { enun: 'Se |n| = ' + k2h + ', quais são os possíveis valores de n?', tipo: 'fill',
+          resposta: k2h + ' e −' + k2h,
+          expl: '|n| = ' + k2h + ' significa n = +' + k2h + ' ou n = −' + k2h + '.', tema: 'T2 · Valor Abs.' };
+      }
       return { enun: 'Calcula |' + n2 + '|.', tipo: 'fill', resposta: Math.abs(n2),
         expl: '|' + n2 + '| = ' + Math.abs(n2) + ' (distância ao zero).', tema: 'T2 · Valor Abs.' };
     }
     if (tipo === 'vf') {
+      if (hard) {
+        // dificil: comparação de valores absolutos vs valores reais
+        var a2v = rndNZ(3, 8), b2v = rndNZ(1, a2v - 1);
+        return { enun: 'Verdadeiro ou Falso: |−' + a2v + '| > |' + b2v + '|.', tipo: 'vf', resposta: 'V',
+          expl: '|−' + a2v + '| = ' + a2v + ' e |' + b2v + '| = ' + b2v + '. Como ' + a2v + ' > ' + b2v + ', é Verdadeiro.', tema: 'T2 · Valor Abs.' };
+      }
       var stmt2 = '|' + n2 + '| = ' + (Math.abs(n2) + rnd(1, 3));
       return { enun: 'Verdadeiro ou Falso: ' + stmt2 + '.', tipo: 'vf', resposta: 'F',
         expl: '|' + n2 + '| = ' + Math.abs(n2) + '.', tema: 'T2 · Valor Abs.' };
     }
     if (tipo === 'mc') {
+      if (hard) {
+        // dificil: ordenar |a|, b, |c|, d do menor para maior
+        var vals2h = [rnd(1,5), -rnd(3,8), rnd(2,6), -rnd(1,4)];
+        var absVals = vals2h.map(function(v){ return Math.abs(v); });
+        var sorted = absVals.slice().sort(function(a,b){ return a-b; });
+        var sortedStr = sorted.join(', ');
+        var shuffled = shuffle(absVals.slice()).join(', ');
+        var w2ha = sorted[0] + ', ' + sorted[2] + ', ' + sorted[1] + ', ' + sorted[3];
+        var w2hb = sorted[3] + ', ' + sorted[2] + ', ' + sorted[1] + ', ' + sorted[0];
+        var w2hc = sorted[1] + ', ' + sorted[0] + ', ' + sorted[3] + ', ' + sorted[2];
+        var opts2h = shuffle([sortedStr, w2ha, w2hb, w2hc]);
+        return { enun: 'Ordena do menor para o maior: |' + vals2h[0] + '|, |' + vals2h[1] + '|, |' + vals2h[2] + '|, |' + vals2h[3] + '|.',
+          tipo: 'mc', opcoes: opts2h, resposta: sortedStr,
+          expl: 'Os valores absolutos são ' + absVals.join(', ') + '. Ordem crescente: ' + sortedStr, tema: 'T2 · Valor Abs.' };
+      }
       var abs2 = Math.abs(n2);
       var wrong1 = abs2 + 1, wrong2 = abs2 + 2, wrong3 = abs2 - 1 < 0 ? abs2 + 3 : abs2 - 1;
       var opts2 = shuffle([String(abs2), String(wrong1), String(wrong2), String(wrong3)]);
@@ -135,10 +163,28 @@ function buildExercicio(tema, tipo, min, max, n, dif) {
     var a4 = rnd(min, max), b4 = rnd(min, max);
     var res4 = a4 - b4;
     if (tipo === 'fill') {
+      if (hard) {
+        // dificil: expressão com 4 termos a − b + c − d
+        var a4h = rnd(-10,10), b4h = rnd(-10,10), c4h = rnd(-10,10), d4h = rnd(-10,10);
+        var res4h = a4h - b4h + c4h - d4h;
+        return { enun: 'Calcula: (' + a4h + ') − (' + b4h + ') + (' + c4h + ') − (' + d4h + ').',
+          tipo: 'fill', resposta: res4h,
+          expl: '= ' + a4h + ' + (' + (-b4h) + ') + ' + c4h + ' + (' + (-d4h) + ') = ' + res4h, tema: 'T4 · Subtração' };
+      }
       return { enun: 'Calcula: (' + a4 + ') − (' + b4 + ').', tipo: 'fill', resposta: res4,
         expl: '(' + a4 + ') − (' + b4 + ') = ' + a4 + ' + (' + (-b4) + ') = ' + res4, tema: 'T4 · Subtração' };
     }
     if (tipo === 'mc') {
+      if (hard) {
+        // dificil: expressão com sinal duplo +(−n) ou −(+n)
+        var a4hm = rnd(2, 12), b4hm = rnd(2, 12);
+        var res4hm = a4hm + (-b4hm); // simula a − b
+        var w4hma = res4hm + 2, w4hmb = a4hm + b4hm, w4hmc = -(a4hm + b4hm);
+        var opts4h = shuffle([String(res4hm), String(w4hma), String(w4hmb), String(w4hmc)]);
+        return { enun: 'Calcula: (+' + a4hm + ') + (−' + b4hm + ').',
+          tipo: 'mc', opcoes: opts4h, resposta: String(res4hm),
+          expl: '(+' + a4hm + ') + (−' + b4hm + ') = ' + a4hm + ' − ' + b4hm + ' = ' + res4hm, tema: 'T4 · Subtração' };
+      }
       var w4a = res4 + rnd(1,3), w4b = res4 - rnd(1,3), w4c = a4 + b4;
       var opts4 = shuffle([String(res4), String(w4a), String(w4b), String(w4c)]);
       return { enun: 'Calcula: (' + a4 + ') − (' + b4 + ').', tipo: 'mc', opcoes: opts4, resposta: String(res4),
