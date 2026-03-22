@@ -1813,22 +1813,49 @@ function renderProgressoUnificado() {
   caps.forEach(function(c){ totalC += c.data.correct; totalT += c.data.total; });
   var globalPct = totalT>0 ? Math.round(totalC/totalT*100) : 0;
 
-  var barsHtml = caps.map(function(cap) {
+  var _capColors = ['c1','c2','c3','c4','c5','c6','c7','c8'];
+
+  var cardsHtml = caps.map(function(cap) {
+    var ci = _capColors[cap.num - 1] || 'c1';
     var sem = cap.data.total === 0;
     var pct = sem ? 0 : Math.round(cap.data.correct/cap.data.total*100);
-    var col = sem ? 'var(--cream3)' : pct>=80 ? 'var(--c1-mid)' : pct>=50 ? 'var(--c3-mid)' : 'var(--cs-mid)';
-    var nota = sem ? 'Sem dados' : pct>=80 ? 'Bom domínio' : pct>=50 ? 'A melhorar' : 'Precisa de treino';
-    return '<div style="display:flex;align-items:center;gap:.85rem;padding:.45rem .6rem;border-radius:10px">'
-      + '<span style="width:26px;height:26px;border-radius:50%;background:var(--cream3);color:var(--ink3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;flex-shrink:0">'+cap.num+'</span>'
-      + '<span style="flex:0 0 150px;font-size:.85rem;font-weight:600;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+cap.name+'</span>'
-      + '<div style="flex:1;height:9px;background:var(--cream3);border-radius:999px;overflow:hidden;min-width:60px"><div style="height:100%;width:'+(sem?0:pct)+'%;background:'+col+';border-radius:999px;transition:width .6s cubic-bezier(.4,0,.2,1)"></div></div>'
-      + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:var(--ink3);flex-shrink:0;min-width:70px;text-align:right">'+(sem?'—':cap.data.correct+'/'+cap.data.total+' ('+pct+'%)')+'</span>'
-      + '<span style="font-size:.72rem;font-weight:600;color:'+(sem?'var(--ink4)':col)+';flex-shrink:0;min-width:90px;text-align:right">'+nota+'</span>'
+    var barCol = sem ? 'var(--cream3)' : pct>=80 ? 'var(--'+ci+'-mid)' : pct>=50 ? 'var(--'+ci+'-mid)' : 'var(--cs-mid)';
+    var badgeLabel = sem ? 'Sem dados' : pct>=80 ? 'Bom domínio' : pct>=50 ? 'A melhorar' : 'Precisa de treino';
+    var badgeBg = sem ? 'var(--cream3)' : pct>=80 ? 'var(--'+ci+'-base)' : pct>=50 ? 'var(--'+ci+'-pale)' : 'var(--cs-base)';
+    var badgeCol = sem ? 'var(--ink4)' : pct>=80 ? 'var(--'+ci+'-deep)' : pct>=50 ? 'var(--'+ci+'-deep)' : 'var(--cs-deep)';
+    return '<div style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.1rem 1.1rem .9rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.7rem;border-top:4px solid var(--'+ci+'-mid)">'
+      + '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem">'
+      +   '<div>'
+      +     '<div style="font-size:.68rem;font-weight:700;color:var(--'+ci+'-mid);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">Cap. '+cap.num+'</div>'
+      +     '<div style="font-size:.9rem;font-weight:700;color:var(--ink);line-height:1.2">'+cap.name+'</div>'
+      +   '</div>'
+      +   '<span style="flex-shrink:0;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px;background:'+badgeBg+';color:'+badgeCol+'">'+badgeLabel+'</span>'
+      + '</div>'
+      + '<div>'
+      +   '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">'
+      +     '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:var(--ink3)">'+(sem ? '— / —' : cap.data.correct+'/'+cap.data.total+' certas')+'</span>'
+      +     '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.82rem;font-weight:700;color:var(--'+ci+'-mid)">'+(sem ? '' : pct+'%')+'</span>'
+      +   '</div>'
+      +   '<div style="height:8px;background:var(--cream3);border-radius:999px;overflow:hidden">'
+      +     '<div style="height:100%;width:'+pct+'%;background:'+barCol+';border-radius:999px;transition:width .6s cubic-bezier(.4,0,.2,1)"></div>'
+      +   '</div>'
+      + '</div>'
+      + '<button onclick="goToChapter('+cap.num+')" style="margin-top:auto;width:100%;padding:7px 0;background:var(--'+ci+'-base);border:1.5px solid var(--'+ci+'-mid);color:var(--'+ci+'-deep);border-radius:10px;font-family:\'Montserrat\',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;justify-content:center;gap:5px" onmouseover="this.style.background=\'var(--'+ci+'-mid)\';this.style.color=\'#fff\'" onmouseout="this.style.background=\'var(--'+ci+'-base)\';this.style.color=\'var(--'+ci+'-deep)\'">'
+      +   '<i class="ph ph-arrow-right"></i> Ir estudar'
+      + '</button>'
       + '</div>';
   }).join('');
 
   var grupos = _treinoGetGrupos();
   var pm = typeof ProgressManager !== 'undefined' ? ProgressManager.getSummary() : {totalXp:0,streak:0};
+
+  var _motivMsg = totalT === 0
+    ? 'Ainda não começaste. Explora um capítulo e começa a praticar!'
+    : globalPct >= 80 ? 'Excelente trabalho! Estás a dominar a matéria.'
+    : globalPct >= 60 ? 'Bom progresso! Continua a praticar para consolidar.'
+    : globalPct >= 40 ? 'A progredir! Há capítulos que pedem mais atenção.'
+    : 'Começaste! Pratica com regularidade — cada questão conta.';
+  var _motivIcon = totalT === 0 ? 'ph-rocket-launch' : globalPct >= 80 ? 'ph-trophy' : globalPct >= 60 ? 'ph-star' : globalPct >= 40 ? 'ph-trend-up' : 'ph-book-open';
 
   var html = '';
 
@@ -1840,16 +1867,24 @@ function renderProgressoUnificado() {
         + ' para ficares sempre com o registo do teu progresso.</span>'
         + '</div>';
 
-  // ── Barra de topo com acções ──
-  html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem">'
-        + '<div style="font-size:.78rem;color:var(--ink4)">Última atualização: '+new Date().toLocaleString('pt-PT',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})+'</div>'
-        + '<button class="btn btn-ghost" onclick="progDownloadPDF()" style="font-size:.8rem;padding:8px 18px;display:inline-flex;align-items:center;gap:6px">'
-        + '<i class="ph ph-file-text"></i>'
-        + 'Relatório PDF</button>'
+  // ── Resumo geral ──
+  html += '<div style="background:var(--c2-pale);border:1.5px solid var(--c2-mid);border-radius:16px;padding:1.1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">'
+        +   '<div style="width:52px;height:52px;border-radius:50%;background:var(--c2-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0">'
+        +     '<i class="ph '+_motivIcon+'" style="font-size:1.4rem;color:#fff"></i>'
+        +   '</div>'
+        +   '<div style="flex:1;min-width:180px">'
+        +     '<div style="font-family:\'Cormorant Garamond\',serif;font-size:1.6rem;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-.02em">'+(totalT>0 ? globalPct+'<span style="font-size:1rem">%</span>' : '—')+'</div>'
+        +     '<div style="font-size:.82rem;color:var(--ink2);margin-top:3px">'+_motivMsg+'</div>'
+        +   '</div>'
+        +   '<div style="display:flex;gap:.6rem;flex-wrap:wrap">'
+        +     '<button class="btn btn-ghost" onclick="progDownloadPDF()" style="font-size:.78rem;padding:7px 14px;display:inline-flex;align-items:center;gap:5px">'
+        +       '<i class="ph ph-file-text"></i>Relatório PDF'
+        +     '</button>'
+        +   '</div>'
         + '</div>';
 
   // ── Stat chips ──
-  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.25rem">';
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-bottom:1.5rem">';
   [{v:totalT,l:'Questões respondidas'},{v:totalC,l:'Respostas certas'},{v:totalT>0?globalPct+'%':'—',l:'Taxa global'},{v:pm.totalXp+' XP',l:'XP total'},{v:pm.streak+(pm.streak===1?' dia':' dias'),l:'Streak atual'}]
   .forEach(function(s){
     html += '<div class="card" style="text-align:center;padding:1rem .75rem">'
@@ -1859,11 +1894,14 @@ function renderProgressoUnificado() {
   });
   html += '</div>';
 
-  // ── Cap bars ──
-  html += '<div class="card" style="margin-bottom:1.25rem">'
-        + '<div class="card-title">Desempenho por Capítulo</div>'
-        + '<div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem">'+barsHtml+'</div>'
+  // ── Chapter cards grid ──
+  html += '<div style="margin-bottom:1.5rem">'
+        + '<div style="font-size:.78rem;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem">Progresso por capítulo</div>'
+        + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.85rem">'+cardsHtml+'</div>'
         + '</div>';
+
+  // ── Atualização timestamp ──
+  html += '<div style="font-size:.72rem;color:var(--ink4);margin-bottom:1.25rem">Última atualização: '+new Date().toLocaleString('pt-PT',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})+'</div>';
 
   // ── Treino direcionado + erros — card único ──
   html += '<div class="card" style="margin-bottom:1.25rem;border-color:var(--cs-mid)">';
