@@ -332,20 +332,20 @@ window.mat7UnifiedQuizRefresh = window.mat7UnifiedQuizRefresh || function() {
 
 // ── UNIFIED JOGOS ───────────────────────────────────────────
 function mat7RenderUnifiedJogos(caps, inlineEl) {
-  // For multi-cap jogos: show ONE Jogo do 24 with mixed numbers from all caps
-  // Determine difficulty based on highest selected cap
   var maxCap = Math.max.apply(null, caps);
-  var level = maxCap >= 3 ? 'dificil' : maxCap >= 2 ? 'medio' : 'facil';
-  var capStr = caps.map(function(c){ return _mat7CapNames[c]; }).join(' + ');
+  var level = maxCap >= 5 ? 'dificil' : maxCap >= 3 ? 'dificil' : maxCap >= 2 ? 'medio' : 'facil';
+  var capStr = caps.map(function(c){ return _mat7CapNames[c] || ('Cap.'+c); }).join(' + ');
+
+  // Tell the question provider which caps to mix
+  if (typeof _gActiveCaps !== 'undefined') _gActiveCaps = caps;
 
   inlineEl.innerHTML = [
-    '<div class="sec-header"><h2><i class="ph ph-game-controller"></i> Jogo do 24 — Multi-Capítulo</h2>',
-    '<p>Um único jogo com números de ' + capStr + '</p></div>',
+    '<div class="sec-header"><h2><i class="ph ph-game-controller"></i> Jogos — ' + capStr + '</h2>',
+    '<p>Todos os jogos com perguntas dos capítulos selecionados: ' + capStr + '</p></div>',
     '<div id="j24-wrap-unified"></div>'
   ].join('\n');
 
   if (typeof _j24AutoInit === 'function') {
-    // Clear init guard so game rebuilds when caps change
     if (typeof _gInited !== 'undefined') delete _gInited['j24-wrap-unified'];
     _j24AutoInit('j24-wrap-unified', level);
   }

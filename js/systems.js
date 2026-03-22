@@ -592,17 +592,57 @@ function _gBuildJogos(wrapId, defaultLevel) {
 }
 
 // ── Question provider: pulls from cap-specific question banks ──
+// Convert a BANCO questoes array to the game pool format {q, opts, ans}
+function _bancToGamePool(banco) {
+  if (!banco || !banco.questoes) return [];
+  return banco.questoes.map(function(q) {
+    var opts = q.opts || [];
+    var correct = q.correct || q.c || 'A';
+    var ansIdx = ['A','B','C','D'].indexOf(correct.charAt(0));
+    if (ansIdx < 0) ansIdx = 0;
+    // Strip letter prefix from option strings (e.g. "A) texto" → "texto")
+    var cleanOpts = opts.map(function(o){ return o.replace(/^[A-D]\)\s*/,''); });
+    return { q: q.enunciado || q.en || q.enun || '', opts: cleanOpts, ans: ansIdx };
+  }).filter(function(q){ return q.q && q.opts.length >= 2; });
+}
+
 function _gGetQuestion(wrapId, level) {
-  // Determine cap from wrapId
-  var cap = wrapId.indexOf('cap1') !== -1 ? 1
-           : wrapId.indexOf('cap2') !== -1 ? 2
-           : wrapId.indexOf('cap3') !== -1 ? 3
-           : wrapId.indexOf('cap4') !== -1 ? 4 : 0;
-  var pool = _gQuestionPool(cap, level);
+  // Determine cap(s) from wrapId
+  // wrapId may be 'j24-wrap-cap8' or 'j24-wrap-unified'
+  // For unified, _gActiveCaps may be set by mat7RenderUnifiedJogos
+  var caps = [];
+  if (wrapId === 'j24-wrap-unified' && _gActiveCaps && _gActiveCaps.length) {
+    caps = _gActiveCaps;
+  } else {
+    var cap = wrapId.indexOf('cap1') !== -1 ? 1
+             : wrapId.indexOf('cap2') !== -1 ? 2
+             : wrapId.indexOf('cap3') !== -1 ? 3
+             : wrapId.indexOf('cap4') !== -1 ? 4
+             : wrapId.indexOf('cap5') !== -1 ? 5
+             : wrapId.indexOf('cap6') !== -1 ? 6
+             : wrapId.indexOf('cap7') !== -1 ? 7
+             : wrapId.indexOf('cap8') !== -1 ? 8 : 0;
+    caps = cap ? [cap] : [1,2,3,4];
+  }
+  var pool = [];
+  caps.forEach(function(c){ pool = pool.concat(_gQuestionPool(c, level)); });
+  if (!pool.length) pool = _gQuestionPool(1, level);
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+// Tracks which caps are active for the unified game wrapper
+var _gActiveCaps = [];
+
 function _gQuestionPool(cap, level) {
+  // For caps 5-8: pull from their BANCO if available
+  var bancoMap = { 5: typeof BANCO5 !== 'undefined' ? BANCO5 : null,
+                   6: typeof BANCO6 !== 'undefined' ? BANCO6 : null,
+                   7: typeof BANCO7 !== 'undefined' ? BANCO7 : null,
+                   8: typeof BANCO8 !== 'undefined' ? BANCO8 : null };
+  if (cap >= 5 && cap <= 8 && bancoMap[cap]) {
+    var converted = _bancToGamePool(bancoMap[cap]);
+    if (converted.length) return converted;
+  }
   // Returns [{q, opts:[4 strings], ans index 0-3}]
   var easy = level === 'facil';
   var hard = level === 'dificil';

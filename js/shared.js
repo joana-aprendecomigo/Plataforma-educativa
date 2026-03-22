@@ -1191,11 +1191,21 @@ function wrapPrintDoc(title, content) {
     + '</style></head><body>' + content + '</body></html>';
 }
 
-// ═══ formatMath: convert X^Y to superscript HTML (shared across chapters) ═══
+// ═══ formatMath: convert fractions and exponents to proper HTML ═══
 function formatMath(s) {
   if (s === null || s === undefined) return s;
   if (typeof s !== 'string') s = String(s);
   if (!s) return s;
+  // Fractions: match patterns like -3/4, 2/3, ?/10, 10/? but not dates or URLs
+  // Must be: optional sign + (digits or ?) / (digits or ?)
+  // Avoid matching things already inside HTML tags
+  s = s.replace(/(?<![<\w\/])(-?)(\d+|\?)\/(\d+|\?)(?![>\w])/g, function(match, sign, num, den) {
+    return '<span class="mfrac" style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .1em">'
+      + '<span style="border-bottom:1.5px solid currentColor;padding:0 .15em .05em;font-size:.85em;text-align:center">' + sign + num + '</span>'
+      + '<span style="padding:.05em .15em 0;font-size:.85em;text-align:center">' + den + '</span>'
+      + '</span>';
+  });
+  // Exponents
   s = s.replace(/([^\s<>^]+)\^\(([^)]+)\)/g, '$1<span class="mexp">($2)</span>');
   s = s.replace(/([^\s<>^]+)\^\?/g, '$1<span class="mexp">?</span>');
   s = s.replace(/([^\s<>^]+)\^(-\d+)/g, '$1<span class="mexp">$2</span>');

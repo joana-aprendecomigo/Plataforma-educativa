@@ -86,10 +86,10 @@ function Game4Linha(containerId, qFn) {
     var fnKey = containerId.replace(/-/g,'_');
     qDiv.innerHTML = '<div class="q-text">'
       + NAMES[self.turn]+' escolheu a coluna '+(col+1)+'. Responde corretamente para jogar aí:<br>'
-      + '<strong style="font-size:1rem">'+q.q+'</strong></div>'
+      + '<strong style="font-size:1rem">'+(typeof formatMath==='function'?formatMath(q.q):q.q)+'</strong></div>'
       + '<div class="c4-opts">'
       + q.opts.map(function(opt,i){
-          return '<button class="c4-opt" onclick="'+fnKey+'_c4Ans('+i+',this)">'+opt+'</button>';
+          return '<button class="c4-opt" onclick="'+fnKey+'_c4Ans('+i+',this)">'+(typeof formatMath==='function'?formatMath(opt):opt)+'</button>';
         }).join('')
       + '</div>';
   }
@@ -277,9 +277,9 @@ function GameMine(containerId, qFn) {
       if (!qBox) return;
       qBox.className = 'mine-question-box active';
       qBox.innerHTML = '<div style="font-size:.8rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem"><i class="ph ph-bomb"></i> Mina! Responde para a desativar:</div>'
-        + '<div style="font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:.75rem">'+q.q+'</div>'
+        + '<div style="font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:.75rem">'+(typeof formatMath==='function'?formatMath(q.q):q.q)+'</div>'
         + '<div class="c4-opts">'
-        + q.opts.map(function(opt,i){ return '<button class="c4-opt" onclick="'+fnKey+'_mineAns('+i+',this)">'+opt+'</button>'; }).join('')
+        + q.opts.map(function(opt,i){ return '<button class="c4-opt" onclick="'+fnKey+'_mineAns('+i+',this)">'+(typeof formatMath==='function'?formatMath(opt):opt)+'</button>'; }).join('')
         + '</div>';
     } else {
       reveal(r, col);
@@ -666,9 +666,9 @@ function GameHanoi(containerId, qFn) {
     if (!qDiv) return;
     qDiv.className = 'hanoi-question active';
     qDiv.innerHTML = '<div style="font-size:.78rem;font-weight:700;color:var(--c2-mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem"><i class="ph ph-tree-structure"></i> Responde para mover o disco:</div>'
-      + '<div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.75rem">'+q.q+'</div>'
+      + '<div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.75rem">'+(typeof formatMath==='function'?formatMath(q.q):q.q)+'</div>'
       + '<div class="c4-opts">'
-      + q.opts.map(function(opt,i){ return '<button class="c4-opt" onclick="'+fnKey+'_hanoiAns('+i+',this)">'+opt+'</button>'; }).join('')
+      + q.opts.map(function(opt,i){ return '<button class="c4-opt" onclick="'+fnKey+'_hanoiAns('+i+',this)">'+(typeof formatMath==='function'?formatMath(opt):opt)+'</button>'; }).join('')
       + '</div>';
   }
 

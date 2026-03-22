@@ -30,57 +30,57 @@ function showSection6(id,btn){
 var BANCO6={
   questoes:[
     // TEMA 1 — Referencial cartesiano
-    {id:'q6-1',tema:1,enunciado:'Um ponto pertence ao eixo das ordenadas (Oy). Qual é a sua abcissa?',opts:['A) Qualquer valor','B) 0','C) 1','D) −1'],correct:'B',fb:'Os pontos no eixo Oy têm abcissa 0 — estão na vertical que passa pela origem.'},
-    {id:'q6-2',tema:1,enunciado:'O ponto A(−3, 5) pertence ao:',opts:['A) 1.º quadrante','B) 2.º quadrante','C) 3.º quadrante','D) Eixo Ox'],correct:'B',fb:'No 2.º quadrante: abcissa negativa e ordenada positiva. A(−3, 5): abcissa = −3 < 0, ordenada = 5 > 0. ✓'},
-    {id:'q6-3',tema:1,enunciado:'O ponto F(5, 5) é refletido em relação ao eixo Ox. Quais são as coordenadas de F\'?',opts:["A) (−5, 5)","B) (5, 5)","C) (5, −5)","D) (−5, −5)"],correct:'C',fb:"Reflexão em relação ao eixo Ox: abcissa mantém-se, ordenada muda de sinal. F(5, 5) → F'(5, −5)."},
-    {id:'q6-4',tema:1,enunciado:'O ponto K(3, 2) é refletido em relação ao eixo Oy. Quais são as coordenadas de K\'?',opts:["A) (3, 2)","B) (3, −2)","C) (−3, −2)","D) (−3, 2)"],correct:'D',fb:"Reflexão em relação ao eixo Oy: ordenada mantém-se, abcissa muda de sinal. K(3, 2) → K'(−3, 2)."},
+    {id:'q6-1',tema:1,enunciado:'Um ponto pertence ao eixo das ordenadas (Oy). Qual é a sua abcissa?',opts:['A) Qualquer valor','B) 0','C) 1','D) −1'],correct:'B',fb:'Regra: pontos no eixo Oy têm sempre abcissa = 0.\nO eixo Oy é a reta vertical que passa pela origem — todos os seus pontos têm a forma (0, y).\nLogo a abcissa é 0. ✓'},
+    {id:'q6-2',tema:1,enunciado:'O ponto A(−3, 5) pertence ao:',opts:['A) 1.º quadrante','B) 2.º quadrante','C) 3.º quadrante','D) Eixo Ox'],correct:'B',fb:'Regra dos quadrantes: 2.º Q → abcissa < 0 e ordenada > 0.\nA(−3, 5): abcissa = −3 < 0 ✓ e ordenada = 5 > 0 ✓.\nLogo A pertence ao 2.º quadrante.'},
+    {id:'q6-3',tema:1,enunciado:'O ponto F(5, 5) é refletido em relação ao eixo Ox. Quais são as coordenadas de F\'?',opts:["A) (−5, 5)","B) (5, 5)","C) (5, −5)","D) (−5, −5)"],correct:'C',fb:"Regra: reflexão em relação ao eixo Ox → (x, y) → (x, −y).\nA abcissa mantém-se; a ordenada muda de sinal.\nF(5, 5) → F'(5, −5). ✓"},
+    {id:'q6-4',tema:1,enunciado:'O ponto K(3, 2) é refletido em relação ao eixo Oy. Quais são as coordenadas de K\'?',opts:["A) (3, 2)","B) (3, −2)","C) (−3, −2)","D) (−3, 2)"],correct:'D',fb:"Regra: reflexão em relação ao eixo Oy → (x, y) → (−x, y).\nA ordenada mantém-se; a abcissa muda de sinal.\nK(3, 2) → K'(−3, 2). ✓"},
     // TEMA 2 — Conceito de função
-    {id:'q6-5',tema:2,enunciado:'Uma função f: A → B associa a cada elemento de A:',opts:['A) Pelo menos um elemento de B','B) Exatamente um elemento de B','C) Todos os elementos de B','D) Nenhum elemento de B'],correct:'B',fb:'Numa função, cada elemento do domínio (conjunto A) tem exatamente uma imagem em B. Se um objeto não tiver imagem ou tiver mais de uma, não é função.'},
-    {id:'q6-6',tema:2,enunciado:'Considera f com D<sub>f</sub> = {1, 2, 3}, f(1) = 4, f(2) = 5, f(3) = 4. O contradomínio D\'<sub>f</sub> é:',opts:["A) {4, 5, 4}","B) {4, 5}","C) {1, 2, 3}","D) {1, 2, 3, 4, 5}"],correct:'B',fb:'O contradomínio é o conjunto das imagens efetivas (sem repetição): D\'<sub>f</sub> = {4, 5}.'},
-    {id:'q6-7',tema:2,enunciado:'De uma função g: D<sub>g</sub> = {1, 2, 3, 4}, D\'<sub>g</sub> = {0, 3, 5}, g(1) = g(3) = 0, g(4) = 5. A imagem de 2 por g é:',opts:['A) 0','B) 2','C) 3','D) 5'],correct:'C',fb:'As imagens de 1, 3, 4 já estão definidas (0, 0, 5). A única imagem que falta no contradomínio é 3. Logo g(2) = 3.'},
+    {id:'q6-5',tema:2,enunciado:'Uma função f: A → B associa a cada elemento de A:',opts:['A) Pelo menos um elemento de B','B) Exatamente um elemento de B','C) Todos os elementos de B','D) Nenhum elemento de B'],correct:'B',fb:'Definição de função: cada objeto (elemento de A) tem EXATAMENTE UMA imagem em B.\nSe um objeto tiver 0 imagens → não é função.\nSe um objeto tiver 2+ imagens → não é função.\nA resposta é B: exatamente uma imagem. ✓'},
+    {id:'q6-6',tema:2,enunciado:'Considera f com D<sub>f</sub> = {1, 2, 3}, f(1) = 4, f(2) = 5, f(3) = 4. O contradomínio D\'<sub>f</sub> é:',opts:["A) {4, 5, 4}","B) {4, 5}","C) {1, 2, 3}","D) {1, 2, 3, 4, 5}"],correct:'B',fb:'Contradomínio = conjunto das imagens efetivas (sem repetição).\nImagens: f(1) = 4, f(2) = 5, f(3) = 4.\nListar sem repetição: {4, 5}.\nNota: 4 aparece duas vezes mas conta só uma. ✓'},
+    {id:'q6-7',tema:2,enunciado:'De uma função g: D<sub>g</sub> = {1, 2, 3, 4}, D\'<sub>g</sub> = {0, 3, 5}, g(1) = g(3) = 0, g(4) = 5. A imagem de 2 por g é:',opts:['A) 0','B) 2','C) 3','D) 5'],correct:'C',fb:'As imagens já definidas: g(1) = 0, g(3) = 0, g(4) = 5.\nO contradomínio é {0, 3, 5} — todas as três têm de ser usadas.\n0 e 5 já foram usadas. Falta usar o 3.\nLogo g(2) = 3. ✓'},
     // TEMA 3 — Representação gráfica
-    {id:'q6-8',tema:3,enunciado:'Qual afirmação é verdadeira sobre o gráfico de uma função?',opts:['A) Cada valor de y tem exatamente um valor de x','B) Cada valor de x tem exatamente um valor de y','C) O gráfico deve ser sempre uma reta','D) Todos os pontos devem estar ligados'],correct:'B',fb:'Teste da reta vertical: para cada x (objeto) existe exatamente uma imagem y. Se uma reta vertical cortar o gráfico em 2+ pontos, não é função.'},
-    {id:'q6-9',tema:3,enunciado:'A função h: D<sub>h</sub> = {−1, 0, 1, 2} é definida por h(x) = x + 1. Qual afirmação é verdadeira?',opts:["A) D'<sub>h</sub> = {−1, 0, 1}","B) D<sub>h</sub> = {−1, 0, 1, 2}","C) h(0) = 0","D) h(−2) = h(2)"],correct:'B',fb:'D<sub>h</sub> = {−1, 0, 1, 2} é dado e correto ✓. D\'<sub>h</sub> = {0, 1, 2, 3}. h(0) = 1, não 0. h(−2) não está definido.'},
+    {id:'q6-8',tema:3,enunciado:'Qual afirmação é verdadeira sobre o gráfico de uma função?',opts:['A) Cada valor de y tem exatamente um valor de x','B) Cada valor de x tem exatamente um valor de y','C) O gráfico deve ser sempre uma reta','D) Todos os pontos devem estar ligados'],correct:'B',fb:'Teste da reta vertical: traça retas verticais sobre o gráfico.\nCada reta vertical deve cortar o gráfico em NO MÁXIMO 1 ponto.\nIsso garante que cada x tem exatamente uma imagem y.\nUma circunferência, por exemplo, falha este teste → não é função.'},
+    {id:'q6-9',tema:3,enunciado:'A função h: D<sub>h</sub> = {−1, 0, 1, 2} é definida por h(x) = x + 1. Qual afirmação é verdadeira?',opts:["A) D'<sub>h</sub> = {−1, 0, 1}","B) D<sub>h</sub> = {−1, 0, 1, 2}","C) h(0) = 0","D) h(−2) = h(2)"],correct:'B',fb:'Calcula cada imagem: h(−1)=0, h(0)=1, h(1)=2, h(2)=3.\nD_h = {−1, 0, 1, 2} é exatamente o domínio dado → B é verdadeiro ✓.\nD\'_h = {0, 1, 2, 3} (não {−1,0,1} → A errado).\nh(0) = 0+1 = 1 (não 0 → C errado). h(−2) não está definido → D errado.'},
     // TEMA 4 — Formas de representar
-    {id:'q6-10',tema:4,enunciado:'Considera f: A → B com A = {0, 1, 2}, B = {−2, −1, 0, 2}, f(x) = x² − 2. O contradomínio de f é:',opts:["A) {−1, 2}","B) {−2, −1, 2}","C) {−2, −1, 0, 2}","D) {−2, −1, 0}"],correct:'B',fb:'f(0) = 0 − 2 = −2; f(1) = 1 − 2 = −1; f(2) = 4 − 2 = 2. Contradomínio = {−2, −1, 2}.'},
-    {id:'q6-11',tema:4,enunciado:'Considera f(x) = 1 + x², com domínio {0, 1, 2, 3}. Qual é o valor de f(1)?',opts:['A) 0','B) 1','C) 2','D) 3'],correct:'C',fb:'f(1) = 1 + 1² = 1 + 1 = 2.'},
-    {id:'q6-12',tema:4,enunciado:'Para f(x) = 1 + x² com domínio {0, 1, 2, 3}: se f(x) = 5, qual é o valor de x?',opts:['A) 2','B) 3','C) 0','D) 1'],correct:'A',fb:'1 + x² = 5 → x² = 4 → x = 2 (pertence ao domínio ✓).'},
+    {id:'q6-10',tema:4,enunciado:'Considera f: A → B com A = {0, 1, 2}, B = {−2, −1, 0, 2}, f(x) = x² − 2. O contradomínio de f é:',opts:["A) {−1, 2}","B) {−2, −1, 2}","C) {−2, −1, 0, 2}","D) {−2, −1, 0}"],correct:'B',fb:'Calcula a imagem de cada elemento do domínio:\nf(0) = 0² − 2 = −2\nf(1) = 1² − 2 = −1\nf(2) = 2² − 2 = 4 − 2 = 2\nContradomínio (sem repetição) = {−2, −1, 2}. ✓'},
+    {id:'q6-11',tema:4,enunciado:'Considera f(x) = 1 + x², com domínio {0, 1, 2, 3}. Qual é o valor de f(1)?',opts:['A) 0','B) 1','C) 2','D) 3'],correct:'C',fb:'Substituir x = 1 na expressão:\nf(1) = 1 + 1² = 1 + 1 = 2. ✓'},
+    {id:'q6-12',tema:4,enunciado:'Para f(x) = 1 + x² com domínio {0, 1, 2, 3}: se f(x) = 5, qual é o valor de x?',opts:['A) 2','B) 3','C) 0','D) 1'],correct:'A',fb:'Resolver a equação f(x) = 5:\n1 + x² = 5\nx² = 5 − 1 = 4\nx = 2 (verifica: pertence ao domínio {0,1,2,3} ✓)\nLogo x = 2. ✓'},
     // TEMA 5 — Proporcionalidade direta
-    {id:'q6-13',tema:5,enunciado:'Considera uma função de proporcionalidade direta f com f(0,6) = 4,8. A constante de proporcionalidade é:',opts:['A) 0,125','B) 0,8','C) 8','D) 80'],correct:'C',fb:'k = f(x)/x = 4,8/0,6 = 8.'},
-    {id:'q6-14',tema:5,enunciado:'Numa função de proporcionalidade direta com k = 8, se f(a) = 12, então a é:',opts:['A) 1','B) 1,5','C) 2','D) 2,5'],correct:'B',fb:'f(a) = 8a = 12 → a = 12/8 = 1,5.'},
-    {id:'q6-15',tema:5,enunciado:'O ponto (6, 4) pertence ao gráfico de f(x) = kx. Qual é a expressão algébrica de f?',opts:['A) f(x) = (2/3)x','B) f(x) = (3/2)x','C) f(x) = 2x','D) f(x) = 24x'],correct:'A',fb:'k = 4/6 = 2/3. Logo f(x) = (2/3)x.'},
-    {id:'q6-16',tema:5,enunciado:'Uma loja aplica um desconto de 70% sobre o preço de venda v. A expressão do preço com desconto P(v) é:',opts:['A) P(v) = 0,7v','B) P(v) = 70v','C) P(v) = 30v','D) P(v) = 0,3v'],correct:'D',fb:'Com 70% de desconto, paga-se 30% do preço original: P(v) = 0,30v.'},
+    {id:'q6-13',tema:5,enunciado:'Considera uma função de proporcionalidade direta f com f(0,6) = 4,8. A constante de proporcionalidade é:',opts:['A) 0,125','B) 0,8','C) 8','D) 80'],correct:'C',fb:'Na proporcionalidade direta f(x) = kx, logo k = f(x) / x.\nk = f(0,6) / 0,6 = 4,8 / 0,6 = 8.\nLogo k = 8. ✓'},
+    {id:'q6-14',tema:5,enunciado:'Numa função de proporcionalidade direta com k = 8, se f(a) = 12, então a é:',opts:['A) 1','B) 1,5','C) 2','D) 2,5'],correct:'B',fb:'A expressão é f(x) = 8x.\nResolver f(a) = 12:\n8a = 12\na = 12 / 8 = 1,5. ✓'},
+    {id:'q6-15',tema:5,enunciado:'O ponto (6, 4) pertence ao gráfico de f(x) = kx. Qual é a expressão algébrica de f?',opts:['A) f(x) = (2/3)x','B) f(x) = (3/2)x','C) f(x) = 2x','D) f(x) = 24x'],correct:'A',fb:'Para encontrar k, usa o ponto (6, 4): f(6) = 4.\nk × 6 = 4\nk = 4/6 = 2/3.\nLogo f(x) = (2/3)x. ✓'},
+    {id:'q6-16',tema:5,enunciado:'Uma loja aplica um desconto de 70% sobre o preço de venda v. A expressão do preço com desconto P(v) é:',opts:['A) P(v) = 0,7v','B) P(v) = 70v','C) P(v) = 30v','D) P(v) = 0,3v'],correct:'D',fb:'Com 70% de desconto, o cliente paga apenas 30% do preço original.\n100% − 70% = 30% = 0,30.\nP(v) = 0,30 × v = 0,3v. ✓\nAtenção: 0,7v seria o valor do desconto, não o preço final.'},
     // TEMA 6 — Gráficos em contexto real
-    {id:'q6-17',tema:6,enunciado:'O alongamento f(x) de uma mola é proporcional à massa x. Se f(3) = 5 cm, qual é a expressão de f?',opts:['A) f(x) = (5/3)x','B) f(x) = (1/2)x','C) f(x) = (3/5)x','D) f(x) = 2x'],correct:'A',fb:'k = f(3)/3 = 5/3. Logo f(x) = (5/3)x.'},
-    {id:'q6-18',tema:6,enunciado:'Usando f(x) = (5/3)x, qual é o alongamento da mola para uma massa de 6,3 kg?',opts:['A) 10','B) 10,5','C) 11','D) 11,5'],correct:'B',fb:'f(6,3) = (5/3) × 6,3 = 5 × 2,1 = 10,5 cm.'},
-    {id:'q6-19',tema:6,enunciado:'Usando f(x) = (5/3)x, qual é a massa (em kg) que provoca um alongamento de 10 cm?',opts:['A) 4','B) 5','C) 6','D) 7'],correct:'C',fb:'(5/3)x = 10 → x = 10 × (3/5) = 6 kg.'},
-    {id:'q6-20',tema:6,enunciado:'Um bolo com 20 cm de diâmetro custa 10,40 €. A função preço é de proporcionalidade direta. Qual é o preço de um bolo com 25 cm?',opts:['A) 15,40 €','B) 13,40 €','C) 13,00 €','D) 12,25 €'],correct:'C',fb:'k = 10,40/20 = 0,52. Preço de 25 cm: 0,52 × 25 = 13,00 €.'},
+    {id:'q6-17',tema:6,enunciado:'O alongamento f(x) de uma mola é proporcional à massa x. Se f(3) = 5 cm, qual é a expressão de f?',opts:['A) f(x) = (5/3)x','B) f(x) = (1/2)x','C) f(x) = (3/5)x','D) f(x) = 2x'],correct:'A',fb:'Como é proporcional, f(x) = kx.\nUsa o ponto conhecido: f(3) = 5, logo k × 3 = 5.\nk = 5/3.\nLogo f(x) = (5/3)x. ✓'},
+    {id:'q6-18',tema:6,enunciado:'Usando f(x) = (5/3)x, qual é o alongamento da mola para uma massa de 6,3 kg?',opts:['A) 10','B) 10,5','C) 11','D) 11,5'],correct:'B',fb:'Substituir x = 6,3 na expressão f(x) = (5/3)x:\nf(6,3) = (5/3) × 6,3\n= 5 × (6,3/3)\n= 5 × 2,1 = 10,5 cm. ✓'},
+    {id:'q6-19',tema:6,enunciado:'Usando f(x) = (5/3)x, qual é a massa (em kg) que provoca um alongamento de 10 cm?',opts:['A) 4','B) 5','C) 6','D) 7'],correct:'C',fb:'Resolver f(x) = 10:\n(5/3)x = 10\nx = 10 × (3/5)\nx = 30/5 = 6 kg. ✓'},
+    {id:'q6-20',tema:6,enunciado:'Um bolo com 20 cm de diâmetro custa 10,40 €. A função preço é de proporcionalidade direta. Qual é o preço de um bolo com 25 cm?',opts:['A) 15,40 €','B) 13,40 €','C) 13,00 €','D) 12,25 €'],correct:'C',fb:'Passo 1 — encontrar k: k = preço / diâmetro = 10,40 / 20 = 0,52 €/cm.\nPasso 2 — calcular preço para 25 cm:\nP(25) = 0,52 × 25 = 13,00 €. ✓'},
     // QA 31 — Leitura de coordenadas no referencial
-    {id:'q6-21',tema:1,enunciado:'As coordenadas dos pontos A, B, C e D representados no referencial são, respetivamente:',opts:['A) (2, 0), (3, 1), (0, 2), (−2, −3)','B) (0, 2), (1, 3), (2, 0), (−3, −2)','C) (2, 0), (1, 3), (0, 2), (−3, −2)','D) (0, 2), (3, 1), (2, 0), (−2, −3)'],correct:'D',fb:'Ler o referencial: abcissa = coordenada horizontal, ordenada = vertical. A(0, 2), B(3, 1), C(2, 0), D(−2, −3).'},
+    {id:'q6-21',tema:1,enunciado:'As coordenadas dos pontos A, B, C e D representados no referencial são, respetivamente:',opts:['A) (2, 0), (3, 1), (0, 2), (−2, −3)','B) (0, 2), (1, 3), (2, 0), (−3, −2)','C) (2, 0), (1, 3), (0, 2), (−3, −2)','D) (0, 2), (3, 1), (2, 0), (−2, −3)'],correct:'D',fb:'Ler coordenadas: (abcissa, ordenada) = (horizontal, vertical).\nA: 0 unidades na horizontal, 2 na vertical → A(0, 2).\nB: 3 direita, 1 cima → B(3, 1).\nC: 2 direita, 0 → C(2, 0).\nD: 2 esquerda (−2), 3 baixo (−3) → D(−2, −3). ✓'},
     // QA 32 — Qual correspondência é função
-    {id:'q6-22',tema:2,enunciado:'Qual das seguintes correspondências define uma função?',opts:['A) 1 → 2 e 1 → 3','B) 2 → 5 e 2 → 6','C) 1 → 3, 2 → 3, 3 → 3','D) 1 → 2, 2 → 3, 2 → 4'],correct:'C',fb:'Em A e B, o mesmo objeto tem duas imagens — não é função. Em D, o objeto 2 tem duas imagens — não é função. Em C, cada objeto tem exatamente uma imagem. ✓'},
+    {id:'q6-22',tema:2,enunciado:'Qual das seguintes correspondências define uma função?',opts:['A) 1 → 2 e 1 → 3','B) 2 → 5 e 2 → 6','C) 1 → 3, 2 → 3, 3 → 3','D) 1 → 2, 2 → 3, 2 → 4'],correct:'C',fb:'Regra: cada objeto tem EXATAMENTE uma imagem.\nA: objeto 1 tem duas imagens (2 e 3) → não é função. ✗\nB: objeto 2 tem duas imagens (5 e 6) → não é função. ✗\nD: objeto 2 tem duas imagens (3 e 4) → não é função. ✗\nC: 1→3, 2→3, 3→3. Cada objeto tem uma só imagem (podem partilhar) → é função. ✓'},
     // QA 33 PRISMA — Qual gráfico representa uma função
-    {id:'q6-23',tema:3,enunciado:'Qual dos seguintes gráficos representa uma função?',opts:['A) Uma circunferência completa','B) Uma elipse','C) Uma curva que, para certos x, tem dois valores de y','D) Uma reta oblíqua'],correct:'D',fb:'Teste da reta vertical: qualquer reta vertical deve cortar o gráfico em no máximo 1 ponto. A circunferência, a elipse e curvas com dois ramos falham este teste. Uma reta oblíqua (D) passa. ✓'},
+    {id:'q6-23',tema:3,enunciado:'Qual dos seguintes gráficos representa uma função?',opts:['A) Uma circunferência completa','B) Uma elipse','C) Uma curva que, para certos x, tem dois valores de y','D) Uma reta oblíqua'],correct:'D',fb:'Aplica o teste da reta vertical a cada opção:\nA (circunferência): uma reta vertical corta-a em 2 pontos → não é função. ✗\nB (elipse): idem → não é função. ✗\nC: dois valores de y para o mesmo x → não é função. ✗\nD (reta oblíqua): cada reta vertical corta-a num único ponto → é função. ✓'},
     // QA 34 PRISMA — Contradomínio de h(x) = 2x
-    {id:'q6-24',tema:2,enunciado:'O contradomínio da função h(x) = 2x com domínio {0, 1, 3, 5} é:',opts:['A) {0, 1, 3, 5}','B) {1, 2, 4, 6}','C) {2, 4, 6, 10}','D) {0, 2, 6, 10}'],correct:'D',fb:'h(0) = 0, h(1) = 2, h(3) = 6, h(5) = 10. Contradomínio = {0, 2, 6, 10}.'},
+    {id:'q6-24',tema:2,enunciado:'O contradomínio da função h(x) = 2x com domínio {0, 1, 3, 5} é:',opts:['A) {0, 1, 3, 5}','B) {1, 2, 4, 6}','C) {2, 4, 6, 10}','D) {0, 2, 6, 10}'],correct:'D',fb:'Calcular a imagem de cada elemento do domínio:\nh(0) = 2×0 = 0\nh(1) = 2×1 = 2\nh(3) = 2×3 = 6\nh(5) = 2×5 = 10\nContradomínio = {0, 2, 6, 10}. ✓'},
     // QA 35 PRISMA — Qual tabela não é proporcionalidade direta
-    {id:'q6-25',tema:5,enunciado:'Qual das seguintes tabelas NÃO representa uma função de proporcionalidade direta?',opts:['A) x: 2, 4, 6 → y: 4, 8, 12','B) x: 7, 14, 21 → y: 28, 55, 84','C) x: 3, 6, 9 → y: 6, 12, 18','D) x: 1, 2, 3 → y: 0,5; 1; 1,5'],correct:'B',fb:'Em A: 4/2 = 8/4 = 12/6 = 2 ✓. Em B: 28/7 = 4 mas 55/14 ≈ 3,9 — quociente não constante, não é proporcionalidade direta. Em C: k = 2 ✓. Em D: k = 0,5 ✓.'},
+    {id:'q6-25',tema:5,enunciado:'Qual das seguintes tabelas NÃO representa uma função de proporcionalidade direta?',opts:['A) x: 2, 4, 6 → y: 4, 8, 12','B) x: 7, 14, 21 → y: 28, 55, 84','C) x: 3, 6, 9 → y: 6, 12, 18','D) x: 1, 2, 3 → y: 0,5; 1; 1,5'],correct:'B',fb:'Na proporcionalidade direta, o quociente y/x deve ser constante (= k).\nA: 4/2=2, 8/4=2, 12/6=2 → k=2 constante ✓\nB: 28/7=4, mas 55/14≈3,93 ≠ 4 → quociente não constante → NÃO é proporcional direta ✗\nC: 6/3=2, 12/6=2, 18/9=2 → k=2 ✓\nD: 0,5/1=0,5, 1/2=0,5, 1,5/3=0,5 → k=0,5 ✓\nLogo a resposta é B. ✓'},
     // QA 36 PRISMA — Gráfico deslocação
-    {id:'q6-26',tema:6,enunciado:'O Pedro saiu de casa e foi ao supermercado, onde permaneceu algum tempo, regressando depois a casa. Qual dos seguintes gráficos melhor representa a sua deslocação em função do tempo?',opts:['A) Reta sempre crescente','B) Reta crescente, seguida de segmento horizontal, depois reta decrescente até 0','C) Reta sempre decrescente','D) Reta decrescente seguida de reta crescente'],correct:'B',fb:'Ao sair de casa, a distância aumenta (crescente). No supermercado, a distância é constante (horizontal). Ao regressar, a distância diminui até 0 (decrescente). O gráfico B representa este comportamento. ✓'},
+    {id:'q6-26',tema:6,enunciado:'O Pedro saiu de casa e foi ao supermercado, onde permaneceu algum tempo, regressando depois a casa. Qual dos seguintes gráficos melhor representa a sua deslocação em função do tempo?',opts:['A) Reta sempre crescente','B) Reta crescente, seguida de segmento horizontal, depois reta decrescente até 0','C) Reta sempre decrescente','D) Reta decrescente seguida de reta crescente'],correct:'B',fb:'Analisa cada fase:\nFase 1 — vai ao supermercado: distância aumenta → segmento CRESCENTE.\nFase 2 — está no supermercado: distância é constante → segmento HORIZONTAL.\nFase 3 — volta a casa: distância diminui até 0 → segmento DECRESCENTE até 0.\nO gráfico B representa exatamente estas três fases. ✓'},
     // QA 35 Texto — Qual correspondência é função
-    {id:'q6-27',tema:2,enunciado:'Qual das seguintes correspondências define uma função?',opts:['A) A cada aluno corresponde o seu número de matrícula','B) A cada pessoa correspondem os seus números de telefone','C) A cada número inteiro correspondem as suas raízes quadradas reais','D) A cada cidade correspondem os seus habitantes'],correct:'A',fb:'Em A, cada aluno tem exatamente um número de matrícula — é função. Em B, uma pessoa pode ter vários telefones. Em C, um número pode ter duas raízes (± ). Em D, uma cidade tem muitos habitantes. ✓'},
+    {id:'q6-27',tema:2,enunciado:'Qual das seguintes correspondências define uma função?',opts:['A) A cada aluno corresponde o seu número de matrícula','B) A cada pessoa correspondem os seus números de telefone','C) A cada número inteiro correspondem as suas raízes quadradas reais','D) A cada cidade correspondem os seus habitantes'],correct:'A',fb:'Verifica se cada objeto tem EXATAMENTE uma imagem:\nA: cada aluno tem um único número de matrícula → é função ✓\nB: uma pessoa pode ter vários telefones → não é função ✗\nC: √4 = +2 ou −2 (dois valores) → não é função ✗\nD: uma cidade tem muitos habitantes → não é função ✗\nResposta: A. ✓'},
     // QA 36 Texto — Objeto cuja imagem é 5
-    {id:'q6-28',tema:4,enunciado:'Considera a função f(x) = 2x + 3. Qual é o objeto cujo imagem é 5?',opts:['A) x = 1','B) x = 2','C) x = 3','D) x = 4'],correct:'A',fb:'2x + 3 = 5 → 2x = 2 → x = 1. Verifica: f(1) = 2(1) + 3 = 5 ✓'},
+    {id:'q6-28',tema:4,enunciado:'Considera a função f(x) = 2x + 3. Qual é o objeto cujo imagem é 5?',opts:['A) x = 1','B) x = 2','C) x = 3','D) x = 4'],correct:'A',fb:'Resolver f(x) = 5 em ordem a x:\n2x + 3 = 5\n2x = 5 − 3 = 2\nx = 1.\nVerificação: f(1) = 2(1) + 3 = 5 ✓'},
     // QA 37 Texto — Proporcionalidade direta verdadeira
-    {id:'q6-29',tema:5,enunciado:'Qual das seguintes situações representa uma proporcionalidade direta?',opts:['A) A área de um círculo em função do seu raio','B) O tempo de viagem em função da velocidade (distância fixa)','C) A área de um quadrado em função do seu lado','D) O perímetro de um quadrado em função do seu lado'],correct:'D',fb:'O perímetro de um quadrado é P = 4L — proporcionalidade direta com k = 4. A área é A = L² (grau 2, não direta). Área de círculo: A = πr² (grau 2). Tempo = distância/velocidade (inversa, não direta). ✓'},
+    {id:'q6-29',tema:5,enunciado:'Qual das seguintes situações representa uma proporcionalidade direta?',opts:['A) A área de um círculo em função do seu raio','B) O tempo de viagem em função da velocidade (distância fixa)','C) A área de um quadrado em função do seu lado','D) O perímetro de um quadrado em função do seu lado'],correct:'D',fb:'Proporcionalidade direta: y = kx (grau 1, passa pela origem).\nA: A = πr² — grau 2, não direta. ✗\nB: t = d/v — inversa (não direta). ✗\nC: A = L² — grau 2, não direta. ✗\nD: P = 4L — grau 1, k = 4 → proporcionalidade direta ✓'},
     // QA 38 Texto — Ponto que não pertence ao gráfico
-    {id:'q6-30',tema:5,enunciado:'O ponto (4, 10) pertence ao gráfico de f(x) = kx. Qual dos seguintes pontos NÃO pertence ao gráfico de f?',opts:['A) (2, 5)','B) (1; 2,5)','C) (0,4; 1)','D) (2/5; 2)'],correct:'D',fb:'k = 10/4 = 2,5. Verifica: A: f(2) = 5 ✓; B: f(1) = 2,5 ✓; C: f(0,4) = 1 ✓; D: f(2/5) = 2,5 × (2/5) = 1 ≠ 2. O ponto (2/5; 2) não pertence ao gráfico. ✓'},
+    {id:'q6-30',tema:5,enunciado:'O ponto (4, 10) pertence ao gráfico de f(x) = kx. Qual dos seguintes pontos NÃO pertence ao gráfico de f?',opts:['A) (2, 5)','B) (1; 2,5)','C) (0,4; 1)','D) (2/5; 2)'],correct:'D',fb:'Passo 1 — encontrar k: k = 10/4 = 2,5.\nPasso 2 — verificar cada ponto com f(x) = 2,5x:\nA: f(2) = 2,5×2 = 5 ✓\nB: f(1) = 2,5×1 = 2,5 ✓\nC: f(0,4) = 2,5×0,4 = 1 ✓\nD: f(2/5) = 2,5×(2/5) = 1 ≠ 2 → NÃO pertence ✗\nResposta: D. ✓'},
     // QA 39 Texto — f(2a) = 3, determinar f(3a)
-    {id:'q6-31',tema:5,enunciado:'Seja f uma função de proporcionalidade direta. Se f(2a) = 3, então f(3a) é igual a:',opts:['A) 3','B) 6','C) 4','D) 9/2'],correct:'D',fb:'f(x) = kx. f(2a) = 2ka = 3 → ka = 3/2. f(3a) = 3ka = 3 × (3/2) = 9/2.'},
+    {id:'q6-31',tema:5,enunciado:'Seja f uma função de proporcionalidade direta. Se f(2a) = 3, então f(3a) é igual a:',opts:['A) 3','B) 6','C) 4','D) 9/2'],correct:'D',fb:'Como f é proporcionalidade direta, f(x) = kx.\nf(2a) = k × 2a = 2ka = 3 → ka = 3/2.\nf(3a) = k × 3a = 3 × ka = 3 × (3/2) = 9/2. ✓'},
     // QA 40 Texto — Problema dos queques
-    {id:'q6-32',tema:5,enunciado:'4 queques custam 1,80 €. O João gastou 2,70 €. Quantos queques comprou o João?',opts:['A) 5','B) 6','C) 7','D) 8'],correct:'B',fb:'Preço por queque: 1,80 ÷ 4 = 0,45 €. Número de queques: 2,70 ÷ 0,45 = 6 queques.'},
+    {id:'q6-32',tema:5,enunciado:'4 queques custam 1,80 €. O João gastou 2,70 €. Quantos queques comprou o João?',opts:['A) 5','B) 6','C) 7','D) 8'],correct:'B',fb:'Passo 1 — encontrar o preço por queque:\n1,80 € ÷ 4 = 0,45 € por queque.\nPasso 2 — calcular quantos queques com 2,70 €:\n2,70 ÷ 0,45 = 6 queques. ✓'},
     // QA 41 Texto — Depósito de água
-    {id:'q6-33',tema:6,enunciado:'Um depósito de água é enchido a uma taxa constante de 40 litros por minuto. Ao fim de 20 minutos o depósito está cheio. Qual é a capacidade do depósito?',opts:['A) 400 litros','B) 500 litros','C) 600 litros','D) 800 litros'],correct:'D',fb:'Proporcionalidade direta: capacidade = 40 × 20 = 800 litros.'}
+    {id:'q6-33',tema:6,enunciado:'Um depósito de água é enchido a uma taxa constante de 40 litros por minuto. Ao fim de 20 minutos o depósito está cheio. Qual é a capacidade do depósito?',opts:['A) 400 litros','B) 500 litros','C) 600 litros','D) 800 litros'],correct:'D',fb:'Taxa constante → proporcionalidade direta: V = taxa × tempo.\nV = 40 litros/min × 20 min = 800 litros.\nVerificação: 40 × 20 = 800 ✓'}
   ],
   minitestes:[
     [], // index 0 — gerado dinamicamente
@@ -139,46 +139,22 @@ function resetQuiz6(prefix){
 }
 
 function renderQuestions6(questions,containerId,prefix){
-  var container=document.getElementById(containerId);
-  if(!container)return;
-  var s=getScore6(prefix);s.correct=0;s.total=questions.length;
-  updateScoreBar6(prefix);
-  var html='';
-  questions.forEach(function(q,i){
-    var en=q.en||q.enunciado||q.enun||'';
-    var opts=q.opts||[];
-    html+='<div class="q-card" id="'+prefix+'-card-'+i+'">';
-    html+='<div class="q-num">'+(i+1)+'</div>';
-    html+='<div class="q-text">'+en+'</div>';
-    html+='<div class="q-opts">';
-    opts.forEach(function(o,j){
-      html+='<button class="q-opt" onclick="ans6(\''+prefix+'\','+i+',this,\''+String.fromCharCode(65+j)+'\',\''+(q.c||q.correct)+'\')">'+o+'</button>';
-    });
-    html+='</div>';
-    if(q.fb){html+='<div class="q-feedback" id="'+prefix+'-fb-'+i+'" style="display:none">'+q.fb+'</div>';}
-    html+='</div>';
+  var normed=questions.map(function(q,i){
+    return {
+      enun: q.en||q.enunciado||q.enun||'',
+      opcoes: q.opts||[],
+      resposta: q.c||q.correct||'',
+      tipo: 'mc',
+      expl: q.fb||'',
+      num: i+1,
+      _capId: '6'
+    };
   });
-  container.innerHTML=html;
-}
-
-function ans6(prefix,idx,btn,chosen,correct){
-  var card=document.getElementById(prefix+'-card-'+idx);
-  if(!card||card.classList.contains('answered'))return;
-  card.classList.add('answered');
-  card.querySelectorAll('.q-opt').forEach(function(b){b.disabled=true;});
-  var ok=(chosen===correct);
-  btn.classList.add(ok?'correct':'wrong');
-  if(!ok){
-    card.querySelectorAll('.q-opt').forEach(function(b){
-      if(b.textContent.trim().charAt(0)===correct)b.classList.add('correct');
-    });
-  }
-  var fb=document.getElementById(prefix+'-fb-'+idx);
-  if(fb)fb.style.display='block';
-  var s=getScore6(prefix);
-  if(ok)s.correct++;
-  updateScoreBar6(prefix);
-  _etRecord('cap6',chosen,correct,idx);
+  qzInit(containerId, normed, prefix, function(correct,total){
+    var s=getScore6(prefix);
+    s.correct=correct; s.total=total;
+    updateScoreBar6(prefix);
+  });
 }
 
 // ── Questões-aula ──────────────────────────────────────────────────────────
