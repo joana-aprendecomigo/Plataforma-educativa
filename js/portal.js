@@ -109,9 +109,77 @@ function portalRender(){
   if(c7)c7.classList.add('open');
 }
 
+// ── Portal progress widget ────────────────────────────────────────────────────
+function portalRenderProgress() {
+  var widget = document.getElementById('portal-progress-widget');
+  if (!widget) return;
+
+  var keys = {
+    1:'edupt_cap1', 2:'edupt_cap2', 3:'edupt_cap3', 4:'edupt_cap4',
+    5:'edupt_cap5', 6:'edupt_cap6', 7:'edupt_cap7', 8:'edupt_cap8'
+  };
+  var names = {
+    1:'Inteiros', 2:'Racionais', 3:'Geometria', 4:'Equações',
+    5:'Sequências', 6:'Funções', 7:'Semelhança', 8:'Dados'
+  };
+  var colors = {
+    1:'#4f8ef7', 2:'#e06c75', 3:'#98c379', 4:'#e5c07b',
+    5:'#c678dd', 6:'#56b6c2', 7:'#d19a66', 8:'#61afef'
+  };
+
+  var caps = [];
+  for (var cap = 1; cap <= 8; cap++) {
+    try {
+      var raw = localStorage.getItem(keys[cap]);
+      if (!raw) continue;
+      var d = JSON.parse(raw);
+      var correct = 0, total = 0;
+      if (d.sections) {
+        Object.keys(d.sections).forEach(function(k) {
+          correct += (d.sections[k].correct || 0);
+          total   += (d.sections[k].total   || 0);
+        });
+      }
+      if (d.log && d.log.length) total = total || 1; // has activity even without sections
+      if (total > 0 || (d.log && d.log.length)) {
+        caps.push({ cap: cap, correct: correct, total: total,
+                    pct: total > 0 ? Math.round(correct / total * 100) : 0 });
+      }
+    } catch(e) {}
+  }
+
+  if (!caps.length) { widget.style.display = 'none'; return; }
+
+  var totalCorrect = 0, totalQ = 0;
+  caps.forEach(function(c) { totalCorrect += c.correct; totalQ += c.total; });
+  var globalPct = totalQ > 0 ? Math.round(totalCorrect / totalQ * 100) : 0;
+
+  var barsHtml = caps.map(function(c) {
+    var col = colors[c.cap];
+    return '<div style="flex:1;min-width:60px;text-align:center">'
+      + '<div style="font-size:.65rem;font-weight:700;color:var(--ink3);margin-bottom:.3rem">' + names[c.cap] + '</div>'
+      + '<div style="height:6px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:.25rem">'
+      + '<div style="height:100%;width:' + c.pct + '%;background:' + col + ';border-radius:99px;transition:width .4s"></div></div>'
+      + '<div style="font-size:.65rem;color:var(--ink4)">' + c.pct + '%</div>'
+      + '</div>';
+  }).join('');
+
+  widget.style.display = 'block';
+  widget.innerHTML =
+    '<div style="background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:.9rem 1.1rem;margin-bottom:.5rem">'
+    + '<div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">'
+    + '<i class="ph ph-chart-bar" style="font-size:1.2rem;color:var(--sage-dark)"></i>'
+    + '<span style="font-size:.82rem;font-weight:700;color:var(--ink2)">O teu progresso em Mat. 7.º Ano</span>'
+    + '<span style="margin-left:auto;font-size:.78rem;font-weight:700;color:var(--sage-dark)">' + globalPct + '% global</span>'
+    + '</div>'
+    + '<div style="display:flex;gap:.5rem;flex-wrap:wrap">' + barsHtml + '</div>'
+    + '</div>';
+}
+
 // ═══ AUTO-INIT ═══
 document.addEventListener('DOMContentLoaded', function(){
   if(document.getElementById('portal-main')) portalRender();
+  portalRenderProgress();
 });
 
 /* Visual effects loaded from fx.js */

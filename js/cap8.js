@@ -247,64 +247,14 @@ function fc8Shuffle(){
 
 // ── Gerador / Ficha ────────────────────────────────────────────────────────
 function gerarFicha8(){
-  var out=document.getElementById('gen-output8');
-  if(!out)return;
-  out.innerHTML='<p style="color:var(--ink4);text-align:center;padding:2rem">Ficha gerada — usa o botão Descarregar PDF.</p>';
+  if(typeof _capGerarFichaInline==='function')
+    _capGerarFichaInline(8,'gen8-nivel','gen8-output','dl-ficha8-btn','Dados e Probabilidades');
 }
 function downloadFicha8(){
-  if(typeof htmlToPdfDownload==='function')htmlToPdfDownload('gen-output8','ficha-dados-probabilidades.pdf');
+  if(typeof _capDownloadFicha==='function') _capDownloadFicha(8,'Dados e Probabilidades');
 }
 
-// ── Exame cronometrado ─────────────────────────────────────────────────────
-var exame8Level='medio',exameTimer8=null,exame8Data=[];
-function exame8SetLevel(btn){
-  document.querySelectorAll('#sec-exame8 .gen-level-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  exame8Level=btn.dataset.level;
-}
-function exame8Start(){
-  var tempo=parseInt(document.getElementById('exame8-tempo').value)||900;
-  var qtd=parseInt(document.getElementById('exame8-qtd').value)||15;
-  var pool=BANCO8.questoes.slice();
-  for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t;}
-  exame8Data=pool.slice(0,Math.min(qtd,pool.length));
-  renderQuestions8(exame8Data,'exame8-container','ex8');
-  document.getElementById('exame8-config').style.display='none';
-  document.getElementById('exame8-running').style.display='block';
-  document.getElementById('exame8-result').style.display='none';
-  var left=tempo;
-  document.getElementById('exame8-answered').textContent='0 / '+exame8Data.length;
-  function tick(){
-    left--;
-    var m=Math.floor(left/60),s=left%60;
-    var el=document.getElementById('exame8-timer');
-    if(el)el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-    var prog=document.getElementById('exame8-prog');
-    if(prog)prog.style.width=Math.round((1-left/tempo)*100)+'%';
-    if(left<=0){clearInterval(exameTimer8);exame8Submit();}
-  }
-  if(exameTimer8)clearInterval(exameTimer8);
-  exameTimer8=setInterval(tick,1000);
-  _pmRecord('cap8','exame');
-}
-function exame8Submit(){
-  if(exameTimer8){clearInterval(exameTimer8);exameTimer8=null;}
-  var s=getScore8('ex8');
-  var pct=exame8Data.length?Math.round(s.correct/exame8Data.length*100):0;
-  var html='<div class="exam-result-box"><div class="exam-score-big">'+pct+'%</div>';
-  html+='<p>Respondeste corretamente a '+s.correct+' de '+exame8Data.length+' questões.</p>';
-  html+='<button class="btn btn-primary" onclick="exame8Reset()">▶ Novo Exame</button></div>';
-  document.getElementById('exame8-running').style.display='none';
-  var res=document.getElementById('exame8-result');
-  res.innerHTML=html;res.style.display='block';
-  saveProgData8('exame',pct);
-}
-function exame8Reset(){
-  var c=document.getElementById('exame8-config');
-  var r=document.getElementById('exame8-running');
-  var rs=document.getElementById('exame8-result');
-  if(c)c.style.display='block';if(r)r.style.display='none';if(rs)rs.style.display='none';
-}
+// exame8SetLevel, exame8Start, exame8Stop, exame8Reset auto-gerados por _capRegisterWrappers(8)
 
 // ── Progresso ──────────────────────────────────────────────────────────────
 function saveProgData8(tipo,val){

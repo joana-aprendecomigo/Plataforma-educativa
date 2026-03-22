@@ -238,64 +238,14 @@ function fc7Shuffle(){
 
 // ── Gerador / Ficha ────────────────────────────────────────────────────────
 function gerarFicha7(){
-  var out=document.getElementById('gen-output7');
-  if(!out)return;
-  out.innerHTML='<p style="color:var(--ink4);text-align:center;padding:2rem">Ficha gerada — usa o botão Descarregar PDF.</p>';
+  if(typeof _capGerarFichaInline==='function')
+    _capGerarFichaInline(7,'gen7-nivel','gen7-output','dl-ficha7-btn','Figuras Semelhantes');
 }
 function downloadFicha7(){
-  if(typeof htmlToPdfDownload==='function')htmlToPdfDownload('gen-output7','ficha-figuras-semelhantes.pdf');
+  if(typeof _capDownloadFicha==='function') _capDownloadFicha(7,'Figuras Semelhantes');
 }
 
-// ── Exame cronometrado ─────────────────────────────────────────────────────
-var exame7Level='medio',exameTimer7=null,exame7Data=[];
-function exame7SetLevel(btn){
-  document.querySelectorAll('#sec-exame7 .gen-level-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  exame7Level=btn.dataset.level;
-}
-function exame7Start(){
-  var tempo=parseInt(document.getElementById('exame7-tempo').value)||900;
-  var qtd=parseInt(document.getElementById('exame7-qtd').value)||15;
-  var pool=BANCO7.questoes.slice();
-  for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t;}
-  exame7Data=pool.slice(0,Math.min(qtd,pool.length));
-  renderQuestions7(exame7Data,'exame7-container','ex7');
-  document.getElementById('exame7-config').style.display='none';
-  document.getElementById('exame7-running').style.display='block';
-  document.getElementById('exame7-result').style.display='none';
-  var left=tempo;
-  document.getElementById('exame7-answered').textContent='0 / '+exame7Data.length;
-  function tick(){
-    left--;
-    var m=Math.floor(left/60),s=left%60;
-    var el=document.getElementById('exame7-timer');
-    if(el)el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-    var prog=document.getElementById('exame7-prog');
-    if(prog)prog.style.width=Math.round((1-left/tempo)*100)+'%';
-    if(left<=0){clearInterval(exameTimer7);exame7Submit();}
-  }
-  if(exameTimer7)clearInterval(exameTimer7);
-  exameTimer7=setInterval(tick,1000);
-  _pmRecord('cap7','exame');
-}
-function exame7Submit(){
-  if(exameTimer7){clearInterval(exameTimer7);exameTimer7=null;}
-  var s=getScore7('ex7');
-  var pct=exame7Data.length?Math.round(s.correct/exame7Data.length*100):0;
-  var html='<div class="exam-result-box"><div class="exam-score-big">'+pct+'%</div>';
-  html+='<p>Respondeste corretamente a '+s.correct+' de '+exame7Data.length+' questões.</p>';
-  html+='<button class="btn btn-primary" onclick="exame7Reset()">▶ Novo Exame</button></div>';
-  document.getElementById('exame7-running').style.display='none';
-  var res=document.getElementById('exame7-result');
-  res.innerHTML=html;res.style.display='block';
-  saveProgData7('exame',pct);
-}
-function exame7Reset(){
-  var c=document.getElementById('exame7-config');
-  var r=document.getElementById('exame7-running');
-  var rs=document.getElementById('exame7-result');
-  if(c)c.style.display='block';if(r)r.style.display='none';if(rs)rs.style.display='none';
-}
+// exame7SetLevel, exame7Start, exame7Stop, exame7Reset auto-gerados por _capRegisterWrappers(7)
 
 // ── Progresso ──────────────────────────────────────────────────────────────
 function saveProgData7(tipo,val){

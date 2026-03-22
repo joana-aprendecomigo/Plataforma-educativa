@@ -253,66 +253,14 @@ function fc6Shuffle(){
 
 // ── Gerador / Ficha ────────────────────────────────────────────────────────
 function gerarFicha6(){
-  var dif=document.querySelector('#sec-gerador6 .gen-level-btn.active');
-  dif=dif?dif.dataset.level:'facil';
-  var out=document.getElementById('gen-output6');
-  if(!out)return;
-  out.innerHTML='<p style="color:var(--ink4);text-align:center;padding:2rem">Ficha gerada — usa o botão Descarregar PDF.</p>';
+  if(typeof _capGerarFichaInline==='function')
+    _capGerarFichaInline(6,'gen6-nivel','gen6-output','dl-ficha6-btn','Funções');
 }
 function downloadFicha6(){
-  if(typeof htmlToPdfDownload==='function')htmlToPdfDownload('gen-output6','ficha-funcoes.pdf');
+  if(typeof _capDownloadFicha==='function') _capDownloadFicha(6,'Funções');
 }
 
-// ── Exame cronometrado ─────────────────────────────────────────────────────
-var exame6Level='medio',exameTimer6=null,exame6Data=[];
-function exame6SetLevel(btn){
-  document.querySelectorAll('#sec-exame6 .gen-level-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  exame6Level=btn.dataset.level;
-}
-function exame6Start(){
-  var tempo=parseInt(document.getElementById('exame6-tempo').value)||900;
-  var qtd=parseInt(document.getElementById('exame6-qtd').value)||15;
-  var pool=BANCO6.questoes.slice();
-  for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=pool[i];pool[i]=pool[j];pool[j]=t;}
-  exame6Data=pool.slice(0,Math.min(qtd,pool.length));
-  renderQuestions6(exame6Data,'exame6-container','ex6');
-  document.getElementById('exame6-config').style.display='none';
-  document.getElementById('exame6-running').style.display='block';
-  document.getElementById('exame6-result').style.display='none';
-  var left=tempo;
-  document.getElementById('exame6-answered').textContent='0 / '+exame6Data.length;
-  function tick(){
-    left--;
-    var m=Math.floor(left/60),s=left%60;
-    var el=document.getElementById('exame6-timer');
-    if(el)el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-    var prog=document.getElementById('exame6-prog');
-    if(prog)prog.style.width=Math.round((1-left/tempo)*100)+'%';
-    if(left<=0){clearInterval(exameTimer6);exame6Submit();}
-  }
-  if(exameTimer6)clearInterval(exameTimer6);
-  exameTimer6=setInterval(tick,1000);
-  _pmRecord('cap6','exame');
-}
-function exame6Submit(){
-  if(exameTimer6){clearInterval(exameTimer6);exameTimer6=null;}
-  var s=getScore6('ex6');
-  var pct=exame6Data.length?Math.round(s.correct/exame6Data.length*100):0;
-  var html='<div class="exam-result-box"><div class="exam-score-big">'+pct+'%</div>';
-  html+='<p>Respondeste corretamente a '+s.correct+' de '+exame6Data.length+' questões.</p>';
-  html+='<button class="btn btn-primary" onclick="exame6Reset()">▶ Novo Exame</button></div>';
-  document.getElementById('exame6-running').style.display='none';
-  var res=document.getElementById('exame6-result');
-  res.innerHTML=html;res.style.display='block';
-  saveProgData6('exame',pct);
-}
-function exame6Reset(){
-  var c=document.getElementById('exame6-config');
-  var r=document.getElementById('exame6-running');
-  var rs=document.getElementById('exame6-result');
-  if(c)c.style.display='block';if(r)r.style.display='none';if(rs)rs.style.display='none';
-}
+// exame6SetLevel, exame6Start, exame6Stop, exame6Reset auto-gerados por _capRegisterWrappers(6)
 
 // ── Progresso ──────────────────────────────────────────────────────────────
 function saveProgData6(tipo,val){

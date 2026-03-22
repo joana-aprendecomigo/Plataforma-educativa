@@ -381,16 +381,25 @@
       </div>
       <button class="btn btn-primary" onclick="exame6Start()">▶ Começar Exame</button>
     </div>
-    <div id="exame6-running" class="hidden">
-      <div class="exame-timer-bar">
-        <i class="ph ph-timer text-[1.4em]"></i>
-        <span id="exame6-timer" class="exam-timer">15:00</span>
+    <div id="exame6-running" style="display:none">
+      <div class="exam-bar">
+        <div class="flex items-center gap-2"><i class="ph ph-timer text-[1.4em]"></i><span id="exame6-timer" class="exam-timer">15:00</span></div>
         <div class="progress-track flex-1 min-w-20"><div class="progress-fill" id="exame6-prog" style="width:0%"></div></div>
-        <button class="btn btn-ghost" onclick="exame6Submit()">Entregar</button>
+        <span id="exame6-answered" class="exam-counter">0 / 0</span>
+        <button class="btn btn-ghost py-1.5 px-3.5 text-xs" onclick="exame6Stop()">■ Terminar</button>
       </div>
       <div id="exame6-container"></div>
     </div>
-    <div id="exame6-result" class="hidden"></div>
+    <div id="exame6-result" style="display:none">
+      <div class="card card-centered">
+        <div class="exam-result-icon" id="exame6-emoji"><i class="ph ph-hand"></i></div>
+        <div class="exam-result-grade" id="exame6-nota"></div>
+        <div class="exam-result-detail" id="exame6-detalhe"></div>
+        <div class="flex flex-wrap gap-4 justify-center mt-7">
+          <button class="btn btn-primary" onclick="exame6Reset()">↺ Novo Exame</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ══ PROGRESSO ══ -->

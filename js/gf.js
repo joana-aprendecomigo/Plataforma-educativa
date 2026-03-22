@@ -566,11 +566,8 @@ var _RND = {
 };
 
 function _buildDinamicoCapHTML(cap, dif) {
-  if (cap===1) return _dinamico1(dif);
-  if (cap===2) return _dinamico2(dif);
-  if (cap===3) return _dinamico3(dif);
-  if (cap===4) return _dinamico4(dif);
-  return '';
+  var fns = { 1:_dinamico1, 2:_dinamico2, 3:_dinamico3, 4:_dinamico4, 5:_dinamico5, 6:_dinamico6, 7:_dinamico7, 8:_dinamico8 };
+  return fns[cap] ? fns[cap](dif) : '';
 }
 
 // ── Shared helpers for _dinamicoN functions ───────────────────────────────────

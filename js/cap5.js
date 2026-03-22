@@ -390,43 +390,11 @@ function fc5Shuffle(){
 // GERADOR
 var fichaContent5='';
 function gerarFicha5(){
-  var tema=parseInt(document.getElementById('gen5-tema').value);
-  var tipo=document.getElementById('gen5-tipo').value;
-  var nivel=document.getElementById('gen5-nivel').value;
-  var qtd=parseInt(document.getElementById('gen5-qtd').value);
-  var pool=[];
-  var allQ=BANCO5.questoes.concat(BANCO5.teste);
-  BANCO5.minitestes.slice(1).forEach(function(m){if(m)allQ=allQ.concat(m);});
-  if(tema>0)allQ=allQ.filter(function(q){return q.tema===tema;});
-  for(var i=allQ.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=allQ[i];allQ[i]=allQ[j];allQ[j]=t;}
-  pool=allQ.slice(0,qtd);
-  if(pool.length===0){
-    document.getElementById('gen5-output').style.display='block';
-    document.getElementById('gen5-output').innerHTML='<p style="color:var(--ink3)">Sem questões disponíveis para esta configuração. Tenta um subtema diferente.</p>';
-    return;
-  }
-  var html='<div style="font-family:\'Montserrat\',sans-serif;max-width:720px">';
-  html+='<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:1.3rem;margin-bottom:1rem;color:var(--ink)">Ficha Gerada — Sequências</h3>';
-  pool.forEach(function(q,i){
-    html+='<div style="margin-bottom:1.25rem;padding:1rem;background:var(--cream);border-radius:10px;border:1px solid var(--border)">';
-    html+='<p style="font-weight:600;font-size:.88rem;margin-bottom:.5rem">'+(i+1)+'. '+q.en+'</p>';
-    if(q.opts){q.opts.forEach(function(o){html+='<p style="font-size:.82rem;color:var(--ink3);margin:.2rem 0">'+o+'</p>';});}
-    html+='</div>';
-  });
-  html+='</div>';
-  document.getElementById('gen5-output').style.display='block';
-  document.getElementById('gen5-output').innerHTML=html;
-  document.getElementById('dl-ficha5-btn').style.display='inline-flex';
-  fichaContent5=html;
+  if(typeof _capGerarFichaInline==='function')
+    _capGerarFichaInline(5,'gen5-nivel','gen5-output','dl-ficha5-btn','Sequências');
 }
 function downloadFicha5(){
-  var tema=document.getElementById('gen5-tema').options[document.getElementById('gen5-tema').selectedIndex].text;
-  var fullHtml='<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><title>Ficha — Sequências Mat. 7.º Ano</title><style>body{font-family:Montserrat,sans-serif;max-width:720px;margin:2rem auto;padding:1rem;color:#2a2724}.q{margin-bottom:1.5rem;padding:1rem;border:1px solid #ddd;border-radius:8px}h1{font-family:Georgia,serif;font-size:1.4rem;margin-bottom:.5rem}h2{font-size:1rem;color:#516860}p{margin:.25rem 0;font-size:.88rem}@media print{body{margin:.5rem}.q{page-break-inside:avoid}}</style></head><body>';
-  fullHtml+='<h1>3ponto14 · Matemática 7.º Ano · Sequências</h1><h2>'+tema+'</h2><hr style="margin:1rem 0">';
-  fullHtml+=fichaContent5;
-  fullHtml+='</body></html>';
-  var blob=new Blob([fullHtml],{type:'text/html'});
-  htmlToPdfDownload(fullHtml, 'ficha_cap5_mat7.pdf');
+  if(typeof _capDownloadFicha==='function') _capDownloadFicha(5,'Sequências');
 }
 
 // EXAME

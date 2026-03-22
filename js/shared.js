@@ -1638,3 +1638,69 @@ function _initChapterNav() {
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _initChapterNav);
 else _initChapterNav();
+
+// ── Inline worksheet generator for individual chapter pages (caps 5–8) ──
+// Calls _dinamico(cap, dif) from gf.js if available; otherwise calls window['_dinamicoN'](dif) directly.
+function _capGerarFichaInline(cap, nivelSelId, outputId, dlBtnId, capNome) {
+  var nivelSel = document.getElementById(nivelSelId);
+  var dif = nivelSel ? nivelSel.value : 'medio';
+  var out = document.getElementById(outputId);
+  var dlBtn = document.getElementById(dlBtnId);
+  if (!out) return;
+
+  // Try gf.js dispatch first, then direct function lookup
+  var result = null;
+  if (typeof _dinamico === 'function') {
+    result = _dinamico(cap, dif);
+  } else {
+    var fn = window['_dinamico' + cap];
+    if (typeof fn === 'function') result = fn(dif);
+  }
+
+  if (!result || !result.ex) {
+    out.style.display = 'block';
+    out.innerHTML = '<p style="color:var(--ink4);padding:1rem;text-align:center">Sem exercícios disponíveis para este nível.</p>';
+    return;
+  }
+
+  var difLabel = { facil:'Fácil', medio:'Médio', dificil:'Difícil' }[dif] || dif;
+  var date = new Date().toLocaleDateString('pt-PT');
+
+  var html = '<div style="font-family:\'Montserrat\',sans-serif">'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem">'
+    + '<span style="font-size:.78rem;color:var(--ink4)">Matemática 7.º Ano · ' + capNome + ' · ' + date + '</span>'
+    + '<span style="font-size:.78rem;padding:2px 10px;border-radius:99px;background:var(--cream2);color:var(--ink3);font-weight:600">Nível: ' + difLabel + '</span>'
+    + '</div>'
+    + result.ex;
+
+  if (result.sol) {
+    html += '<details style="margin-top:1.5rem;border:1px solid var(--border);border-radius:10px;overflow:hidden">'
+      + '<summary style="padding:.75rem 1rem;background:var(--cream2);cursor:pointer;font-weight:600;font-size:.85rem;color:var(--sage-dark)">'
+      + '<i class="ph ph-eye"></i> Ver Resoluções</summary>'
+      + '<div style="padding:1rem;font-size:.85rem;line-height:1.8;background:var(--surface)">' + result.sol + '</div>'
+      + '</details>';
+  }
+  html += '</div>';
+
+  out.style.display = 'block';
+  out.innerHTML = html;
+  if (dlBtn) dlBtn.style.display = 'inline-flex';
+  window['_fichaContent' + cap] = html;
+}
+
+function _capDownloadFicha(cap, capNome) {
+  var content = window['_fichaContent' + cap] || '';
+  var fullHtml = '<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8">'
+    + '<title>Ficha — ' + capNome + ' · Mat. 7.º Ano</title>'
+    + '<style>body{font-family:Montserrat,sans-serif;max-width:720px;margin:2rem auto;padding:1rem;color:#2a2724}'
+    + '.ex{margin-bottom:1.5rem;padding:1rem;border:1px solid #e0dbd4;border-radius:6px}'
+    + '.ex-num{font-weight:700;color:#516860;font-size:.85rem;margin-bottom:.5rem}'
+    + '.linha{border-bottom:1px solid #ccc;margin:.5rem 0;height:1.5rem}'
+    + 'h1{font-family:Georgia,serif;font-size:1.4rem;margin-bottom:.5rem}'
+    + 'h3{color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem}'
+    + '@media print{body{margin:.5rem}.ex{page-break-inside:avoid}details{display:none}}'
+    + '</style></head><body>'
+    + '<h1>3ponto14 · Matemática 7.º Ano · ' + capNome + '</h1><hr style="margin:1rem 0">'
+    + content + '</body></html>';
+  if (typeof htmlToPdfDownload === 'function') htmlToPdfDownload(fullHtml, 'ficha_cap' + cap + '_mat7.pdf');
+}
