@@ -46,7 +46,6 @@ function handleSubj(e, action) {
     math4: _mat7Path + 'cap4.html',
     math5: _mat7Path + 'cap5.html',
     math6: _mat7Path + 'cap6.html',
-    math7: _mat7Path + 'cap7.html',
     math8: _mat7Path + 'cap8.html'
   };
   if (map[action]) window.location.href = map[action];
