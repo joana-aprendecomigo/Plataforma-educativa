@@ -32,6 +32,8 @@ function showMathView3() { window.location.href = _mat7Path + 'cap3.html'; }
 function showMathView4() { window.location.href = _mat7Path + 'cap4.html'; }
 function showMathView5() { window.location.href = _mat7Path + 'cap5.html'; }
 function showMathView6() { window.location.href = _mat7Path + 'cap6.html'; }
+function showMathView7() { window.location.href = _mat7Path + 'cap7.html'; }
+function showMathView8() { window.location.href = _mat7Path + 'cap8.html'; }
 
 function goToChapter(n) {
   window.location.href = _mat7Path + 'cap' + n + '.html';
@@ -45,7 +47,9 @@ function handleSubj(e, action) {
     math3: _mat7Path + 'cap3.html',
     math4: _mat7Path + 'cap4.html',
     math5: _mat7Path + 'cap5.html',
-    math6: _mat7Path + 'cap6.html'
+    math6: _mat7Path + 'cap6.html',
+    math7: _mat7Path + 'cap7.html',
+    math8: _mat7Path + 'cap8.html'
   };
   if (map[action]) window.location.href = map[action];
 }
@@ -54,7 +58,7 @@ function handleSubj(e, action) {
 // so mega.html can restore the selection on load.
 function showMegaView() {
   var sel = [];
-  [1,2,3,4,5,6].forEach(function(n) {
+  [1,2,3,4,5,6,7,8].forEach(function(n) {
     var el = document.getElementById('mat7-cap' + n);
     if (el && el.classList.contains('selected')) sel.push(n);
   });

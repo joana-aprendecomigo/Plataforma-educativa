@@ -283,6 +283,14 @@
     <span id="chkbox-cap6" class="mat7-chk-box checkbox-icon"></span>
     <span>Funções</span>
   </div>
+  <div id="mat7-cap7" onclick="toggleCapSel(7)" class="toggle-link">
+    <span id="chkbox-cap7" class="mat7-chk-box checkbox-icon"></span>
+    <span>Figuras Semelhantes</span>
+  </div>
+  <div id="mat7-cap8" onclick="toggleCapSel(8)" class="toggle-link">
+    <span id="chkbox-cap8" class="mat7-chk-box checkbox-icon"></span>
+    <span>Dados e Probabilidades</span>
+  </div>
   <button id="btn-todos" onclick="selecionarTodos(this)" class="mat7-sel-all-btn">
     <span id="btn-todos-icon">☐</span><span> Selecionar Todos</span>
   </button>
@@ -1038,6 +1046,168 @@
     <div id="exame6-result" style="display:none;"></div>
   </div>
   <div id="sec-quiz-game6"><div id="qg-app6"></div></div>
+
+  <!-- Cap 7 -->
+  <div id="sec-questoes7"><div id="q7-container"></div></div>
+  <div id="sec-minitestes7"><div id="m7-container"></div></div>
+  <div id="sec-teste7"><div id="t7-container"></div></div>
+  <div id="sec-jogos7"><div id="j24-wrap-cap7"></div></div>
+  <div id="sec-flashcards7">
+    <div class="sec-header">
+      <h2><span class="num"><i class="ph ph-stack"></i></span> Flashcards — Figuras Semelhantes</h2>
+      <p>Clica para virar os cartões</p>
+    </div>
+    <div class="fc-stats-bar">
+      <span id="fc7-counter" class="fc-counter">1 / ?</span>
+      <div class="progress-track flex-1 min-w-20"><div class="progress-fill" id="fc7-prog" style="width:5%"></div></div>
+    </div>
+    <div onclick="fc7Flip()" class="fc-card-wrap">
+      <div id="fc7-inner" class="fc-inner">
+        <div class="fc-face fc-face--front">
+          <div class="fc-tag-label" id="fc7-tag">Definição</div>
+          <div class="fc-question" id="fc7-q"></div>
+          <div class="fc-hint">Clica para ver a resposta</div>
+        </div>
+        <div class="fc-face fc-face--back">
+          <div class="fc-answer" id="fc7-a"></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:1rem">
+      <button class="btn btn-ghost" onclick="fc7Prev()">← Anterior</button>
+      <button class="btn btn-ghost" onclick="fc7Shuffle()">↺ Baralhar</button>
+      <button class="btn btn-primary" onclick="fc7Next()">Próxima →</button>
+    </div>
+    <div id="fc7-dots" style="display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin-top:1rem"></div>
+  </div>
+  <div id="sec-exame7">
+    <div class="sec-header">
+      <h2><span class="num"><i class="ph ph-timer"></i></span> Modo Exame — Figuras Semelhantes</h2>
+      <p>Teste cronometrado com todos os temas — sem pausas, nota final em percentagem</p>
+    </div>
+    <div id="exame7-config" class="card">
+      <div class="card-title">Configurar Exame</div>
+      <div class="exam-config-row">
+        <div>
+          <div class="exam-label">Nível</div>
+          <div class="gen-level-group">
+            <button class="gen-level-btn" data-level="facil" onclick="exame7SetLevel(this)"><span class="status-dot status-dot--easy"></span> Fácil</button>
+            <button class="gen-level-btn active" data-level="medio" onclick="exame7SetLevel(this)"><span class="status-dot status-dot--medium"></span> Médio</button>
+            <button class="gen-level-btn" data-level="dificil" onclick="exame7SetLevel(this)"><span class="status-dot status-dot--hard"></span> Difícil</button>
+          </div>
+        </div>
+        <div>
+          <div class="exam-label">Duração</div>
+          <select class="ai-select" id="exame7-tempo">
+            <option value="600">10 minutos</option>
+            <option value="900" selected>15 minutos</option>
+            <option value="1200">20 minutos</option>
+          </select>
+        </div>
+        <div>
+          <div class="exam-label">Questões</div>
+          <select class="ai-select" id="exame7-qtd">
+            <option value="10">10 questões</option>
+            <option value="15" selected>15 questões</option>
+            <option value="20">20 questões</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="exame7Start()">▶ Começar Exame</button>
+    </div>
+    <div id="exame7-running" style="display:none;">
+      <div class="exam-bar">
+        <div class="flex items-center gap-2"><i class="ph ph-timer text-[1.4em]"></i><span id="exame7-timer" class="exam-timer">15:00</span></div>
+        <div class="progress-track flex-1 min-w-[100px]"><div class="progress-fill" id="exame7-prog" style="width:0%"></div></div>
+        <span id="exame7-answered" class="exam-counter">0 / 0</span>
+        <button class="btn btn-ghost py-1.5 px-3.5 text-xs" onclick="exame7Submit()">■ Terminar</button>
+      </div>
+      <div id="exame7-container"></div>
+    </div>
+    <div id="exame7-result" style="display:none;"></div>
+  </div>
+  <div id="sec-quiz-game7"><div id="qg-app7"></div></div>
+
+  <!-- Cap 8 -->
+  <div id="sec-questoes8"><div id="q8-container"></div></div>
+  <div id="sec-minitestes8"><div id="m8-container"></div></div>
+  <div id="sec-teste8"><div id="t8-container"></div></div>
+  <div id="sec-jogos8"><div id="j24-wrap-cap8"></div></div>
+  <div id="sec-flashcards8">
+    <div class="sec-header">
+      <h2><span class="num"><i class="ph ph-stack"></i></span> Flashcards — Dados e Probabilidades</h2>
+      <p>Clica para virar os cartões</p>
+    </div>
+    <div class="fc-stats-bar">
+      <span id="fc8-counter" class="fc-counter">1 / ?</span>
+      <div class="progress-track flex-1 min-w-20"><div class="progress-fill" id="fc8-prog" style="width:5%"></div></div>
+    </div>
+    <div onclick="fc8Flip()" class="fc-card-wrap">
+      <div id="fc8-inner" class="fc-inner">
+        <div class="fc-face fc-face--front">
+          <div class="fc-tag-label" id="fc8-tag">Definição</div>
+          <div class="fc-question" id="fc8-q"></div>
+          <div class="fc-hint">Clica para ver a resposta</div>
+        </div>
+        <div class="fc-face fc-face--back">
+          <div class="fc-answer" id="fc8-a"></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:1rem">
+      <button class="btn btn-ghost" onclick="fc8Prev()">← Anterior</button>
+      <button class="btn btn-ghost" onclick="fc8Shuffle()">↺ Baralhar</button>
+      <button class="btn btn-primary" onclick="fc8Next()">Próxima →</button>
+    </div>
+    <div id="fc8-dots" style="display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin-top:1rem"></div>
+  </div>
+  <div id="sec-exame8">
+    <div class="sec-header">
+      <h2><span class="num"><i class="ph ph-timer"></i></span> Modo Exame — Dados e Probabilidades</h2>
+      <p>Teste cronometrado com todos os temas — sem pausas, nota final em percentagem</p>
+    </div>
+    <div id="exame8-config" class="card">
+      <div class="card-title">Configurar Exame</div>
+      <div class="exam-config-row">
+        <div>
+          <div class="exam-label">Nível</div>
+          <div class="gen-level-group">
+            <button class="gen-level-btn" data-level="facil" onclick="exame8SetLevel(this)"><span class="status-dot status-dot--easy"></span> Fácil</button>
+            <button class="gen-level-btn active" data-level="medio" onclick="exame8SetLevel(this)"><span class="status-dot status-dot--medium"></span> Médio</button>
+            <button class="gen-level-btn" data-level="dificil" onclick="exame8SetLevel(this)"><span class="status-dot status-dot--hard"></span> Difícil</button>
+          </div>
+        </div>
+        <div>
+          <div class="exam-label">Duração</div>
+          <select class="ai-select" id="exame8-tempo">
+            <option value="600">10 minutos</option>
+            <option value="900" selected>15 minutos</option>
+            <option value="1200">20 minutos</option>
+          </select>
+        </div>
+        <div>
+          <div class="exam-label">Questões</div>
+          <select class="ai-select" id="exame8-qtd">
+            <option value="10">10 questões</option>
+            <option value="15" selected>15 questões</option>
+            <option value="20">20 questões</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="exame8Start()">▶ Começar Exame</button>
+    </div>
+    <div id="exame8-running" style="display:none;">
+      <div class="exam-bar">
+        <div class="flex items-center gap-2"><i class="ph ph-timer text-[1.4em]"></i><span id="exame8-timer" class="exam-timer">15:00</span></div>
+        <div class="progress-track flex-1 min-w-[100px]"><div class="progress-fill" id="exame8-prog" style="width:0%"></div></div>
+        <span id="exame8-answered" class="exam-counter">0 / 0</span>
+        <button class="btn btn-ghost py-1.5 px-3.5 text-xs" onclick="exame8Submit()">■ Terminar</button>
+      </div>
+      <div id="exame8-container"></div>
+    </div>
+    <div id="exame8-result" style="display:none;"></div>
+  </div>
+  <div id="sec-quiz-game8"><div id="qg-app8"></div></div>
 </div>
 
 </div><!-- /view-mat7 -->
@@ -1105,6 +1275,8 @@
 <script src="../js/cap4.js"></script>
 <script src="../js/cap5.js"></script>
 <script src="../js/cap6.js"></script>
+<script src="../js/cap7.js"></script>
+<script src="../js/cap8.js"></script>
 <script src="../js/mat7.js"></script>
 <script src="../js/systems.js"></script>
 <script src="../js/gf.js"></script>

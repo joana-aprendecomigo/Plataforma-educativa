@@ -31,7 +31,7 @@ function gfAction(secId) {
   var capNums = [];
   if (sec) sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b) { capNums.push(parseInt(b.dataset.cap)); });
   capNums.sort(function(a, b) { return a - b; });
-  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções'};
+  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções',7:'Figuras Semelhantes',8:'Dados e Probabilidades'};
   var capLabels = capNums.map(function(c) { return capNames[c]||''; });
   var titleShort = capLabels.join(' + ') || 'Ficha';
   var now = new Date().toLocaleDateString('pt-PT');
@@ -1172,9 +1172,57 @@ function _dinamico6(dif) {
   return { ex: ex, sol: sol };
 }
 
+// ── Cap 7 — Figuras Semelhantes ───────────────────────────────────────────────
+function _dinamico7(dif) {
+  var ex = '', sol = '';
+  ex += '<h2>Grupo 1 — Figuras Semelhantes e Razão de Semelhança</h2>';
+  var k = Math.floor(Math.random()*3)+2;
+  var l = Math.floor(Math.random()*6)+3;
+  ex += _dinamicoRow(1, 'Duas figuras semelhantes têm razão de semelhança k = '+k+'. Um lado da primeira mede '+l+' cm. Qual é o lado correspondente na segunda?', 1);
+  sol += '<p><strong>1.</strong> '+l+' × '+k+' = '+(k*l)+' cm</p>';
+  ex += '<h2>Grupo 2 — Perímetros e Áreas</h2>';
+  var k2 = Math.floor(Math.random()*3)+2;
+  var p = Math.floor(Math.random()*8)+10;
+  ex += _dinamicoRow(2, 'Duas figuras semelhantes têm k = '+k2+'. O perímetro da menor é '+p+' cm. Qual é o perímetro da maior?', 1);
+  sol += '<p><strong>2.</strong> '+p+' × '+k2+' = '+(p*k2)+' cm</p>';
+  var a = Math.floor(Math.random()*10)+5;
+  ex += _dinamicoRow(3, 'Usando o mesmo k = '+k2+', se a área da menor é '+a+' cm², qual é a área da maior?', 1);
+  sol += '<p><strong>3.</strong> '+a+' × '+k2+'² = '+a+' × '+(k2*k2)+' = '+(a*k2*k2)+' cm²</p>';
+  ex += '<h2>Grupo 3 — Relação de Euler</h2>';
+  var V = Math.floor(Math.random()*6)+6, A = V+Math.floor(Math.random()*6)+4;
+  ex += _dinamicoRow(4, 'Um poliedro tem '+V+' vértices e '+A+' arestas. Quantas faces tem? (V − A + F = 2)', 1);
+  sol += '<p><strong>4.</strong> F = 2 − '+V+' + '+A+' = '+(2-V+A)+'</p>';
+  return { ex: ex, sol: sol };
+}
+
+// ── Cap 8 — Dados e Probabilidades ────────────────────────────────────────────
+function _dinamico8(dif) {
+  var ex = '', sol = '';
+  ex += '<h2>Grupo 1 — Frequências</h2>';
+  var n = Math.floor(Math.random()*6)+20;
+  var fa = Math.floor(Math.random()*8)+4;
+  var fr = Math.round(fa/n*100);
+  ex += _dinamicoRow(1, 'Numa amostra de '+n+' elementos, um valor tem frequência absoluta '+fa+'. Qual é a frequência relativa (em percentagem)?', 1);
+  sol += '<p><strong>1.</strong> '+fa+' / '+n+' = '+Math.round(fa/n*1000)/10+'% ≈ '+fr+'%</p>';
+  ex += '<h2>Grupo 2 — Medidas de Tendência Central</h2>';
+  var d = [Math.floor(Math.random()*5)+2, Math.floor(Math.random()*5)+5, Math.floor(Math.random()*5)+8, Math.floor(Math.random()*5)+10, Math.floor(Math.random()*5)+12];
+  d.sort(function(a,b){return a-b;});
+  var soma = d.reduce(function(s,v){return s+v;},0);
+  var med = d[2];
+  var media = Math.round(soma/5*10)/10;
+  ex += _dinamicoRow(2, 'Calcula a mediana e a média do conjunto {'+d.join(', ')+'}', 2);
+  sol += '<p><strong>2.</strong> Mediana = '+med+' | Média = '+soma+'/5 = '+media+'</p>';
+  ex += '<h2>Grupo 3 — Probabilidade</h2>';
+  var total = Math.floor(Math.random()*4)*2+6;
+  var fav = Math.floor(Math.random()*3)+1;
+  ex += _dinamicoRow(3, 'Numa urna com '+total+' bolas iguais, '+fav+' são vermelhas. Qual é a probabilidade de retirar uma bola vermelha ao acaso?', 1);
+  sol += '<p><strong>3.</strong> P = '+fav+'/'+total+'</p>';
+  return { ex: ex, sol: sol };
+}
+
 // ── Dispatch helper for _dinamicoN ───────────────────────────────────────────
 function _dinamico(cap, dif) {
-  var fns = { 1: _dinamico1, 2: _dinamico2, 3: _dinamico3, 4: _dinamico4, 5: _dinamico5, 6: _dinamico6 };
+  var fns = { 1: _dinamico1, 2: _dinamico2, 3: _dinamico3, 4: _dinamico4, 5: _dinamico5, 6: _dinamico6, 7: _dinamico7, 8: _dinamico8 };
   return fns[cap] ? fns[cap](dif) : { ex: '', sol: '' };
 }
 
@@ -1436,7 +1484,7 @@ function gfDownload(secId) {
     sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b){ capNums.push(parseInt(b.dataset.cap)); });
   }
   capNums.sort(function(a,b){return a-b;});
-  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções'};
+  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções',7:'Figuras Semelhantes',8:'Dados e Probabilidades'};
   var capLabels = capNums.map(function(c){ return capNames[c]||''; });
   var titleShort = capLabels.join(' + ') || 'Ficha';
   var docTitle = '3ponto14 · Matemática 7.º Ano · ' + titleShort;
@@ -1509,7 +1557,7 @@ function gfDownloadHTML(secId) {
   var capNums = [];
   if (sec) sec.querySelectorAll('.gf-cap-btn.active').forEach(function(b){ capNums.push(parseInt(b.dataset.cap)); });
   capNums.sort(function(a,b){ return a-b; });
-  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções'};
+  var capNames = {1:'Números Inteiros',2:'Números Racionais',3:'Geometria',4:'Equações',5:'Sequências',6:'Funções',7:'Figuras Semelhantes',8:'Dados e Probabilidades'};
   var capLabels = capNums.map(function(c){ return capNames[c]||''; });
   var titleShort = capLabels.join(' + ') || 'Ficha';
   var docTitle = '3ponto14 · Matemática 7.º Ano · ' + titleShort;

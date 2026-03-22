@@ -941,7 +941,17 @@ var searchIdx=[
   {t:'Questões Funções',k:'questões exercícios funções gráficos',c:6,a:'math6'},
   {t:'Downloads Funções',k:'download ficha PDF funções',c:6,a:'math6'},
   {t:'Flashcards Funções',k:'flashcards cartões revisão funções',c:6,a:'math6'},
-  {t:'Exame Simulado',k:'exame simulado tempo cronómetro',c:1,a:'math'}
+  {t:'Exame Simulado',k:'exame simulado tempo cronómetro',c:1,a:'math'},
+  {t:'Figuras Semelhantes',k:'semelhança razão figuras semelhantes polígonos',c:7,a:'math7'},
+  {t:'Homotetia',k:'homotetia centro razão transformação geométrica',c:7,a:'math7'},
+  {t:'Critérios Semelhança',k:'critérios semelhança AA LLL LAL triângulos',c:7,a:'math7'},
+  {t:'Relação de Euler',k:'euler poliedros vértices arestas faces',c:7,a:'math7'},
+  {t:'Flashcards Semelhança',k:'flashcards cartões revisão figuras semelhantes',c:7,a:'math7'},
+  {t:'Dados e Probabilidades',k:'estatística dados probabilidade amostra população',c:8,a:'math8'},
+  {t:'Medidas de Tendência Central',k:'mediana média moda medidas tendência central',c:8,a:'math8'},
+  {t:'Representações Gráficas',k:'histograma gráfico barras caule folhas circular',c:8,a:'math8'},
+  {t:'Probabilidade',k:'probabilidade espaço amostral evento complementar',c:8,a:'math8'},
+  {t:'Flashcards Probabilidade',k:'flashcards cartões revisão probabilidade estatística',c:8,a:'math8'}
 ];
 var _searchTimer;
 // Guard: only patch once. If this script block is evaluated again, _origDoSearch2
@@ -1361,7 +1371,9 @@ function _progRecolherTudo() {
       'Geometria': secTotals(typeof _progData3 !== 'undefined' ? _progData3 : null),
       'Equações':   cap4Totals(),
       'Sequências': (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap5')||'{}');}catch(e){} return p; })(),
-      'Funções':    (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap6')||'{}');}catch(e){} return p; })()
+      'Funções':    (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap6')||'{}');}catch(e){} return p; })(),
+      'Figuras Semelhantes': (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap7')||'{}');}catch(e){} return p; })(),
+      'Dados e Probabilidades': (function(){ var p={}; try{p=JSON.parse(localStorage.getItem('edupt_cap8')||'{}');}catch(e){} return p; })()
     },
     historico: {
       cap1: (typeof _progData  !== 'undefined' ? _progData.log  : []),
@@ -1513,7 +1525,7 @@ function _treinoRenderExercicios(exercicios, containerId) {
   exercicios.forEach(function(ex, i) {
     var qid = 'treino-q-' + i;
     _treinoState[qid] = { answered: false };
-    var capLabel = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'}[ex._capId]||'';
+    var capLabel = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções',cap7:'Semelhantes',cap8:'Dados/Prob.'}[ex._capId]||'';
     var temaShort = (ex.tema||'').replace(/^(Tema \d+\s*[—\-]?\s*)/,'').trim() || ex.tema;
     html += '<div class="quiz-question" id="' + qid + '" style="margin-bottom:1rem">';
     html += '<div class="q-number" style="color:var(--cs-deep)">' + capLabel + ' · ' + (temaShort||ex.tema||'') + '</div>';
@@ -1594,7 +1606,7 @@ function gerarFichaTreino() {
   }
 
   var now = new Date().toLocaleDateString('pt-PT');
-  var capNames = {cap1:'Números Inteiros',cap2:'Números Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'};
+  var capNames = {cap1:'Números Inteiros',cap2:'Números Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções',cap7:'Figuras Semelhantes',cap8:'Dados e Probabilidades'};
 
   // Group exercises by cap for sections
   var byCap = {};
@@ -1626,7 +1638,7 @@ function gerarFichaTreino() {
   // Temas em foco
   body += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px">';
   grupos.forEach(function(g) {
-    var capLabel = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções'}[g.capId]||'';
+    var capLabel = {cap1:'Inteiros',cap2:'Racionais',cap3:'Geometria',cap4:'Equações',cap5:'Sequências',cap6:'Funções',cap7:'Semelhantes',cap8:'Dados/Prob.'}[g.capId]||'';
     var temaLabel = g.tema ? g.tema.replace(/^Tema \d+\s*[—\-]?\s*/,'').trim() : 'Tema '+g.temaNum;
     body += '<span style="font-size:.72rem;font-weight:700;background:#f5f0ee;color:#7a6860;border:1px solid #e0d8d4;padding:3px 10px;border-radius:999px">'
           + capLabel+' · '+temaLabel+' ('+g.erros+'✗)</span>';
@@ -1720,7 +1732,9 @@ function _progGetCapTotals() {
     { num:3, name:'Geometria', key:'edupt_cap3' },
     { num:4, name:'Equações',   key:'edupt_cap4' },
     { num:5, name:'Sequências', key:'edupt_cap5' },
-    { num:6, name:'Funções',    key:'edupt_cap6' }
+    { num:6, name:'Funções',    key:'edupt_cap6' },
+    { num:7, name:'Figuras Semelhantes', key:'edupt_cap7' },
+    { num:8, name:'Dados e Probabilidades', key:'edupt_cap8' }
   ];
   return keys.map(function(k) {
     var raw = {};

@@ -108,7 +108,7 @@ function _parseFillVal(v) { return parseFloat(String(v).replace(',', '.')); }
 var ProgressManager = (function () {
   var KEY = 'edupt_progress_v2';
   var XP = { teoria:10, quiz:20, quiz_bonus:15, jogo:15, flashcard:8, ficha:5 };
-  var CAP_NAMES = { cap1:'Números Inteiros', cap2:'Números Racionais', cap3:'Geometria', cap4:'Equações', cap5:'Sequências', cap6:'Funções' };
+  var CAP_NAMES = { cap1:'Números Inteiros', cap2:'Números Racionais', cap3:'Geometria', cap4:'Equações', cap5:'Sequências', cap6:'Funções', cap7:'Figuras Semelhantes', cap8:'Dados e Probabilidades' };
 
   function _emptyChap(id) {
     return { id:id, teoria:false, quiz:{tentativas:0,melhorPct:0}, jogo:false, flashcard:false, ficha:false, xp:0 };

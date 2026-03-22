@@ -9,7 +9,9 @@ var CAP_INFO = {
   3: { nome: 'Geometria',           emoji: '<i class="ph ph-ruler"></i>', color: 'var(--c1-mid)' },
   4: { nome: 'Equações',   emoji: '<i class="ph ph-sparkle"></i>', color: '#516860'       },
   5: { nome: 'Sequências', emoji: '<i class="ph ph-list-numbers"></i>', color: 'var(--c5-mid)' },
-  6: { nome: 'Funções',    emoji: '<i class="ph ph-chart-line"></i>',  color: 'var(--c6-mid)' }
+  6: { nome: 'Funções',    emoji: '<i class="ph ph-chart-line"></i>',  color: 'var(--c6-mid)' },
+  7: { nome: 'Figuras Semelhantes', emoji: '<i class="ph ph-shapes"></i>', color: 'var(--c7-mid)' },
+  8: { nome: 'Dados e Probabilidades', emoji: '<i class="ph ph-chart-bar"></i>', color: 'var(--c8-mid)' }
 };
 
 // ── Issue 1: Toggle Checkbox ──
@@ -30,7 +32,7 @@ function toggleCapSel(capNum) {
 }
 
 // ── Selecionar / Desselecionar Todos ──
-var _TODOS_CAPS = [1, 2, 3, 4, 5, 6];
+var _TODOS_CAPS = [1, 2, 3, 4, 5, 6, 7, 8];
 function selecionarTodos(btn) {
   var allSelected = _TODOS_CAPS.every(function(c){ return capitulosSelecionados.indexOf(c) !== -1; });
   if (allSelected) {
@@ -191,6 +193,8 @@ function gerarMegaGerador() {
     else if (cap === 4) qs = _megaGetCap4(perCap * 2, tipo, dif);
     else if (cap === 5) qs = _megaGetCap5(perCap * 2, tipo, dif);
     else if (cap === 6) qs = _megaGetCap6(perCap * 2, tipo, dif);
+    else if (cap === 7) qs = _megaGetCap7(perCap * 2, tipo, dif);
+    else if (cap === 8) qs = _megaGetCap8(perCap * 2, tipo, dif);
     allQ = allQ.concat(qs);
   });
   // Fisher-Yates shuffle before slicing
@@ -312,6 +316,32 @@ function _megaGetCap6(n, tipo, dif) {
   return pool.slice(0, n).map(function(q){
     return { _cap:6, _capLabel:CAP_INFO[6].emoji+' Funções',
       tema:'Funções · Tema '+q.tema, tipo:'mc_banco',
+      enun:q.enunciado, opcoes:q.opts, resposta:q.correct, expl:q.fb||'' };
+  });
+}
+function _megaGetCap7(n, tipo, dif) {
+  if (typeof BANCO7 === 'undefined') return [];
+  var pool = BANCO7.questoes.slice();
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+  }
+  return pool.slice(0, n).map(function(q){
+    return { _cap:7, _capLabel:CAP_INFO[7].emoji+' Figuras Semelhantes',
+      tema:'Semelhança · Tema '+q.tema, tipo:'mc_banco',
+      enun:q.enunciado, opcoes:q.opts, resposta:q.correct, expl:q.fb||'' };
+  });
+}
+function _megaGetCap8(n, tipo, dif) {
+  if (typeof BANCO8 === 'undefined') return [];
+  var pool = BANCO8.questoes.slice();
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+  }
+  return pool.slice(0, n).map(function(q){
+    return { _cap:8, _capLabel:CAP_INFO[8].emoji+' Dados e Probabilidades',
+      tema:'Dados · Tema '+q.tema, tipo:'mc_banco',
       enun:q.enunciado, opcoes:q.opts, resposta:q.correct, expl:q.fb||'' };
   });
 }
