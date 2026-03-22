@@ -475,37 +475,12 @@ function saveProgData5(prefix,data){
   setTimeout(_progRefreshBars, 80);
 }
 function renderProg5(){
-  // barras por capítulo (visão global)
   if(typeof _progRenderCapitulosBar==='function') _progRenderCapitulosBar('prog5-caps', 5);
-
-  var p={};
-  try{p=JSON.parse(localStorage.getItem('edupt_cap5')||'{}');}catch(e){}
-  var sections=[
-    {key:'q5',name:'Questões-aula',total:14},
-    {key:'mini1',name:'Mini 1 — Sequências',total:7},
-    {key:'mini2',name:'Mini 2 — Problemas',total:5},
-    {key:'t5',name:'Teste',total:8},
-    {key:'ex5',name:'Exame',total:15}
-  ];
-  var html='';
-  sections.forEach(function(s){
-    var d=p[s.key]||{correct:0,total:0};
-    var pct=d.total>0?Math.round(d.correct/d.total*100):0;
-    html+='<div class="prog-section-row"><span class="prog-section-name">'+s.name+'</span><div class="progress-track" style="flex:1"><div class="progress-fill" style="width:'+pct+'%"></div></div><span class="prog-pct">'+pct+'%</span></div>';
-  });
-  if(!html)html='<p style="color:var(--ink4);font-size:.88rem">Faz algumas atividades para ver o teu progresso aqui!</p>';
-  document.getElementById('prog5-rows').innerHTML=html;
-  var scores='';
-  if(p.last_updated)scores='<p>Última atividade: '+p.last_updated+'</p>';
-  sections.forEach(function(s){
-    var d=p[s.key];
-    if(d&&d.total>0)scores+='<p>'+s.name+': '+d.correct+'/'+d.total+'</p>';
-  });
-  document.getElementById('prog5-scores').innerHTML=scores||'Sem dados ainda. Faz algumas atividades!';
+  if(typeof capProgRender==='function') capProgRender(5);
 }
 function resetProg5(){
   try{localStorage.removeItem('edupt_cap5');}catch(e){}
-  scores5={};renderProg5();
+  if(typeof capProgReset==='function') capProgReset(5); else renderProg5();
 }
 
 // ── Topic grid data ──

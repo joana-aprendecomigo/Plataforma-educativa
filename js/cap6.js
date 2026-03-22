@@ -325,13 +325,12 @@ function saveProgData6(tipo,val){
   }catch(e){}
 }
 function renderProg6(){
-  var container=document.getElementById('prog6-container');
-  if(!container)return;
-  container.innerHTML='<p style="color:var(--ink4);padding:1rem">Progresso registado localmente. Pratica mais exercícios para ver estatísticas aqui.</p>';
+  if(typeof _progRenderCapitulosBar==='function') _progRenderCapitulosBar('prog6-caps', 6);
+  if(typeof capProgRender==='function') capProgRender(6);
 }
 function resetProg6(){
-  localStorage.removeItem('edupt_cap6');
-  scores6={};renderProg6();
+  try{localStorage.removeItem('edupt_cap6');}catch(e){}
+  if(typeof capProgReset==='function') capProgReset(6); else renderProg6();
 }
 
 // ── Procedural generator (for hub unified mode) ────────────────────────────

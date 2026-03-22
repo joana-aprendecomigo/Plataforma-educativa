@@ -1506,6 +1506,15 @@ footer strong{color:rgba(255,255,255,.7);font-weight:500}
   display: block !important;
 }
 
+/* Resumo compact study cards */
+.resumo-card {
+  transition: box-shadow .15s, transform .15s;
+}
+.resumo-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,.1) !important;
+  transform: translateY(-2px);
+}
+
 #view-math:not([style*="display: none"]):not([style*="display:none"]) #sec-questoes.active,
 #view-math:not([style*="display: none"]):not([style*="display:none"]) #sec-minitestes.active,
 #view-math:not([style*="display: none"]):not([style*="display:none"]) #sec-teste.active,

@@ -377,19 +377,21 @@ to14.pt/og-mat7.png">
       <span>O progresso é guardado <strong>apenas neste browser e neste dispositivo</strong>. Se mudares de browser ou de computador, o registo começa do zero.</span>
     </div>
     <div class="card">
-      <div class="card-title">Desempenho por Capítulo</div>
+      <div class="card-title">Visão Geral</div>
       <div id="prog5-caps" class="flex-col-list"></div>
-      <div class="mt-5 border-t border-[var(--border)] pt-4">
-      <div class="card-title text-xs mb-2">Detalhe — Sequências</div>
-      <div id="prog5-rows"></div>
-      </div>
-      <div class="mt-5 pt-4 border-t border-[var(--border)] flex flex-wrap gap-3">        <button class="btn btn-ghost" onclick="progDownloadPDF()" title="Gerar PDF para imprimir"><i class="ph ph-file"></i> PDF</button>
-        <button class="btn btn-ghost ml-auto" onclick="resetProg5()"><i class="ph ph-trash"></i> Reiniciar</button>
-      </div>
+      <div class="grid grid-cols-3 gap-3 mt-4" id="prog5-cards"></div>
     </div>
     <div class="card mt-0">
-      <div class="card-title">Últimas Pontuações</div>
-      <div id="prog5-scores" class="fc-counter">Sem dados ainda. Faz algumas atividades!</div>
+      <div class="card-title">Progresso por Secção</div>
+      <div id="prog5-temas" class="flex-col-list"></div>
+    </div>
+    <div class="card mt-0">
+      <div class="card-title">Histórico de Atividade</div>
+      <div id="prog5-historico"></div>
+    </div>
+    <div class="card mt-0 flex flex-wrap gap-3">
+      <button class="btn btn-ghost" onclick="progDownloadPDF()" title="Gerar PDF para imprimir"><i class="ph ph-file"></i> PDF</button>
+      <button class="btn btn-ghost ml-auto" onclick="resetProg5()"><i class="ph ph-trash"></i> Reiniciar</button>
     </div>
   </div>
 

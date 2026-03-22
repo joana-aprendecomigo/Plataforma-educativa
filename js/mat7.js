@@ -695,82 +695,78 @@ function testeReloadFromGf() {
   }
 }
 
-// ── Render theory content inline in the resumo panel ──
+// ── Render compact study cards in the resumo panel ──
 function mat7RenderResumoInline() {
   var cap = _mat7Sel['resumo'] || 1;
-  // Support both old .mat7-st-chip and new gf-st-chip in the tray for resumo
-  var trayId = 'mat7-st-' + cap + '-resumo';
-  var tray = document.getElementById(trayId);
-  var stChip = tray ? tray.querySelector('.gf-st-chip.active') : null;
-  var stIdx = stChip ? parseInt(stChip.dataset.st) : 0; // 0 = all
-
-  // Source section IDs per cap
-  var srcIds = { 1: 'sec-teoria', 2: 'sec-teoria2', 3: 'sec-teoria3', 4: 'sec-teoria4', 5: 'sec-teoria5', 6: 'sec-teoria6', 7: 'sec-teoria7', 8: 'sec-teoria8' };
-  var srcEl = document.getElementById(srcIds[cap]);
   var dest = document.getElementById('mat7-resumo-content');
   if (!dest) return;
 
-  if (!srcEl) {
+  // Flashcard sources per cap (same map as mat7RenderUnifiedFlashcards)
+  var capCardSources = {
+    1: typeof FC_CARDS_CAP1 !== 'undefined' ? FC_CARDS_CAP1 : (typeof FC1_CARDS !== 'undefined' ? FC1_CARDS : []),
+    2: typeof FC2_CARDS !== 'undefined' ? FC2_CARDS : [],
+    3: typeof FC3_CARDS !== 'undefined' ? FC3_CARDS : [],
+    4: typeof BANCO4 !== 'undefined' && BANCO4.flashcards ? BANCO4.flashcards : [],
+    5: typeof BANCO5 !== 'undefined' && BANCO5.flashcards ? BANCO5.flashcards : [],
+    6: typeof BANCO6 !== 'undefined' && BANCO6.flashcards ? BANCO6.flashcards : [],
+    7: typeof BANCO7 !== 'undefined' && BANCO7.flashcards ? BANCO7.flashcards : [],
+    8: typeof BANCO8 !== 'undefined' && BANCO8.flashcards ? BANCO8.flashcards : []
+  };
+
+  // Cap colors for accent strip
+  var capColors = { 1:'var(--c1-main,#4f8ef7)', 2:'var(--c2-main,#e06c75)', 3:'var(--c3-main,#98c379)',
+                    4:'var(--c4-main,#e5c07b)', 5:'var(--c5-main,#c678dd)', 6:'var(--c6-main,#56b6c2)',
+                    7:'var(--c7-main,#d19a66)', 8:'var(--c8-main,#61afef)' };
+  var color = capColors[cap] || 'var(--sage)';
+
+  // Tag → icon mapping
+  var tagIcons = {
+    'Definição':'ph-book-bookmark', 'Fórmula':'ph-function', 'Regra':'ph-check-square',
+    'Propriedade':'ph-star', 'Exemplo':'ph-pencil-line', 'Estratégia':'ph-lightbulb',
+    'Síntese':'ph-seal-check', 'Notação':'ph-at', 'Hierarquia':'ph-tree-structure',
+    'Desafio':'ph-lightning', 'Conceito':'ph-cube', 'Teorema':'ph-intersect'
+  };
+
+  var cards = capCardSources[cap] || [];
+
+  if (!cards.length) {
     dest.innerHTML = '<p style="color:var(--ink4);padding:2rem;text-align:center">Conteúdo em preparação para este capítulo.</p>';
     return;
   }
 
-  // Clone the teoria section (keep IDs temporarily for subtema lookup below)
-  var clone = srcEl.cloneNode(true);
-  clone.removeAttribute('id');
-  clone.style.display = 'block';
-  clone.classList.remove('section', 'section4');
+  // Group cards by tag
+  var groups = {};
+  var groupOrder = [];
+  cards.forEach(function(card) {
+    var t = card.tag || 'Geral';
+    if (!groups[t]) { groups[t] = []; groupOrder.push(t); }
+    groups[t].push(card);
+  });
 
-  // If a specific subtema is selected (stIdx > 0), show only that topic block
-  if (stIdx > 0) {
-    var topicEl = null;
+  var html = '<div style="padding:.5rem 0 1.5rem">';
 
-    if (cap === 1) {
-      // Cap1: ids are topic-1, topic-2, ...
-      topicEl = clone.querySelector('#topic-' + stIdx);
-    } else if (cap === 2) {
-      // Cap2: ids are topic2-1, topic2-2, ...
-      topicEl = clone.querySelector('#topic2-' + stIdx);
-    } else if (cap === 3) {
-      // Cap3: ids are topic3-1, topic3-2, ...
-      topicEl = clone.querySelector('#topic3-' + stIdx);
-    } else if (cap === 4 || cap === 5 || cap === 6 || cap === 7 || cap === 8) {
-      // Cap4/5/6: use .subtema-header with .subtema-num text content
-      var headers = clone.querySelectorAll('.subtema-header');
-      headers.forEach(function(h) {
-        var numEl = h.querySelector('.subtema-num');
-        if (numEl && parseInt(numEl.textContent) === stIdx) {
-          topicEl = document.createElement('div');
-          topicEl.appendChild(h.cloneNode(true));
-          // grab next sibling def-block(s)
-          var sib = h.nextElementSibling;
-          while (sib && !sib.classList.contains('subtema-header') && !sib.classList.contains('desafio-wrap')) {
-            topicEl.appendChild(sib.cloneNode(true));
-            sib = sib.nextElementSibling;
-          }
-        }
-      });
-    }
+  groupOrder.forEach(function(tag) {
+    var icon = tagIcons[tag] || 'ph-note';
+    html += '<div style="margin-bottom:1.5rem">'
+      + '<div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.6rem;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:' + color + '">'
+      + '<i class="ph ' + icon + '"></i>' + tag + '</div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.6rem">';
 
-    if (topicEl) {
-      var filtered = document.createElement('div');
-      var header = clone.querySelector('.sec-header');
-      if (header) filtered.appendChild(header.cloneNode(true));
-      filtered.appendChild(topicEl);
-      // Strip IDs from the fragment before inserting to avoid duplicates
-      filtered.querySelectorAll('[id]').forEach(function(el){ el.removeAttribute('id'); });
-      dest.innerHTML = '';
-      dest.appendChild(filtered);
-      return;
-    }
-  }
+    groups[tag].forEach(function(card) {
+      var answer = (card.a || '').replace(/\n/g, '<br>');
+      html += '<div class="resumo-card" style="background:var(--surface,#fff);border:1px solid var(--border,#e5e7eb);border-radius:.75rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)">'
+        + '<div style="background:' + color + ';opacity:.12;height:3px"></div>'
+        + '<div style="padding:.75rem .9rem 0;border-top:3px solid ' + color + ';margin-top:-3px">'
+        + '<div style="font-size:.82rem;font-weight:600;color:var(--ink1,#1a1a2e);margin-bottom:.35rem;line-height:1.35">' + (card.q || '') + '</div>'
+        + '<div style="font-size:.78rem;color:var(--ink3,#555);line-height:1.5;padding-bottom:.7rem;border-top:1px dashed var(--border,#e5e7eb);padding-top:.4rem;margin-top:.35rem">' + answer + '</div>'
+        + '</div></div>';
+    });
 
-  // Strip all descendant IDs to prevent duplicate-ID collisions with the live originals
-  clone.querySelectorAll('[id]').forEach(function(el){ el.removeAttribute('id'); });
+    html += '</div></div>';
+  });
 
-  // Show full teoria
-  dest.innerHTML = '';
-  dest.appendChild(clone);
+  html += '</div>';
+  dest.innerHTML = html;
 }
 
 // Return moved sections for a specific tab
@@ -998,6 +994,26 @@ function qgHubSelectCap(cap, btn) {
 }
 
 function _qgHubBuildQuestion(cap) {
+  // Caps 5–8: pull from BANCO relampago pool
+  var bancoMap = { 5: (typeof BANCO5 !== 'undefined' ? BANCO5 : null),
+                   6: (typeof BANCO6 !== 'undefined' ? BANCO6 : null),
+                   7: (typeof BANCO7 !== 'undefined' ? BANCO7 : null),
+                   8: (typeof BANCO8 !== 'undefined' ? BANCO8 : null) };
+  if (cap >= 5 && bancoMap[cap]) {
+    var banco = bancoMap[cap];
+    var pool = (banco.relampago && banco.relampago.length) ? banco.relampago : banco.questoes;
+    if (!pool || !pool.length) return null;
+    var item = pool[Math.floor(Math.random() * pool.length)];
+    var correctIdx = (typeof item.c !== 'undefined') ? item.c : 0;
+    return {
+      enun: item.q || item.enunciado || '',
+      opcoes: item.opts || [],
+      resposta: item.opts ? item.opts[correctIdx] : '',
+      tipo: 'mc',
+      expl: item.fb || ''
+    };
+  }
+
   var temas = ['1','2','3','4','5'];
   var tema = temas[Math.floor(Math.random() * temas.length)];
   var ex = null;

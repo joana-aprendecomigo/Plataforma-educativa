@@ -317,13 +317,12 @@ function saveProgData8(tipo,val){
   }catch(e){}
 }
 function renderProg8(){
-  var container=document.getElementById('prog8-container');
-  if(!container)return;
-  container.innerHTML='<p style="color:var(--ink4);padding:1rem">Progresso registado localmente. Pratica mais exercícios para ver estatísticas aqui.</p>';
+  if(typeof _progRenderCapitulosBar==='function') _progRenderCapitulosBar('prog8-caps', 8);
+  if(typeof capProgRender==='function') capProgRender(8);
 }
 function resetProg8(){
-  localStorage.removeItem('edupt_cap8');
-  scores8={};renderProg8();
+  try{localStorage.removeItem('edupt_cap8');}catch(e){}
+  if(typeof capProgReset==='function') capProgReset(8); else renderProg8();
 }
 
 // ── Procedural generator ────────────────────────────────────────────────────
