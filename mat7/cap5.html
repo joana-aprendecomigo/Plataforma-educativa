@@ -355,16 +355,15 @@ to14.pt/og-mat7.png">
       </div>
       <button class="btn btn-primary" onclick="exame5Start()">▶ Começar Exame</button>
     </div>
-    <div id="exame5-running" class="hidden">
-      <div class="exame-timer-bar">
-        <i class="ph ph-timer text-[1.4em]"></i>
-        <span id="exame5-timer" class="exam-timer">15:00</span>
+    <div id="exame5-running" style="display:none">
+      <div class="exam-bar">
+        <div class="flex items-center gap-2"><i class="ph ph-timer text-[1.4em]"></i><span id="exame5-timer" class="exam-timer">15:00</span></div>
         <div class="progress-track flex-1 min-w-20"><div class="progress-fill" id="exame5-prog" style="width:0%"></div></div>
-        <button class="btn btn-ghost" onclick="exame5Submit()">Entregar</button>
+        <button class="btn btn-ghost py-1.5 px-3.5 text-xs" onclick="exame5Submit()">■ Entregar</button>
       </div>
       <div id="exame5-container"></div>
     </div>
-    <div id="exame5-result" class="hidden"></div>
+    <div id="exame5-result" style="display:none"></div>
   </div>
 
   <!-- ══ PROGRESSO ══ -->

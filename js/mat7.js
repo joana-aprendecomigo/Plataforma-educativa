@@ -152,6 +152,14 @@ function mat7RenderContinueBanner() {
       // Check for any recorded activity (sections with total > 0, or log entries)
       var hasActivity = false;
       var ts = d.lastActivity || 0;
+      // Fallback: cap5 legacy format stores last_updated as "dd/mm/yyyy" string
+      if (!ts && d.last_updated) {
+        var parts = d.last_updated.split('/');
+        if (parts.length === 3) {
+          var parsed = new Date(+parts[2], +parts[1]-1, +parts[0]);
+          if (!isNaN(parsed.getTime())) ts = parsed.getTime();
+        }
+      }
       if (d.sections) {
         Object.keys(d.sections).forEach(function(k) {
           if (d.sections[k] && d.sections[k].total > 0) { hasActivity = true; ts = ts || Date.now(); }
@@ -964,80 +972,6 @@ function mat7TabStAll(tab, cap, selectAll) {
   }
   mat7TabReload(tab);
 }
-
-// ── Multi-cap selector (mat7.html standalone — no mega.js loaded) ──
-var capitulosSelecionados = [];
-var _TODOS_CAPS = [1, 2, 3, 4];
-
-function updateFAB() {
-  var fab = document.getElementById('mega-fab');
-  var badge = document.getElementById('fab-badge');
-  var n = capitulosSelecionados.length;
-  if (badge) badge.textContent = n;
-  var insideMega = document.getElementById('view-mega') && document.getElementById('view-mega').style.display !== 'none';
-  if (fab) {
-    if (n > 0 && !insideMega) { fab.classList.add('visible'); }
-    else { fab.classList.remove('visible'); }
-  }
-  var btnTodos = document.getElementById('btn-todos');
-  var iconTodos = document.getElementById('btn-todos-icon');
-  if (!btnTodos) return;
-  var allSelected = _TODOS_CAPS.every(function(c){ return capitulosSelecionados.indexOf(c) !== -1; });
-  if (allSelected) {
-    btnTodos.style.background = 'linear-gradient(135deg,var(--c2-mid),var(--c2-deep))';
-    btnTodos.style.color = '#fff';
-    btnTodos.style.borderColor = 'transparent';
-    if (iconTodos) iconTodos.textContent = '\u2713';
-    btnTodos.childNodes[1] && (btnTodos.childNodes[1].textContent = ' Desselecionar Todos');
-  } else {
-    btnTodos.style.background = 'linear-gradient(135deg,var(--c2-base),var(--c2-pale))';
-    btnTodos.style.color = 'var(--c2-deep)';
-    btnTodos.style.borderColor = 'rgba(81,104,96,.25)';
-    if (iconTodos) iconTodos.textContent = '\u2610';
-    btnTodos.childNodes[1] && (btnTodos.childNodes[1].textContent = ' Selecionar Todos os Cap\u00edtulos');
-  }
-}
-
-function toggleCapSel(capNum) {
-  var card = document.getElementById('mat7-cap' + capNum);
-  var chkBox = document.getElementById('chkbox-cap' + capNum);
-  var idx = capitulosSelecionados.indexOf(capNum);
-  if (idx === -1) {
-    capitulosSelecionados.push(capNum);
-    if (chkBox) chkBox.classList.add('checked');
-    if (card) card.classList.add('cap-selected');
-  } else {
-    capitulosSelecionados.splice(idx, 1);
-    if (chkBox) chkBox.classList.remove('checked');
-    if (card) card.classList.remove('cap-selected');
-  }
-  updateFAB();
-}
-
-function selecionarTodos(btn) {
-  var allSelected = _TODOS_CAPS.every(function(c){ return capitulosSelecionados.indexOf(c) !== -1; });
-  if (allSelected) {
-    _TODOS_CAPS.forEach(function(c){
-      capitulosSelecionados.splice(capitulosSelecionados.indexOf(c), 1);
-      var card = document.getElementById('mat7-cap' + c);
-      var chkBox = document.getElementById('chkbox-cap' + c);
-      if (card) card.classList.remove('cap-selected');
-      if (chkBox) chkBox.classList.remove('checked');
-    });
-  } else {
-    _TODOS_CAPS.forEach(function(c){
-      if (capitulosSelecionados.indexOf(c) === -1) {
-        capitulosSelecionados.push(c);
-        var card = document.getElementById('mat7-cap' + c);
-        var chkBox = document.getElementById('chkbox-cap' + c);
-        if (card) card.classList.add('cap-selected');
-        if (chkBox) chkBox.classList.add('checked');
-      }
-    });
-  }
-  updateFAB();
-}
-
 
 // ══════════════════════════════════════════════════════════════
 // ⚡ MODO QUIZ — Hub quiz game (3 vidas, streak, game over)

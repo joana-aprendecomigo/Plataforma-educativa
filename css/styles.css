@@ -181,24 +181,6 @@ footer strong{color:rgba(255,255,255,.7);font-weight:500}
 .mat7-chk-box.checked{background:var(--c2-mid);border-color:var(--c2-mid);position:relative}
 .mat7-chk-box.checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.65rem;color:#fff;font-weight:900;line-height:1}
 
-/* ── FAB: Estudar Seleção ── */
-.mega-fab{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);z-index:1000;background:linear-gradient(135deg,var(--c2-mid),var(--c2-deep));color:#fff;border:none;border-radius:999px;padding:16px 32px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(81,104,96,.45);display:flex;align-items:center;gap:10px;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;white-space:nowrap}
-.mega-fab.visible{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto}
-.mega-fab:hover{box-shadow:0 12px 40px rgba(81,104,96,.55);filter:brightness(1.08)}
-.mega-fab .fab-badge{background:rgba(255,255,255,.25);border-radius:999px;padding:3px 10px;font-size:.78rem;font-weight:800}
-
-/* ── Mega View ── */
-#view-mega{background:var(--cream);min-height:100vh}
-.mega-back-bar{position:sticky;top:0;z-index:200;background:rgba(253,249,243,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.mega-header{max-width:960px;margin:0 auto;padding:2.5rem 2rem 1.5rem;text-align:center}
-.mega-header h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:900;color:var(--ink);letter-spacing:-.03em;margin-bottom:.4rem}
-.mega-header p{color:var(--ink3);font-size:.95rem;font-style:italic}
-.mega-config-bar{max-width:960px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
-.mega-score-bar{background:var(--white);border:1.5px solid var(--border);border-radius:var(--p-radius);padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;box-shadow:var(--shadow)}
-.mega-controls{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.mega-controls select{height:40px;padding:0 14px;background:var(--white);border:1.5px solid var(--border2);border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:600;color:var(--ink);cursor:pointer;outline:none;transition:border-color .2s;box-shadow:var(--shadow)}
-.mega-controls select:focus{border-color:var(--c2-mid)}
-@media(max-width:600px){.mega-fab{font-size:.82rem;padding:13px 20px}.mega-config-bar{padding:0 1rem 1rem}}
 
 /* ═══ MATH VIEW — Portal Theme ═══ */
 .math-view{background:var(--cream);color:var(--ink);font-family:'Montserrat',sans-serif;min-height:100vh;overflow-x:hidden}
@@ -742,7 +724,6 @@ body{background:linear-gradient(160deg,#f4f2ee 0%,#ede9e3 40%,#e8f0ed 100%)}
 .status-pill{background:linear-gradient(135deg,rgba(240,248,244,.9),rgba(229,244,237,.7))!important;border:1px solid rgba(81,104,96,.25)!important;box-shadow:0 2px 12px rgba(81,104,96,.12)!important;backdrop-filter:blur(8px)}
 .hero-stat+.hero-stat{border-left:none;position:relative}
 .hero-stat+.hero-stat::before{content:'';position:absolute;left:0;top:15%;height:70%;width:1px;background:linear-gradient(to bottom,transparent,rgba(81,104,96,.2),transparent)}
-.mega-score-bar{border-radius:16px!important;border-color:transparent!important;box-shadow:0 4px 20px rgba(77,77,77,.08),0 0 0 1.5px rgba(77,77,77,.07)!important}
 .math-view header{border-bottom:none!important;background:linear-gradient(160deg,rgba(237,244,241,.6) 0%,transparent 70%)!important}
 .hero h1 .line2{background:linear-gradient(135deg,#77998E,#516860,#AB9790);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .progress-fill{background:linear-gradient(90deg,#516860,#77998E,#AB9790)!important}
@@ -1663,7 +1644,7 @@ footer strong{color:rgba(255,255,255,.7);font-weight:500}
   body::before, body::after,
   .controls-wrap, .hero-eyebrow, .hero-stats, .featured-wrap,
   .tabs, .tabs-wrap, .tabs-wrap4, .chapter-nav-bar,
-  .f-btn, .score-bar, .mega-score-bar, footer,
+  .f-btn, .score-bar, footer,
   .btn, .check-btn, .next-step, .scroll-top-btn,
   .pm-topbar-btn, #pm-topbar-btn, .back-btn, .ch-back-link,
   .subtema-expand-all, .qz-next-btn, .pom-ctrl-btn,

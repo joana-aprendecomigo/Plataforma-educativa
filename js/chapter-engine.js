@@ -337,7 +337,7 @@ function capExameReset(n){
 
 // ── 13. Progress ──
 function _capProgKey(n){var c=_getCfg(n);return c?c.storageKey:'edupt_cap'+n;}
-function _capSaveProgData(n){var st=_getState(n);try{localStorage.setItem(_capProgKey(n),JSON.stringify({sections:st.progData.sections,log:st.progData.log}));}catch(e){}}
+function _capSaveProgData(n){var st=_getState(n);try{localStorage.setItem(_capProgKey(n),JSON.stringify({sections:st.progData.sections,log:st.progData.log,lastActivity:Date.now()}));}catch(e){}}
 function _capLoadProgData(n){var st=_getState(n);try{var r=localStorage.getItem(_capProgKey(n));if(!r)return;var s=JSON.parse(r);if(s.sections)Object.assign(st.progData.sections,s.sections);if(s.log)st.progData.log=s.log;}catch(e){}}
 function capProgLog(n,section,correct){
   var pd=_getState(n).progData;

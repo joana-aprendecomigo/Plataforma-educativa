@@ -54,19 +54,6 @@ function handleSubj(e, action) {
   if (map[action]) window.location.href = map[action];
 }
 
-// Save selected chapters to localStorage before going to mega view,
-// so mega.html can restore the selection on load.
-function showMegaView() {
-  var sel = [];
-  [1,2,3,4,5,6,7,8].forEach(function(n) {
-    var el = document.getElementById('mat7-cap' + n);
-    if (el && el.classList.contains('selected')) sel.push(n);
-  });
-  if (sel.length === 0) sel = [1,2,3,4]; // default: all
-  localStorage.setItem('megaSelectedCaps', JSON.stringify(sel));
-  window.location.href = _mat7Path + 'mega.html';
-}
-
 // showGeradorFichas — go to mat7 fichas tab
 function showGeradorFichas(capNum) {
   localStorage.setItem('mat7OpenTab', 'fichas');

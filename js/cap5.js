@@ -439,7 +439,7 @@ function exame5Submit(){
 
 // PROGRESSO
 function saveProgData5(prefix,data){
-  try{var p=JSON.parse(localStorage.getItem('edupt_cap5')||'{}');p[prefix]=data;p['last_updated']=new Date().toLocaleDateString('pt-PT');localStorage.setItem('edupt_cap5',JSON.stringify(p));}catch(e){}
+  try{var p=JSON.parse(localStorage.getItem('edupt_cap5')||'{}');p[prefix]=data;p['last_updated']=new Date().toLocaleDateString('pt-PT');p['lastActivity']=Date.now();localStorage.setItem('edupt_cap5',JSON.stringify(p));}catch(e){}
   setTimeout(_progRefreshBars, 80);
 }
 function renderProg5(){
