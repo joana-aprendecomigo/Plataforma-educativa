@@ -1344,6 +1344,29 @@ function _buildStQuizHTML(exercicios) {
   return qhtml;
 }
 
+// ═══ _bancoToSubtemaExs — convert BANCO to subtema exercise list ═══
+function _bancoToSubtemaExs(banco, temaNum) {
+  var pool = (banco.questoes || []).filter(function(q){ return String(q.tema) === String(temaNum); });
+  if (banco.minitestes && banco.minitestes[parseInt(temaNum)]) {
+    pool = pool.concat(banco.minitestes[parseInt(temaNum)]);
+  }
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+  }
+  return pool.slice(0, 8).map(function(q, idx) {
+    var correct = q.correct || q.c || 'A';
+    return {
+      num: idx + 1,
+      enun: q.enunciado || q.en || q.enun || '',
+      opcoes: q.opts || [],
+      resposta: correct,
+      tipo: 'mc',
+      expl: q.fb || ''
+    };
+  });
+}
+
 // ═══ criarModalSubtema — subtema practice modal (shared across chapters) ═══
 function criarModalSubtema(titulo, exercicios) {
   var old = document.getElementById('subtema-modal');
@@ -1433,6 +1456,158 @@ function calcExpression() {
     res.textContent = '\u26a0 ' + (e.message || 'Expressão inválida');
     res.style.color = 'var(--wrong)';
   }
+}
+
+// ═══ QUIZ GAME (qgStartForCap) — arcade quiz for chapter pages ═══
+// State for the per-chapter arcade quiz
+var _qgCap = { cap: 0, lives: 3, streak: 0, maxStreak: 0, score: 0, total: 0, current: null, answered: false, pool: [] };
+
+function _qgBuildPool(cap) {
+  var bancoMap = { 5: window.BANCO5, 6: window.BANCO6, 7: window.BANCO7, 8: window.BANCO8 };
+  var banco = bancoMap[cap];
+  if (banco) {
+    // Prefer relampago (short-form rapid questions), fall back to questoes
+    var src = (banco.relampago && banco.relampago.length) ? banco.relampago : banco.questoes;
+    return (src || []).map(function(q) {
+      // relampago: {q, opts, c (index), fb}
+      // questoes:  {enunciado|en, opts, correct|c, fb}
+      if (q.opts && q.c !== undefined && typeof q.c === 'number') {
+        // relampago format
+        return { q: q.q || '', opts: q.opts, ans: q.opts[q.c], fb: q.fb || '' };
+      }
+      // questoes format — c is a letter like 'B'; find the full option text starting with 'B)'
+      var letter = q.correct || q.c || '';
+      var opts = q.opts || [];
+      var ans = letter;
+      if (typeof letter === 'string' && letter.length === 1) {
+        for (var oi = 0; oi < opts.length; oi++) {
+          if (String(opts[oi]).indexOf(letter + ')') === 0 || String(opts[oi]).indexOf(letter + ' ') === 0) {
+            ans = opts[oi]; break;
+          }
+        }
+      }
+      return { q: q.enunciado || q.en || '', opts: opts, ans: ans, fb: q.fb || '' };
+    });
+  }
+  // caps 1–4: no pool, will generate procedurally each question
+  return null;
+}
+
+function _qgBuildQuestion(cap) {
+  var pool = _qgCap.pool;
+  if (pool && pool.length) {
+    var idx = Math.floor(Math.random() * pool.length);
+    return pool[idx];
+  }
+  // Procedural for caps 1–4
+  var temas = ['1','2','3','4','5'];
+  var tema = temas[Math.floor(Math.random() * temas.length)];
+  var ex = null;
+  for (var i = 0; i < 10; i++) {
+    tema = temas[Math.floor(Math.random() * temas.length)];
+    if (cap === 4 && typeof buildEx4 === 'function') ex = buildEx4(tema, 'medio');
+    else if (cap === 3 && typeof buildEx3 === 'function') ex = buildEx3(tema, 'mc', 'medio');
+    else if (cap === 2 && typeof buildEx2 === 'function') ex = buildEx2(tema, 'mc', 'medio');
+    else if (typeof buildExercicio === 'function') ex = buildExercicio(tema, 'mc', -12, 12, 1, 'medio');
+    if (ex && ex.tipo === 'mc' && ex.opcoes && ex.opcoes.length >= 2) break;
+  }
+  if (!ex || !ex.opcoes) return null;
+  return { q: ex.enun || '', opts: ex.opcoes, ans: ex.resposta || ex.opcoes[0], fb: ex.expl || '' };
+}
+
+function _qgRenderQuestion(appEl) {
+  if (_qgCap.lives <= 0) { _qgGameOver(appEl); return; }
+  var q = _qgBuildQuestion(_qgCap.cap);
+  if (!q) {
+    appEl.innerHTML = '<p style="color:var(--ink4);padding:2rem;text-align:center">Sem questões disponíveis para este capítulo.</p>';
+    return;
+  }
+  _qgCap.current = q;
+  _qgCap.answered = false;
+  var livesHtml = '';
+  for (var i = 0; i < 3; i++) livesHtml += (i < _qgCap.lives ? '❤️' : '🖤') + ' ';
+  var optsHtml = '';
+  (q.opts || []).forEach(function(opt, idx) {
+    var label = typeof formatMath === 'function' ? formatMath(opt) : opt;
+    optsHtml += '<button class="qg-opt-btn" id="_qgopt-' + idx + '" onclick="qgCapAnswer(' + idx + ')">' + label + '</button>';
+  });
+  var qText = typeof formatMath === 'function' ? formatMath(q.q) : q.q;
+  appEl.innerHTML =
+    '<div class="qg-hub-bar">' +
+      '<div class="qg-hub-lives">' + livesHtml + '</div>' +
+      '<div class="qg-hub-streak">' + (_qgCap.streak > 1 ? '🔥 ' + _qgCap.streak + ' seguidas' : '') + '</div>' +
+      '<div class="qg-hub-score">✓ ' + _qgCap.score + ' / ' + _qgCap.total + '</div>' +
+    '</div>' +
+    '<div class="qg-hub-question">' + qText + '</div>' +
+    '<div class="qg-hub-opts">' + optsHtml + '</div>' +
+    '<div class="qg-hub-feedback" id="_qg-fb" style="min-height:2.5rem"></div>';
+}
+
+function qgCapAnswer(idx) {
+  if (_qgCap.answered) return;
+  _qgCap.answered = true;
+  var q = _qgCap.current;
+  if (!q) return;
+  var chosen = (q.opts || [])[idx];
+  var correct = String(chosen) === String(q.ans);
+  _qgCap.total++;
+  var allBtns = document.querySelectorAll('.qg-opt-btn');
+  allBtns.forEach(function(b, i) {
+    b.disabled = true;
+    if (String((q.opts||[])[i]) === String(q.ans)) { b.style.background = '#4caf50'; b.style.color = '#fff'; }
+  });
+  var clicked = document.getElementById('_qgopt-' + idx);
+  if (clicked && !correct) { clicked.style.background = '#f44336'; clicked.style.color = '#fff'; }
+  var fb = document.getElementById('_qg-fb');
+  var appEl = document.getElementById('qg-app' + _qgCap.cap);
+  if (correct) {
+    _qgCap.score++;
+    _qgCap.streak++;
+    if (_qgCap.streak > _qgCap.maxStreak) _qgCap.maxStreak = _qgCap.streak;
+    if (fb) fb.innerHTML = '<span style="color:#4caf50;font-weight:700">✓ Correto!' + (_qgCap.streak >= 3 ? ' 🔥 Streak de ' + _qgCap.streak + '!' : '') + '</span>' + (q.fb ? ' <span style="color:var(--ink3);font-size:.85rem">' + q.fb + '</span>' : '');
+  } else {
+    _qgCap.lives--;
+    _qgCap.streak = 0;
+    var ansLabel = typeof formatMath === 'function' ? formatMath(q.ans) : q.ans;
+    if (fb) fb.innerHTML = '<span style="color:#f44336;font-weight:700">✗ Errado.</span> A resposta era <strong>' + ansLabel + '</strong>.' + (q.fb ? ' <span style="color:var(--ink3);font-size:.85rem">' + q.fb + '</span>' : '');
+  }
+  if (_qgCap.lives <= 0) {
+    setTimeout(function() { if (appEl) _qgGameOver(appEl); }, 1400);
+  } else {
+    var btn = document.createElement('button');
+    btn.className = 'btn btn-primary';
+    btn.style.cssText = 'margin-top:1rem';
+    btn.textContent = 'Próxima →';
+    btn.onclick = function() { if (appEl) _qgRenderQuestion(appEl); };
+    if (fb) fb.appendChild(btn);
+  }
+}
+
+function _qgGameOver(appEl) {
+  var pct = _qgCap.total > 0 ? Math.round(_qgCap.score / _qgCap.total * 100) : 0;
+  var emoji = pct >= 90 ? '🏆' : pct >= 70 ? '⭐' : pct >= 50 ? '👍' : '📚';
+  appEl.innerHTML =
+    '<div style="text-align:center;padding:2.5rem 1rem">' +
+      '<div style="font-size:3.5rem;margin-bottom:.75rem">' + emoji + '</div>' +
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:2rem;font-weight:900;color:var(--ink)">' + pct + '%</div>' +
+      '<div style="color:var(--ink3);margin:.5rem 0 1.5rem">' + _qgCap.score + ' certas em ' + _qgCap.total + ' questões</div>' +
+      '<div style="font-size:1.5rem;margin-bottom:1.5rem">Melhor sequência: ' + (_qgCap.maxStreak || 0) + ' 🔥</div>' +
+      '<button class="btn btn-primary" onclick="qgStartForCap(' + _qgCap.cap + ')">↺ Jogar novamente</button>' +
+    '</div>';
+}
+
+function qgStartForCap(cap) {
+  var appEl = document.getElementById('qg-app' + cap);
+  if (!appEl) return;
+  _qgCap.cap = cap;
+  _qgCap.lives = 3;
+  _qgCap.streak = 0;
+  _qgCap.maxStreak = 0;
+  _qgCap.score = 0;
+  _qgCap.total = 0;
+  _qgCap.answered = false;
+  _qgCap.pool = _qgBuildPool(cap) || [];
+  _qgRenderQuestion(appEl);
 }
 
 // ═══ CHAPTER NAV BAR — generated from data ═══

@@ -93,6 +93,30 @@ var BANCO7={
     {en:'Duas figuras semelhantes têm k = 4. Se a área da menor é 5 cm², qual é a área da maior?',opts:['A) 20 cm²','B) 40 cm²','C) 80 cm²','D) 160 cm²'],c:'C',fb:'Passo 1 — calcular a razão das áreas:\nRazão das áreas = k² = 4² = 16.\nPasso 2 — calcular a área da maior:\nÁrea da maior = 5 × 16 = 80 cm². ✓'},
     {en:'Pelo critério LAL de semelhança, é necessário:',opts:['A) Três pares de lados proporcionais','B) Dois pares de lados proporcionais com o ângulo entre eles igual','C) Dois ângulos iguais','D) Apenas um lado igual'],c:'B',fb:'LAL (Lado-Ângulo-Lado):\nCondição 1: dois pares de lados são proporcionais com a mesma razão k\nCondição 2: o ângulo ENTRE esses dois lados é igual\nIsto distingue LAL do critério LLL (que precisa dos três lados) e do AA (que usa ângulos). ✓'}
   ],
+  relampago:[
+    {q:'A razão de semelhança entre duas figuras é k = 3. A razão das áreas é:',opts:['3','6','9','27'],c:2,fb:'Razão das áreas = k² = 3² = 9.'},
+    {q:'Um cubo tem V = 8, A = 12. Quantas faces tem? (V − A + F = 2)',opts:['4','5','6','7'],c:2,fb:'8 − 12 + F = 2 → F = 6.'},
+    {q:'Dois triângulos têm dois ângulos iguais. São semelhantes pelo critério:',opts:['LLL','LAL','AA','SAS'],c:2,fb:'Dois ângulos iguais → critério AA.'},
+    {q:'Uma homotetia com k = 2 e centro O: o que acontece à figura?',opts:['Reduz para metade','Amplia para o dobro','Roda 180°','Translada'],c:1,fb:'|k| = 2 > 1 → ampliação. A figura fica com o dobro das dimensões.'},
+    {q:'Dois lados proporcionais com k = 4 e ângulo entre eles igual. Critério:',opts:['AA','LLL','LAL','SAS'],c:2,fb:'Dois lados proporcionais com o ângulo entre eles → critério LAL.'},
+    {q:'Uma figura tem área 8 cm². Com k = 2, a área da figura semelhante é:',opts:['16 cm²','32 cm²','64 cm²','4 cm²'],c:1,fb:'Área × k² = 8 × 4 = 32 cm².'},
+    {q:'Um poliedro tem 6 faces e 12 arestas. Qual é o número de vértices?',opts:['6','8','10','12'],c:1,fb:'V − 12 + 6 = 2 → V = 8.'},
+    {q:'Se k = 1/2, a figura semelhante é:',opts:['Ampliação','Redução','Simetria','Translação'],c:1,fb:'|k| = 1/2 < 1 → é uma redução.'},
+    {q:'Razão de semelhança k = 5. Razão dos perímetros:',opts:['5','10','25','125'],c:0,fb:'A razão dos perímetros é igual a k = 5.'},
+    {q:'Pelo critério LLL, precisamos de:',opts:['3 ângulos iguais','3 lados proporcionais','2 lados e 1 ângulo','2 ângulos iguais'],c:1,fb:'LLL exige os 3 pares de lados proporcionais.'}
+  ],
+  vf:[
+    {q:'A razão das áreas de figuras semelhantes com k = 3 é 9.',c:true,fb:'k² = 3² = 9. Verdadeiro!'},
+    {q:'Uma homotetia de razão k = −2 amplia e coloca a figura do mesmo lado do centro.',c:false,fb:'k < 0 → a figura fica no lado OPOSTO ao centro. Falso!'},
+    {q:'O critério AA exige que os três ângulos dos triângulos sejam iguais.',c:false,fb:'AA exige apenas DOIS ângulos. O terceiro fica determinado automaticamente (soma = 180°). Falso!'},
+    {q:'A Relação de Euler é V − A + F = 2.',c:true,fb:'Essa é a relação de Euler para poliedros convexos. Verdadeiro!'},
+    {q:'Figuras semelhantes têm obrigatoriamente o mesmo tamanho.',c:false,fb:'Figuras semelhantes têm a mesma FORMA, mas não necessariamente o mesmo tamanho. Falso!'},
+    {q:'Se k = 1, a homotetia deixa a figura invariante.',c:true,fb:'k = 1 → cada ponto fica no mesmo lugar. Verdadeiro!'},
+    {q:'O critério LLL exige que os três pares de lados sejam iguais (não proporcionais).',c:false,fb:'LLL exige que sejam PROPORCIONAIS (mesma razão k). Igualdade seria congruência. Falso!'},
+    {q:'Um prisma triangular tem 5 faces.',c:true,fb:'2 bases triangulares + 3 faces laterais = 5 faces. Verdadeiro!'},
+    {q:'A razão dos perímetros de figuras semelhantes é k².',c:false,fb:'A razão dos PERÍMETROS é k. A razão das ÁREAS é k². Falso!'},
+    {q:'Uma pirâmide quadrangular tem 5 vértices.',c:true,fb:'4 vértices da base + 1 vértice do topo = 5. Verdadeiro!'}
+  ],
   flashcards:[
     {tag:'Definição',q:'O que são figuras semelhantes?',a:'Duas figuras são semelhantes quando têm a mesma forma: os ângulos correspondentes são iguais e os lados correspondentes são proporcionais. A razão entre lados correspondentes chama-se razão de semelhança k.'},
     {tag:'Fórmula',q:'Qual é a relação entre os perímetros de figuras semelhantes?',a:'Se k é a razão de semelhança, a razão dos perímetros é também k.\nPerímetro₂ = k × Perímetro₁'},
@@ -309,13 +333,43 @@ function buildEx7(tema,dif){
 }
 
 // ── Topic grid ─────────────────────────────────────────────────────────────
+// ── Subtema support ─────────────────────────────────────────────────────────
+var _cap7SubtemaTitulos = {
+  '1': 'Figuras Semelhantes e Razão de Semelhança',
+  '2': 'Polígonos Semelhantes',
+  '3': 'Homotetia',
+  '4': 'Critérios de Semelhança de Triângulos',
+  '5': 'Perímetros, Áreas e Escala',
+  '6': 'Poliedros e Relação de Euler'
+};
+
+function abrirSubtema7(tema) {
+  _stAnswered = {}; _stScore = { correct: 0, total: 0 };
+  var titulo = _cap7SubtemaTitulos[String(tema)] || 'Prática';
+  var exs = _bancoToSubtemaExs(BANCO7, tema);
+  window._stContext = { titulo: titulo, gerador: function(){ return _bancoToSubtemaExs(BANCO7, tema); } };
+  criarModalSubtema(titulo, exs);
+}
+
 var _cap7Topics=[
-  {id:'t7-1',icon:'ph-equals',title:'Figuras Semelhantes',desc:'Razão de semelhança e condições de semelhança'},
-  {id:'t7-2',icon:'ph-polygon',title:'Polígonos Semelhantes',desc:'Ângulos e lados correspondentes proporcionais'},
-  {id:'t7-3',icon:'ph-arrows-out',title:'Homotetia',desc:'Transformação geométrica com centro e razão'},
-  {id:'t7-4',icon:'ph-triangle',title:'Semelhança de Triângulos',desc:'Critérios AA, LLL e LAL'},
-  {id:'t7-5',icon:'ph-ruler',title:'Perímetros, Áreas e Escala',desc:'Razões de perímetros (k) e áreas (k²)'},
-  {id:'t7-6',icon:'ph-cube',title:'Poliedros e Euler',desc:'V − A + F = 2 e sólidos de Platão'}
+  {id:'t7-1',icon:'ph-equals',title:'Figuras Semelhantes',desc:'Razão de semelhança e condições de semelhança',subs:[
+    {onclick:"abrirSubtema7('1')",label:'Praticar: Figuras Semelhantes',icon:'ph-pencil'}
+  ]},
+  {id:'t7-2',icon:'ph-polygon',title:'Polígonos Semelhantes',desc:'Ângulos e lados correspondentes proporcionais',subs:[
+    {onclick:"abrirSubtema7('2')",label:'Praticar: Polígonos Semelhantes',icon:'ph-pencil'}
+  ]},
+  {id:'t7-3',icon:'ph-arrows-out',title:'Homotetia',desc:'Transformação geométrica com centro e razão',subs:[
+    {onclick:"abrirSubtema7('3')",label:'Praticar: Homotetia',icon:'ph-pencil'}
+  ]},
+  {id:'t7-4',icon:'ph-triangle',title:'Semelhança de Triângulos',desc:'Critérios AA, LLL e LAL',subs:[
+    {onclick:"abrirSubtema7('4')",label:'Praticar: Critérios AA, LLL e LAL',icon:'ph-pencil'}
+  ]},
+  {id:'t7-5',icon:'ph-ruler',title:'Perímetros, Áreas e Escala',desc:'Razões de perímetros (k) e áreas (k²)',subs:[
+    {onclick:"abrirSubtema7('5')",label:'Praticar: Perímetros e Áreas',icon:'ph-pencil'}
+  ]},
+  {id:'t7-6',icon:'ph-cube',title:'Poliedros e Euler',desc:'V − A + F = 2 e sólidos de Platão',subs:[
+    {onclick:"abrirSubtema7('6')",label:'Praticar: Relação de Euler',icon:'ph-pencil'}
+  ]}
 ];
 (function(){
   var el=document.getElementById('cap7-topics-grid');

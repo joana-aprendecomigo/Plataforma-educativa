@@ -1174,49 +1174,160 @@ function _dinamico6(dif) {
 
 // ── Cap 7 — Figuras Semelhantes ───────────────────────────────────────────────
 function _dinamico7(dif) {
-  var ex = '', sol = '';
-  ex += '<h2>Grupo 1 — Figuras Semelhantes e Razão de Semelhança</h2>';
-  var k = Math.floor(Math.random()*3)+2;
-  var l = Math.floor(Math.random()*6)+3;
-  ex += _dinamicoRow(1, 'Duas figuras semelhantes têm razão de semelhança k = '+k+'. Um lado da primeira mede '+l+' cm. Qual é o lado correspondente na segunda?', 1);
-  sol += '<p><strong>1.</strong> '+l+' × '+k+' = '+(k*l)+' cm</p>';
-  ex += '<h2>Grupo 2 — Perímetros e Áreas</h2>';
-  var k2 = Math.floor(Math.random()*3)+2;
-  var p = Math.floor(Math.random()*8)+10;
-  ex += _dinamicoRow(2, 'Duas figuras semelhantes têm k = '+k2+'. O perímetro da menor é '+p+' cm. Qual é o perímetro da maior?', 1);
-  sol += '<p><strong>2.</strong> '+p+' × '+k2+' = '+(p*k2)+' cm</p>';
-  var a = Math.floor(Math.random()*10)+5;
-  ex += _dinamicoRow(3, 'Usando o mesmo k = '+k2+', se a área da menor é '+a+' cm², qual é a área da maior?', 1);
-  sol += '<p><strong>3.</strong> '+a+' × '+k2+'² = '+a+' × '+(k2*k2)+' = '+(a*k2*k2)+' cm²</p>';
-  ex += '<h2>Grupo 3 — Relação de Euler</h2>';
-  var V = Math.floor(Math.random()*6)+6, A = V+Math.floor(Math.random()*6)+4;
-  ex += _dinamicoRow(4, 'Um poliedro tem '+V+' vértices e '+A+' arestas. Quantas faces tem? (V − A + F = 2)', 1);
-  sol += '<p><strong>4.</strong> F = 2 − '+V+' + '+A+' = '+(2-V+A)+'</p>';
+  var R = _RND; var ex = '', sol = '';
+
+  if (dif === 'facil') {
+    ex += '<h2>Grupo 1 — Razão de Semelhança e Lados</h2>';
+    var k1 = R.int(2,4), l1 = R.int(3,9);
+    var l1b = k1 * l1;
+    ex += _dinamicoRow(1, 'Duas figuras são semelhantes com razão de semelhança k = '+k1+'.<br>a) Um lado da figura menor mede '+l1+' cm. Qual é o lado correspondente na figura maior?<br>b) Se outro lado da figura maior mede '+l1b+' cm, qual é o lado correspondente na menor?');
+    sol += '<div class="ex"><strong>1.</strong> a) '+l1+' × '+k1+' = <strong>'+(k1*l1)+' cm</strong> &nbsp; b) '+l1b+' ÷ '+k1+' = <strong>'+l1+' cm</strong></div>';
+
+    ex += '<h2>Grupo 2 — Perímetros de Figuras Semelhantes</h2>';
+    var k2 = R.int(2,4), p2 = R.int(12,24);
+    ex += _dinamicoRow(2, 'Duas figuras semelhantes têm razão de semelhança k = '+k2+'. O perímetro da figura menor é '+p2+' cm.<br>a) Qual é o perímetro da figura maior?<br>b) Qual é a razão entre os perímetros?');
+    sol += '<div class="ex"><strong>2.</strong> a) '+p2+' × '+k2+' = <strong>'+(p2*k2)+' cm</strong> &nbsp; b) A razão entre os perímetros é igual a k = '+k2+'</div>';
+
+    ex += '<h2>Grupo 3 — Relação de Euler (Poliedros)</h2>';
+    var solidos = [{n:'Cubo',V:8,A:12,F:6},{n:'Tetraedro',V:4,A:6,F:4},{n:'Octaedro',V:6,A:12,F:8}];
+    var s = solidos[R.int(0,2)];
+    ex += _dinamicoRow(3, 'Um '+s.n+' tem '+s.V+' vértices e '+s.A+' arestas. Usando a Relação de Euler (V − A + F = 2), determina o número de faces.');
+    sol += '<div class="ex"><strong>3.</strong> '+s.V+' − '+s.A+' + F = 2 → F = 2 + '+s.A+' − '+s.V+' = <strong>'+s.F+'</strong></div>';
+
+  } else if (dif === 'medio') {
+    ex += '<h2>Grupo 1 — Triângulos Semelhantes</h2>';
+    var k1 = R.int(2,4), a1 = R.int(3,7), b1 = R.int(4,9), c1 = R.int(5,11);
+    ex += _dinamicoRow(1, 'Os triângulos ABC e DEF são semelhantes com razão k = '+k1+'. Sabe-se que AB = '+a1+' cm, BC = '+b1+' cm e CA = '+c1+' cm.<br>a) Calcula DE, EF e FD. &nbsp; b) Qual é o perímetro de DEF?');
+    var de = a1*k1, ef = b1*k1, fd = c1*k1, pDef = (a1+b1+c1)*k1;
+    sol += '<div class="ex"><strong>1.</strong> a) DE = '+de+' cm &nbsp; EF = '+ef+' cm &nbsp; FD = '+fd+' cm<br>b) Perímetro = '+(a1+b1+c1)+' × '+k1+' = <strong>'+pDef+' cm</strong></div>';
+
+    ex += '<h2>Grupo 2 — Áreas de Figuras Semelhantes</h2>';
+    var k2 = R.int(2,4), area2 = R.int(6,20);
+    var areaG = area2 * k2 * k2;
+    ex += _dinamicoRow(2, 'Duas figuras semelhantes têm razão k = '+k2+'. A área da figura menor é '+area2+' cm².<br>a) Qual é a razão entre as áreas?<br>b) Qual é a área da figura maior?');
+    sol += '<div class="ex"><strong>2.</strong> a) Razão das áreas = k² = '+k2+'² = <strong>'+(k2*k2)+'</strong><br>b) Área maior = '+area2+' × '+(k2*k2)+' = <strong>'+areaG+' cm²</strong></div>';
+
+    ex += '<h2>Grupo 3 — Homotetia</h2>';
+    var hk = R.int(2,4), hx = R.int(1,5), hy = R.int(1,5);
+    ex += _dinamicoRow(3, 'Uma homotetia de centro na origem O e razão k = '+hk+' transforma o ponto A('+hx+', '+hy+') em A\'.<br>a) Quais são as coordenadas de A\'?<br>b) Se BC = '+hx+' cm, qual é B\'C\'?');
+    sol += '<div class="ex"><strong>3.</strong> a) A\' = ('+hk+'×'+hx+', '+hk+'×'+hy+') = <strong>('+hk*hx+', '+hk*hy+')</strong><br>b) B\'C\' = '+hk+' × '+hx+' = <strong>'+(hk*hx)+' cm</strong></div>';
+
+  } else {
+    ex += '<h2>Grupo 1 — Critérios de Semelhança de Triângulos</h2>';
+    var k1 = R.int(2,4), a1 = R.int(3,6), b1 = R.int(4,8), c1 = R.int(5,10);
+    var a2 = a1*k1, b2 = b1*k1, c2 = c1*k1;
+    ex += _dinamicoRow(1, 'Um triângulo tem lados '+a1+', '+b1+', '+c1+' cm. Outro tem lados '+a2+', '+b2+', '+c2+' cm.<br>a) Verifica que são semelhantes e indica o critério.<br>b) Determina k.<br>c) Qual a razão entre as áreas?');
+    sol += '<div class="ex"><strong>1.</strong> a) '+a2+'/'+a1+' = '+b2+'/'+b1+' = '+c2+'/'+c1+' = '+k1+' → Semelhantes pelo critério LLL<br>b) k = '+k1+'<br>c) Razão das áreas = k² = <strong>'+(k1*k1)+'</strong></div>';
+
+    ex += '<h2>Grupo 2 — Área e Perímetro a Partir das Áreas</h2>';
+    var a2s = R.int(4,16), b2s = a2s * R.int(4,9);
+    var sqrtRatio = Math.round(Math.sqrt(b2s/a2s)*10)/10;
+    var pMenor = R.int(12,24);
+    ex += _dinamicoRow(2, 'Duas figuras semelhantes têm áreas '+a2s+' cm² e '+b2s+' cm². O perímetro da menor é '+pMenor+' cm.<br>a) Determina k (razão de semelhança).<br>b) Calcula o perímetro da maior.');
+    var kExact = Math.sqrt(b2s/a2s);
+    var pMaior = Math.round(pMenor * kExact * 10) / 10;
+    sol += '<div class="ex"><strong>2.</strong> a) k² = '+b2s+'/'+a2s+' = '+(b2s/a2s).toFixed(2)+' → k = √'+(b2s/a2s).toFixed(2)+' ≈ <strong>'+sqrtRatio+'</strong><br>b) Perímetro maior = '+pMenor+' × '+sqrtRatio+' ≈ <strong>'+pMaior+' cm</strong></div>';
+
+    ex += '<h2>Grupo 3 — Relação de Euler e Poliedros Regulares</h2>';
+    var V3 = R.int(8,20), F3 = R.int(5,14), A3 = V3 + F3 - 2;
+    ex += _dinamicoRow(3, 'Um poliedro convexo tem '+V3+' vértices e '+F3+' faces.<br>a) Usa a Relação de Euler para calcular o número de arestas.<br>b) Verifica: V − A + F = 2.');
+    sol += '<div class="ex"><strong>3.</strong> a) V − A + F = 2 → '+V3+' − A + '+F3+' = 2 → A = '+V3+' + '+F3+' − 2 = <strong>'+A3+'</strong><br>b) '+V3+' − '+A3+' + '+F3+' = '+(V3-A3+F3)+' ✓</div>';
+  }
+
   return { ex: ex, sol: sol };
 }
 
 // ── Cap 8 — Dados e Probabilidades ────────────────────────────────────────────
 function _dinamico8(dif) {
-  var ex = '', sol = '';
-  ex += '<h2>Grupo 1 — Frequências</h2>';
-  var n = Math.floor(Math.random()*6)+20;
-  var fa = Math.floor(Math.random()*8)+4;
-  var fr = Math.round(fa/n*100);
-  ex += _dinamicoRow(1, 'Numa amostra de '+n+' elementos, um valor tem frequência absoluta '+fa+'. Qual é a frequência relativa (em percentagem)?', 1);
-  sol += '<p><strong>1.</strong> '+fa+' / '+n+' = '+Math.round(fa/n*1000)/10+'% ≈ '+fr+'%</p>';
-  ex += '<h2>Grupo 2 — Medidas de Tendência Central</h2>';
-  var d = [Math.floor(Math.random()*5)+2, Math.floor(Math.random()*5)+5, Math.floor(Math.random()*5)+8, Math.floor(Math.random()*5)+10, Math.floor(Math.random()*5)+12];
-  d.sort(function(a,b){return a-b;});
-  var soma = d.reduce(function(s,v){return s+v;},0);
-  var med = d[2];
-  var media = Math.round(soma/5*10)/10;
-  ex += _dinamicoRow(2, 'Calcula a mediana e a média do conjunto {'+d.join(', ')+'}', 2);
-  sol += '<p><strong>2.</strong> Mediana = '+med+' | Média = '+soma+'/5 = '+media+'</p>';
-  ex += '<h2>Grupo 3 — Probabilidade</h2>';
-  var total = Math.floor(Math.random()*4)*2+6;
-  var fav = Math.floor(Math.random()*3)+1;
-  ex += _dinamicoRow(3, 'Numa urna com '+total+' bolas iguais, '+fav+' são vermelhas. Qual é a probabilidade de retirar uma bola vermelha ao acaso?', 1);
-  sol += '<p><strong>3.</strong> P = '+fav+'/'+total+'</p>';
+  var R = _RND; var ex = '', sol = '';
+
+  if (dif === 'facil') {
+    ex += '<h2>Grupo 1 — Frequências Absoluta e Relativa</h2>';
+    var n1 = R.int(20, 40), fa1 = R.int(4, Math.floor(n1/3));
+    var frPct1 = Math.round(fa1/n1*1000)/10;
+    ex += _dinamicoRow(1, 'Numa turma de '+n1+' alunos, '+fa1+' vêm de bicicleta.<br>a) Qual é a frequência absoluta de "bicicleta"?<br>b) Qual é a frequência relativa (em percentagem)?<br>c) Quantos alunos NÃO vêm de bicicleta?');
+    sol += '<div class="ex"><strong>1.</strong> a) f = <strong>'+fa1+'</strong><br>b) fr = '+fa1+'/'+n1+' = <strong>'+frPct1+'%</strong><br>c) '+n1+' − '+fa1+' = <strong>'+(n1-fa1)+'</strong> alunos</div>';
+
+    ex += '<h2>Grupo 2 — Média e Mediana</h2>';
+    var d2 = [R.int(3,7), R.int(8,12), R.int(10,15), R.int(14,18), R.int(16,20)];
+    d2.sort(function(a,b){return a-b;});
+    var soma2 = d2.reduce(function(s,v){return s+v;},0);
+    var med2 = d2[2];
+    var media2 = Math.round(soma2/5*10)/10;
+    ex += _dinamicoRow(2, 'As notas de '+d2.length+' testes foram: '+d2.join(', ')+'.<br>a) Ordena os valores por ordem crescente.<br>b) Calcula a mediana.<br>c) Calcula a média.');
+    sol += '<div class="ex"><strong>2.</strong> a) '+d2.join(', ')+' (já ordenados)<br>b) Mediana = '+d2.length+'.º/2 arred. = valor central = <strong>'+med2+'</strong><br>c) Média = ('+d2.join('+')+') ÷ 5 = '+soma2+' ÷ 5 = <strong>'+media2+'</strong></div>';
+
+    ex += '<h2>Grupo 3 — Probabilidade Simples</h2>';
+    var tot3 = R.int(6,15), verm3 = R.int(1,Math.floor(tot3/2));
+    var azul3 = R.int(1, tot3-verm3-1), verde3 = tot3-verm3-azul3;
+    ex += _dinamicoRow(3, 'Uma urna tem '+tot3+' bolas: '+verm3+' vermelhas, '+azul3+' azuis e '+verde3+' verdes. Retira-se uma bola ao acaso.<br>a) Qual é a probabilidade de sair vermelha?<br>b) Qual é a probabilidade de NÃO sair vermelha?');
+    sol += '<div class="ex"><strong>3.</strong> a) P(vermelha) = '+verm3+'/'+tot3+' = <strong>'+(Math.round(verm3/tot3*1000)/10)+'%</strong><br>b) P(não vermelha) = 1 − '+verm3+'/'+tot3+' = <strong>'+(tot3-verm3)+'/'+tot3+'</strong></div>';
+
+  } else if (dif === 'medio') {
+    ex += '<h2>Grupo 1 — Tabela de Frequências</h2>';
+    var n1 = R.int(25,40);
+    var fa1 = R.int(5, Math.floor(n1*0.3));
+    var fa2 = R.int(5, Math.floor(n1*0.3));
+    var fa3 = R.int(5, Math.floor(n1*0.3));
+    var fa4 = n1 - fa1 - fa2 - fa3;
+    if (fa4 < 1) { fa4 = 1; fa3 = n1 - fa1 - fa2 - fa4; }
+    var fr1 = Math.round(fa1/n1*100), fr2 = Math.round(fa2/n1*100), fr3 = Math.round(fa3/n1*100), fr4 = 100-fr1-fr2-fr3;
+    ex += _dinamicoRow(1, 'Numa turma de '+n1+' alunos, o meio de transporte usado é:<br>A pé: '+fa1+' alunos &nbsp; Autocarro: '+fa2+' &nbsp; Bicicleta: '+fa3+' &nbsp; Carro: '+fa4+'<br>a) Completa a frequência relativa (%) de cada categoria.<br>b) Qual é o meio mais usado? &nbsp; c) Soma total das frequências relativas.');
+    sol += '<div class="ex"><strong>1.</strong> a) A pé: '+fr1+'% &nbsp; Autocarro: '+fr2+'% &nbsp; Bicicleta: '+fr3+'% &nbsp; Carro: '+fr4+'%<br>b) Meio mais usado: <strong>'+(fa1>=fa2&&fa1>=fa3&&fa1>=fa4?'A pé':fa2>=fa3&&fa2>=fa4?'Autocarro':fa3>=fa4?'Bicicleta':'Carro')+'</strong><br>c) '+fr1+'+'+fr2+'+'+fr3+'+'+fr4+' = <strong>100%</strong></div>';
+
+    ex += '<h2>Grupo 2 — Mediana com n Par e Média</h2>';
+    var d2 = [R.int(3,6), R.int(6,9), R.int(9,12), R.int(12,15), R.int(13,17), R.int(16,20)];
+    d2.sort(function(a,b){return a-b;});
+    var soma2 = d2.reduce(function(s,v){return s+v;},0);
+    var med2 = Math.round((d2[2]+d2[3])/2*10)/10;
+    var media2 = Math.round(soma2/6*10)/10;
+    ex += _dinamicoRow(2, 'Os resultados de 6 alunos num teste foram: '+d2.join(', ')+'.<br>a) Ordena os valores.<br>b) Calcula a mediana (n=6, par).<br>c) Calcula a média.');
+    sol += '<div class="ex"><strong>2.</strong> a) '+d2.join(', ')+' (já ordenados)<br>b) Mediana = ('+d2[2]+' + '+d2[3]+') ÷ 2 = <strong>'+med2+'</strong><br>c) Média = '+soma2+' ÷ 6 = <strong>'+media2+'</strong></div>';
+
+    ex += '<h2>Grupo 3 — Probabilidade com Condição</h2>';
+    var tot3 = R.int(10,20), bB3 = R.int(3,7), bP3 = R.int(2,6);
+    var bV3 = tot3 - bB3 - bP3;
+    if (bV3 < 1) { bV3 = 1; bP3 = tot3 - bB3 - bV3; }
+    ex += _dinamicoRow(3, 'Um saco tem '+tot3+' bolas: '+bB3+' brancas, '+bP3+' pretas e '+bV3+' verdes.<br>a) P(branca) = ? &nbsp; b) P(preta ou verde) = ? &nbsp; c) São equiprováveis branca e preta?');
+    sol += '<div class="ex"><strong>3.</strong> a) P(branca) = '+bB3+'/'+tot3+' = <strong>'+(Math.round(bB3/tot3*100))+'%</strong><br>b) P(preta ou verde) = ('+bP3+'+'+bV3+')/'+tot3+' = <strong>'+(bP3+bV3)+'/'+tot3+'</strong><br>c) <strong>'+(bB3===bP3?'Sim, P(branca) = P(preta)':'Não — '+bB3+'/'+tot3+' ≠ '+bP3+'/'+tot3)+'</strong></div>';
+
+  } else {
+    ex += '<h2>Grupo 1 — Frequências e Gráfico Circular</h2>';
+    var cats = ['Futebol','Basquetebol','Natação','Atletismo'];
+    var n1 = R.int(30,50);
+    var f1 = R.int(8,15), f2 = R.int(6,12), f3 = R.int(5,10);
+    var f4 = n1 - f1 - f2 - f3;
+    if (f4 < 2) { f4 = 2; f3 = n1-f1-f2-f4; }
+    var ang1 = Math.round(f1/n1*360), ang2 = Math.round(f2/n1*360), ang3 = Math.round(f3/n1*360), ang4 = 360-ang1-ang2-ang3;
+    ex += _dinamicoRow(1, 'Num inquérito a '+n1+' alunos sobre desporto favorito:<br>'+cats[0]+': '+f1+' &nbsp; '+cats[1]+': '+f2+' &nbsp; '+cats[2]+': '+f3+' &nbsp; '+cats[3]+': '+f4+'<br>a) Calcula a frequência relativa (%) de cada desporto.<br>b) Calcula o ângulo central de cada setor num gráfico circular.<br>c) Qual é a moda?');
+    sol += '<div class="ex"><strong>1.</strong> a) '+cats[0]+': '+Math.round(f1/n1*100)+'% &nbsp; '+cats[1]+': '+Math.round(f2/n1*100)+'% &nbsp; '+cats[2]+': '+Math.round(f3/n1*100)+'% &nbsp; '+cats[3]+': '+Math.round(f4/n1*100)+'%<br>b) Ângulos: '+ang1+'° &nbsp; '+ang2+'° &nbsp; '+ang3+'° &nbsp; '+ang4+'°<br>c) Moda: <strong>'+(f1>=f2&&f1>=f3&&f1>=f4?cats[0]:f2>=f3&&f2>=f4?cats[1]:f3>=f4?cats[2]:cats[3])+'</strong></div>';
+
+    ex += '<h2>Grupo 2 — Diagrama Caule-e-Folhas e Mediana</h2>';
+    var c3 = R.int(3,5), c4 = R.int(4,6);
+    var folhas3 = [], folhas4 = [];
+    for (var i=0; i<c3; i++) folhas3.push(R.int(0,9));
+    for (var i=0; i<c4; i++) folhas4.push(R.int(0,9));
+    folhas3.sort(function(a,b){return a-b;});
+    folhas4.sort(function(a,b){return a-b;});
+    var todos = folhas3.map(function(f){return 30+f;}).concat(folhas4.map(function(f){return 40+f;}));
+    todos.sort(function(a,b){return a-b;});
+    var nT = todos.length;
+    var med2 = nT%2===1 ? todos[Math.floor(nT/2)] : Math.round((todos[nT/2-1]+todos[nT/2])/2*10)/10;
+    var soma2 = todos.reduce(function(s,v){return s+v;},0);
+    ex += _dinamicoRow(2, 'O diagrama caule-e-folhas mostra as idades de '+nT+' participantes:<br>Caule 3 | Folhas: '+folhas3.join(' ')+' (representa 3'+folhas3[0]+', 3'+folhas3[1]+', …)<br>Caule 4 | Folhas: '+folhas4.join(' ')+'<br>a) Lista todos os valores por ordem crescente.<br>b) Calcula a mediana.<br>c) Calcula a média.');
+    sol += '<div class="ex"><strong>2.</strong> a) '+todos.join(', ')+' ('+nT+' valores)<br>b) Mediana'+(nT%2===1?' = '+nT+'.º valor':'=('+nT/2+'.º+'+((nT/2)+1)+'.º)/2')+' = <strong>'+med2+'</strong><br>c) Média = '+soma2+'/'+nT+' = <strong>'+(Math.round(soma2/nT*10)/10)+'</strong></div>';
+
+    ex += '<h2>Grupo 3 — Probabilidade em Experiências Compostas</h2>';
+    var nr = R.int(2,4), nb = R.int(2,4);
+    var tot3 = nr + nb;
+    ex += _dinamicoRow(3, 'Um saco tem '+nr+' bolas vermelhas e '+nb+' azuis ('+tot3+' no total). Retiram-se 2 bolas successivamente SEM reposição.<br>a) P(1.ª vermelha)?<br>b) P(2.ª azul | 1.ª vermelha)?<br>c) P(1.ª vermelha E 2.ª azul)?');
+    var pA = nr+'/'+tot3;
+    var pB = nb+'/'+(tot3-1);
+    var pAeB_num = nr*nb, pAeB_den = tot3*(tot3-1);
+    var g = function(a,b){return b===0?a:g(b,a%b);}; var gc = g(pAeB_num,pAeB_den);
+    sol += '<div class="ex"><strong>3.</strong> a) P(vermelha) = <strong>'+pA+'</strong><br>b) P(azul | vermelha) = <strong>'+pB+'</strong> (restam '+(tot3-1)+' bolas, '+nb+' azuis)<br>c) P(V e A) = '+pA+' × '+pB+' = '+(pAeB_num)+'/'+(pAeB_den)+' = <strong>'+(pAeB_num/gc)+'/'+(pAeB_den/gc)+'</strong></div>';
+  }
+
   return { ex: ex, sol: sol };
 }
 

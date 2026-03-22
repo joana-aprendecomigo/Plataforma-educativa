@@ -510,15 +510,29 @@ function resetProg5(){
 
 // ── Topic grid data ──
 var _c5Teoria = "showSection5('teoria5',document.querySelector('#tabs5 .tab-btn:nth-child(2)'))";
+// ── Subtema support ─────────────────────────────────────────────────────────
+var _cap5SubtemaTitulos = {
+  '1': 'Termo Geral e Razão',
+  '2': 'Problemas com Sequências'
+};
+
+
+function abrirSubtema5(tema) {
+  _stAnswered = {}; _stScore = { correct: 0, total: 0 };
+  var titulo = _cap5SubtemaTitulos[String(tema)] || 'Prática';
+  var exs = _bancoToSubtemaExs(BANCO5, tema);
+  window._stContext = { titulo: titulo, gerador: function(){ return _bancoToSubtemaExs(BANCO5, tema); } };
+  criarModalSubtema(titulo, exs);
+}
+
 var _cap5Topics = [
   {id:'tr5-1', num:'01', title:'Sequências — Termo Geral', open:true, subs:[
-    {onclick:_c5Teoria, label:'Definição de sequência', icon:'ph-book-open-text'},
-    {onclick:_c5Teoria, label:'Termo geral aₙ', icon:'ph-book-open-text'},
-    {onclick:_c5Teoria, label:'Sequência aritmética e razão', icon:'ph-book-open-text'}
+    {onclick:_c5Teoria, label:'Teoria: Definição e Termo Geral', icon:'ph-book-open-text'},
+    {onclick:"abrirSubtema5('1')", label:'Praticar: Termo Geral e Razão', icon:'ph-pencil'}
   ]},
-  {id:'tr5-2', num:'02', title:'Resolução de Problemas com o Termo Geral', subs:[
-    {onclick:_c5Teoria, label:'Figuras e padrões', icon:'ph-book-open-text'},
-    {onclick:_c5Teoria, label:'Problemas do quotidiano', icon:'ph-book-open-text'}
+  {id:'tr5-2', num:'02', title:'Resolução de Problemas', subs:[
+    {onclick:_c5Teoria, label:'Teoria: Figuras e Padrões', icon:'ph-book-open-text'},
+    {onclick:"abrirSubtema5('2')", label:'Praticar: Problemas com Sequências', icon:'ph-pencil'}
   ]}
 ];
 (function(){

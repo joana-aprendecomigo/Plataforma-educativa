@@ -102,6 +102,30 @@ var BANCO8={
     {en:'Lança-se um dado (1-6) e retira-se bola de saco com 3 vermelhas e 1 azul. P(par e bola vermelha) = ?',opts:['A) 1/2','B) 3/8','C) 1/4','D) 3/4'],c:'B',fb:'Experiências independentes → multiplicar.\nP(número par no dado) = 3/6 = 1/2 (os pares são: 2, 4, 6).\nP(bola vermelha) = 3/4 (3 vermelhas em 4 bolas).\nP(par e vermelha) = (1/2) × (3/4) = 3/8. ✓'},
     {en:'★ O Pedro tem um saco com 2 bolas pretas (P(preta)=0,4). Extrai 2 bolas sucessivamente sem reposição. P(as duas brancas) = ?',opts:['A) 6/20','B) 9/20','C) 3/10','D) 1/2'],c:'C',fb:'Passo 1 — descobrir a composição do saco:\nP(preta) = 0,4 = 2/5 → o saco tem 5 bolas no total, das quais 2 são pretas.\nBrancas = 5 − 2 = 3 bolas brancas.\nPasso 2 — P(branca, branca) sem reposição:\nP(branca na 1.ª) = 3/5.\nP(branca na 2.ª | branca na 1.ª) = 2/4 = 1/2.\nP(as duas brancas) = (3/5) × (1/2) = 3/10. ✓'}
   ],
+  relampago:[
+    {q:'A frequência relativa de 4 ocorrências em 20 é:',opts:['4','20%','40%','0,04'],c:1,fb:'fri = 4/20 = 0,2 = 20%.'},
+    {q:'Dados: 3, 5, 5, 7, 8. A moda é:',opts:['5','6','7','8'],c:0,fb:'O 5 aparece 2 vezes, todos os outros 1 vez. Moda = 5.'},
+    {q:'Dados: 2, 4, 6, 8. A mediana é:',opts:['4','5','6','8'],c:1,fb:'n = 4 (par) → mediana = (4+6)/2 = 5.'},
+    {q:'P(cara) ao lançar uma moeda justa é:',opts:['1/4','1/3','1/2','1'],c:2,fb:'Há 2 resultados igualmente prováveis. P = 1/2.'},
+    {q:'Dados: 1, 2, 3, 4, 5. A média é:',opts:['2','2,5','3','3,5'],c:2,fb:'(1+2+3+4+5)/5 = 15/5 = 3.'},
+    {q:'P(número par ao lançar dado de 6 faces) = ?',opts:['1/6','1/3','1/2','2/3'],c:2,fb:'Pares: 2, 4, 6 → 3 casos. P = 3/6 = 1/2.'},
+    {q:'Num saco há 3 bolas brancas e 7 pretas. P(branca) = ?',opts:['3/7','7/10','3/10','1/3'],c:2,fb:'3 brancas em 10 total. P = 3/10.'},
+    {q:'Dados ordenados: 1, 3, 5, 7, 9. A mediana é:',opts:['3','5','7','4'],c:1,fb:'n = 5 (ímpar) → posição central = 3.ª → valor 5.'},
+    {q:'A soma das frequências relativas de todos os eventos é:',opts:['0','0,5','1','100'],c:2,fb:'As frequências relativas somam sempre 1 (ou 100%).'},
+    {q:'Lança-se um dado. P(maior que 4) = ?',opts:['1/6','1/3','1/2','2/3'],c:1,fb:'Maior que 4: {5, 6} → 2 casos. P = 2/6 = 1/3.'}
+  ],
+  vf:[
+    {q:'A mediana de {1, 2, 3, 4} é 2,5.',c:true,fb:'n = 4 → mediana = (2+3)/2 = 2,5. Verdadeiro!'},
+    {q:'A probabilidade de um evento impossível é 1.',c:false,fb:'Evento impossível → P = 0. Evento certo → P = 1. Falso!'},
+    {q:'A moda é o valor mais frequente num conjunto de dados.',c:true,fb:'A moda é o valor (ou valores) que aparece(m) mais vezes. Verdadeiro!'},
+    {q:'A soma de todas as frequências absolutas é igual à dimensão da amostra.',c:true,fb:'∑fi = n (total de dados). Verdadeiro!'},
+    {q:'P(A) = 0,7. P(A não acontecer) = 0,3.',c:true,fb:'P(complementar) = 1 − P(A) = 1 − 0,7 = 0,3. Verdadeiro!'},
+    {q:'A média aritmética é sempre igual à mediana.',c:false,fb:'Só em distribuições simétricas. Em dados assimétricos podem ser diferentes. Falso!'},
+    {q:'A frequência relativa pode ser maior que 1.',c:false,fb:'fri = fi/n ≤ 1. Não pode ser maior que 1. Falso!'},
+    {q:'Lançar dois dados é uma experiência composta.',c:true,fb:'Uma experiência composta é formada por duas ou mais experiências simples. Verdadeiro!'},
+    {q:'No diagrama caule-e-folhas, as folhas são as dezenas.',c:false,fb:'O caule representa as dezenas (ou centenas) e as FOLHAS representam as unidades. Falso!'},
+    {q:'A probabilidade de um evento certo é 1.',c:true,fb:'Um evento certo sempre acontece → P = 1. Verdadeiro!'}
+  ],
   flashcards:[
     {tag:'Definição',q:'O que é a população e a amostra em estatística?',a:'População: conjunto de todos os elementos em estudo.\nAmostra: subconjunto representativo da população, usado quando é impossível estudar toda a população.\nDimensão da amostra: número de elementos da amostra.'},
     {tag:'Definição',q:'Como se classificam as variáveis estatísticas?',a:'Qualitativas: características não numéricas (cor favorita, nacionalidade, meio de transporte).\nQuantitativas discretas: valores inteiros (número de filhos, golos).\nQuantitativas contínuas: qualquer valor num intervalo (altura, peso, temperatura, tempo).'},
@@ -319,12 +343,39 @@ function buildEx8(tema,dif){
 }
 
 // ── Topic grid ─────────────────────────────────────────────────────────────
+// ── Subtema support ─────────────────────────────────────────────────────────
+var _cap8SubtemaTitulos = {
+  '1': 'População, Amostra e Variáveis',
+  '2': 'Medidas de Tendência Central',
+  '3': 'Representações Gráficas',
+  '4': 'Probabilidade',
+  '5': 'Experiências Compostas'
+};
+
+function abrirSubtema8(tema) {
+  _stAnswered = {}; _stScore = { correct: 0, total: 0 };
+  var titulo = _cap8SubtemaTitulos[String(tema)] || 'Prática';
+  var exs = _bancoToSubtemaExs(BANCO8, tema);
+  window._stContext = { titulo: titulo, gerador: function(){ return _bancoToSubtemaExs(BANCO8, tema); } };
+  criarModalSubtema(titulo, exs);
+}
+
 var _cap8Topics=[
-  {id:'t8-1',icon:'ph-users',title:'População e Amostra',desc:'Variáveis qualitativas e quantitativas'},
-  {id:'t8-2',icon:'ph-chart-bar',title:'Mediana e Medidas',desc:'Média, mediana, moda e caule-e-folhas'},
-  {id:'t8-3',icon:'ph-chart-pie',title:'Representações Gráficas',desc:'Histograma, gráfico circular e poligonal'},
-  {id:'t8-4',icon:'ph-dice-five',title:'Probabilidade',desc:'Espaço amostral e cálculo de probabilidades'},
-  {id:'t8-5',icon:'ph-git-branch',title:'Experiências Compostas',desc:'Diagrama de árvore e tabela de dupla entrada'}
+  {id:'t8-1',icon:'ph-users',title:'População e Amostra',desc:'Variáveis qualitativas e quantitativas',subs:[
+    {onclick:"abrirSubtema8('1')",label:'Praticar: População, Amostra e Variáveis',icon:'ph-pencil'}
+  ]},
+  {id:'t8-2',icon:'ph-chart-bar',title:'Medidas de Tendência Central',desc:'Média, mediana, moda e caule-e-folhas',subs:[
+    {onclick:"abrirSubtema8('2')",label:'Praticar: Média, Mediana e Moda',icon:'ph-pencil'}
+  ]},
+  {id:'t8-3',icon:'ph-chart-pie',title:'Representações Gráficas',desc:'Histograma, gráfico circular e poligonal',subs:[
+    {onclick:"abrirSubtema8('3')",label:'Praticar: Representações Gráficas',icon:'ph-pencil'}
+  ]},
+  {id:'t8-4',icon:'ph-dice-five',title:'Probabilidade',desc:'Espaço amostral e cálculo de probabilidades',subs:[
+    {onclick:"abrirSubtema8('4')",label:'Praticar: Probabilidade',icon:'ph-pencil'}
+  ]},
+  {id:'t8-5',icon:'ph-git-branch',title:'Experiências Compostas',desc:'Diagrama de árvore e tabela de dupla entrada',subs:[
+    {onclick:"abrirSubtema8('5')",label:'Praticar: Experiências Compostas',icon:'ph-pencil'}
+  ]}
 ];
 (function(){
   var el=document.getElementById('cap8-topics-grid');

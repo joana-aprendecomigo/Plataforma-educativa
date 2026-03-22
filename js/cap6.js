@@ -107,6 +107,30 @@ var BANCO6={
     {en:'Uma mola tem f(x) = (5/3)x. Que massa (em kg) provoca um alongamento de 10 cm?',opts:['A) 4','B) 5','C) 6','D) 7'],c:'C',fb:'(5/3)x = 10 → x = 10 × (3/5) = 6 kg.'},
     {en:'Uma função de proporcionalidade direta tem k = 0,52. Se f(x) = 13, qual é x?',opts:['A) 20','B) 25','C) 30','D) 35'],c:'B',fb:'0,52x = 13 → x = 13/0,52 = 25.'}
   ],
+  relampago:[
+    {q:'O ponto A(−3, 2) está no quadrante:',opts:['1.º','2.º','3.º','4.º'],c:1,fb:'x<0 e y>0 → 2.º quadrante.'},
+    {q:'Se f(x) = 3x e f(a) = 12, então a =',opts:['3','4','6','36'],c:1,fb:'3a = 12 → a = 4.'},
+    {q:'Uma função de proporcionalidade direta com k = −2 é:',opts:['f(x)=2x','f(x)=x−2','f(x)=−2x','f(x)=−2'],c:2,fb:'f(x) = kx = −2x.'},
+    {q:'O gráfico de f(x) = 4x passa por:',opts:['(1,3)','(2,8)','(3,9)','(4,20)'],c:1,fb:'f(2) = 4×2 = 8. O ponto é (2,8).'},
+    {q:'Qual o contradomínio de f: {1,2,3} → f(x) = x²?',opts:['{1,2,3}','{1,4,9}','{1,4,6}','{2,4,6}'],c:1,fb:'f(1)=1, f(2)=4, f(3)=9 → {1,4,9}.'},
+    {q:'O eixo dos xx tem ordenada:',opts:['1','0','−1','qualquer'],c:1,fb:'Em todos os pontos do eixo Ox, y = 0.'},
+    {q:'Se A(3, y) está no eixo Oy, então y =',opts:['3','0','−3','impossível'],c:3,fb:'No eixo Oy, a abcissa é 0. Como x = 3 ≠ 0, o ponto NÃO está no eixo Oy → impossível.'},
+    {q:'f(x) = kx e f(5) = 15. A constante k é:',opts:['1','2','3','5'],c:2,fb:'k = f(5)/5 = 15/5 = 3.'},
+    {q:'Quantos quadrantes tem o referencial cartesiano?',opts:['2','3','4','8'],c:2,fb:'Os dois eixos dividem o plano em 4 quadrantes.'},
+    {q:'A imagem de x = −2 por f(x) = −3x é:',opts:['−6','6','−1','1'],c:1,fb:'f(−2) = −3×(−2) = 6.'}
+  ],
+  vf:[
+    {q:'O ponto (0, 5) pertence ao eixo Oy.',c:true,fb:'No eixo Oy a abcissa é 0. O ponto tem x = 0. Verdadeiro!'},
+    {q:'Numa função de proporcionalidade direta, o gráfico pode não passar pela origem.',c:false,fb:'f(x) = kx → f(0) = 0. O gráfico SEMPRE passa pela origem. Falso!'},
+    {q:'A correspondência onde um elemento tem duas imagens é uma função.',c:false,fb:'Numa função cada objeto tem EXATAMENTE uma imagem. Falso!'},
+    {q:'O 3.º quadrante tem x < 0 e y < 0.',c:true,fb:'No 3.º quadrante ambas as coordenadas são negativas. Verdadeiro!'},
+    {q:'Se f(x) = kx e k > 0, a função é crescente.',c:true,fb:'Com k > 0, quanto maior x maior f(x). A função é crescente. Verdadeiro!'},
+    {q:'O domínio de uma função é o conjunto das imagens.',c:false,fb:'O domínio é o conjunto dos objetos. O contradomínio é o conjunto das imagens. Falso!'},
+    {q:'f(x) = 0,5x e f(10) = 5.',c:true,fb:'f(10) = 0,5×10 = 5. Verdadeiro!'},
+    {q:'Num referencial cartesiano, o eixo Ox é vertical.',c:false,fb:'O eixo Ox é HORIZONTAL. O eixo Oy é vertical. Falso!'},
+    {q:'Uma reta que passa pela origem representa sempre uma proporcionalidade direta.',c:true,fb:'f(x) = kx → reta pela origem. Verdadeiro!'},
+    {q:'A abcissa do ponto B(−4, 7) é 7.',c:false,fb:'A abcissa é a coordenada x. B tem abcissa −4 e ordenada 7. Falso!'}
+  ],
   flashcards:[
     {tag:'Definição',q:'O que é um referencial cartesiano?',a:'Sistema de dois eixos perpendiculares (Ox e Oy) que se cruzam na origem O. Permite localizar pontos no plano com coordenadas (x, y) = (abcissa, ordenada).'},
     {tag:'Definição',q:'O que são a abcissa e a ordenada de um ponto P(x, y)?',a:'Abcissa = coordenada horizontal (x). Ordenada = coordenada vertical (y).\nEixo Ox: ordenada = 0. Eixo Oy: abcissa = 0.'},
@@ -331,13 +355,43 @@ function buildEx6(tema,dif){
 }
 
 // ── Topic grid ─────────────────────────────────────────────────────────────
+// ── Subtema support ─────────────────────────────────────────────────────────
+var _cap6SubtemaTitulos = {
+  '1': 'Referencial Cartesiano',
+  '2': 'Conceito de Função',
+  '3': 'Representação Gráfica',
+  '4': 'Formas de Representar',
+  '5': 'Proporcionalidade Direta',
+  '6': 'Gráficos em Contexto Real'
+};
+
+function abrirSubtema6(tema) {
+  _stAnswered = {}; _stScore = { correct: 0, total: 0 };
+  var titulo = _cap6SubtemaTitulos[String(tema)] || 'Prática';
+  var exs = _bancoToSubtemaExs(BANCO6, tema);
+  window._stContext = { titulo: titulo, gerador: function(){ return _bancoToSubtemaExs(BANCO6, tema); } };
+  criarModalSubtema(titulo, exs);
+}
+
 var _cap6Topics=[
-  {id:'t6-1',icon:'ph-map-pin',title:'Referencial Cartesiano',desc:'Abcissa, ordenada, quadrantes e reflexões axiais'},
-  {id:'t6-2',icon:'ph-swap',title:'Conceito de Função',desc:'Domínio, contradomínio e conjunto de chegada'},
-  {id:'t6-3',icon:'ph-chart-line',title:'Representação Gráfica',desc:'Ler e interpretar gráficos de funções'},
-  {id:'t6-4',icon:'ph-arrows-horizontal',title:'Formas de Representar',desc:'Tabela, diagrama de setas e expressão algébrica'},
-  {id:'t6-5',icon:'ph-line-segment',title:'Proporcionalidade Direta',desc:'f(x) = kx — constante e gráfico pela origem'},
-  {id:'t6-6',icon:'ph-chart-bar',title:'Gráficos em Contexto Real',desc:'Interpretar funções em situações reais'}
+  {id:'t6-1',icon:'ph-map-pin',title:'Referencial Cartesiano',desc:'Abcissa, ordenada, quadrantes e reflexões axiais',subs:[
+    {onclick:"abrirSubtema6('1')",label:'Praticar: Referencial Cartesiano',icon:'ph-pencil'}
+  ]},
+  {id:'t6-2',icon:'ph-swap',title:'Conceito de Função',desc:'Domínio, contradomínio e conjunto de chegada',subs:[
+    {onclick:"abrirSubtema6('2')",label:'Praticar: Conceito de Função',icon:'ph-pencil'}
+  ]},
+  {id:'t6-3',icon:'ph-chart-line',title:'Representação Gráfica',desc:'Ler e interpretar gráficos de funções',subs:[
+    {onclick:"abrirSubtema6('3')",label:'Praticar: Representação Gráfica',icon:'ph-pencil'}
+  ]},
+  {id:'t6-4',icon:'ph-arrows-horizontal',title:'Formas de Representar',desc:'Tabela, diagrama de setas e expressão algébrica',subs:[
+    {onclick:"abrirSubtema6('4')",label:'Praticar: Formas de Representar',icon:'ph-pencil'}
+  ]},
+  {id:'t6-5',icon:'ph-line-segment',title:'Proporcionalidade Direta',desc:'f(x) = kx — constante e gráfico pela origem',subs:[
+    {onclick:"abrirSubtema6('5')",label:'Praticar: Proporcionalidade Direta',icon:'ph-pencil'}
+  ]},
+  {id:'t6-6',icon:'ph-chart-bar',title:'Gráficos em Contexto Real',desc:'Interpretar funções em situações reais',subs:[
+    {onclick:"abrirSubtema6('6')",label:'Praticar: Gráficos em Contexto',icon:'ph-pencil'}
+  ]}
 ];
 (function(){
   var el=document.getElementById('cap6-topics-grid');
