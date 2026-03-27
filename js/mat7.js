@@ -610,7 +610,7 @@ function mat7SwitchTab(tab, btn) {
   if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
   // Update document title
   var _tabTitles = { resumo:'Resumo', exercicios:'Exercícios', testes:'Testes',
-    flashcards:'Flashcards', jogos:'Jogos', exame:'Exame', progresso:'Progresso', quiz:'Modo Quiz' };
+    flashcards:'Flashcards', jogos:'Jogos', exame:'Exame', progresso:'Progresso', quiz:'Modo Quiz', provas:'Provas Nacionais' };
   if (_tabTitles[tab]) document.title = 'Mat. 7.º — ' + _tabTitles[tab] + ' · 3ponto14';
   // Auto-render content
   if (tab === 'resumo') mat7RenderResumoInline();
@@ -619,6 +619,7 @@ function mat7SwitchTab(tab, btn) {
   else if (tab === 'exercicios') {
     mat7LoadInline('exercicios');
   }
+  else if (tab === 'provas') { if (typeof mat7LoadProvas === 'function') mat7LoadProvas(); }
   else if (_mat7SecMap[tab]) mat7LoadInline(tab);
 }
 
