@@ -1,0 +1,179 @@
+{
+  "chapter": 1,
+  "name": "Números Inteiros",
+  "prefix": "cap1",
+  "storageKey": "edupt_cap1",
+  "flashcardsStorageKey": "edupt_fc1",
+
+  "temas": [
+    "Tema 1 — Conjunto dos Inteiros",
+    "Tema 2 — Valor Absoluto e Simétrico",
+    "Tema 3 — Adição de Inteiros",
+    "Tema 4 — Subtração e Adição Algébrica",
+    "Tema 5 — Expressões com Parênteses"
+  ],
+
+  "temaNomes": {
+    "1": "Inteiros (ℤ)",
+    "2": "Valor Absoluto e Simétrico",
+    "3": "Adição de Inteiros",
+    "4": "Subtração e Adição Algébrica",
+    "5": "Expressões com Parênteses"
+  },
+
+  "subtemaTitulos": {
+    "1:inteiros": "Conjunto dos Números Inteiros",
+    "1:representacao": "Representar Situações com Inteiros",
+    "1:ordenacao": "Ordenar Inteiros na Reta",
+    "2:absoluto": "Valor Absoluto |a|",
+    "2:simetrico": "Simétrico de um Número",
+    "2:comparar": "Comparar usando Valor Absoluto",
+    "3:mesmo_sinal": "Adição — Mesmo Sinal",
+    "3:sinais_dif": "Adição — Sinais Diferentes",
+    "3:contexto": "Adição — Problemas de Contexto",
+    "4:subtracao": "Subtração de Inteiros",
+    "4:adicao_alg": "Adição Algébrica",
+    "4:simplificar": "Simplificar Expressões",
+    "5:retirar_par": "Retirar Parênteses",
+    "5:valor_num": "Valor Numérico",
+    "5:colchetes": "Colchetes e Chavetas"
+  },
+
+  "flashcards": [
+    { "tag": "Definição", "q": "O que são os números inteiros (ℤ)?", "a": "ℤ = {…, −3, −2, −1, 0, 1, 2, 3, …} — todos os números inteiros positivos, negativos e o zero." },
+    { "tag": "Hierarquia", "q": "Qual a relação entre ℕ e ℤ?", "a": "ℕ ⊂ ℤ. Todos os naturais são inteiros, mas nem todos os inteiros são naturais (ex: −5 ∈ ℤ mas −5 ∉ ℕ)." },
+    { "tag": "Definição", "q": "O que é ℤ⁺ e ℤ⁻?", "a": "ℤ⁺ = {1, 2, 3, …} — inteiros positivos. ℤ⁻ = {…, −3, −2, −1} — inteiros negativos. O 0 não pertence a nenhum deles." },
+    { "tag": "Definição", "q": "O que é o valor absoluto |a|?", "a": "|a| é a distância de a ao zero na reta numérica. |a| ≥ 0 sempre. Exemplo: |−5| = 5, |3| = 3." },
+    { "tag": "Regra", "q": "Como calcular |a| para a < 0?", "a": "Se a < 0, então |a| = −a (inverte o sinal). Exemplo: |−7| = −(−7) = 7." },
+    { "tag": "Definição", "q": "O que é o simétrico de a?", "a": "O simétrico de a é −a (sinal oposto). a + (−a) = 0. Exemplo: simétrico de 5 é −5; simétrico de −3 é 3." },
+    { "tag": "Regra", "q": "Adição: mesmos sinais", "a": "Somam-se os valores absolutos e conserva-se o sinal comum. Ex: (−3) + (−4) = −7." },
+    { "tag": "Regra", "q": "Adição: sinais diferentes", "a": "Subtrai-se o menor valor absoluto do maior e usa-se o sinal do maior. Ex: (−5) + 3 = −2." },
+    { "tag": "Regra", "q": "Como subtrair inteiros?", "a": "a − b = a + (−b). Troca-se a subtração por adição do simétrico. Ex: 4 − (−3) = 4 + 3 = 7." },
+    { "tag": "Regra", "q": "Regra do sinal: +(+a)", "a": "+(+a) = +a. O sinal mantém-se. Ex: +(+5) = 5." },
+    { "tag": "Regra", "q": "Regra do sinal: −(−a)", "a": "−(−a) = +a. Dois sinais iguais dão +. Ex: −(−5) = +5." },
+    { "tag": "Regra", "q": "Regra do sinal: −(+a)", "a": "−(+a) = −a. Dois sinais diferentes dão −. Ex: −(+5) = −5." },
+    { "tag": "Regra", "q": "Como retirar parênteses precedidos de −?", "a": "Invertem-se todos os sinais dentro. Ex: −(3 − 5 + 2) = −3 + 5 − 2." },
+    { "tag": "Propriedade", "q": "Qual a ordem para retirar parênteses aninhados?", "a": "Sempre de dentro para fora: primeiro ( ), depois [ ], por fim { }." },
+    { "tag": "Exemplo", "q": "Calcula: −[5 − (3 − 7)]", "a": "= −[5 − (−4)] = −[5 + 4] = −[9] = −9" },
+    { "tag": "Exemplo", "q": "Calcula: (−8) + (+3)", "a": "= −8 + 3 = −5 (sinais diferentes, |−8| > |3|, usa-se −)" },
+    { "tag": "Exemplo", "q": "Calcula: (−4) − (−6)", "a": "= (−4) + 6 = +2" },
+    { "tag": "Exemplo", "q": "Ordena por ordem crescente: 3, −5, 0, −2, 7", "a": "−5 < −2 < 0 < 3 < 7" },
+    { "tag": "Exemplo", "q": "Calcula: |−9| − |4|", "a": "= 9 − 4 = 5" },
+    { "tag": "Síntese", "q": "Quando é que a + b < a?", "a": "Quando b < 0 (b é negativo). Somar um número negativo diminui o resultado." }
+  ],
+
+  "questoesPlans": {
+    "facil": {
+      "temas": ["1","1","1","1","2","2","2","2","3","3","3","3","4","4","4","4","5","5","5","5"],
+      "tipos": ["vf","mc","mc","fill","fill","mc","vf","fill","mc","mc","fill","vf","mc","fill","mc","vf","mc","fill","mc","mc"]
+    },
+    "medio": {
+      "temas": ["1","1","2","2","3","3","3","4","4","4","5","5","5","3","4","5","2","1","4","3"],
+      "tipos": ["vf","mc","fill","mc","fill","mc","vf","fill","mc","vf","mc","fill","mc","mc","fill","mc","fill","mc","contexto","contexto"]
+    },
+    "dificil": {
+      "temas": ["1","2","2","3","3","3","4","4","4","5","5","5","3","4","5","4","3","5","4","3"],
+      "tipos": ["mc","fill","mc","fill","contexto","mc","fill","contexto","mc","fill","mc","contexto","fill","fill","mc","mc","mc","fill","mc","fill"]
+    }
+  },
+
+  "miniPlans": {
+    "geral": [
+      { "t": "1", "tipo": "vf" },
+      { "t": "1", "tipo": "mc" },
+      { "t": "1", "tipo": "fill" },
+      { "t": "2", "tipo": "fill" },
+      { "t": "2", "tipo": "mc" },
+      { "t": "2", "tipo": "vf" },
+      { "t": "3", "tipo": "fill" },
+      { "t": "3", "tipo": "mc" },
+      { "t": "3", "tipo": "vf" },
+      { "t": "4", "tipo": "fill" },
+      { "t": "4", "tipo": "mc" },
+      { "t": "5", "tipo": "mc" },
+      { "t": "5", "tipo": "fill" }
+    ],
+    "porTemaTipos": ["mc","mc","fill","vf","mc","fill","mc","mc","vf","fill","mc","mc","vf","mc"]
+  },
+
+  "testePlans": {
+    "geral": {
+      "facil": [
+        { "t": "1", "tipo": "vf" },
+        { "t": "2", "tipo": "fill" },
+        { "t": "3", "tipo": "mc" },
+        { "t": "3", "tipo": "fill" },
+        { "t": "4", "tipo": "mc" },
+        { "t": "5", "tipo": "mc" }
+      ],
+      "medio": [
+        { "t": "1", "tipo": "vf" },
+        { "t": "2", "tipo": "fill" },
+        { "t": "3", "tipo": "fill" },
+        { "t": "3", "tipo": "mc" },
+        { "t": "4", "tipo": "fill" },
+        { "t": "4", "tipo": "mc" },
+        { "t": "5", "tipo": "mc" },
+        { "t": "5", "tipo": "fill" }
+      ],
+      "dificil": [
+        { "t": "1", "tipo": "mc" },
+        { "t": "2", "tipo": "fill" },
+        { "t": "2", "tipo": "mc" },
+        { "t": "3", "tipo": "fill" },
+        { "t": "3", "tipo": "contexto" },
+        { "t": "4", "tipo": "fill" },
+        { "t": "4", "tipo": "contexto" },
+        { "t": "5", "tipo": "fill" },
+        { "t": "5", "tipo": "mc" },
+        { "t": "5", "tipo": "contexto" }
+      ]
+    },
+    "porSubtemaPlan": [
+      { "tipo": "mc" },
+      { "tipo": "mc" },
+      { "tipo": "vf" },
+      { "tipo": "fill" },
+      { "tipo": "mc" },
+      { "tipo": "fill" }
+    ]
+  },
+
+  "examePlans": {
+    "temas": {
+      "facil": ["1", "2", "3"],
+      "medio": ["1", "2", "3", "4", "5"],
+      "dificil": ["3", "4", "5", "5", "4"]
+    },
+    "tipos": ["mc", "fill", "mc", "fill", "vf", "mc", "fill", "mc", "vf", "fill", "mc", "mc", "fill", "mc", "mc"]
+  },
+
+  "geradorTipos": ["mc", "mc", "fill", "vf", "fill"],
+
+  "fichaTipos": ["fill", "mc", "fill", "mc", "fill", "vf", "fill", "mc"],
+
+  "progressoLabels": {
+    "questoes": "Questões-aula",
+    "minitestes": "Minitestes",
+    "teste": "Teste",
+    "gerador": "Gerador",
+    "jogos": "Jogos",
+    "exame": "Exame"
+  },
+
+  "limites": {
+    "facil": { "min": -6, "max": 6 },
+    "medio": { "min": -12, "max": 12 },
+    "dificil": { "min": -25, "max": 25 }
+  },
+
+  "tema1Sets": [
+    { "n": -7, "pos": false, "neg": true,  "zero": false, "nat": false, "label": "ℤ⁻" },
+    { "n": -1, "pos": false, "neg": true,  "zero": false, "nat": false, "label": "ℤ⁻" },
+    { "n":  0, "pos": false, "neg": false, "zero": true,  "nat": true,  "label": "ℤ₀" },
+    { "n":  3, "pos": true,  "neg": false, "zero": false, "nat": true,  "label": "ℤ⁺ e ℕ" },
+    { "n":  8, "pos": true,  "neg": false, "zero": false, "nat": true,  "label": "ℤ⁺ e ℕ" }
+  ],
+
+  "tema1McNums": [-5, -2, 0, 3, 7, 10, -8, 4, -1, 6]
+}
