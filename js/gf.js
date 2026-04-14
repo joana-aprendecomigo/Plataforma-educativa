@@ -350,7 +350,13 @@ function _syncMat7GfCaps() {
     var btn  = document.querySelector('#gf-caps-mat7-downloads [data-cap="' + c + '"]');
     var sel  = capitulosSelecionados.indexOf(c) !== -1;
     if (chip) chip.style.display = sel ? '' : 'none';
-    if (btn)  sel ? btn.classList.add('active') : btn.classList.remove('active');
+    if (btn) {
+      sel ? btn.classList.add('active') : btn.classList.remove('active');
+      if (!sel) {
+        var tray = document.getElementById('gf-st-' + c + '-mat7-downloads');
+        if (tray) tray.classList.remove('open');
+      }
+    }
     if (sel) hasCap = true;
   });
   var noCapEl = document.getElementById('mat7-gf-no-cap');
@@ -381,13 +387,16 @@ function mat7GfGenerate() {
 function gfStToggleTray(capBtn, secId, cap) {
   var tray = document.getElementById('gf-st-' + cap + '-' + secId);
   if (!tray) return;
-  var isActive = capBtn.classList.contains('active');
-  if (!isActive) {
-    // Cap was just deactivated — always close tray
-    tray.classList.remove('open');
-  } else {
-    // Cap is active — toggle the tray open/closed
-    tray.classList.toggle('open');
+  var willOpen = !tray.classList.contains('open');
+  // Close all other trays so only one is open at a time
+  var sec = document.getElementById('gf-caps-' + secId);
+  if (sec) {
+    sec.querySelectorAll('.gf-st-tray').forEach(function(t) {
+      t.classList.remove('open');
+    });
+  }
+  if (willOpen) {
+    tray.classList.add('open');
   }
 }
 

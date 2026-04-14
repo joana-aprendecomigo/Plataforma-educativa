@@ -38,7 +38,7 @@ var _capStFichas = {
   1: ['Conjunto ℤ','Valor absoluto','Adição','Subtração','Parênteses'],
   2: ['Comparação','Adição/Subtração','Percentagens','Potências','Not. Científica'],
   3: ['Ângulos internos','Ângulos externos','Retas paralelas','Quadriláteros','Áreas'],
-  4: ['Sequências','Expressões','Equações','Problemas'],
+  4: ['Expressões Algébricas','Simplificação','Equações','Problemas'],
   5: ['Termo Geral','Sequências Aritméticas','Problemas'],
   6: ['Referencial','Função','Gráfica','Formas','Prop. Direta','Contexto Real'],
   7: ['Semelhantes','Polígonos','Homotetia','Critérios','Perímetros/Áreas','Poliedros'],
@@ -68,7 +68,7 @@ function _buildCapSelHTML(tab, opts) {
     }
     h += '<div class="gf-cap-block"><div class="gf-cap-row">';
     if (type === 'gf') {
-      h += '<button class="gf-cap-btn active" data-cap="'+cn+'" onclick="gfToggleCap(this,\''+panelId+'\');gfStToggleTray(this,\''+panelId+'\','+cn+')">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
+      h += '<button class="gf-cap-btn active" data-cap="'+cn+'" onclick="gfStToggleTray(this,\''+panelId+'\','+cn+')">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
     } else {
       h += '<button class="gf-cap-btn'+(isFirst?' active':'')+'" data-cap="'+cn+'" onclick="mat7TabCapClick(\''+tab+'\','+cn+',this)">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
     }
