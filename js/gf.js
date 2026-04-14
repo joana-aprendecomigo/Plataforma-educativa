@@ -105,33 +105,19 @@ function gfToggleCap(btn, secId) {
   if (caps.length === 0) btn.classList.add('active');
 }
 
-// Handles cap button click: toggles active state and opens/closes subtema tray
-// Behaviour:
-//   - Inactive cap clicked  → activate + open tray
-//   - Active cap, tray closed → open tray (keep active)
-//   - Active cap, tray open   → deactivate + close tray (unless last cap)
+// Handles cap button click: toggles selection and subtema tray
+// - Inactive → activate + open tray (close other trays)
+// - Active   → deactivate + close tray
 function gfCapClick(btn, secId, cap) {
   var tray = document.getElementById('gf-st-' + cap + '-' + secId);
-  var isActive = btn.classList.contains('active');
-  var trayOpen = tray && tray.classList.contains('open');
   var sec = document.getElementById('gf-caps-' + secId);
-
-  if (!isActive) {
-    // Activate cap, open its tray, close others
+  if (btn.classList.contains('active')) {
+    btn.classList.remove('active');
+    if (tray) tray.classList.remove('open');
+  } else {
     btn.classList.add('active');
     if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { t.classList.remove('open'); });
     if (tray) tray.classList.add('open');
-  } else if (!trayOpen) {
-    // Cap active but tray closed — open tray, close others
-    if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { t.classList.remove('open'); });
-    if (tray) tray.classList.add('open');
-  } else {
-    // Cap active and tray open — deactivate (unless last active cap)
-    var activeCaps = sec ? sec.querySelectorAll('.gf-cap-btn.active') : [];
-    if (activeCaps.length > 1) {
-      btn.classList.remove('active');
-      if (tray) tray.classList.remove('open');
-    }
   }
 }
 

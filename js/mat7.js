@@ -68,7 +68,7 @@ function _buildCapSelHTML(tab, opts) {
     }
     h += '<div class="gf-cap-block"><div class="gf-cap-row">';
     if (type === 'gf') {
-      h += '<button class="gf-cap-btn active" data-cap="'+cn+'" onclick="gfCapClick(this,\''+panelId+'\','+cn+')">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
+      h += '<button class="gf-cap-btn" data-cap="'+cn+'" onclick="gfCapClick(this,\''+panelId+'\','+cn+')">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
     } else {
       h += '<button class="gf-cap-btn'+(isFirst?' active':'')+'" data-cap="'+cn+'" onclick="mat7TabCapClick(\''+tab+'\','+cn+',this)">'+m.icon+' '+m.label+' <span class="level-label">▾</span></button>';
     }
@@ -79,7 +79,7 @@ function _buildCapSelHTML(tab, opts) {
       var trayId = type === 'gf' ? 'gf-st-'+cn+'-'+panelId : 'mat7-st-'+cn+'-'+tab;
       var trayClass = '';
       var trayStyle = '';
-      if (type === 'gf' && isFirst) { trayClass = ' open'; }
+      if (type === 'gf') { /* tray starts closed; opened when cap is selected */ }
       else if (type !== 'gf' && isFirst) { trayStyle = ' style="display:flex;flex-wrap:wrap;gap:.3rem;align-items:center"'; }
       else if (type !== 'gf') { trayStyle = ' style="display:none"'; }
       h += '<div class="gf-st-tray'+trayClass+'"'+trayStyle+' id="'+trayId+'"><span class="gf-st-tray-label">Subtemas:</span>';
