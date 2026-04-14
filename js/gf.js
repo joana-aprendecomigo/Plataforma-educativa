@@ -1463,36 +1463,104 @@ function _gfSubtema2(st, dif, n) {
   ex+='<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+titles[st]+'</h3>';
   for (var i=1;i<=n;i++) {
     if (st===1) {
-      var pairs=[[1,2,1,3],[3,4,2,3],[1,4,3,8],[2,5,1,3]];
-      var p=R.pick(pairs); var v1=p[0]/p[1],v2=p[2]/p[3];
-      var sym=v1>v2?'&gt;':v1<v2?'&lt;':'=';
-      ex+=row(i,'Compara (usa &lt;, &gt; ou =): &nbsp; a) '+p[0]+'/'+p[1]+' ___ '+p[2]+'/'+p[3]+'&nbsp;&nbsp; b) −2/3 ___ −1/2&nbsp;&nbsp; c) Ordena: −3/4, 0, 1/2, −1/4');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+sym+'&nbsp; b) &lt;&nbsp; c) −3/4 &lt; −1/4 &lt; 0 &lt; 1/2</div>';
+      if (dif==='facil') {
+        var pairs=[[1,2,1,3],[3,4,2,3],[1,4,3,8]];
+        var p=R.pick(pairs); var v1=p[0]/p[1],v2=p[2]/p[3];
+        var sym=v1>v2?'&gt;':v1<v2?'&lt;':'=';
+        ex+=row(i,'Compara (usa &lt;, &gt; ou =): &nbsp; a) '+p[0]+'/'+p[1]+' ___ '+p[2]+'/'+p[3]+'&nbsp;&nbsp; b) 1/2 ___ 2/4&nbsp;&nbsp; c) 1/3 ___ 1/4');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+sym+'&nbsp; b) =&nbsp; c) &gt;</div>';
+      } else if (dif==='medio') {
+        var pairs=[[1,2,1,3],[3,4,2,3],[2,5,1,3]];
+        var p=R.pick(pairs); var v1=p[0]/p[1],v2=p[2]/p[3];
+        var sym=v1>v2?'&gt;':v1<v2?'&lt;':'=';
+        ex+=row(i,'Compara e ordena: &nbsp; a) '+p[0]+'/'+p[1]+' ___ '+p[2]+'/'+p[3]+'&nbsp;&nbsp; b) −2/3 ___ −1/2&nbsp;&nbsp; c) Ordena: −3/4, 0, 1/2, −1/4');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+sym+'&nbsp; b) &lt;&nbsp; c) −3/4 &lt; −1/4 &lt; 0 &lt; 1/2</div>';
+      } else {
+        var a=R.int(2,5),b=R.int(3,7),c=R.int(1,4);
+        ex+=row(i,'a) Ordena do menor para o maior: −'+a+'/'+b+', '+c+'/'+b+', 0, −'+c+'/'+b+', '+a+'/'+b+'&nbsp;&nbsp; b) Insere &lt;, &gt; ou =: −3/5 ___ −4/7&nbsp;&nbsp; c) Qual o racional entre 1/3 e 1/2?');
+        var arr2=[-a/b,c/b,0,-c/b,a/b]; arr2.sort(function(x,y){return x-y;});
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+arr2.map(function(v){return v<0?'−'+Math.abs(v*b)+'/'+b:(v===0?'0':'+'+Math.abs(v*b)+'/'+b);}).join(' &lt; ')+'&nbsp; b) &gt; (−3/5=−0,6; −4/7≈−0,57)&nbsp; c) ex: 5/12</div>';
+      }
     } else if (st===2) {
-      var sets=[[1,2,1,3],[2,3,1,4],[1,4,1,6],[3,4,1,2]];
-      var s=R.pick(sets); var n1=s[0],d1=s[1],n2=s[2],d2=s[3];
-      var sN=n1*d2+n2*d1, dN=n1*d2-n2*d1, den=d1*d2;
-      ex+=row(i,'Calcula (irredutível): &nbsp; a) '+n1+'/'+d1+' + '+n2+'/'+d2+' = _____&nbsp;&nbsp; b) '+n1+'/'+d1+' − '+n2+'/'+d2+' = _____&nbsp;&nbsp; c) −'+n1+'/'+d1+' + (−'+n2+'/'+d2+') = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+frac(sN,den)+'&nbsp; b) '+frac(dN,den)+'&nbsp; c) '+frac(-sN,den)+'</div>';
+      if (dif==='facil') {
+        var sets=[[1,2,1,4],[1,3,1,6],[3,4,1,4]];
+        var s=R.pick(sets); var n1=s[0],d1=s[1],n2=s[2],d2=s[3];
+        var den=d1*d2,sN=n1*d2+n2*d1,dN=n1*d2-n2*d1;
+        ex+=row(i,'Calcula (mesmo denominador): &nbsp; a) '+n1+'/'+d1+' + '+n2+'/'+d2+' = _____&nbsp;&nbsp; b) '+n1+'/'+d1+' − '+n2+'/'+d2+' = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+frac(sN,den)+'&nbsp; b) '+frac(dN,den)+'</div>';
+      } else if (dif==='medio') {
+        var sets=[[2,3,1,4],[1,4,1,6],[3,4,1,2]];
+        var s=R.pick(sets); var n1=s[0],d1=s[1],n2=s[2],d2=s[3];
+        var den=d1*d2,sN=n1*d2+n2*d1,dN=n1*d2-n2*d1;
+        ex+=row(i,'Calcula (irredutível): &nbsp; a) '+n1+'/'+d1+' + '+n2+'/'+d2+' = _____&nbsp;&nbsp; b) '+n1+'/'+d1+' − '+n2+'/'+d2+' = _____&nbsp;&nbsp; c) −'+n1+'/'+d1+' + (−'+n2+'/'+d2+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+frac(sN,den)+'&nbsp; b) '+frac(dN,den)+'&nbsp; c) '+frac(-sN,den)+'</div>';
+      } else {
+        var sets=[[2,3,3,4],[3,5,1,3],[5,6,2,9]];
+        var s=R.pick(sets); var n1=s[0],d1=s[1],n2=s[2],d2=s[3];
+        var den=d1*d2,sN=n1*d2+n2*d1,dN=n1*d2-n2*d1;
+        var n3=R.int(1,3),d3=R.pick([2,3,4]),n4=R.int(1,2),d4=R.pick([3,5,6]);
+        ex+=row(i,'a) '+n1+'/'+d1+' + '+n2+'/'+d2+' = _____&nbsp;&nbsp; b) '+n1+'/'+d1+' − '+n2+'/'+d2+' = _____&nbsp;&nbsp; c) '+n3+'/'+d3+' − '+n4+'/'+d4+' + 1/2 = _____');
+        var num3=n3*d4*2-n4*d3*2+d3*d4,den3=d3*d4*2;
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+frac(sN,den)+'&nbsp; b) '+frac(dN,den)+'&nbsp; c) '+frac(num3,den3)+'</div>';
+      }
     } else if (st===3) {
-      var pct=R.pick([10,20,25,50,15,30]),amt=R.pick([40,80,120,200,60,300]);
-      var res=pct/100*amt;
-      var price=R.pick([80,120,200,250]),disc=R.pick([10,20,25,30]);
-      var after=price*(1-disc/100);
-      ex+=row(i,'a) Calcula '+pct+'% de '+amt+' = _____&nbsp;&nbsp; b) Artigo a '+price+' € com '+disc+'% de desconto → preço final = _____&nbsp;&nbsp; c) Converte 3/4 para percentagem = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+res+'</strong>&nbsp; b) <strong>'+after+' €</strong>&nbsp; c) <strong>75%</strong></div>';
+      if (dif==='facil') {
+        var pct=R.pick([10,25,50]),amt=R.pick([20,40,80,100,200]);
+        var res=pct/100*amt;
+        ex+=row(i,'a) Calcula '+pct+'% de '+amt+' = _____&nbsp;&nbsp; b) Converte '+pct+'% para fração irredutível = _____&nbsp;&nbsp; c) Converte 1/4 para percentagem = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+res+'</strong>&nbsp; b) <strong>'+frac(pct,100)+'</strong>&nbsp; c) <strong>25%</strong></div>';
+      } else if (dif==='medio') {
+        var pct=R.pick([10,20,25,30,50]),amt=R.pick([40,80,120,200,60,300]);
+        var res=pct/100*amt;
+        var price=R.pick([80,120,200,250]),disc=R.pick([10,20,25]);
+        var after=price*(1-disc/100);
+        ex+=row(i,'a) Calcula '+pct+'% de '+amt+' = _____&nbsp;&nbsp; b) Artigo a '+price+' € com '+disc+'% de desconto → preço final = _____&nbsp;&nbsp; c) Converte 3/4 para percentagem = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+res+'</strong>&nbsp; b) <strong>'+after+' €</strong>&nbsp; c) <strong>75%</strong></div>';
+      } else {
+        var priceOrig=R.pick([150,200,240,300]),priceNew=R.pick([120,160,180,240]);
+        var pctDesc=Math.round((priceOrig-priceNew)/priceOrig*100);
+        var nota=R.pick([12,14,15,16,18]),totalAlunos=R.pick([25,30]),acima=R.pick([8,10,12,15]);
+        var pctAcima=Math.round(acima/totalAlunos*100);
+        ex+=row(i,'a) Um artigo baixou de '+priceOrig+' € para '+priceNew+' €. Qual a percentagem de desconto?&nbsp;&nbsp; b) Numa turma de '+totalAlunos+' alunos, '+acima+' tiveram nota acima de '+nota+'. Que percentagem é essa?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) ('+priceOrig+'−'+priceNew+')÷'+priceOrig+'×100 = <strong>'+pctDesc+'%</strong>&nbsp; b) '+acima+'÷'+totalAlunos+'×100 = <strong>'+pctAcima+'%</strong></div>';
+      }
     } else if (st===4) {
-      var base=R.pick([2,3,5,10]),exp1=R.pick([2,3,4]),exp2=R.pick([2,3]);
-      ex+=row(i,'Calcula: &nbsp; a) '+base+'<sup>'+exp1+'</sup> = _____&nbsp;&nbsp; b) '+base+'<sup>'+exp1+'</sup> × '+base+'<sup>'+exp2+'</sup> = _____&nbsp;&nbsp; c) '+base+'<sup>'+(exp1+exp2)+'</sup> ÷ '+base+'<sup>'+exp2+'</sup> = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+Math.pow(base,exp1)+'&nbsp; b) '+base+'<sup>'+(exp1+exp2)+'</sup> = '+Math.pow(base,exp1+exp2)+'&nbsp; c) '+base+'<sup>'+exp1+'</sup> = '+Math.pow(base,exp1)+'</div>';
+      if (dif==='facil') {
+        var base=R.pick([2,3,10]),exp1=R.pick([2,3]);
+        ex+=row(i,'Calcula: &nbsp; a) '+base+'<sup>'+exp1+'</sup> = _____&nbsp;&nbsp; b) 2<sup>3</sup> = _____&nbsp;&nbsp; c) 10<sup>2</sup> = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+Math.pow(base,exp1)+'&nbsp; b) 8&nbsp; c) 100</div>';
+      } else if (dif==='medio') {
+        var base=R.pick([2,3,5,10]),exp1=R.pick([2,3,4]),exp2=R.pick([2,3]);
+        ex+=row(i,'Calcula: &nbsp; a) '+base+'<sup>'+exp1+'</sup> = _____&nbsp;&nbsp; b) '+base+'<sup>'+exp1+'</sup> × '+base+'<sup>'+exp2+'</sup> = _____&nbsp;&nbsp; c) '+base+'<sup>'+(exp1+exp2)+'</sup> ÷ '+base+'<sup>'+exp2+'</sup> = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+Math.pow(base,exp1)+'&nbsp; b) '+base+'<sup>'+(exp1+exp2)+'</sup> = '+Math.pow(base,exp1+exp2)+'&nbsp; c) '+base+'<sup>'+exp1+'</sup> = '+Math.pow(base,exp1)+'</div>';
+      } else {
+        var base=R.pick([2,3,5]),exp1=R.pick([2,3,4]),exp2=R.pick([1,2,3]);
+        var quocExp=exp1>exp2?exp1-exp2:0;
+        ex+=row(i,'a) '+base+'<sup>'+exp1+'</sup> × '+base+'<sup>'+exp2+'</sup> = _____&nbsp;&nbsp; b) '+base+'<sup>'+exp1+'</sup> ÷ '+base+'<sup>'+exp2+'</sup> = _____&nbsp;&nbsp; c) ('+base+'<sup>'+exp2+'</sup>)<sup>2</sup> = _____&nbsp;&nbsp; d) '+base+'<sup>0</sup> = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+base+'<sup>'+(exp1+exp2)+'</sup>='+Math.pow(base,exp1+exp2)+'&nbsp; b) '+base+'<sup>'+(quocExp)+'</sup>='+Math.pow(base,quocExp)+'&nbsp; c) '+base+'<sup>'+(exp2*2)+'</sup>='+Math.pow(base,exp2*2)+'&nbsp; d) 1</div>';
+      }
     } else if (st===5) {
-      var vals=[25000,340000,0.0042,1500000,0.000081];
-      var val=R.pick(vals);
-      var m1=R.int(1,9),e1=R.int(2,5),m2=R.int(1,9),e2=R.int(1,4);
-      var prodM=m1*m2,prodE=e1+e2;
-      var prodStr=prodM>=10?(prodM/10).toFixed(1)+'×10<sup>'+(prodE+1)+'</sup>':''+prodM+'×10<sup>'+prodE+'</sup>';
-      ex+=row(i,'a) Escreve '+val+' em notação científica&nbsp;&nbsp; b) Calcula: ('+m1+'×10<sup>'+e1+'</sup>) × ('+m2+'×10<sup>'+e2+'</sup>) = _____&nbsp;&nbsp; c) Converte 3,2×10<sup>4</sup> para decimal');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) ver raciocínio&nbsp; b) '+prodStr+'&nbsp; c) 32 000</div>';
+      if (dif==='facil') {
+        var vals=[2500,34000,0.042,150000];
+        var val=R.pick(vals);
+        ex+=row(i,'a) Escreve '+val+' em notação científica = _____&nbsp;&nbsp; b) Converte 3×10<sup>3</sup> para decimal = _____&nbsp;&nbsp; c) Converte 5×10<sup>−2</sup> para decimal = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) ver raciocínio&nbsp; b) 3 000&nbsp; c) 0,05</div>';
+      } else if (dif==='medio') {
+        var vals=[25000,340000,0.0042,1500000,0.000081];
+        var val=R.pick(vals);
+        var m1=R.int(1,9),e1=R.int(2,5),m2=R.int(1,9),e2=R.int(1,4);
+        var prodM=m1*m2,prodE=e1+e2;
+        var prodStr=prodM>=10?(prodM/10).toFixed(1)+'×10<sup>'+(prodE+1)+'</sup>':''+prodM+'×10<sup>'+prodE+'</sup>';
+        ex+=row(i,'a) Escreve '+val+' em notação científica&nbsp;&nbsp; b) Calcula: ('+m1+'×10<sup>'+e1+'</sup>) × ('+m2+'×10<sup>'+e2+'</sup>) = _____&nbsp;&nbsp; c) Converte 3,2×10<sup>4</sup> para decimal');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) ver raciocínio&nbsp; b) '+prodStr+'&nbsp; c) 32 000</div>';
+      } else {
+        var m1=R.int(1,9),e1=R.int(3,6),m2=R.int(2,9),e2=R.int(2,5);
+        var prodM=m1*m2,prodE=e1+e2;
+        var prodStr=prodM>=10?(prodM/10).toFixed(1)+'×10<sup>'+(prodE+1)+'</sup>':''+prodM+'×10<sup>'+prodE+'</sup>';
+        var quocM=(m1/m2).toFixed(2),quocE=e1-e2;
+        ex+=row(i,'a) Ordena: 3,2×10<sup>4</sup>; 4,1×10<sup>3</sup>; 2,9×10<sup>4</sup>&nbsp;&nbsp; b) ('+m1+'×10<sup>'+e1+'</sup>) × ('+m2+'×10<sup>'+e2+'</sup>) = _____&nbsp;&nbsp; c) ('+m1+'×10<sup>'+e1+'</sup>) ÷ ('+m2+'×10<sup>'+e2+'</sup>) = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) 4,1×10³ &lt; 2,9×10⁴ &lt; 3,2×10⁴&nbsp; b) '+prodStr+'&nbsp; c) ≈'+quocM+'×10<sup>'+quocE+'</sup></div>';
+      }
     }
   }
   return {ex:ex, sol:sol};
@@ -1505,33 +1573,89 @@ function _gfSubtema3(st, dif, n) {
   ex+='<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+titles[st]+'</h3>';
   for (var i=1;i<=n;i++) {
     if (st===1) {
-      var n1=R.pick([3,4,5,6,8,10]),n2=R.pick([4,5,6,8,10,12]);
-      var s1=(n1-2)*180,s2=(n2-2)*180;
-      var nr=R.pick([4,5,6,8]); var each=((nr-2)*180)/nr;
-      ex+=row(i,'a) Soma dos ângulos internos de um polígono com '+n1+' lados = _____&nbsp;&nbsp; b) ...com '+n2+' lados = _____&nbsp;&nbsp; c) Polígono regular com '+nr+' lados: cada ângulo interno = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+s1+'°</strong>&nbsp; b) <strong>'+s2+'°</strong>&nbsp; c) <strong>'+each+'°</strong></div>';
+      if (dif==='facil') {
+        var n1=R.pick([3,4,5,6]),s1=(n1-2)*180;
+        ex+=row(i,'a) Soma dos ângulos internos de um triângulo = _____&nbsp;&nbsp; b) Soma dos ângulos internos de um polígono com '+n1+' lados = _____&nbsp;&nbsp; c) Fórmula geral para n lados = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>180°</strong>&nbsp; b) <strong>'+s1+'°</strong>&nbsp; c) <strong>(n−2)×180°</strong></div>';
+      } else if (dif==='medio') {
+        var n1=R.pick([4,5,6,8,10]),n2=R.pick([5,6,8,10,12]);
+        var s1=(n1-2)*180,s2=(n2-2)*180;
+        var nr=R.pick([4,5,6,8]); var each=((nr-2)*180)/nr;
+        ex+=row(i,'a) Soma dos ângulos internos com '+n1+' lados = _____&nbsp;&nbsp; b) ...com '+n2+' lados = _____&nbsp;&nbsp; c) Polígono regular com '+nr+' lados: cada ângulo interno = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+s1+'°</strong>&nbsp; b) <strong>'+s2+'°</strong>&nbsp; c) <strong>'+each+'°</strong></div>';
+      } else {
+        var nr=R.pick([5,6,8,10,12]); var each=(nr-2)*180/nr;
+        var missing=R.int(3,6); var sumKnown=R.int(300,500); var lastAng=(missing-2)*180-sumKnown;
+        if(lastAng<20||lastAng>170){missing=4;sumKnown=270;lastAng=90;}
+        ex+=row(i,'a) Polígono regular com '+nr+' lados: ângulo interno = _____ &nbsp;&nbsp; b) Polígono com '+missing+' lados — 3 ângulos medem '+Math.round(sumKnown/3)+'° cada. Qual o '+missing+'.º ângulo?&nbsp;&nbsp; c) Quantos lados tem um polígono regular cujo ângulo interno é 120°?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+each+'°</strong>&nbsp; b) ('+missing+'−2)×180°−'+sumKnown+' = <strong>'+lastAng+'°</strong>&nbsp; c) <strong>6 lados</strong> (hexágono)</div>';
+      }
     } else if (st===2) {
-      var nr2=R.pick([3,4,5,6,8,10]);
-      var extA=360/nr2; var intA=180-extA;
-      ex+=row(i,'Polígono regular com '+nr2+' lados:&nbsp; a) Cada ângulo externo = _____&nbsp;&nbsp; b) Ângulo interno correspondente = _____&nbsp;&nbsp; c) Soma de todos os ângulos externos = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+extA+'°</strong>&nbsp; b) <strong>'+intA+'°</strong>&nbsp; c) <strong>360°</strong></div>';
+      if (dif==='facil') {
+        var nr2=R.pick([3,4,6]);
+        var extA=360/nr2; var intA=180-extA;
+        ex+=row(i,'a) Soma de todos os ângulos externos de qualquer polígono convexo = _____&nbsp;&nbsp; b) Polígono regular com '+nr2+' lados: cada ângulo externo = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>360°</strong>&nbsp; b) <strong>'+extA+'°</strong></div>';
+      } else if (dif==='medio') {
+        var nr2=R.pick([4,5,6,8,10]);
+        var extA=360/nr2; var intA=180-extA;
+        ex+=row(i,'Polígono regular com '+nr2+' lados:&nbsp; a) Cada ângulo externo = _____&nbsp;&nbsp; b) Ângulo interno correspondente = _____&nbsp;&nbsp; c) Soma de todos os ângulos externos = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+extA+'°</strong>&nbsp; b) <strong>'+intA+'°</strong>&nbsp; c) <strong>360°</strong></div>';
+      } else {
+        var extA=R.pick([24,30,36,40,45]);
+        var nlados=360/extA; var intA=180-extA;
+        ex+=row(i,'a) Um polígono regular tem ângulos externos de '+extA+'°. Quantos lados tem?&nbsp;&nbsp; b) Qual o ângulo interno desse polígono?&nbsp;&nbsp; c) Um ângulo externo de um polígono regular é 72°. O ângulo interno é?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) 360÷'+extA+' = <strong>'+nlados+' lados</strong>&nbsp; b) <strong>'+intA+'°</strong>&nbsp; c) 180−72 = <strong>108°</strong></div>';
+      }
     } else if (st===3) {
       var ang=R.pick([35,40,50,55,60,65,70,75]);
       var sup=180-ang;
-      ex+=row(i,'Duas retas paralelas cortadas por uma secante. Um ângulo mede '+ang+'°.&nbsp; a) Ângulo alterno interno = _____&nbsp;&nbsp; b) Ângulo co-interno = _____&nbsp;&nbsp; c) Ângulo correspondente = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+ang+'°</strong> (iguais)&nbsp; b) <strong>'+sup+'°</strong> (suplementares)&nbsp; c) <strong>'+ang+'°</strong> (iguais)</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Duas retas paralelas cortadas por uma secante. Um ângulo mede '+ang+'°.&nbsp; a) Ângulo correspondente = _____&nbsp;&nbsp; b) Ângulo suplementar = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+ang+'°</strong>&nbsp; b) <strong>'+sup+'°</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Duas retas paralelas cortadas por uma secante. Um ângulo mede '+ang+'°.&nbsp; a) Ângulo alterno interno = _____&nbsp;&nbsp; b) Ângulo co-interno = _____&nbsp;&nbsp; c) Ângulo correspondente = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+ang+'°</strong> (iguais)&nbsp; b) <strong>'+sup+'°</strong> (suplementares)&nbsp; c) <strong>'+ang+'°</strong> (iguais)</div>';
+      } else {
+        var ang2=R.pick([40,50,60,70,80]);
+        ex+=row(i,'a) Retas paralelas: ângulo de '+ang+'°. Determina todos os 8 ângulos formados.&nbsp;&nbsp; b) Se um ângulo co-interno mede '+ang2+'°, qual o outro co-interno?&nbsp;&nbsp; c) Dois ângulos alternos externos somam 200°. São paralelas as retas? Justifica.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) 4 ângulos de '+ang+'° e 4 de '+sup+'°&nbsp; b) 180−'+ang2+' = <strong>'+(180-ang2)+'°</strong>&nbsp; c) Não, porque alternos externos iguais seria condição — 200°÷2=100°≠iguais</div>';
+      }
     } else if (st===4) {
       var angA=R.int(80,130); var angB=180-angA;
       var a1=R.int(80,110),a2=R.int(70,100),a3=R.int(75,110);
       var a4=360-a1-a2-a3;
       if(a4<30||a4>160){a1=90;a2=85;a3=95;a4=90;}
-      ex+=row(i,'a) Paralelogramo: ângulo A = '+angA+'°. Determina ângulos B, C e D.&nbsp;&nbsp; b) Quadrilátero com ângulos '+a1+'°, '+a2+'°, '+a3+'° — qual é o 4.º?');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) B=<strong>'+angB+'°</strong> ; C=<strong>'+angA+'°</strong> ; D=<strong>'+angB+'°</strong>&nbsp; b) 360−('+a1+'+'+a2+'+'+a3+') = <strong>'+a4+'°</strong></div>';
+      if (dif==='facil') {
+        ex+=row(i,'a) Num retângulo, um ângulo é 90°. Os outros três ângulos são: _____&nbsp;&nbsp; b) Soma dos ângulos internos de qualquer quadrilátero = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>90°, 90°, 90°</strong>&nbsp; b) <strong>360°</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'a) Paralelogramo: ângulo A = '+angA+'°. Determina B, C e D.&nbsp;&nbsp; b) Quadrilátero com ângulos '+a1+'°, '+a2+'°, '+a3+'° — qual é o 4.º?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) B=<strong>'+angB+'°</strong> ; C=<strong>'+angA+'°</strong> ; D=<strong>'+angB+'°</strong>&nbsp; b) 360−('+a1+'+'+a2+'+'+a3+') = <strong>'+a4+'°</strong></div>';
+      } else {
+        var ang1=R.int(70,100),ang3=R.int(70,100),sum12=ang1+ang3;
+        var ang2=360-sum12-ang1; // just reuse pattern
+        ex+=row(i,'a) Losango: ângulo agudo = '+angA+'°. Qual o ângulo obtuso?&nbsp;&nbsp; b) Trapézio: ângulos da base maior são '+a1+'° e '+a2+'°. Qual a soma dos da base menor?&nbsp;&nbsp; c) Justifica: os ângulos opostos de um paralelogramo são iguais.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+angB+'°</strong>&nbsp; b) 360−'+a1+'−'+a2+' = <strong>'+(360-a1-a2)+'°</strong> (divididos pelos 2 ângulos)&nbsp; c) Lados paralelos → ângulos co-internos suplementares em pares</div>';
+      }
     } else if (st===5) {
-      var b1=R.int(4,14),h1=R.int(3,10),b2=R.int(4,12),h2=R.int(3,8),r=R.int(3,7);
-      var a1=b1*h1,a2=Math.round(b2*h2/2*10)/10,a3=Math.round(3.14*r*r*100)/100;
-      ex+=row(i,'Calcula a área:&nbsp; a) Retângulo '+b1+' cm × '+h1+' cm = _____&nbsp;&nbsp; b) Triângulo base '+b2+' cm, alt. '+h2+' cm = _____&nbsp;&nbsp; c) Círculo raio '+r+' cm (π≈3,14) = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+a1+' cm²</strong>&nbsp; b) <strong>'+a2+' cm²</strong>&nbsp; c) <strong>'+a3+' cm²</strong></div>';
+      if (dif==='facil') {
+        var b1=R.int(4,10),h1=R.int(3,8),b2=R.int(3,8),h2=R.int(4,10);
+        var a1=b1*h1, a2=Math.round(b2*h2/2);
+        ex+=row(i,'Calcula a área:&nbsp; a) Retângulo '+b1+' cm × '+h1+' cm = _____&nbsp;&nbsp; b) Triângulo base '+b2+' cm, altura '+h2+' cm = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+a1+' cm²</strong>&nbsp; b) <strong>'+a2+' cm²</strong></div>';
+      } else if (dif==='medio') {
+        var b1=R.int(4,14),h1=R.int(3,10),b2=R.int(4,12),h2=R.int(3,8),r=R.int(3,7);
+        var a1=b1*h1,a2=Math.round(b2*h2/2*10)/10,a3=Math.round(3.14*r*r*100)/100;
+        ex+=row(i,'Calcula a área:&nbsp; a) Retângulo '+b1+' cm × '+h1+' cm = _____&nbsp;&nbsp; b) Triângulo base '+b2+' cm, alt. '+h2+' cm = _____&nbsp;&nbsp; c) Círculo raio '+r+' cm (π≈3,14) = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+a1+' cm²</strong>&nbsp; b) <strong>'+a2+' cm²</strong>&nbsp; c) <strong>'+a3+' cm²</strong></div>';
+      } else {
+        var b=R.int(5,12),h=R.int(4,10),r=R.int(3,7),lado=R.int(4,9);
+        var atri=Math.round(b*h/2*10)/10,acirc=Math.round(3.14*r*r*100)/100,aqdr=lado*lado;
+        var perim=2*3.14*r;
+        ex+=row(i,'a) Triângulo: base '+b+' cm, altura '+h+' cm. Área = _____&nbsp;&nbsp; b) Círculo raio '+r+' cm: Área = _____ e Perímetro = _____&nbsp;&nbsp; c) Quadrado lado '+lado+' cm: Área = _____. Se o lado duplicar, a área multiplica por _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+atri+' cm²</strong>&nbsp; b) A=<strong>'+acirc+' cm²</strong>; P≈<strong>'+Math.round(perim*100)/100+' cm</strong>&nbsp; c) <strong>'+aqdr+' cm²</strong>; multiplica por <strong>4</strong></div>';
+      }
     }
   }
   return {ex:ex, sol:sol};
