@@ -1376,32 +1376,79 @@ function _gfSubtema1(st, dif, n) {
   function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
   var titles = {1:'Conjunto ℤ — Representação',2:'Valor Absoluto e Simétrico',3:'Adição de Inteiros',4:'Subtração de Inteiros',5:'Parênteses e Expressões',6:'Propriedades da Adição'};
   ex += '<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+titles[st]+'</h3>';
-  var lo = dif==='facil'?2:dif==='dificil'?8:4, hi = dif==='facil'?8:dif==='dificil'?20:15;
+  // Ranges by difficulty
+  var lo = dif==='facil'?2:dif==='dificil'?10:5;
+  var hi = dif==='facil'?8:dif==='dificil'?25:15;
   for (var i=1;i<=n;i++) {
-    var a=R.int(lo,hi), b=R.int(lo,hi), c=R.int(1,8);
+    var a=R.int(lo,hi), b=R.int(lo,hi), c=R.int(1,hi/2);
     if (st===1) {
       var t=R.int(2,12), p=R.int(1,6), luc=R.int(50,500), prof=R.int(10,80);
-      ex+=row(i,'Representa com um inteiro: <br>a) Descida de '+t+'°C &nbsp;&nbsp; b) '+p+'.º andar subterrâneo &nbsp;&nbsp; c) Lucro de '+luc+' € &nbsp;&nbsp; d) Profundidade de '+prof+' m');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) −'+t+' &nbsp; b) −'+p+' &nbsp; c) +'+luc+' &nbsp; d) −'+prof+'</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Representa com um inteiro: &nbsp; a) Descida de '+t+'°C = _____ &nbsp;&nbsp; b) Subida de '+t+'°C = _____ &nbsp;&nbsp; c) '+p+'.º andar subterrâneo = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) −'+t+' &nbsp; b) +'+t+' &nbsp; c) −'+p+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Representa com um inteiro: &nbsp; a) Descida de '+t+'°C &nbsp; b) '+p+'.º andar subterrâneo &nbsp; c) Lucro de '+luc+' € &nbsp; d) Profundidade de '+prof+' m');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) −'+t+' &nbsp; b) −'+p+' &nbsp; c) +'+luc+' &nbsp; d) −'+prof+'</div>';
+      } else {
+        ex+=row(i,'a) Ordena do menor para o maior: −'+a+', +'+b+', 0, −'+c+', +'+c+'&nbsp;&nbsp; b) Indica o inteiro que está a 3 unidades à direita de −'+a+' na reta numérica&nbsp;&nbsp; c) Qual o maior inteiro negativo?');
+        var arr=[{v:-a,s:'−'+a},{v:b,s:'+'+b},{v:0,s:'0'},{v:-c,s:'−'+c},{v:c,s:'+'+c}];
+        arr.sort(function(x,y){return x.v-y.v;});
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+arr.map(function(x){return x.s;}).join(' &lt; ')+'&nbsp; b) '+(3-a)+'&nbsp; c) −1</div>';
+      }
     } else if (st===2) {
-      ex+=row(i,'Calcula: &nbsp; a) |−'+a+'| = _____ &nbsp; b) |+'+b+'| = _____ &nbsp; c) Simétrico de −'+a+' = _____ &nbsp; d) Simétrico de +'+b+' = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+a+' &nbsp; b) '+b+' &nbsp; c) +'+a+' &nbsp; d) −'+b+'</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Calcula: &nbsp; a) |−'+a+'| = _____ &nbsp; b) |+'+b+'| = _____ &nbsp; c) Simétrico de −'+a+' = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+a+' &nbsp; b) '+b+' &nbsp; c) +'+a+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Calcula: &nbsp; a) |−'+a+'| = _____ &nbsp; b) Simétrico de −'+a+' = _____ &nbsp; c) Simétrico de +'+b+' = _____ &nbsp; d) |−'+b+'| − |+'+a+'| = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+a+' &nbsp; b) +'+a+' &nbsp; c) −'+b+' &nbsp; d) '+(b-a)+'</div>';
+      } else {
+        ex+=row(i,'a) |−'+a+'| + |−'+b+'| = _____&nbsp;&nbsp; b) |'+a+' − '+b+'| = _____&nbsp;&nbsp; c) Verdadeiro ou Falso: |−'+a+'| = |+'+a+'|? _____ &nbsp;&nbsp; d) Dois inteiros simétricos têm sempre o mesmo valor absoluto?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(a+b)+' &nbsp; b) '+Math.abs(a-b)+' &nbsp; c) Verdadeiro &nbsp; d) Sim, |x| = |−x|</div>';
+      }
     } else if (st===3) {
-      ex+=row(i,'Calcula: &nbsp; a) (−'+a+') + (+'+b+') = _____ &nbsp; b) (−'+a+') + (−'+b+') = _____ &nbsp; c) (+'+a+') + (−'+b+') = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(b-a)+' &nbsp; b) '+(-(a+b))+' &nbsp; c) '+(a-b)+'</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Calcula: &nbsp; a) (+'+a+') + (+'+b+') = _____ &nbsp; b) (−'+a+') + (−'+b+') = _____ &nbsp; c) 0 + (−'+a+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) +'+(a+b)+' &nbsp; b) −'+(a+b)+' &nbsp; c) −'+a+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Calcula: &nbsp; a) (−'+a+') + (+'+b+') = _____ &nbsp; b) (−'+a+') + (−'+b+') = _____ &nbsp; c) (+'+a+') + (−'+b+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(b-a)+' &nbsp; b) '+(-(a+b))+' &nbsp; c) '+(a-b)+'</div>';
+      } else {
+        var d=R.int(lo,hi);
+        ex+=row(i,'Calcula: &nbsp; a) (−'+a+') + (+'+b+') + (−'+c+') = _____&nbsp;&nbsp; b) (+'+a+') + (−'+b+') + (+'+c+') + (−'+d+') = _____&nbsp;&nbsp; c) Qual o valor de x: x + (−'+a+') = '+b+'?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(b-a-c)+' &nbsp; b) '+(a-b+c-d)+' &nbsp; c) x = '+(a+b)+'</div>';
+      }
     } else if (st===4) {
-      ex+=row(i,'Calcula: &nbsp; a) (+'+a+') − (−'+b+') = _____ &nbsp; b) (−'+a+') − (+'+b+') = _____ &nbsp; c) (−'+a+') − (−'+b+') = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(a+b)+' &nbsp; b) '+(-(a+b))+' &nbsp; c) '+(b-a)+'</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Transforma em adição e calcula: &nbsp; a) (+'+a+') − (+'+b+') = _____ &nbsp; b) (−'+a+') − (−'+b+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) (+'+a+')+(−'+b+') = '+(a-b)+' &nbsp; b) (−'+a+')+(+'+b+') = '+(b-a)+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Calcula: &nbsp; a) (+'+a+') − (−'+b+') = _____ &nbsp; b) (−'+a+') − (+'+b+') = _____ &nbsp; c) (−'+a+') − (−'+b+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(a+b)+' &nbsp; b) '+(-(a+b))+' &nbsp; c) '+(b-a)+'</div>';
+      } else {
+        ex+=row(i,'Calcula: &nbsp; a) '+a+' − (+'+b+') − (−'+c+') = _____&nbsp;&nbsp; b) (−'+a+') − (−'+b+') − (+'+c+') = _____&nbsp;&nbsp; c) Qual o valor de x: x − (−'+b+') = '+a+'?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(a-b+c)+' &nbsp; b) '+(b-a-c)+' &nbsp; c) x = '+(a-b)+'</div>';
+      }
     } else if (st===5) {
-      ex+=row(i,'Remove parênteses e calcula: &nbsp; a) −('+a+' − '+b+') = _____ &nbsp; b) +(−'+a+' + '+b+') = _____ &nbsp; c) '+a+' − ('+b+' − '+c+') = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(b-a)+' &nbsp; b) '+(b-a)+' &nbsp; c) '+(a-b+c)+'</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Remove os parênteses: &nbsp; a) +(+'+a+') = _____ &nbsp; b) +(−'+a+') = _____ &nbsp; c) −(+'+b+') = _____ &nbsp; d) −(−'+b+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) +'+a+' &nbsp; b) −'+a+' &nbsp; c) −'+b+' &nbsp; d) +'+b+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Remove parênteses e calcula: &nbsp; a) −('+a+' − '+b+') = _____ &nbsp; b) +(−'+a+' + '+b+') = _____ &nbsp; c) '+a+' − ('+b+' − '+c+') = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(b-a)+' &nbsp; b) '+(b-a)+' &nbsp; c) '+(a-b+c)+'</div>';
+      } else {
+        ex+=row(i,'Calcula: &nbsp; a) −(−'+a+' + '+b+') − ('+c+' − '+a+') = _____&nbsp;&nbsp; b) '+a+' − ['+b+' − ('+c+' − '+a+')] = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+(a-b-c+a)+' &nbsp; b) '+(a-b+c-a)+'</div>';
+      }
     } else if (st===6) {
       var sA6=Math.random()<0.5?a:-a, sB6=Math.random()<0.5?b:-b;
-      ex+=row(i,'Identifica a propriedade da adição usada em cada igualdade:<br>'
-        +'a) ('+sA6+') + ('+sB6+') = ('+sB6+') + ('+sA6+') &nbsp;&nbsp; [Propriedade: _____]<br>'
-        +'b) ('+a+') + 0 = '+a+' &nbsp;&nbsp; [Propriedade: _____]<br>'
-        +'c) ('+a+') + (−'+a+') = 0 &nbsp;&nbsp; [Propriedade: _____]');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) Comutativa &nbsp; b) Elemento neutro &nbsp; c) Elemento simétrico</div>';
+      if (dif==='facil') {
+        ex+=row(i,'Indica a propriedade usada:<br>a) ('+sA6+') + ('+sB6+') = ('+sB6+') + ('+sA6+')&nbsp; [_____]&nbsp;&nbsp; b) ('+a+') + 0 = '+a+'&nbsp; [_____]');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) Comutativa &nbsp; b) Elemento neutro</div>';
+      } else {
+        ex+=row(i,'Identifica a propriedade:<br>a) ('+sA6+') + ('+sB6+') = ('+sB6+') + ('+sA6+')&nbsp; [_____]<br>b) ('+a+') + 0 = '+a+'&nbsp; [_____]<br>c) ('+a+') + (−'+a+') = 0&nbsp; [_____]<br>d) ('+a+' + '+b+') + '+c+' = '+a+' + ('+b+' + '+c+')&nbsp; [_____]');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) Comutativa &nbsp; b) Elemento neutro &nbsp; c) Elemento simétrico &nbsp; d) Associativa</div>';
+      }
     }
   }
   return {ex:ex, sol:sol};
@@ -1497,30 +1544,106 @@ function _gfSubtema4(st, dif, n) {
   ex+='<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+titles[st]+'</h3>';
   for (var i=1;i<=n;i++) {
     if (st===1) {
-      var a1=R.int(2,7),b1=R.int(1,5),xv1=R.int(1,5);
-      var val1=a1*xv1+b1;
-      ex+=row(i,'a) Escreve a expressão algébrica para «o '+(['dobro','triplo','quádruplo'])[R.int(0,2)]+' de x adicionado de '+b1+'» = _____&nbsp;&nbsp; b) Calcula o valor numérico de '+a1+'x + '+b1+' para x = '+xv1+' = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+a1+'x + '+b1+'</strong>&nbsp; b) '+a1+'×'+xv1+'+'+b1+' = <strong>'+val1+'</strong></div>';
+      if (dif==='facil') {
+        // Fácil: identificar coeficiente/parte literal, valor numérico simples
+        var a1=R.int(2,5),b1=R.int(1,4),xv1=R.int(1,5);
+        var val1=a1*xv1+b1;
+        ex+=row(i,'a) Escreve a expressão algébrica: «o '+(['dobro','triplo','quádruplo'])[R.int(0,2)]+' de x adicionado de '+b1+'» = _____&nbsp;&nbsp; b) Calcula o valor numérico de '+a1+'x + '+b1+' para x = '+xv1+' = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+a1+'x + '+b1+'</strong>&nbsp; b) '+a1+'×'+xv1+'+'+b1+' = <strong>'+val1+'</strong></div>';
+      } else if (dif==='medio') {
+        // Médio: expressões com duas variáveis, valor numérico com negativos
+        var a=R.int(2,6),b=R.int(1,4),c=R.int(1,5),xv=R.int(1,6),yv=R.int(1,5);
+        var val=a*xv-b*yv+c;
+        ex+=row(i,'a) Identifica: em −'+a+'x²y o coeficiente é _____ e a parte literal é _____&nbsp;&nbsp; b) Calcula o valor numérico de '+a+'x − '+b+'y + '+c+' para x='+xv+' e y='+yv);
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) coef. <strong>−'+a+'</strong>, p.l. <strong>x²y</strong>&nbsp; b) '+a+'×'+xv+'−'+b+'×'+yv+'+'+c+' = <strong>'+val+'</strong></div>';
+      } else {
+        // Difícil: expressões com expoentes, múltiplas variáveis, substituição com negativos
+        var a=R.int(2,6),b=R.int(2,5),c=R.int(1,4),xv=R.neg(1,4),yv=R.neg(1,4);
+        var val=a*xv*xv-b*yv+c;
+        ex+=row(i,'a) São monómios semelhantes? '+a+'x²y e −'+b+'x²y? Explica.&nbsp;&nbsp; b) Calcula '+a+'x² − '+b+'y + '+c+' para x='+xv+' e y='+yv);
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>Sim</strong>, mesma parte literal x²y&nbsp; b) '+a+'×('+xv+')²−'+b+'×('+yv+')+'+c+' = '+a+'×'+xv*xv+'−('+b+'×('+yv+'))+'+c+' = <strong>'+val+'</strong></div>';
+      }
     } else if (st===2) {
-      var a=R.int(2,7),b=R.int(1,5),c=R.int(2,7),d=R.int(1,5);
-      var xv=R.neg(1,4),yv=R.neg(1,4);
-      var simp=(a-c)+'x + '+(b+d)+'y';
-      var val=a*xv-b*yv+c;
-      ex+=row(i,'a) Simplifica: '+a+'x + '+b+'y − '+c+'x + '+d+'y = _____&nbsp;&nbsp; b) Para x='+xv+' e y='+yv+', calcula: '+a+'x − '+b+'y + '+c+' = _____');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+simp+'</strong>&nbsp; b) '+a+'×('+xv+')−'+b+'×('+yv+')+'+c+' = <strong>'+val+'</strong></div>';
+      if (dif==='facil') {
+        // Fácil: reduzir termos semelhantes com uma variável
+        var a=R.int(2,6),b=R.int(1,5),c=R.int(1,4);
+        var s1=a+b, s2=a-c;
+        ex+=row(i,'Simplifica (reduz termos semelhantes):&nbsp; a) '+a+'x + '+b+'x = _____&nbsp;&nbsp; b) '+a+'x − '+c+'x = _____&nbsp;&nbsp; c) '+b+'y + '+a+'y − '+c+'y = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+s1+'x</strong>&nbsp; b) <strong>'+s2+'x</strong>&nbsp; c) <strong>'+(a+b-c)+'y</strong></div>';
+      } else if (dif==='medio') {
+        // Médio: simplificar com duas variáveis
+        var a=R.int(2,7),b=R.int(1,5),c=R.int(2,6),d=R.int(1,4);
+        var rx=a-c, ry=b+d;
+        ex+=row(i,'a) Simplifica: '+a+'x + '+b+'y − '+c+'x + '+d+'y = _____&nbsp;&nbsp; b) Simplifica: 3x² − 2x + 5 + x² + 4x − 1 = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+rx+'x + '+ry+'y</strong>&nbsp; b) <strong>4x² + 2x + 4</strong></div>';
+      } else {
+        // Difícil: remover parênteses e simplificar
+        var a=R.int(2,5),b=R.int(1,4),c=R.int(2,5),d=R.int(1,4);
+        var r1=a-c, r2=-(b+d);
+        ex+=row(i,'a) Remove parênteses e simplifica: '+a+'x − ('+c+'x + '+b+') − '+d+' = _____&nbsp;&nbsp; b) Simplifica: 2(3x − 1) − (x + 4) = _____');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) <strong>'+r1+'x − '+(b+d)+'</strong>&nbsp; b) 6x−2−x−4 = <strong>5x − 6</strong></div>';
+      }
     } else if (st===3) {
-      // Generate equation with integer solution
-      var coef=R.pick([2,3,4,5]),add=R.int(2,10);
-      var x=R.int(2,8); var result=coef*x+add;
-      var coef2=R.pick([2,3,4]),sub=R.int(1,6);
-      var x2=R.int(2,8); var result2=coef2*x2-sub;
-      ex+=row(i,'Resolve e verifica:&nbsp; a) '+coef+'x + '+add+' = '+result+' &nbsp;&nbsp;&nbsp; b) '+coef2+'x − '+sub+' = '+result2);
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) x=('+result+'−'+add+')÷'+coef+' = <strong>'+x+'</strong>. Verif: '+coef+'×'+x+'+'+add+'='+result+' ✓&nbsp; b) x=('+result2+'+'+sub+')÷'+coef2+' = <strong>'+x2+'</strong></div>';
+      if (dif==='facil') {
+        // Fácil: equação de 1 passo — ax = b ou x + a = b
+        var coef=R.pick([2,3,4,5]),x=R.int(2,9);
+        var result=coef*x;
+        var add=R.int(2,10),x2=R.int(2,9),res2=x2+add;
+        ex+=row(i,'Resolve:&nbsp; a) '+coef+'x = '+result+'&nbsp;&nbsp;&nbsp; b) x + '+add+' = '+res2);
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) x = '+result+'÷'+coef+' = <strong>'+x+'</strong>&nbsp; b) x = '+res2+'−'+add+' = <strong>'+x2+'</strong></div>';
+      } else if (dif==='medio') {
+        // Médio: equação de 2 passos — ax + b = c, e com variável dos dois lados
+        var coef=R.pick([2,3,4,5]),add=R.int(2,10),x=R.int(2,8);
+        var result=coef*x+add;
+        var c1=R.pick([3,4,5]),c2=R.pick([1,2]),b2=R.int(3,10),x2=R.int(1,6);
+        var res2=c1*x2+b2-c2*x2; // c1*x2 + b2 = c2*x2 + res2... actually: (c1-c2)*x2 + b2 = rhs
+        var rhs=(c1-c2)*x2+b2;
+        ex+=row(i,'Resolve e verifica:&nbsp; a) '+coef+'x + '+add+' = '+result+'&nbsp;&nbsp;&nbsp; b) '+c1+'x + '+b2+' = '+c2+'x + '+rhs);
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) x = ('+result+'−'+add+')÷'+coef+' = <strong>'+x+'</strong>. Verif: '+coef+'×'+x+'+'+add+'='+result+' ✓&nbsp; b) '+(c1-c2)+'x = '+rhs+'−'+b2+' → x = <strong>'+x2+'</strong></div>';
+      } else {
+        // Difícil: equação com parênteses e/ou frações
+        var x=R.int(2,7);
+        var a=R.pick([2,3]),b=R.int(1,5),rhs=a*(x+b);
+        var p=R.pick([2,3,4]),q=R.pick([2,3]),r=R.int(3,12);
+        // x/p + x/q = r  →  x*(p+q)/(p*q) = r  →  x = r*p*q/(p+q)
+        var xFrac=r*p*q; var xDen=p+q; // x = xFrac/xDen — only use if integer
+        var usesFrac=(xFrac % xDen === 0);
+        if (usesFrac) {
+          var xSol=xFrac/xDen;
+          ex+=row(i,'Resolve:&nbsp; a) '+a+'(x + '+b+') = '+rhs+'&nbsp;&nbsp;&nbsp; b) x/'+p+' + x/'+q+' = '+r);
+          sol+='<div class="ex"><strong>'+i+'.</strong> a) '+a+'x+'+a*b+'='+rhs+' → '+a+'x='+(rhs-a*b)+' → x=<strong>'+x+'</strong>&nbsp; b) mmc('+p+','+q+')='+p*q+': '+q+'x+'+p+'x='+r*p*q+' → '+(p+q)+'x='+r*p*q+' → x=<strong>'+xSol+'</strong></div>';
+        } else {
+          var x2=R.int(2,6),c2=R.pick([2,3]),d2=R.int(1,4),rhs2=c2*(x2-d2);
+          ex+=row(i,'Resolve:&nbsp; a) '+a+'(x + '+b+') = '+rhs+'&nbsp;&nbsp;&nbsp; b) '+c2+'(x − '+d2+') = '+rhs2);
+          sol+='<div class="ex"><strong>'+i+'.</strong> a) '+a+'x+'+a*b+'='+rhs+' → x=<strong>'+x+'</strong>&nbsp; b) '+c2+'x−'+c2*d2+'='+rhs2+' → '+c2+'x='+(rhs2+c2*d2)+' → x=<strong>'+x2+'</strong></div>';
+        }
+      }
     } else if (st===4) {
-      var mae=R.pick([30,36,40,42]),filho=mae/2>0?Math.round(mae/2):15;
-      var preco=R.pick([12,15,18,20]),qtd=R.pick([3,4,5]),total=preco*qtd;
-      ex+=row(i,'a) A mãe tem '+mae+' anos, o dobro da idade do filho. Qual a idade do filho? (usa uma equação)&nbsp;&nbsp; b) '+qtd+' livros custam '+total+' €. Qual o preço de cada um? (equação)');
-      sol+='<div class="ex"><strong>'+i+'.</strong> a) 2x='+mae+' → x=<strong>'+filho+'</strong> anos&nbsp; b) '+qtd+'x='+total+' → x=<strong>'+preco+' €</strong></div>';
+      if (dif==='facil') {
+        // Fácil: problema direto com equação simples
+        var qtd=R.pick([3,4,5]),preco=R.pick([6,8,10,12]),total=preco*qtd;
+        var idade=R.pick([20,24,30,32]),dobro=idade*2;
+        ex+=row(i,'a) '+qtd+' bilhetes custam '+total+' €. Qual o preço de cada bilhete? (escreve e resolve a equação)&nbsp;&nbsp; b) O pai tem '+dobro+' anos, o dobro da idade do filho. Que idade tem o filho?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+qtd+'x='+total+' → x=<strong>'+preco+' €</strong>&nbsp; b) 2x='+dobro+' → x=<strong>'+idade+' anos</strong></div>';
+      } else if (dif==='medio') {
+        // Médio: problema com soma/diferença entre duas quantidades
+        var total=R.pick([40,48,56,60,72]),diff=R.pick([4,6,8,10,12]);
+        var menor=(total-diff)/2;
+        if(!Number.isInteger(menor)){total=50;diff=10;menor=20;}
+        var maior=menor+diff;
+        var pA=R.pick([5,6,8,10]),nA=R.int(3,6),pB=R.pick([3,4,5]),nB=R.int(3,6),totalAB=pA*nA+pB*nB;
+        ex+=row(i,'a) Dois números cuja soma é '+total+' e a diferença é '+diff+'. Quais são? &nbsp;&nbsp; b) Comprei '+nA+' cadernos a '+pA+' € e '+nB+' canetas a '+pB+' €. Gastei '+totalAB+' €. Verifica com uma equação.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) x+(x+'+diff+')='+total+' → 2x='+((total-diff))+' → x=<strong>'+menor+'</strong> e '+(menor+diff)+'&nbsp; b) '+nA+'×'+pA+'+'+nB+'×'+pB+'='+totalAB+' ✓</div>';
+      } else {
+        // Difícil: problema com equação de 2 passos e contexto real
+        var velocA=R.pick([60,70,80]),velocB=R.pick([40,50,60]);
+        if(velocA<=velocB){velocA=80;velocB=50;}
+        var horas=R.pick([2,3,4]),distA=velocA*horas,distB=velocB*horas,difDist=distA-distB;
+        var totalP=R.pick([120,150,180,200]),parteA=R.pick([0.4,0.5,0.6]);
+        var vA=Math.round(totalP*parteA),vB=totalP-vA;
+        ex+=row(i,'a) Dois carros partem ao mesmo tempo em sentidos opostos a '+velocA+' km/h e '+velocB+' km/h. Ao fim de '+horas+' h, qual a diferença entre as distâncias percorridas?&nbsp;&nbsp; b) Divide '+totalP+' € em duas partes onde a 1.ª é '+Math.round(parteA*100)+'% do total. Quais as partes?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+velocA+'×'+horas+'−'+velocB+'×'+horas+' = '+distA+'−'+distB+' = <strong>'+difDist+' km</strong>&nbsp; b) 1.ª parte = <strong>'+vA+' €</strong>, 2.ª = <strong>'+vB+' €</strong></div>';
+      }
     }
   }
   return {ex:ex, sol:sol};
