@@ -78,9 +78,10 @@ function _buildCapSelHTML(tab, opts) {
     if (sts.length > 0) {
       var trayId = type === 'gf' ? 'gf-st-'+cn+'-'+panelId : 'mat7-st-'+cn+'-'+tab;
       var trayClass = '';
-      var trayStyle = ' style="display:none"';
-      if (type === 'gf' && isFirst) { trayClass = ' open'; trayStyle = ''; }
+      var trayStyle = '';
+      if (type === 'gf' && isFirst) { trayClass = ' open'; }
       else if (type !== 'gf' && isFirst) { trayStyle = ' style="display:flex;flex-wrap:wrap;gap:.3rem;align-items:center"'; }
+      else if (type !== 'gf') { trayStyle = ' style="display:none"'; }
       h += '<div class="gf-st-tray'+trayClass+'"'+trayStyle+' id="'+trayId+'"><span class="gf-st-tray-label">Subtemas:</span>';
       sts.forEach(function(st, si) {
         var mark = numbered ? '<span class="gf-st-num">'+(si+1)+'</span>' : '<span class="gf-st-check">✓</span>';
