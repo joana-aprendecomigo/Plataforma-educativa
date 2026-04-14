@@ -106,28 +106,32 @@ function gfToggleCap(btn, secId) {
 }
 
 // Handles cap button click: toggles active state and opens/closes subtema tray
+// Behaviour:
+//   - Inactive cap clicked  → activate + open tray
+//   - Active cap, tray closed → open tray (keep active)
+//   - Active cap, tray open   → deactivate + close tray (unless last cap)
 function gfCapClick(btn, secId, cap) {
-  var wasActive = btn.classList.contains('active');
-  // Toggle cap selection (with minimum 1 cap guarantee)
-  btn.classList.toggle('active');
-  var caps = document.querySelectorAll('#gf-caps-' + secId + ' .gf-cap-btn.active');
-  if (caps.length === 0) { btn.classList.add('active'); wasActive = false; }
-  var nowActive = btn.classList.contains('active');
-  // Update tray
   var tray = document.getElementById('gf-st-' + cap + '-' + secId);
-  if (!tray) return;
-  if (!nowActive) {
-    tray.classList.remove('open');
-  } else if (!wasActive) {
-    // Cap just activated — open its tray, close others
-    var sec = document.getElementById('gf-caps-' + secId);
+  var isActive = btn.classList.contains('active');
+  var trayOpen = tray && tray.classList.contains('open');
+  var sec = document.getElementById('gf-caps-' + secId);
+
+  if (!isActive) {
+    // Activate cap, open its tray, close others
+    btn.classList.add('active');
     if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { t.classList.remove('open'); });
-    tray.classList.add('open');
+    if (tray) tray.classList.add('open');
+  } else if (!trayOpen) {
+    // Cap active but tray closed — open tray, close others
+    if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { t.classList.remove('open'); });
+    if (tray) tray.classList.add('open');
   } else {
-    // Cap was already active — toggle tray open/closed
-    var sec = document.getElementById('gf-caps-' + secId);
-    if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { if (t !== tray) t.classList.remove('open'); });
-    tray.classList.toggle('open');
+    // Cap active and tray open — deactivate (unless last active cap)
+    var activeCaps = sec ? sec.querySelectorAll('.gf-cap-btn.active') : [];
+    if (activeCaps.length > 1) {
+      btn.classList.remove('active');
+      if (tray) tray.classList.remove('open');
+    }
   }
 }
 
