@@ -105,6 +105,32 @@ function gfToggleCap(btn, secId) {
   if (caps.length === 0) btn.classList.add('active');
 }
 
+// Handles cap button click: toggles active state and opens/closes subtema tray
+function gfCapClick(btn, secId, cap) {
+  var wasActive = btn.classList.contains('active');
+  // Toggle cap selection (with minimum 1 cap guarantee)
+  btn.classList.toggle('active');
+  var caps = document.querySelectorAll('#gf-caps-' + secId + ' .gf-cap-btn.active');
+  if (caps.length === 0) { btn.classList.add('active'); wasActive = false; }
+  var nowActive = btn.classList.contains('active');
+  // Update tray
+  var tray = document.getElementById('gf-st-' + cap + '-' + secId);
+  if (!tray) return;
+  if (!nowActive) {
+    tray.classList.remove('open');
+  } else if (!wasActive) {
+    // Cap just activated — open its tray, close others
+    var sec = document.getElementById('gf-caps-' + secId);
+    if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { t.classList.remove('open'); });
+    tray.classList.add('open');
+  } else {
+    // Cap was already active — toggle tray open/closed
+    var sec = document.getElementById('gf-caps-' + secId);
+    if (sec) sec.querySelectorAll('.gf-st-tray').forEach(function(t) { if (t !== tray) t.classList.remove('open'); });
+    tray.classList.toggle('open');
+  }
+}
+
 function gfToggleType(btn) {
   btn.classList.toggle('active');
   var tick = btn.querySelector('.gf-tick');
