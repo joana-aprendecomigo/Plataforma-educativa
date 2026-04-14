@@ -352,6 +352,16 @@ function gfToggleDif(btn, secId) {
   btn.classList.add('active');
 }
 
+function gfToggleQty(btn, secId) {
+  document.querySelectorAll('#gf-qty-' + secId + ' .gf-dif-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function gfGetQty(secId) {
+  var active = document.querySelector('#gf-qty-' + secId + ' .gf-dif-btn.active');
+  return active ? parseInt(active.dataset.qty) : 10;
+}
+
 function gfGetDifficulty(secId) {
   var active = document.querySelector('#gf-dif-' + secId + ' .gf-dif-btn.active');
   return active ? active.dataset.dif : 'facil';
@@ -1558,7 +1568,7 @@ function gfGenerar(secId) {
   var mainHtml = '';
   var solucoesHtml = '';
   var hasSolucoes = !!types.solucoes && (!!types.exercicios || !!types.teste || !!types.minitestes);
-  var N_PER_ST = 3;
+  var N_PER_ST = gfGetQty(secId);
 
   selectedCaps.forEach(function(cap) {
     var sts = stFilter[cap];
