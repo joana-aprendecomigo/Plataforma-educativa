@@ -459,7 +459,8 @@ function gfGetSubtemas(secId) {
   return needsFilter ? result : null;
 }
 
-function _gfGenerarBase(secId) {
+function _gfGenerarBase(secId, qty) {
+  qty = qty || 10;
   var sec = document.getElementById(secId);
   var capBtns = sec.querySelectorAll('.gf-cap-btn.active');
   var selectedCaps = [];
@@ -510,7 +511,7 @@ function _gfGenerarBase(secId) {
     if (types.exercicios) {
       try {
         // Usa exercícios dinâmicos (aleatórios) em vez dos estáticos
-        dynResult = _buildDinamicoCapHTML(cap, dif);
+        dynResult = _buildDinamicoCapHTML(cap, dif, qty);
         if (dynResult && dynResult.ex) {
           capHtml += '<h3 style="color:#516860;border-left:3px solid #77998E;padding-left:8px;margin:1.25rem 0 .5rem">Exerc\u00edcios</h3>'
             + '<div class="meta" style="color:#888;font-size:.78rem;margin-bottom:1rem">Data: '+new Date().toLocaleDateString('pt-PT')+'</div>'
@@ -600,9 +601,10 @@ var _RND = {
   sign: function(v){ return v>=0?'+'+v:''+v; }
 };
 
-function _buildDinamicoCapHTML(cap, dif) {
+function _buildDinamicoCapHTML(cap, dif, qty) {
+  qty = qty || 10;
   var fns = { 1:_dinamico1, 2:_dinamico2, 3:_dinamico3, 4:_dinamico4, 5:_dinamico5, 6:_dinamico6, 7:_dinamico7, 8:_dinamico8 };
-  return fns[cap] ? fns[cap](dif) : '';
+  return fns[cap] ? fns[cap](dif, qty) : '';
 }
 
 // ── Shared helpers for _dinamicoN functions ───────────────────────────────────
@@ -1793,12 +1795,12 @@ function _gfSubtema8(st, dif, n) {
 function gfGenerar(secId) {
   var stFilter = gfGetSubtemas(secId);
   if (!stFilter) {
-    _gfGenerarBase(secId);
+    _gfGenerarBase(secId, gfGetQty(secId));
     return;
   }
 
   var sec = document.getElementById(secId);
-  if (!sec) { _gfGenerarBase(secId); return; }
+  if (!sec) { _gfGenerarBase(secId, gfGetQty(secId)); return; }
 
   var capBtns = sec.querySelectorAll('.gf-cap-btn.active');
   var selectedCaps = [];
