@@ -403,6 +403,7 @@ footer strong{color:rgba(255,255,255,.7);font-weight:500}
 .gf-dif-btn.active[data-dif="facil"]{background:#e8f5e9;border-color:#4caf50;color:#2e7d32}
 .gf-dif-btn.active[data-dif="medio"]{background:#fff8e1;border-color:#ff9800;color:#e65100}
 .gf-dif-btn.active[data-dif="dificil"]{background:#fce4ec;border-color:#e91e63;color:#880e4f}
+.gf-dif-btn.active[data-qty]{background:var(--c2-mid);border-color:var(--c2-mid);color:#fff}
 
 .gf-gen-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--c2-mid),var(--c1-mid));color:#fff;border:none;padding:12px 28px;border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(81,104,96,.25)}
 .gf-gen-btn:hover{opacity:.88;transform:translateY(-1px)}
