@@ -293,118 +293,247 @@ function buildEx4(tema,dif){
 
   // TEMA 1 & 2 — Expressões algébricas e simplificação
   if(tema==='1'||tema==='2'){
-    var r=r4(0,4);
+    if(easy){
+      var r=r4(0,2);
+      if(r===0){
+        // Fácil: valor numérico direto com coeficiente pequeno
+        var a=r4(2,4),b=r4(1,5),x=r4(1,4);
+        var val=a*x+b;
+        return{en:'Calcula o valor numérico de '+a+'x + '+b+' para x = '+x+'.',
+          opts:sh4(['A) '+val,'B) '+(a+b+x),'C) '+(a*x),'D) '+(a*(x+b))]),
+          c:'A) '+val,fb:'Substitui x = '+x+':\n'+a+'×'+x+' + '+b+' = '+(a*x)+' + '+b+' = '+val+'.'};
+      }
+      if(r===1){
+        // Fácil: identificar o coeficiente e parte literal
+        var a=r4(2,6),lett=(['x','y','z'])[r4(0,2)];
+        return{en:'Na expressão '+a+lett+', qual é o coeficiente?',
+          opts:sh4(['A) '+a,'B) '+lett,'C) 1','D) '+(a+1)]),
+          c:'A) '+a,fb:'Em '+a+lett+', o número '+a+' é o coeficiente e "'+lett+'" é a parte literal.'};
+      }
+      // Fácil: simplificar termos semelhantes (1 variável)
+      var a=r4(2,5),b=r4(1,4);
+      return{en:'Simplifica: '+a+'x + '+b+'x = ?',
+        opts:sh4(['A) '+(a+b)+'x','B) '+(a*b)+'x','C) '+(a+b),'D) '+(a-b)+'x']),
+        c:'A) '+(a+b)+'x',fb:'Termos semelhantes (mesma parte literal x):\n'+a+'x + '+b+'x = ('+a+' + '+b+')x = '+(a+b)+'x.'};
+    }
+    if(!hard){
+      var r=r4(0,3);
+      if(r===0){
+        // Médio: valor numérico com dois termos e valor negativo
+        var a=r4(2,6),b=r4(1,5),c=r4(1,4),x=r4(1,6),y=r4(1,4);
+        var val=a*x-b*y+c;
+        return{en:'Para x = '+x+' e y = '+y+', calcula: '+a+'x − '+b+'y + '+c,
+          opts:sh4(['A) '+val,'B) '+(a*x+b*y+c),'C) '+(a*x-b*y-c),'D) '+(a+b+c)]),
+          c:'A) '+val,fb:'Substitui x='+x+' e y='+y+':\n'+a+'×'+x+' − '+b+'×'+y+' + '+c+' = '+(a*x)+' − '+(b*y)+' + '+c+' = '+val+'.'};
+      }
+      if(r===1){
+        // Médio: simplificar com duas variáveis
+        var a=r4(2,5),b=r4(1,4),c=r4(1,4),d=r4(1,3);
+        var rx=a-c,ry=b+d;
+        return{en:'Simplifica: '+a+'x + '+b+'y − '+c+'x + '+d+'y = ?',
+          opts:sh4(['A) '+rx+'x + '+ry+'y','B) '+(a+c)+'x + '+(b-d)+'y','C) '+a+'x + '+d+'y','D) '+(rx+ry)+'xy']),
+          c:'A) '+rx+'x + '+ry+'y',fb:'Agrupa por variável:\n('+a+' − '+c+')x = '+rx+'x\n('+b+' + '+d+')y = '+ry+'y\nResultado: '+rx+'x + '+ry+'y.'};
+      }
+      if(r===2){
+        // Médio: distributiva
+        var a=r4(2,5),b=r4(1,4),c=r4(1,4);
+        var res1=a*b,res2=a*c;
+        return{en:'Expande usando a distributiva: '+a+'('+b+'x + '+c+') = ?',
+          opts:sh4(['A) '+res1+'x + '+res2,'B) '+(a+b)+'x + '+(a+c),'C) '+res1+'x + '+c,'D) '+a+'x + '+res2]),
+          c:'A) '+res1+'x + '+res2,fb:'Distributiva:\n'+a+' × '+b+'x = '+res1+'x\n'+a+' × '+c+' = '+res2+'\nResultado: '+res1+'x + '+res2+'.'};
+      }
+      // Médio: expressão do perímetro
+      var a=r4(2,5);
+      return{en:'Um quadrado tem lado (2x + '+a+') cm. Qual é a expressão do perímetro?',
+        opts:sh4(['A) 8x + '+(4*a),'B) 4x + '+a,'C) 2x + '+(4*a),'D) 4x + '+(4*a)]),
+        c:'A) 8x + '+(4*a),fb:'P = 4 × lado = 4(2x + '+a+') = 8x + '+(4*a)+' cm.'};
+    }
+    // Difícil: expressões com expoentes e múltiplas variáveis
+    var r=r4(0,2);
     if(r===0){
-      var a=r4(2,8),b=r4(1,6),x=r4(1,5);
-      var val=a*x+b;
-      return{en:'Calcula o valor numérico de '+a+'x + '+b+' para x = '+x+'.',
-        opts:sh4(['A) '+val,'B) '+(a*x),'C) '+((a+b)*x),'D) '+(val+a)].slice(0,4)),
-        c:'A) '+val,fb:'Substitui x = '+x+':\n'+a+'×'+x+' + '+b+' = '+(a*x)+' + '+b+' = '+val+'.'};
+      var a=r4(2,5),b=r4(1,4),c=r4(2,4),x=r4(1,4),y=r4(1,4);
+      var val=a*x*x-b*y+c;
+      return{en:'Calcula o valor numérico de '+a+'x² − '+b+'y + '+c+' para x = '+x+' e y = '+y+'.',
+        opts:sh4(['A) '+val,'B) '+(a*x-b*y+c),'C) '+(a*x*x+b*y+c),'D) '+(a*x*x-b*y-c)]),
+        c:'A) '+val,fb:''+a+'×('+x+')² − '+b+'×'+y+' + '+c+' = '+a+'×'+(x*x)+' − '+(b*y)+' + '+c+' = '+val+'.'};
     }
     if(r===1){
-      var a=r4(2,5),b=r4(1,4),c=r4(1,4);
-      var res=(a+c)+'x + '+b;// simplify (a)x + b + cx = (a+c)x + b
-      return{en:'Simplifica: '+a+'x + '+b+' + '+c+'x = ?',
-        opts:sh4(['A) '+res,'B) '+(a+b+c)+'x','C) '+(a*c)+'x + '+b,'D) '+a+'x + '+(b+c)].slice(0,4)),
-        c:'A) '+res,fb:'Agrupa os termos em x:\n'+a+'x + '+c+'x = '+(a+c)+'x.\nResultado: '+res+'.'};
+      // Difícil: simplificar com parênteses
+      var a=r4(2,4),b=r4(1,3),c=r4(2,4),d=r4(1,3);
+      var res=(a-c)+'x − '+(b+d);
+      return{en:'Simplifica: '+a+'x − '+b+' − ('+c+'x + '+d+') = ?',
+        opts:sh4(['A) '+res,'B) '+(a+c)+'x − '+(b+d),'C) '+(a-c)+'x + '+(d-b),'D) '+(a-c)+'x − '+(b-d)]),
+        c:'A) '+res,fb:'Remove parênteses (sinal −):\n'+a+'x − '+b+' − '+c+'x − '+d+'\n= ('+a+' − '+c+')x − ('+b+' + '+d+')\n= '+res+'.'};
     }
-    if(r===2){
-      var a=r4(2,6),b=r4(1,5);
-      var perim=''+(2*a+2*b); // or as expression
-      return{en:'Um retângulo tem comprimento '+a+' cm e largura '+b+' cm. Qual é o perímetro?',
-        opts:sh4(['A) '+(2*a+2*b)+' cm','B) '+(a*b)+' cm','C) '+(a+b)+' cm','D) '+(2*(a+b)+2)+' cm']),
-        c:'A) '+(2*a+2*b)+' cm',fb:'P = 2 × comprimento + 2 × largura = 2×'+a+' + 2×'+b+' = '+(2*a)+' + '+(2*b)+' = '+(2*a+2*b)+' cm.'};
-    }
-    if(r===3){
-      // distributiva
-      var a=r4(2,5),b=r4(1,4),c=r4(1,4);
-      var res1=a*b,res2=a*c;
-      return{en:'Expande: '+a+'('+b+'x + '+c+') = ?',
-        opts:sh4(['A) '+res1+'x + '+res2,'B) '+(a+b)+'x + '+(a+c),'C) '+res1+'x + '+c,'D) '+b+'x + '+res2]),
-        c:'A) '+res1+'x + '+res2,fb:'Distributiva: '+a+' × '+b+'x = '+res1+'x e '+a+' × '+c+' = '+res2+'.\nResultado: '+res1+'x + '+res2+'.'};
-    }
-    // r===4: expressão do perímetro
-    var a=r4(2,5);
-    return{en:'Um quadrado tem lado (2x + '+a+') cm. Qual é a expressão do perímetro?',
-      opts:sh4(['A) 8x + '+(4*a),'B) 4x + '+a,'C) 2x + '+(4*a),'D) 4x + '+(4*a)]),
-      c:'A) 8x + '+(4*a),fb:'P = 4 × lado = 4 × (2x + '+a+') = 8x + '+(4*a)+' cm.'};
+    // Difícil: monómios — produto
+    var a=r4(2,4),b=r4(2,4);
+    return{en:'Qual é o produto dos monómios '+a+'x² e '+b+'x³?',
+      opts:sh4(['A) '+(a*b)+'x⁵','B) '+(a+b)+'x⁶','C) '+(a*b)+'x⁶','D) '+(a*b)+'x⁵ ']),
+      c:'A) '+(a*b)+'x⁵',fb:'Multiplica os coeficientes: '+a+'×'+b+' = '+(a*b)+'\nSoma os expoentes: x² × x³ = x^(2+3) = x⁵\nResultado: '+(a*b)+'x⁵.'};
   }
 
   // TEMA 3 & 4 — Equações e equivalência
   if(tema==='3'||tema==='4'){
-    var r=r4(0,4);
-    if(r===0){
-      var sol=r4(easy?1:hard?-8:1,easy?5:hard?8:6);
-      var b=r4(1,5);var a=r4(2,4);
-      var rhs=a*sol+b;
-      return{en:'Resolve a equação: '+a+'x + '+b+' = '+rhs,
-        visual: svgBalanca(a+'x + '+b, String(rhs)),
-        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+((rhs+b)/a),'D) x = '+(sol-1)]),
-        c:'A) x = '+sol,fb:a+'x + '+b+' = '+rhs+'\n'+a+'x = '+rhs+' − '+b+' = '+(rhs-b)+'\nx = '+(rhs-b)+' ÷ '+a+' = '+sol+'.\nVerificação: '+a+'×'+sol+' + '+b+' = '+rhs+' ✓'};
+    if(easy){
+      var r=r4(0,2);
+      if(r===0){
+        // Fácil: ax = b (1 passo)
+        var sol=r4(2,8),a=r4(2,4),rhs=a*sol;
+        return{en:'Resolve a equação: '+a+'x = '+rhs,
+          visual: svgBalanca(a+'x', String(rhs)),
+          opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+(a+rhs),'D) x = '+(sol-1)]),
+          c:'A) x = '+sol,fb:a+'x = '+rhs+'\nx = '+rhs+' ÷ '+a+' = '+sol+'.\nVerificação: '+a+'×'+sol+' = '+rhs+' ✓'};
+      }
+      if(r===1){
+        // Fácil: x + a = b (1 passo)
+        var sol=r4(2,9),add=r4(1,8),rhs=sol+add;
+        return{en:'Resolve: x + '+add+' = '+rhs,
+          opts:sh4(['A) x = '+sol,'B) x = '+rhs,'C) x = '+(sol+1),'D) x = '+(add+rhs)]),
+          c:'A) x = '+sol,fb:'x + '+add+' = '+rhs+'\nx = '+rhs+' − '+add+' = '+sol+'.'};
+      }
+      // Fácil: x − a = b (1 passo)
+      var sol=r4(3,9),sub=r4(1,5),rhs=sol-sub;
+      return{en:'Resolve: x − '+sub+' = '+rhs,
+        opts:sh4(['A) x = '+sol,'B) x = '+rhs,'C) x = '+(sol-1),'D) x = '+(sub-rhs)]),
+        c:'A) x = '+sol,fb:'x − '+sub+' = '+rhs+'\nx = '+rhs+' + '+sub+' = '+sol+'.'};
     }
-    if(r===1){
-      var sol=r4(1,easy?4:8);
-      var a=r4(2,4),b=r4(1,5),c=r4(1,3),d=r4(1,4);
-      var lhs=a*sol+b,rhs2=c*sol+d;
-      return{en:'Resolve: '+a+'x + '+b+' = '+lhs+' (sabendo que '+c+'x + '+d+' = '+rhs2+')',
-        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+(sol*2),'D) x = '+(sol-1)]),
-        c:'A) x = '+sol,fb:a+'x = '+lhs+' − '+b+' = '+(lhs-b)+'\nx = '+(lhs-b)+' ÷ '+a+' = '+sol+'.'};
+    if(!hard){
+      var r=r4(0,3);
+      if(r===0){
+        // Médio: ax + b = c (2 passos)
+        var sol=r4(2,8),a=r4(2,4),b=r4(1,8),rhs=a*sol+b;
+        return{en:'Resolve: '+a+'x + '+b+' = '+rhs,
+          visual: svgBalanca(a+'x + '+b, String(rhs)),
+          opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+Math.round((rhs+b)/a),'D) x = '+(sol-1)]),
+          c:'A) x = '+sol,fb:a+'x + '+b+' = '+rhs+'\n'+a+'x = '+rhs+' − '+b+' = '+(rhs-b)+'\nx = '+(rhs-b)+' ÷ '+a+' = '+sol+'.\nVerificação: '+a+'×'+sol+'+'+b+'='+rhs+' ✓'};
+      }
+      if(r===1){
+        // Médio: ax − b = c (2 passos)
+        var sol=r4(2,8),a=r4(2,4),b=r4(1,6),rhs=a*sol-b;
+        return{en:'Resolve: '+a+'x − '+b+' = '+rhs,
+          opts:sh4(['A) x = '+sol,'B) x = '+Math.round((rhs-b)/a),'C) x = '+(sol+1),'D) x = '+(sol-1)]),
+          c:'A) x = '+sol,fb:a+'x − '+b+' = '+rhs+'\n'+a+'x = '+rhs+' + '+b+' = '+(rhs+b)+'\nx = '+(rhs+b)+' ÷ '+a+' = '+sol+'.'};
+      }
+      if(r===2){
+        // Médio: variável dos dois lados ax + b = cx + d
+        var sol=r4(1,6),a=r4(3,5),b=r4(1,8),c=r4(1,a-1),d=c*sol+(a-c)*sol+b-b;
+        var rhs=(a-c)*sol+b;
+        return{en:'Resolve: '+a+'x + '+b+' = '+c+'x + '+rhs,
+          opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+(rhs-b),'D) x = '+(sol*2)]),
+          c:'A) x = '+sol,fb:a+'x + '+b+' = '+c+'x + '+rhs+'\n'+a+'x − '+c+'x = '+rhs+' − '+b+'\n'+(a-c)+'x = '+((a-c)*sol)+'\nx = '+sol+'.'};
+      }
+      // Médio: problema direto
+      var pPrice=r4(3,8)*5,q=r4(2,5),tot=pPrice*q;
+      return{en:'O Rui comprou '+q+' livros a p € cada e pagou '+tot+' €. Qual é o preço p de cada livro?',
+        opts:sh4(['A) '+pPrice+' €','B) '+(tot+pPrice)+' €','C) '+(tot-pPrice)+' €','D) '+(pPrice*2)+' €']),
+        c:'A) '+pPrice+' €',fb:'Equação: '+q+'×p = '+tot+'.\np = '+tot+' ÷ '+q+' = '+pPrice+' €.'};
     }
-    if(r===2){
-      var sol=r4(1,easy?5:10);
-      var a=r4(2,4),b=r4(2,5);
-      var rhs=a*sol-b;
-      var rhsNeg=rhs<0;
-      return{en:'Resolve: '+a+'x − '+b+' = '+rhs,
-        opts:sh4(['A) x = '+sol,'B) x = '+((rhs-b)/a),'C) x = '+(sol+1),'D) x = '+(sol-1)]),
-        c:'A) x = '+sol,fb:a+'x − '+b+' = '+rhs+'\n'+a+'x = '+rhs+' + '+b+' = '+(rhs+b)+'\nx = '+(rhs+b)+' ÷ '+a+' = '+sol+'.\nVerificação: '+a+'×'+sol+' − '+b+' = '+(a*sol-b)+' = '+rhs+' ✓'};
-    }
-    if(r===3){
-      var sol=r4(1,6);
-      var a=r4(2,4),b=r4(1,5),c=r4(1,3);
-      var rhs=(a-c)*sol+b;
-      return{en:'Resolve: '+a+'x + '+b+' = '+c+'x + '+(rhs+c*sol-(a-c)*sol),
-        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+rhs,'D) x = '+(sol-1)]),
-        c:'A) x = '+sol,fb:a+'x + '+b+' = '+c+'x + '+(rhs+c*sol-(a-c)*sol)+'\n'+a+'x − '+c+'x = '+(rhs+c*sol-(a-c)*sol)+' − '+b+'\n'+(a-c)+'x = '+((a-c)*sol)+'\nx = '+sol+'.'};
-    }
-    // r===4: equação de problemas
-    var pPrice=r4(3,8)*5,q=r4(2,5),tot=pPrice*q;
-    return{en:'O Miguel comprou '+q+' cadernos a p € cada e pagou '+tot+' €. Qual é o preço p de cada caderno?',
-      opts:sh4(['A) '+pPrice+' €','B) '+(tot+pPrice)+' €','C) '+(tot-pPrice)+' €','D) '+(pPrice*2)+' €']),
-      c:'A) '+pPrice+' €',fb:'Equação: '+q+'p = '+tot+'.\np = '+tot+' ÷ '+q+' = '+pPrice+' €.'};
-  }
-
-  // TEMA 5 & 6 — Classificação e problemas
-  if(tema==='5'||tema==='6'){
+    // Difícil: parênteses, frações, equação impossível
     var r=r4(0,3);
     if(r===0){
-      // Equação com parênteses
-      var sol=r4(1,easy?4:8);
-      var a=r4(2,4),b=r4(1,4);
-      var rhs=a*(sol+b);
+      // Difícil: parênteses a(x + b) = c
+      var sol=r4(2,7),a=r4(2,4),b=r4(1,5),rhs=a*(sol+b);
       return{en:'Resolve: '+a+'(x + '+b+') = '+rhs,
-        opts:sh4(['A) x = '+sol,'B) x = '+(rhs/a),'C) x = '+(sol+1),'D) x = '+(sol-1)]),
-        c:'A) x = '+sol,fb:'Divide ambos os membros por '+a+':\nx + '+b+' = '+rhs+'/'+a+' = '+(rhs/a)+'.\nx = '+(rhs/a)+' − '+b+' = '+sol+'.'};
+        opts:sh4(['A) x = '+sol,'B) x = '+(rhs/a),'C) x = '+(sol+b),'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:'Expande: '+a+'x + '+(a*b)+' = '+rhs+'\n'+a+'x = '+rhs+' − '+(a*b)+' = '+(rhs-a*b)+'\nx = '+sol+'.'};
     }
     if(r===1){
-      // Problema: duas quantidades
-      var x=r4(2,8),tot=r4(x+3,x+12);var y=tot-x;
-      return{en:'A soma de dois números é '+tot+'. O maior é '+x+' mais do que o menor. Qual é o menor número?',
-        opts:sh4(['A) '+y,'B) '+x,'C) '+tot,'D) '+((tot-x)/2)]),
-        c:'A) '+y,fb:'Sejam x (menor) e x + '+x+' (maior).\nx + (x + '+x+') = '+tot+'\n2x = '+(tot-x)+'\nx = '+((tot-x)/2)+'.\nMenor = '+((tot-x)/2)+', Maior = '+((tot-x)/2+x)+' = '+(y+x)+'.\nHmmm... Verifica: '+((tot-x)/2)+' + '+((tot-x)/2+x)+' = '+tot+' ✓'};
+      // Difícil: parênteses dos dois lados
+      var sol=r4(1,5),a=r4(2,3),b=r4(1,4),c=r4(1,3),d=r4(1,3);
+      var lhs=a*(sol+b),rhs=c*(sol+d)+lhs-c*(sol+d)-(a*(sol+b)-a*sol-a*b)+(a*sol+a*b);
+      var rhsVal=c*sol+c*d;var lhsVal=a*sol+a*b;
+      // Build equation: a(x+b) = c(x+d) + k where k = lhsVal - rhsVal
+      var k=lhsVal-rhsVal;
+      var rhs2=c*sol+c*d+k;
+      return{en:'Resolve: '+a+'(x + '+b+') = '+c+'(x + '+d+') + '+k,
+        opts:sh4(['A) x = '+sol,'B) x = '+(sol+1),'C) x = '+(b+d),'D) x = '+(sol-1)]),
+        c:'A) x = '+sol,fb:a+'x + '+(a*b)+' = '+c+'x + '+(c*d)+' + '+k+'\n'+(a-c)+'x = '+(c*d+k-a*b)+'\nx = '+sol+'.'};
     }
     if(r===2){
-      var age=r4(8,15),diff=r4(2,5);
-      var parentAge=age+r4(20,25);
-      return{en:'A Inês tem '+age+' anos e a mãe tem '+parentAge+'. Daqui a quantos anos (x) será a mãe o dobro da idade da Inês?',
-        opts:sh4(['A) '+(parentAge-2*age),'B) '+(parentAge-age),'C) '+age,'D) '+(parentAge-2*age+1)]),
-        c:'A) '+(parentAge-2*age),fb:parentAge+'+x = 2×('+age+'+x)\n'+parentAge+'+x = '+(2*age)+'+2x\n'+parentAge+'-'+(2*age)+' = x\nx = '+(parentAge-2*age)+' anos.'};
+      // Difícil: equação com fração x/a + b = c
+      var sol=r4(2,4)*r4(2,4),a=r4(2,4);
+      while(sol%a!==0){sol=r4(2,4)*a;}
+      var b=r4(2,8),c=sol/a+b;
+      return{en:'Resolve: x/'+a+' + '+b+' = '+c,
+        opts:sh4(['A) x = '+sol,'B) x = '+(c-b),'C) x = '+(a*(c+b)),'D) x = '+(sol+a)]),
+        c:'A) x = '+sol,fb:'x/'+a+' = '+c+' − '+b+' = '+(c-b)+'\nx = '+(c-b)+' × '+a+' = '+sol+'.'};
     }
-    // r===3: Equação impossível/indeterminada
+    // Difícil: equação impossível
     var a=r4(2,5);
-    return{en:'Resolve a equação '+a+'x − '+(a*3)+' = '+a+'x + '+(a*2)+'. O que podes concluir?',
-      opts:sh4(['A) Impossível (sem solução)','B) x = 0','C) Infinitas soluções','D) x = 5']),
-      c:'A) Impossível (sem solução)',fb:a+'x − '+(a*3)+' = '+a+'x + '+(a*2)+'.\nSubtrai '+a+'x de ambos os membros:\n−'+(a*3)+' = '+(a*2)+'.\nIsso é FALSO → equação IMPOSSÍVEL, não tem solução.'};
+    return{en:'Resolve: '+a+'x − '+(a*3)+' = '+a+'x + '+(a*2)+'. O que podes concluir?',
+      opts:sh4(['A) Impossível — sem solução','B) x = 0','C) Infinitas soluções','D) x = '+a]),
+      c:'A) Impossível — sem solução',fb:a+'x − '+(a*3)+' = '+a+'x + '+(a*2)+'.\nSubtrai '+a+'x: −'+(a*3)+' = '+(a*2)+'.\nIsso é falso → equação IMPOSSÍVEL, sem solução.'};
+  }
+
+  // TEMA 5 & 6 — Problemas com equações
+  if(tema==='5'||tema==='6'){
+    if(easy){
+      var r=r4(0,2);
+      if(r===0){
+        // Fácil: quantos objetos a preço fixo
+        var preco=r4(2,6)*5,q=r4(2,6),tot=preco*q;
+        return{en:''+q+' bilhetes custam '+tot+' €. Qual o preço de cada bilhete?',
+          opts:sh4(['A) '+preco+' €','B) '+(tot+preco)+' €','C) '+(tot*q)+' €','D) '+(preco+1)+' €']),
+          c:'A) '+preco+' €',fb:'Equação: '+q+'×p = '+tot+'.\np = '+tot+' ÷ '+q+' = '+preco+' €.'};
+      }
+      if(r===1){
+        // Fácil: dobro/triplo de uma idade
+        var filho=r4(8,14),dobro=filho*2;
+        return{en:'O pai tem '+dobro+' anos, que é o dobro da idade do filho. Que idade tem o filho?',
+          opts:sh4(['A) '+filho+' anos','B) '+(dobro+filho)+' anos','C) '+(dobro*2)+' anos','D) '+(filho-1)+' anos']),
+          c:'A) '+filho+' anos',fb:'2x = '+dobro+'\nx = '+dobro+' ÷ 2 = '+filho+' anos.'};
+      }
+      // Fácil: repartir uma quantia
+      var partes=r4(2,5),total=partes*r4(3,8)*10;
+      return{en:'Uma herança de '+total+' € é dividida igualmente por '+partes+' filhos. Quanto recebe cada um?',
+        opts:sh4(['A) '+(total/partes)+' €','B) '+(total*partes)+' €','C) '+(total+partes)+' €','D) '+(total/partes+partes)+' €']),
+        c:'A) '+(total/partes)+' €',fb:partes+'×x = '+total+'\nx = '+total+' ÷ '+partes+' = '+(total/partes)+' €.'};
+    }
+    if(!hard){
+      var r=r4(0,2);
+      if(r===0){
+        // Médio: soma de dois números com diferença conhecida
+        var menor=r4(5,15),dif=r4(2,8),maior=menor+dif,soma=menor+maior;
+        return{en:'A soma de dois números é '+soma+'. O maior supera o menor em '+dif+'. Quais são os números?',
+          opts:sh4(['A) '+menor+' e '+maior,'B) '+dif+' e '+(soma-dif),'C) '+(soma/2)+' e '+(soma/2),'D) '+(menor-1)+' e '+(maior+1)]),
+          c:'A) '+menor+' e '+maior,fb:'x + (x + '+dif+') = '+soma+'\n2x = '+soma+' − '+dif+' = '+(soma-dif)+'\nx = '+(soma-dif)+'/2 = '+menor+'.\nMaior = '+menor+' + '+dif+' = '+maior+'.'};
+      }
+      if(r===1){
+        // Médio: problema de idades (diferença fixa)
+        var irmao=r4(8,14),dif=r4(3,8),irma=irmao-dif;
+        if(irma<2){irma=3;irmao=irma+dif;}
+        return{en:'O Pedro tem '+irmao+' anos e a irmã tem '+irma+'. Daqui a quantos anos (x) terão idades cuja soma é '+(irmao+irma+20)+'?',
+          opts:sh4(['A) 10','B) 5','C) 15','D) '+(irmao-irma)]),
+          c:'A) 10',fb:'('+irmao+'+x) + ('+irma+'+x) = '+(irmao+irma+20)+'\n'+(irmao+irma)+' + 2x = '+(irmao+irma+20)+'\n2x = 20\nx = 10 anos.'};
+      }
+      // Médio: percurso com velocidade
+      var vel=r4(3,8)*10,horas=r4(2,5),dist=vel*horas;
+      return{en:'Um carro percorre '+dist+' km a '+vel+' km/h. Quantas horas demora?',
+        opts:sh4(['A) '+horas+' h','B) '+(dist+vel)+' h','C) '+(dist*vel)+' h','D) '+(horas+1)+' h']),
+        c:'A) '+horas+' h',fb:vel+'×t = '+dist+'\nt = '+dist+' ÷ '+vel+' = '+horas+' h.'};
+    }
+    // Difícil
+    var r=r4(0,2);
+    if(r===0){
+      // Difícil: problema com parênteses na equação
+      var n=r4(4,10),triplo=3*n,dobro=2*n;
+      return{en:'O triplo de um número diminuído de 4 é igual ao dobro desse número mais 2. Qual é o número?',
+        opts:sh4(['A) 6','B) 4','C) 8','D) 10']),
+        c:'A) 6',fb:'3x − 4 = 2x + 2\n3x − 2x = 2 + 4\nx = 6.\nVerif: 3×6−4=14; 2×6+2=14 ✓'};
+    }
+    if(r===1){
+      // Difícil: equação de idades (dobro daqui a n anos)
+      var age=r4(8,14),parentAge=age+r4(20,26);
+      var sol=parentAge-2*age;
+      return{en:'A Inês tem '+age+' anos e a mãe tem '+parentAge+'. Daqui a quantos anos (x) será a mãe o dobro da idade da Inês?',
+        opts:sh4(['A) '+sol+' anos','B) '+(sol+1)+' anos','C) '+(parentAge-age)+' anos','D) '+age+' anos']),
+        c:'A) '+sol+' anos',fb:parentAge+' + x = 2×('+age+' + x)\n'+parentAge+' + x = '+(2*age)+' + 2x\n'+(parentAge-2*age)+' = x\nx = '+sol+' anos.'};
+    }
+    // Difícil: problema com dois preços e total
+    var pa=r4(2,5),pb=r4(1,pa-1)||1,qa=r4(2,4),qb=r4(2,4),tot=pa*qa+pb*qb;
+    return{en:'Comprei '+qa+' maçãs a '+pa+' € cada e '+qb+' pêras a '+pb+' € cada. O total foi '+tot+' €. Verifica com uma equação.',
+      opts:sh4(['A) '+pa+'×'+qa+' + '+pb+'×'+qb+' = '+tot+' ✓','B) '+pa+'×'+qb+' + '+pb+'×'+qa+' = '+tot,'C) ('+pa+'+'+pb+')×('+qa+'+'+qb+') = '+tot,'D) '+pa+'×'+qa+' − '+pb+'×'+qb+' = '+tot]),
+      c:'A) '+pa+'×'+qa+' + '+pb+'×'+qb+' = '+tot+' ✓',fb:pa+'×'+qa+' + '+pb+'×'+qb+' = '+(pa*qa)+' + '+(pb*qb)+' = '+tot+' ✓'};
   }
 
   // fallback
