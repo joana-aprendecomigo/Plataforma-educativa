@@ -1777,19 +1777,319 @@ function _gfSubtema4(st, dif, n) {
 }
 
 function _gfSubtema5(st, dif, n) {
-  return _dinamico5(dif);
+  var R = _RND; var ex = '', sol = '';
+  var titles = {1:'Termo Geral de uma Sequência', 2:'Sequências Aritméticas', 3:'Problemas com Sequências'};
+  ex += '<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+(titles[st]||'Sequências')+'</h3>';
+  function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
+  for (var i=1;i<=n;i++) {
+    var a=R.int(1,5), r=R.int(1,4), b=R.int(2,8), c=R.int(10,50);
+    if (st===1) {
+      // Termo geral
+      if (dif==='facil') {
+        ex+=row(i,'A sequência tem termo geral u<sub>n</sub> = '+a+'n + '+b+'. Calcula u<sub>1</sub>, u<sub>2</sub> e u<sub>5</sub>.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> u₁ = '+(a+b)+' &nbsp; u₂ = '+(2*a+b)+' &nbsp; u₅ = '+(5*a+b)+'</div>';
+      } else if (dif==='medio') {
+        var u1=a+b, u2=2*a+b, u3=3*a+b;
+        ex+=row(i,'Os primeiros termos de uma sequência são '+u1+', '+u2+', '+u3+', … Determina o termo geral u<sub>n</sub> e calcula u<sub>10</sub>.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Diferença = '+a+' → u<sub>n</sub> = '+a+'n + '+b+'. u₁₀ = '+(10*a+b)+'</div>';
+      } else {
+        var u1=a+b, un=a*c+b;
+        ex+=row(i,'A sequência tem u<sub>1</sub> = '+u1+' e razão '+a+'. Determina u<sub>n</sub> e o valor de n para u<sub>n</sub> = '+un+'.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> u<sub>n</sub> = '+a+'n + '+b+'. &nbsp; '+a+'n + '+b+' = '+un+' → n = '+c+'</div>';
+      }
+    } else if (st===2) {
+      // Sequências aritméticas
+      var d=r, v1=b, v2=b+d, v3=b+2*d;
+      if (dif==='facil') {
+        ex+=row(i,'Indica se a sequência '+v1+', '+v2+', '+v3+', … é aritmética e, se sim, qual a razão.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Aritmética, razão = '+d+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Uma sequência aritmética tem u<sub>1</sub> = '+v1+' e razão '+d+'. Calcula u<sub>5</sub> e u<sub>10</sub>.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> u₅ = '+v1+' + 4×'+d+' = '+(v1+4*d)+'. &nbsp; u₁₀ = '+v1+' + 9×'+d+' = '+(v1+9*d)+'</div>';
+      } else {
+        var sum5 = 5*v1 + (5*4/2)*d;
+        ex+=row(i,'Numa sequência aritmética u<sub>1</sub> = '+v1+' e razão '+d+'. Calcula a soma dos 5 primeiros termos.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> S₅ = (u₁ + u₅)/2 × 5 = ('+(v1)+' + '+(v1+4*d)+')/2 × 5 = <strong>'+sum5+'</strong></div>';
+      }
+    } else {
+      // Problemas com sequências
+      var ini=R.int(5,20), inc=R.int(2,6);
+      if (dif==='facil') {
+        ex+=row(i,'Uma planta tem '+ini+' cm e cresce '+inc+' cm por semana. Qual a altura ao fim de 4 semanas?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+ini+' + 4×'+inc+' = <strong>'+(ini+4*inc)+' cm</strong></div>';
+      } else if (dif==='medio') {
+        var semanas=R.int(5,10);
+        ex+=row(i,'Uma poupança começa em '+ini*10+' € e aumenta '+inc*5+' € por mês. Após '+semanas+' meses, qual o total?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+ini*10+' + '+semanas+'×'+inc*5+' = <strong>'+(ini*10+semanas*inc*5)+' €</strong></div>';
+      } else {
+        var total=ini*10+R.int(3,8)*inc*5;
+        var meses=Math.round((total-ini*10)/(inc*5));
+        ex+=row(i,'Uma conta começa com '+ini*10+' € e cresce '+inc*5+' €/mês. Ao fim de quantos meses atinge '+total+' €?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+total+' − '+ini*10+' = '+(total-ini*10)+'. &nbsp; '+(total-ini*10)+' ÷ '+inc*5+' = <strong>'+meses+' meses</strong></div>';
+      }
+    }
+  }
+  return { ex: ex, sol: sol };
 }
 
 function _gfSubtema6(st, dif, n) {
-  return _dinamico6(dif);
+  var R = _RND; var ex = '', sol = '';
+  var titles = {1:'Referencial Cartesiano',2:'Conceito de Função',3:'Representação Gráfica',4:'Formas de Representar',5:'Proporcionalidade Direta',6:'Gráficos em Contexto Real'};
+  ex += '<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+(titles[st]||'Funções')+'</h3>';
+  function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
+  for (var i=1;i<=n;i++) {
+    var a=R.int(2,6), b=R.int(1,5), k=R.int(2,8), x=R.int(1,6);
+    if (st===1) {
+      // Referencial cartesiano
+      var px=R.int(1,7), py=R.int(1,7);
+      if (dif==='facil') {
+        ex+=row(i,'Indica o quadrante do ponto ('+px+', '+py+'). E do ponto (−'+px+', '+py+').');
+        sol+='<div class="ex"><strong>'+i+'.</strong> ('+px+', '+py+'): 1.º Q &nbsp; (−'+px+', '+py+'): 2.º Q</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Dado P('+px+', '+py+'): a) Simétrico em relação a Ox &nbsp; b) Simétrico em relação a Oy &nbsp; c) Simétrico em relação à origem.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) ('+px+', −'+py+') &nbsp; b) (−'+px+', '+py+') &nbsp; c) (−'+px+', −'+py+')</div>';
+      } else {
+        var d=R.int(2,5);
+        ex+=row(i,'A('+px+', '+py+') e B('+px+', '+(py+d)+'). a) Calcula AB. &nbsp; b) Qual o ponto a igual distância de A e B no eixo Oy?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) AB = '+(py+d)+' − '+py+' = <strong>'+d+'</strong> &nbsp; b) Ponto médio: ('+px+', '+(py+d/2)+')</div>';
+      }
+    } else if (st===2) {
+      // Conceito de função
+      if (dif==='facil') {
+        ex+=row(i,'A função f(x) = '+a+'x. Calcula f(0), f(1) e f('+x+').');
+        sol+='<div class="ex"><strong>'+i+'.</strong> f(0) = 0 &nbsp; f(1) = '+a+' &nbsp; f('+x+') = '+(a*x)+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'f(x) = '+a+'x + '+b+'. Calcula f(0), f(2) e o valor de x para f(x) = '+(a*3+b)+'.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> f(0) = '+b+' &nbsp; f(2) = '+(2*a+b)+' &nbsp; '+a+'x + '+b+' = '+(a*3+b)+' → x = 3</div>';
+      } else {
+        var fx=a*x+b;
+        ex+=row(i,'f(x) = '+a+'x + '+b+'. a) Determina o zero da função. &nbsp; b) É crescente ou decrescente? &nbsp; c) Calcula f('+x+').');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) Zero: '+a+'x + '+b+' = 0 → x = −'+(b/a).toFixed(1)+' &nbsp; b) Crescente (a = '+a+' > 0) &nbsp; c) f('+x+') = '+fx+'</div>';
+      }
+    } else if (st===3) {
+      // Representação gráfica
+      if (dif==='facil') {
+        ex+=row(i,'Completa a tabela para f(x) = '+a+'x: x = 0, 1, 2, 3. Traça o gráfico.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> y: 0, '+a+', '+(2*a)+', '+(3*a)+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Traça o gráfico de f(x) = '+a+'x + '+b+'. Indica a ordenada na origem e o zero da função.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Ordenada na origem: '+b+'. &nbsp; Zero: x = −'+(b/a).toFixed(1)+'</div>';
+      } else {
+        ex+=row(i,'f₁(x) = '+a+'x e f₂(x) = '+b+'x + '+(a+b)+'. Determina o ponto de interseção dos dois gráficos.');
+        var xi=(a+b)/(a-b);
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+a+'x = '+b+'x + '+(a+b)+' → '+(a-b)+'x = '+(a+b)+' → x = '+xi.toFixed(1)+'</div>';
+      }
+    } else if (st===4) {
+      // Formas de representar
+      if (dif==='facil') {
+        ex+=row(i,'A função f associa cada número ao seu dobro mais '+b+'. Escreve a regra de correspondência.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> f(x) = 2x + '+b+'</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Dados os pares (0, '+b+') e (1, '+(a+b)+'). Determina a expressão f(x) = mx + b.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> b = '+b+', m = '+(a+b)+' − '+b+' = '+a+'. &nbsp; f(x) = '+a+'x + '+b+'</div>';
+      } else {
+        ex+=row(i,'A função f tem f(2) = '+(2*a+b)+' e f(0) = '+b+'. Determina f(x) e calcula f(5).');
+        sol+='<div class="ex"><strong>'+i+'.</strong> m = ('+(2*a+b)+' − '+b+')/2 = '+a+'. &nbsp; f(x) = '+a+'x + '+b+'. &nbsp; f(5) = '+(5*a+b)+'</div>';
+      }
+    } else if (st===5) {
+      // Proporcionalidade direta
+      var xp=R.int(2,9), yp=k*xp;
+      if (dif==='facil') {
+        ex+=row(i,'y é diretamente proporcional a x, com k = '+k+'. Calcula y para x = '+xp+'.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> y = '+k+' × '+xp+' = <strong>'+yp+'</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'O gráfico de y = kx passa por ('+xp+', '+yp+'). Determina k e calcula y para x = '+(xp+3)+'.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> k = '+yp+'/'+xp+' = '+k+'. &nbsp; y = '+k+'×'+(xp+3)+' = <strong>'+(k*(xp+3))+'</strong></div>';
+      } else {
+        var vel=R.int(30,80), horas=R.int(2,5);
+        ex+=row(i,'Um carro percorre '+vel+' km/h. a) Escreve d(t) = kt. &nbsp; b) Que distância em '+horas+'h? &nbsp; c) Para 240 km, quantas horas?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) d(t) = '+vel+'t &nbsp; b) '+(vel*horas)+' km &nbsp; c) 240÷'+vel+' = '+(240/vel).toFixed(1)+' h</div>';
+      }
+    } else {
+      // Gráficos em contexto real
+      var ini=R.int(5,20), taxa=R.int(2,5);
+      if (dif==='facil') {
+        ex+=row(i,'Um tanque tem '+ini+'L e enche '+taxa+'L/min. Qual o volume ao fim de '+x+' minutos?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> V = '+ini+' + '+taxa+'×'+x+' = <strong>'+(ini+taxa*x)+' L</strong></div>';
+      } else if (dif==='medio') {
+        var min=R.int(5,12);
+        ex+=row(i,'Um tanque com '+ini+'L enche '+taxa+'L/min. a) Escreve V(t). &nbsp; b) Quando tem '+(ini+taxa*min)+' L? &nbsp; c) V(0) = ?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) V(t) = '+ini+' + '+taxa+'t &nbsp; b) t = '+min+' min &nbsp; c) V(0) = '+ini+' L</div>';
+      } else {
+        ex+=row(i,'Dois tanques: A com '+ini+'L (+'+taxa+'L/min) e B com '+(ini+10)+'L (+'+Math.max(1,taxa-1)+'L/min). Quando têm o mesmo volume?');
+        var taxa2=Math.max(1,taxa-1), dif2=ini+10-ini, dtaxa=taxa-taxa2;
+        if(dtaxa>0){sol+='<div class="ex"><strong>'+i+'.</strong> '+ini+'+'+taxa+'t = '+(ini+10)+'+'+taxa2+'t → '+dtaxa+'t = 10 → t = '+(10/dtaxa).toFixed(1)+' min</div>';}
+        else{sol+='<div class="ex"><strong>'+i+'.</strong> Nunca têm o mesmo volume (taxas iguais).</div>';}
+      }
+    }
+  }
+  return { ex: ex, sol: sol };
 }
 
 function _gfSubtema7(st, dif, n) {
-  return _dinamico7(dif);
+  var R = _RND; var ex = '', sol = '';
+  var titles = {1:'Figuras Semelhantes',2:'Polígonos Semelhantes',3:'Homotetia',4:'Critérios de Semelhança',5:'Perímetros e Áreas',6:'Poliedros e Relação de Euler'};
+  ex += '<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+(titles[st]||'Figuras Semelhantes')+'</h3>';
+  function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
+  for (var i=1;i<=n;i++) {
+    var k=R.int(2,4), a=R.int(3,9), b=R.int(4,10);
+    if (st===1||st===2) {
+      // Figuras/Polígonos semelhantes
+      if (dif==='facil') {
+        ex+=row(i,'Duas figuras semelhantes têm razão k = '+k+'. Um lado da menor mede '+a+' cm. Qual o lado correspondente na maior?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+a+' × '+k+' = <strong>'+(a*k)+' cm</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Dois polígonos semelhantes têm lados '+a+' cm e '+(a*k)+' cm. a) Determina k. &nbsp; b) Se o perímetro do menor é '+b*a+' cm, qual o do maior?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) k = '+(a*k)+'/'+a+' = '+k+' &nbsp; b) '+(b*a)+' × '+k+' = <strong>'+(b*a*k)+' cm</strong></div>';
+      } else {
+        var area=R.int(6,20);
+        ex+=row(i,'Figuras semelhantes com k = '+k+'. Área da menor = '+area+' cm². a) Razão das áreas. &nbsp; b) Área da maior. &nbsp; c) Se perim. menor = '+a+' cm, perim. maior = ?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) k² = '+(k*k)+' &nbsp; b) '+(area*k*k)+' cm² &nbsp; c) '+(a*k)+' cm</div>';
+      }
+    } else if (st===3) {
+      // Homotetia
+      var hx=R.int(1,5), hy=R.int(1,5);
+      if (dif==='facil') {
+        ex+=row(i,'Homotetia de centro O e razão '+k+'. A('+hx+', '+hy+') → A\' = ?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> A\' = ('+k+'×'+hx+', '+k+'×'+hy+') = <strong>('+hx*k+', '+hy*k+')</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Homotetia de centro O e razão '+k+'. Transforma o triângulo A(1,0), B('+hx+',0), C(0,'+hy+'). Dá as coordenadas da imagem.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> A\'=('+k+',0) &nbsp; B\'=('+hx*k+',0) &nbsp; C\'=(0,'+hy*k+')</div>';
+      } else {
+        ex+=row(i,'A\'('+hx*k+', '+hy*k+') é a imagem de A por homotetia de razão '+k+' e centro O. Determina as coordenadas de A.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> A = ('+hx*k+'/'+k+', '+hy*k+'/'+k+') = <strong>('+hx+', '+hy+')</strong></div>';
+      }
+    } else if (st===4) {
+      // Critérios de semelhança
+      if (dif==='facil') {
+        ex+=row(i,'Dois triângulos têm ângulos 50°, 60°, 70°. São semelhantes? Que critério se aplica?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Sim — critério AA (dois ângulos iguais)</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Triângulo 1: lados '+a+', '+(a+2)+', '+(a+4)+'. Triângulo 2: lados '+(a*k)+', '+((a+2)*k)+', '+((a+4)*k)+'. São semelhantes? Indica k.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Razões: '+k+', '+k+', '+k+' → Semelhantes (LLL). k = '+k+'</div>';
+      } else {
+        ex+=row(i,'Triângulo ABC com AB = '+a+' cm, ângulo A = 40°. Triângulo DEF com DE = '+(a*k)+' cm, ângulo D = 40°. São semelhantes? Justifica.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Precisamos de mais informação. Com dois lados proporcionais e ângulo entre eles: critério LAL.</div>';
+      }
+    } else if (st===5) {
+      // Perímetros e áreas
+      var area=R.int(8,25);
+      if (dif==='facil') {
+        ex+=row(i,'k = '+k+'. Perímetro da figura menor = '+a+' cm. Qual o perímetro da maior?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+a+' × '+k+' = <strong>'+(a*k)+' cm</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'k = '+k+'. Área da figura menor = '+area+' cm². a) Razão das áreas = ? &nbsp; b) Área da maior = ?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) k² = '+(k*k)+' &nbsp; b) '+area+' × '+(k*k)+' = <strong>'+(area*k*k)+' cm²</strong></div>';
+      } else {
+        ex+=row(i,'Área da menor = '+area+' cm², área da maior = '+(area*k*k)+' cm². a) Determina k. &nbsp; b) Se perim. menor = '+a+' cm, qual o da maior?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) k² = '+(k*k)+' → k = '+k+' &nbsp; b) '+a+' × '+k+' = <strong>'+(a*k)+' cm</strong></div>';
+      }
+    } else {
+      // Poliedros e Euler
+      var V=R.int(4,12), F=R.int(4,8), A=V+F-2;
+      if (dif==='facil') {
+        ex+=row(i,'Um poliedro tem '+V+' vértices e '+A+' arestas. Usa V − A + F = 2 para encontrar F.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+V+' − '+A+' + F = 2 → F = 2 + '+A+' − '+V+' = <strong>'+F+'</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Um poliedro tem '+F+' faces e '+A+' arestas. Quantos vértices tem? Verifica com V − A + F = 2.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> V = 2 + '+A+' − '+F+' = <strong>'+V+'</strong>. Verifica: '+V+' − '+A+' + '+F+' = '+(V-A+F)+' ✓</div>';
+      } else {
+        ex+=row(i,'Um poliedro tem '+V+' vértices e '+F+' faces. a) Calcula o nº de arestas. &nbsp; b) Cada face é um triângulo — quantos triângulos são necessários?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) A = '+V+' + '+F+' − 2 = <strong>'+A+'</strong> &nbsp; b) '+F+' triângulos</div>';
+      }
+    }
+  }
+  return { ex: ex, sol: sol };
 }
 
 function _gfSubtema8(st, dif, n) {
-  return _dinamico8(dif);
+  var R = _RND; var ex = '', sol = '';
+  var titles = {1:'População e Amostra',2:'Medidas de Tendência Central',3:'Representações Gráficas',4:'Probabilidade Simples',5:'Probabilidade Composta'};
+  ex += '<h3 style="color:#516860;border-left:3px solid #77998e;padding-left:8px;margin:1rem 0 .5rem">T'+st+' — '+(titles[st]||'Dados e Probabilidades')+'</h3>';
+  function row(i,q){ return '<div class="ex"><div class="ex-num">'+i+'.</div><p>'+q+'</p><div class="linha"></div></div>'; }
+  for (var i=1;i<=n;i++) {
+    var tot=R.int(20,40), fa=R.int(3,10);
+    if (st===1) {
+      // População e amostra
+      if (dif==='facil') {
+        ex+=row(i,'Numa escola de '+tot*5+' alunos, inquiriram-se '+tot+'. a) O que é a população? b) O que é a amostra?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) Os '+tot*5+' alunos da escola &nbsp; b) Os '+tot+' alunos inquiridos</div>';
+      } else if (dif==='medio') {
+        var fr=Math.round(fa/tot*100);
+        ex+=row(i,'De '+tot+' pessoas, '+fa+' preferem café. a) Frequência relativa (%) &nbsp; b) Extrapola para 500 pessoas.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+fa+'/'+tot+' = '+fr+'% &nbsp; b) 500 × '+fr+'% = <strong>'+Math.round(500*fa/tot)+'</strong></div>';
+      } else {
+        ex+=row(i,'Uma amostra de '+tot+' tem '+fa+' com característica X. Estima quantos numa população de 1000 têm essa característica. Indica uma limitação desta estimativa.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Estimativa: 1000 × '+fa+'/'+tot+' = <strong>'+Math.round(1000*fa/tot)+'</strong>. Limitação: a amostra pode não ser representativa.</div>';
+      }
+    } else if (st===2) {
+      // Medidas de tendência central
+      var dados=[R.int(3,7),R.int(5,9),R.int(6,10),R.int(8,13),R.int(10,15)];
+      dados.sort(function(a,b){return a-b;});
+      var soma=dados.reduce(function(s,v){return s+v;},0);
+      var media=Math.round(soma/dados.length*10)/10;
+      var mediana=dados[2];
+      if (dif==='facil') {
+        ex+=row(i,'Dados: '+dados.join(', ')+'. Calcula a média.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> ('+dados.join('+')+') ÷ '+dados.length+' = '+soma+' ÷ '+dados.length+' = <strong>'+media+'</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Dados: '+dados.join(', ')+'. Calcula a mediana e a média. Qual descreve melhor os dados?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Mediana = <strong>'+mediana+'</strong>. Média = <strong>'+media+'</strong>. Depende da distribuição.</div>';
+      } else {
+        var dadosExt=dados.concat([R.int(30,50)]);
+        dadosExt.sort(function(a,b){return a-b;});
+        var somaExt=dadosExt.reduce(function(s,v){return s+v;},0);
+        ex+=row(i,'Dados com valor extremo: '+dadosExt.join(', ')+'. Calcula média e mediana. Qual é mais robusta a valores extremos?');
+        var med2=(dadosExt[2]+dadosExt[3])/2;
+        sol+='<div class="ex"><strong>'+i+'.</strong> Média = '+(Math.round(somaExt/dadosExt.length*10)/10)+'. &nbsp; Mediana = '+med2+'. &nbsp; A <strong>mediana</strong> é mais robusta.</div>';
+      }
+    } else if (st===3) {
+      // Representações gráficas
+      var f1=R.int(5,12),f2=R.int(4,10),f3=R.int(3,8),f4=tot-f1-f2-f3;
+      if(f4<1){f4=1;f3=tot-f1-f2-f4;}
+      if (dif==='facil') {
+        ex+=row(i,'Num gráfico de barras: A='+f1+', B='+f2+', C='+f3+', D='+f4+'. Qual a categoria mais frequente?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> Categoria <strong>'+(f1>=f2&&f1>=f3&&f1>=f4?'A':f2>=f3&&f2>=f4?'B':f3>=f4?'C':'D')+'</strong> (moda)</div>';
+      } else if (dif==='medio') {
+        var n2=f1+f2+f3+f4;
+        ex+=row(i,'Turma de '+n2+' alunos: A pé='+f1+', Autocarro='+f2+', Bicicleta='+f3+', Carro='+f4+'. Calcula a frequência relativa (%) de cada categoria.');
+        sol+='<div class="ex"><strong>'+i+'.</strong> '+Math.round(f1/n2*100)+'% &nbsp; '+Math.round(f2/n2*100)+'% &nbsp; '+Math.round(f3/n2*100)+'% &nbsp; '+Math.round(f4/n2*100)+'%</div>';
+      } else {
+        ex+=row(i,'A='+f1+', B='+f2+', C='+f3+', D='+f4+' (total '+tot+'). a) Frequências relativas. &nbsp; b) Ângulos num gráfico circular. &nbsp; c) Moda.');
+        var ang1=Math.round(f1/tot*360),ang2=Math.round(f2/tot*360),ang3=Math.round(f3/tot*360),ang4=360-ang1-ang2-ang3;
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+Math.round(f1/tot*100)+'%, '+Math.round(f2/tot*100)+'%, '+Math.round(f3/tot*100)+'%, '+Math.round(f4/tot*100)+'%<br>b) '+ang1+'°, '+ang2+'°, '+ang3+'°, '+ang4+'°<br>c) Moda: '+(f1>=f2&&f1>=f3&&f1>=f4?'A':f2>=f3&&f2>=f4?'B':f3>=f4?'C':'D')+'</div>';
+      }
+    } else if (st===4) {
+      // Probabilidade simples
+      var nr=R.int(2,5),nb=R.int(2,5),nv=R.int(1,4);
+      var ntot=nr+nb+nv;
+      if (dif==='facil') {
+        ex+=row(i,'Urna com '+nr+' bolas vermelhas e '+nb+' azuis ('+ntot+' total, faltam '+nv+' verdes). P(vermelha) = ?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> P(vermelha) = '+nr+'/'+ntot+' = <strong>'+(Math.round(nr/ntot*100))+'%</strong></div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Saco com '+nr+' vermelhas, '+nb+' azuis, '+nv+' verdes. a) P(verde) &nbsp; b) P(não vermelha) &nbsp; c) P(azul ou verde)');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+nv+'/'+ntot+' &nbsp; b) '+(nb+nv)+'/'+ntot+' &nbsp; c) '+(nb+nv)+'/'+ntot+'</div>';
+      } else {
+        ex+=row(i,'Saco com '+nr+' V, '+nb+' A, '+nv+' Ve. Qual a P(A ou Ve)? Sabendo que se retirou uma que não é vermelha, qual a P(ser azul)?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> P(A∪Ve) = '+(nb+nv)+'/'+ntot+'. &nbsp; P(A|não V) = '+nb+'/'+(nb+nv)+'</div>';
+      }
+    } else {
+      // Probabilidade composta
+      var nr2=R.int(2,4),nb2=R.int(2,4);
+      var tot2=nr2+nb2;
+      if (dif==='facil') {
+        ex+=row(i,'Lança-se uma moeda. P(cara) = P(coroa) = 1/2. Lança-se 2 vezes. Quais os resultados possíveis?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> {CC, CK, KC, KK} — 4 resultados igualmente prováveis</div>';
+      } else if (dif==='medio') {
+        ex+=row(i,'Saco com '+nr2+' V e '+nb2+' A ('+tot2+' total). Retira-se 1 bola, anota-se e repõe. Depois retira-se outra. P(V e depois A)?');
+        sol+='<div class="ex"><strong>'+i+'.</strong> P(V)×P(A) = '+nr2+'/'+tot2+' × '+nb2+'/'+tot2+' = <strong>'+(nr2*nb2)+'/'+(tot2*tot2)+'</strong></div>';
+      } else {
+        ex+=row(i,'Saco com '+nr2+' V e '+nb2+' A ('+tot2+'). Retiram-se 2 SEM reposição. a) P(1.ª V) &nbsp; b) P(2.ª A | 1.ª V) &nbsp; c) P(V e A)');
+        sol+='<div class="ex"><strong>'+i+'.</strong> a) '+nr2+'/'+tot2+' &nbsp; b) '+nb2+'/'+(tot2-1)+' &nbsp; c) '+nr2+'/'+tot2+' × '+nb2+'/'+(tot2-1)+' = '+(nr2*nb2)+'/'+(tot2*(tot2-1))+'</div>';
+      }
+    }
+  }
+  return { ex: ex, sol: sol };
 }
 
 // ─── gfGenerar: subtema-aware override ─────────────────────────────────────────
