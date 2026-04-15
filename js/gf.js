@@ -435,7 +435,8 @@ function gfStAll(secId, cap, selectAll) {
   });
 }
 
-// Returns {cap: [st1,st2,...], ...} or null if no filtering needed
+// Returns {cap: [st1,st2,...], ...} or null if no caps selected with chips
+// Always returns a filter object when chips exist (to respect N_PER_ST qty selector)
 function gfGetSubtemas(secId) {
   var sec = document.getElementById(secId);
   if (!sec) return null;
@@ -443,7 +444,7 @@ function gfGetSubtemas(secId) {
   if (!chips.length) return null;
 
   var result = {};
-  var needsFilter = false;
+  var hasActiveCap = false;
 
   chips.forEach(function(c) {
     var cap = parseInt(c.dataset.cap);
@@ -452,11 +453,11 @@ function gfGetSubtemas(secId) {
     var capActive = capBtn && capBtn.classList.contains('active');
     var chipActive = c.classList.contains('active');
     if (!capActive) return;
+    hasActiveCap = true;
     if (!result[cap]) result[cap] = [];
     if (chipActive) result[cap].push(st);
-    else needsFilter = true;
   });
-  return needsFilter ? result : null;
+  return hasActiveCap ? result : null;
 }
 
 function _gfGenerarBase(secId, qty) {
