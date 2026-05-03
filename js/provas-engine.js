@@ -111,15 +111,15 @@ function _pnRenderQuestion(practice) {
   h += '</div>';
 
   // Enunciado em texto
-  h += '<div class="pn-enun">' + _pnFmt(q.enun) + '</div>';
-
-  // Imagem recortada do exame original (crop por questão)
+  // Imagem recortada do exame — substitui o enunciado em texto
   if (q.examKey && q.page) {
     var _pfx = (window.location.pathname.indexOf('/mat7/') !== -1) ? '../' : '';
     var _cropSrc = _pfx + 'img/exames/crops/' + q.examKey + '/' + q.id + '.png';
     h += '<div class="pn-fig-wrap">';
-    h += '<img src="' + _cropSrc + '" class="pn-fig-img" alt="Figura do exame" onerror="this.parentNode.style.display=\'none\'">';
+    h += '<img src="' + _cropSrc + '" class="pn-fig-img" alt="Figura do exame" onerror="this.parentNode.style.display=\'none\';this.parentNode.insertAdjacentHTML(\'afterend\',\'<div class=pn-enun>' + _pnFmt(q.enun).replace(/'/g, "\\'") + '</div>\')">';
     h += '</div>';
+  } else {
+    h += '<div class="pn-enun">' + _pnFmt(q.enun) + '</div>';
   }
 
   // Área de resposta
