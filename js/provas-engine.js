@@ -108,10 +108,16 @@ function _pnRenderQuestion(practice) {
   if (q.fig) {
     h += '<span class="pn-badge pn-badge--fig"><i class="ph ph-image"></i> Figura necessária</span>';
   }
+  if (q.examKey) {
+    h += '<button class="pn-badge pn-badge--fig" style="cursor:pointer;border:none;background:none;padding:0" onclick="pnVerProvaImg(this,\'' + q.examKey + '\',\'' + (q.page || '') + '\')" title="Ver imagem da prova original"><i class="ph ph-images"></i> Ver prova</button>';
+  }
   h += '</div>';
 
   // Enunciado
   h += '<div class="pn-enun">' + _pnFmt(q.enun) + '</div>';
+  if (q.examKey) {
+    h += '<div id="pn-prova-img-area" style="display:none;margin:1rem 0;border-radius:10px;overflow:hidden"></div>';
+  }
 
   // Área de resposta
   h += '<div id="pn-ans-area">' + _pnAnsAreaHTML(q) + '</div>';
