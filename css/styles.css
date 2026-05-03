@@ -2251,6 +2251,8 @@ body.dark-mode .pom-mode-btn.active{background:#2e2e2e!important;}
 .pn-feedback{display:flex;align-items:center;gap:.5rem;margin-top:.85rem;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:700;padding:8px 14px;border-radius:10px}
 .pn-feedback--ok{background:#f0faf0;color:#2e7d32}
 .pn-feedback--err{background:#fff5f5;color:#c62828}
+.pn-tip{display:flex;align-items:center;gap:.5rem;margin:.6rem 0 .9rem;padding:.65rem 1rem;background:linear-gradient(135deg,#edf4f1,#f2f8f6);border-radius:10px;border-left:3px solid var(--sage);font-size:.82rem;color:var(--sage-dark);font-weight:500;font-family:'Montserrat',sans-serif;line-height:1.4}
+.pn-tip .ph{font-size:1.05rem;flex-shrink:0;color:var(--sage)}
 
 /* Open question */
 .pn-open-box{margin-top:1rem;padding:1rem 1.1rem;background:var(--cream2);border-radius:12px;border-left:3px solid var(--border2)}

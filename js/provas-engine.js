@@ -12,6 +12,21 @@ var _PROVAS_TOPICS = [
   { key: 'not_cientifica', label: 'Notação Científica',         sub: 'Cap. 1 — Potências, notação científica, operações' }
 ];
 
+var _PN_FRASES = [
+  { icon: 'ph-rocket-launch',   txt: 'Vamos lá! Cada questão é uma oportunidade de aprender.' },
+  { icon: 'ph-lightbulb',       txt: 'Lê o enunciado com atenção antes de responder.' },
+  { icon: 'ph-brain',           txt: 'Pensa devagar — a pressa é inimiga da perfeição.' },
+  { icon: 'ph-star',            txt: 'Estás a fazer um ótimo trabalho. Continua!' },
+  { icon: 'ph-chart-line-up',   txt: 'Cada exercício que resolves melhora o teu desempenho.' },
+  { icon: 'ph-pencil',          txt: 'Esboça o que sabes antes de calcular.' },
+  { icon: 'ph-check-circle',    txt: 'A meio caminho! Não desistas agora.' },
+  { icon: 'ph-trophy',          txt: 'Quase lá! Estás a ir muito bem.' },
+  { icon: 'ph-fire',            txt: 'Concentra-te — os melhores resultados vêm com foco.' },
+  { icon: 'ph-hand',            txt: 'Se errares, aprende e segue em frente. Isso é progresso!' },
+  { icon: 'ph-books',           txt: 'Revê a matéria do tema se tiveres dúvidas.' },
+  { icon: 'ph-target',          txt: 'Atenção às unidades e às conversões!' }
+];
+
 var _pnState = {
   topic:    null,
   queue:    [],
@@ -93,6 +108,11 @@ function _pnRenderQuestion(practice) {
   h += '<div class="pn-prog-wrap"><div class="pn-prog-fill" style="width:' + pct + '%"></div></div>';
   h += '<span class="pn-prog-label">' + (idx + 1) + '\u202f/\u202f' + total + '</span>';
   h += '</div>';
+
+  // ── Motivational phrase ──
+  var _fraseIdx = idx % _PN_FRASES.length;
+  var _frase = _PN_FRASES[_fraseIdx];
+  h += '<div class="pn-tip"><i class="ph ' + _frase.icon + '"></i> ' + _frase.txt + '</div>';
 
   // ── Card ──
   h += '<div class="pn-card">';
