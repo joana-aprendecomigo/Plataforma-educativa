@@ -1,0 +1,1547 @@
+=== 2024_f2 (1).pdf ===
+Rubricas dos professores vigilantes
+
+A PREENCHER PELO ALUNO
+
+Nome completo
+Documento de identificação CC n.º |___|___|___|___|___|___|___|___| |___| |___|___|___|
+
+A PREENCHER PELA ESCOLA
+
+N.º convencional
+
+Assinatura do aluno
+
+N.º convencional
+
+Prova Final de Matemática
+Prova 92 | 2.ª Fase | 3.º Ciclo do Ensino Básico | 2024
+9.º Ano de Escolaridade
+
+A PREENCHER
+PELO AGRUPAMENTO
+
+Decreto-Lei n.º 55/2018, de 6 de julho
+
+N.º confidencial da escola
+
+A PREENCHER PELO PROFESSOR CLASSIFICADOR
+
+Classificação em percentagem |___|___|___| (
+Correspondente ao nível |___| (
+
+)
+
+por cento)
+Data: ________ /________ /________
+
+Código do professor classificador |___|___|___|___|
+
+Observações
+A PREENCHER PELA ESCOLA
+
+Classificação alterada em sede de reapreciação conforme despacho em anexo
+Classificação alterada em sede de reclamação conforme despacho em anexo
+
+Duração da Prova: 90 minutos. | Tolerância: 30 minutos.
+
+16 Páginas
+
+A prova inclui 12 itens, devidamente identificados no enunciado, cujas respostas contribuem
+obrigatoriamente para a classificação final. Dos restantes 6 itens da prova, apenas contribuem para a
+classificação final os 4 itens cujas respostas obtenham melhor pontuação.
+
+Todas as respostas são dadas no enunciado da prova.
+Utiliza apenas caneta ou esferográfica de tinta azul ou preta.
+Não é permitido o uso de corretor. Risca aquilo que pretendes que não seja classificado.
+É permitido o uso de régua, compasso, esquadro, transferidor e calculadora.
+Apresenta apenas uma resposta para cada item.
+Se o espaço reservado a uma resposta não for suficiente, podes utilizar o espaço que se encontra no final
+da prova. Neste caso, deves identificar claramente o item a que se refere a tua resposta.
+As cotações dos itens encontram-se no final da prova.
+
+Prova 92/2.ª F. • Página 1/ 16
+
+Formulário
+Números e Operações
+Valor aproximado de r (pi): 3,14159
+Geometria e Medida
+Áreas
+Polígono regular: Perímetro # apótema
+2
+Trapézio: Base maior + base menor # altura
+2
+Superfície lateral do cone: r r g, sendo r o raio da base do cone e g a geratriz do cone
+Volumes
+Prisma e cilindro: Área da base # altura
+Pirâmide e cone: 1 # Área da base # altura
+3
+Esfera: 4 rr 3, sendo r o raio da esfera
+3
+
+Prova 92/2.ª F. • Página 2/ 16
+
+Tabela Trigonométrica
+
+Graus
+
+Seno
+
+Cosseno
+
+Tangente		
+
+Graus
+
+Seno
+
+Cosseno
+
+Tangente
+
+1
+
+0,0175
+
+0,9998
+
+0,0175		
+
+46
+
+0,7193
+
+0,6947
+
+1,0355
+
+3
+
+0,0523
+
+0,9986
+
+0,0524		
+
+48
+
+0,7431
+
+0,6691
+
+1,1106
+
+2
+4
+5
+6
+7
+8
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+0,0349
+0,0698
+0,0872
+0,1045
+0,1219
+0,1392
+0,1564
+
+0,1736
+
+0,1908
+
+0,2079
+
+0,2250
+
+0,2419
+
+0,2588
+
+0,2756
+
+0,2924
+
+0,3090
+
+0,3256
+
+0,3420
+
+0,3584
+
+0,3746
+
+0,3907
+
+0,4067
+
+0,4226
+
+0,4384
+
+0,4540
+
+0,4695
+
+0,4848
+
+0,5000
+
+0,5150
+
+0,5299
+
+0,5446
+
+0,5592
+
+0,5736
+
+0,5878
+
+0,6018
+
+0,6157
+
+0,6293
+
+0,6428
+
+0,6561
+
+0,6691
+
+0,6820
+
+0,6947
+
+0,7071
+
+0,9994
+0,9976
+0,9962
+0,9945
+0,9925
+0,9903
+0,9877
+
+0,9848
+
+0,9816
+
+0,9781
+
+0,9744
+
+0,9703
+
+0,9659
+
+0,9613
+
+0,9563
+
+0,9511
+
+0,9455
+
+0,9397
+
+0,9336
+
+0,9272
+
+0,9205
+
+0,9135
+
+0,9063
+
+0,8988
+
+0,8910
+
+0,8829
+
+0,8746
+
+0,8660
+
+0,8572
+
+0,8480
+
+0,8387
+
+0,8290
+
+0,8192
+
+0,8090
+
+0,7986
+
+0,7880
+
+0,7771
+
+0,7660
+
+0,7547
+
+0,7431
+
+0,7314
+
+0,7193
+
+0,7071
+
+0,0349		
+0,0699		
+0,0875		
+0,1051		
+0,1228		
+0,1405		
+0,1584		
+0,1763		
+
+0,1944		
+
+0,2126		
+
+0,2309		
+
+0,2493		
+
+0,2679		
+
+0,2867		
+
+0,3057		
+
+0,3249		
+
+0,3443		
+
+0,3640		
+
+0,3839		
+
+0,4040		
+
+0,4245		
+
+0,4452		
+
+0,4663		
+
+0,4877		
+
+0,5095		
+
+0,5317		
+
+0,5543		
+
+0,5774		
+
+0,6009		
+
+0,6249		
+
+0,6494		
+
+0,6745		
+
+0,7002		
+
+0,7265		
+
+0,7536		
+
+0,7813		
+
+0,8098		
+
+0,8391		
+
+0,8693		
+
+0,9004		
+
+0,9325		
+
+0,9657		
+1,0000
+
+47
+49
+50
+51
+52
+53
+54
+
+55
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+68
+
+69
+
+70
+
+71
+
+72
+
+73
+
+74
+
+75
+
+76
+
+77
+
+78
+
+79
+
+80
+
+81
+
+82
+
+83
+
+84
+
+85
+
+86
+
+87
+
+88
+
+89
+
+0,7314
+0,7547
+0,7660
+0,7771
+0,7880
+0,7986
+0,8090
+
+0,8192
+
+0,8290
+
+0,8387
+
+0,8480
+
+0,8572
+
+0,8660
+
+0,8746
+
+0,8829
+
+0,8910
+
+0,8988
+
+0,9063
+
+0,9135
+
+0,9205
+
+0,9272
+
+0,9336
+
+0,9397
+
+0,9455
+
+0,9511
+
+0,9563
+
+0,9613
+
+0,9659
+
+0,9703
+
+0,9744
+
+0,9781
+
+0,9816
+
+0,9848
+
+0,9877
+
+0,9903
+
+0,9925
+
+0,9945
+
+0,9962
+
+0,9976
+
+0,9986
+
+0,9994
+
+0,9998
+
+0,6820
+0,6561
+0,6428
+0,6293
+0,6157
+0,6018
+0,5878
+
+0,5736
+
+0,5592
+
+0,5446
+
+0,5299
+
+0,5150
+
+0,5000
+
+0,4848
+
+0,4695
+
+0,4540
+
+0,4384
+
+0,4226
+
+0,4067
+
+0,3907
+
+0,3746
+
+0,3584
+
+0,3420
+
+0,3256
+
+0,3090
+
+0,2924
+
+0,2756
+
+0,2588
+
+0,2419
+
+0,2250
+
+0,2079
+
+0,1908
+
+0,1736
+
+0,1564
+
+0,1392
+
+0,1219
+
+0,1045
+
+1,0724
+1,1504
+1,1918
+1,2349
+1,2799
+1,3270
+1,3764
+
+1,4281
+
+1,4826
+
+1,5399
+
+1,6003
+
+1,6643
+
+1,7321
+
+1,8040
+
+1,8807
+
+1,9626
+
+2,0503
+
+2,1445
+
+2,2460
+
+2,3559
+
+2,4751
+
+2,6051
+
+2,7475
+
+2,9042
+
+3,0777
+
+3,2709
+
+3,4874
+
+3,7321
+
+4,0108
+
+4,3315
+
+4,7046
+
+5,1446
+
+5,6713
+
+6,3138
+
+7,1154
+
+8,1443
+
+9,5144
+
+0,0872
+
+11,4301
+
+0,0523
+
+19,0811
+
+0,0698
+
+0,0349
+
+0,0175
+
+14,3007
+
+28,6363
+
+57,2900
+
+Prova 92/2.ª F. • Página 3/ 16
+
+COTAÇÕES
+
+1. O professor de Cidadania e Desenvolvimento propôs a realização de um trabalho sobre possíveis
+medidas a adotar para combater as alterações climáticas.
+A turma, constituída por 28 alunos, foi dividida em cinco grupos, tendo sido atribuídos temas
+diferentes a cada um.
+Grupo A – Redução do consumo energético
+Grupo B – Redução do desperdício alimentar
+Grupo C – Utilização de transportes públicos
+Grupo D – Utilização de energias renováveis
+Grupo E – Aplicação dos 3 Rs : reduzir, reutilizar, reciclar
+Na tabela, apresenta-se o número de raparigas e de rapazes em cada um dos grupos.
+Grupo A
+
+Grupo B
+
+Grupo C
+
+Grupo D
+
+Grupo E
+
+Número de
+raparigas
+
+2
+
+5
+
+2
+
+2
+
+3
+
+Número de
+rapazes
+
+3
+
+2
+
+4
+
+2
+
+3
+
+1.1. Seleciona-se, ao acaso, um aluno desta turma.
+Assinala com X a opção que apresenta a probabilidade de esse aluno ser uma rapariga do
+Grupo C.
+A
+
+1
+2
+
+B
+
+1
+3
+
+C
+
+1
+7
+
+D
+
+1
+14
+
+1.2. Para participarem num debate sobre energia e alterações climáticas, vão ser sorteados dois
+alunos, um do Grupo A e outro do Grupo D.
+Qual é a probabilidade de serem sorteados dois rapazes, um do Grupo A e outro do Grupo D?
+Mostra como chegaste à tua resposta e apresenta o valor pedido na forma de fração irredutível.
+
+Prova 92/2.ª F. • Página 4/ 16
+
+2. Assinala com X a opção que apresenta um número que pode ser representado por uma dízima
+infinita não periódica.
+A
+
+−2 2
+
+B
+
+− 17
+31
+
+C
+
+0, ^75h
+
+D
+
+9
+11
+
+3. Assinala com X a opção que apresenta um intervalo ao qual pertence o número 4r .
+A
+C
+
+@12,54; 12,55 6		
+
+B
+
+@12,56; 12,57 6		
+
+D
+
+@12,55; 12,56 6
+@12,57; 12,58 6
+
+4. Na Figura 1, estão representados os três primeiros termos de uma sequência de figuras formada por
+círculos construídos sobre os vértices de quadrados.
+
+...
+1.º termo
+
+2.º termo
+
+3.º termo
+
+Figura 1
+
+Sabe-se que:
+
+• o primeiro termo da sequência é composto por doze círculos e cinco quadrados;
+• cada um dos restantes termos da sequência obtém-se acrescentando ao termo anterior quatro
+círculos e dois quadrados.
+
+Existe um termo desta sequência que tem exatamente 644 círculos.
+Quantos quadrados tem esse termo?
+Mostra como chegaste à tua resposta.
+
+Prova 92/2.ª F. • Página 5/ 16
+
+5. Ordena as etapas de resolução da inequação  2 b x 
+
+7  x #  x  4 , numerando-as de 2 a 6.
+l
+2
+5
+10
+
+A inequação dada e o conjunto solução já se encontram numerados.
+
+ 2b x  7 l  x #  x  4
+2
+5
+10
+
+1
+
+2x  x  x # 4  7
+5 10
+− 21 x # −3
+10
+2x  7  x #  x  4
+5
+10
+x $ 10
+7
+x $ 30
+21
+S  :10 ,  3 :
+7
+
+7
+
+6. Assinala com X a opção que apresenta o conjunto solução da equação
+A
+B
+C
+D
+
+"− 5, 5 ,
+"0, 5 ,
+"− 5 ,
+"5 ,
+
+Prova 92/2.ª F. • Página 6/ 16
+
+x 2  25  0 .
+
+7. O Pacto Ecológico Europeu tem como objetivo tornar a Europa no primeiro continente com impacto
+neutro no clima, até 2050. Para isso, os Estados-Membros da União Europeia assumiram o
+compromisso de reduzir as emissões de gases com efeito de estufa em, pelo menos, 55% até
+2030, em comparação com os níveis de 1990.
+Considera que as emissões de gases com efeito de estufa, na União Europeia, em 1990, eram
+4900 milhões de toneladas equivalentes de dióxido de carbono.
+Qual é o valor máximo das emissões de gases com efeito de estufa, em toneladas equivalentes de
+dióxido de carbono, que os Estados-Membros da União Europeia pretendem alcançar até 2030?
+Mostra como chegaste à tua resposta e apresenta o resultado escrito em notação científica.
+
+Prova 92/2.ª F. • Página 7/ 16
+
+8. A compostagem doméstica consiste em utilizar os restos dos
+alimentos e os detritos resultantes da manutenção do jardim,
+reciclando, sem custos, a matéria orgânica para, mais tarde,
+a devolver ao solo sob a forma de fertilizante natural. Alguns
+municípios promovem este processo, que contribui para a redução
+do aquecimento global.
+A Figura 2 é uma fotografia de um compostor doméstico.
+
+Na Figura 3, apresenta-se um modelo geométrico desse compostor,
+que é um tronco de cone.
+Relativamente ao modelo representado na Figura 3, sabe-se que:
+
+• o tronco de cone tem bases de diâmetro [AB] e
+
+Figura 2
+
+V
+
+de diâmetro [CD] ;
+
+• o cone reto de vértice V , em que [AB] é um
+diâmetro da base, tem 2,4 m de altura;
+
+• o tronco de cone, representado a cinzento-escuro,
+tem 0,9 m de altura;
+
+• AB = 0,8 m ;
+• CD = 0,5 m .
+O modelo não está desenhado à escala.
+
+C
+
+Calcula o volume do tronco de cone, representado a
+cinzento-escuro na Figura 3.
+
+0,5 m
+
+2,4 m
+
+D
+
+Apresenta todos os cálculos que efetuares e, ainda,
+o resultado em metros cúbicos, arredondado às
+décimas.
+Se, nos cálculos intermédios, procederes a
+arredondamentos, conserva, pelo menos, três casas
+decimais.
+
+0,9 m
+
+A
+
+0,8 m
+
+B
+Figura 3
+
+Prova 92/2.ª F. • Página 8/ 16
+
+9. Com o objetivo de sensibilizar a comunidade escolar para a necessidade de preservar os recursos
+naturais e o ambiente, os alunos da escola da Clara criaram vários cartazes para uma exposição.
+Na tabela, apresenta-se o número de cartazes elaborados, de acordo com a temática escolhida.
+O número de cartazes elaborados sobre o tema «Plásticos nos oceanos» e sobre o tema «Degelo»
+é igual e está representado por k .
+
+Temas
+
+Emissão
+de gases
+com efeito
+de estufa
+
+Número de
+cartazes
+
+18
+
+Plásticos
+Excesso
+Incêndios/ Desflorestação
+Combustíveis
+Desperdício
+nos
+de
+Degelo
+queimadas da Amazónia
+fósseis
+de água
+oceanos
+consumo
+
+8
+
+k
+
+9
+
+7
+
+18
+
+9
+
+k
+
+Sabe-se que:
+
+• 9 1 k 1 18 ;
+• a mediana do número de cartazes elaborados é 11 .
+Assinala com X a opção que apresenta o valor de k .
+A
+
+10
+
+B
+
+11
+
+10. Na Figura 4, estão representadas, em
+referencial cartesiano, de origem no ponto
+O , parte do gráfico de uma função afim,
+f , e parte do gráfico de uma função de
+proporcionalidade inversa, g .
+Sabe-se que:
+
+C
+
+12
+
+D
+
+y
+
+g
+B
+
+9
+7
+
+13
+
+A
+
+C
+
+f
+
+• os pontos A e B pertencem ao gráfico
+da função f e têm coordenadas (0, 7)
+e (4, 9), respetivamente;
+
+• o ponto C pertence ao gráfico da função
+
+f e ao gráfico da função g e tem abcissa
+igual a 2 .
+
+Assinala com X a opção que apresenta
+uma expressão algébrica da função g .
+A
+
+O
+
+2
+
+4
+
+x
+
+Figura 4
+
+g ] xg = 16 x
+
+B
+
+g ] xg = 36 x
+
+C
+
+g ] xg = 16
+x
+
+D
+
+g ] xg = 36
+x
+
+Prova 92/2.ª F. • Página 9/ 16
+
+11. Na Figura 5, apresenta-se parte de um mapa
+de uma cidade, no qual estão assinalados:
+
+• o ponto
+
+municipal;
+
+C , que representa a câmara
+
+P1
+
+• o ponto H , que representa o hospital;
+• o ponto
+
+municipal.
+
+J
+
+J , que representa o jardim
+
+A câmara municipal pretende instalar postos
+públicos para carregamento de carros
+elétricos em dois locais diferentes. Estes dois
+locais têm de cumprir as seguintes condições:
+
+• estar a uma distância de 500 metros do
+jardim municipal;
+
+• estar à mesma distância da câmara
+
+H
+
+P2
+C
+Escala:
+
+500 m
+
+municipal e do hospital.
+
+Figura 5
+
+Considerando a escala apresentada, na figura, foi desenhada a circunferência de centro no
+ponto J , de raio igual a 500 metros, e a mediatriz do segmento de reta [CH], para determinar
+estes locais. Assinalaram-se no mapa os dois locais com os pontos P1 e P2 .
+Nem o ponto P1 nem o ponto P2 cumprem as condições definidas pela câmara municipal.
+Apresenta uma razão que justifique que o ponto P1 não está corretamente assinalado no mapa
+e outra razão que justifique que o ponto P2 também não está corretamente assinalado no mapa.
+
+Prova 92/2.ª F. • Página 10/ 16
+
+12. Na Figura 6, estão representados o triângulo [ABC] e o triângulo [DEC] , que não estão
+desenhados à escala. O ponto D pertence ao lado [AC] , o ponto E pertence ao lado [BC] , e
+as retas AB e DE são paralelas.
+
+C
+a
+
+3
+E
+
+D
+
+5
+
+A
+
+B
+Figura 6
+
+Fixada uma unidade de medida, sabe-se que:
+
+• CE = 3 ;
+• BE = 5 ;
+• CD = a , com a 2 0 .
+Assinala com X a opção que apresenta uma expressão, em função de a , que representa
+A
+
+3a
+8
+
+B
+
+8a
+3
+
+C
+
+5a
+3
+
+D
+
+3a
+5
+
+AC .
+
+Prova 92/2.ª F. • Página 11/ 16
+
+13. A Figura 7 é uma fotografia do WindFloat
+Atlantic, o primeiro parque eólico marítimo
+flutuante em Portugal. Está instalado a 20 km
+de Viana do Castelo e fornece energia limpa
+à rede elétrica de Portugal. É constituído por
+três torres eólicas assentes em plataformas
+flutuantes.
+Na Figura 8, está representado um esquema
+de uma das torres eólicas, no momento em
+que uma das pás forma um ângulo reto com
+a torre.
+
+Figura 7
+
+Relativamente ao esquema representado na
+Figura 8, sabe-se que:
+
+• o triângulo [ABC] é retângulo em B ;
+• AB = 100 m ;
+• a amplitude do ângulo CAB é 39º .
+
+C
+
+B
+
+A figura não está desenhada à escala.
+Calcula BC .
+Apresenta todos os cálculos que efetuares e, ainda, o resultado em
+metros, arredondado às unidades.
+Se, nos cálculos intermédios, procederes a arredondamentos, conserva,
+pelo menos, duas casas decimais.
+
+Prova 92/2.ª F. • Página 12/ 16
+
+100 m
+39º
+
+A
+Figura 8
+
+14. Na Figura 9, está representada uma circunferência
+de centro no ponto O .
+
+B
+
+C
+
+10
+
+Fixada uma unidade de medida, sabe-se que:
+
+10
+
+• os pontos A , B , C e D pertencem à
+circunferência;
+
+O
+
+• o triângulo [ABC] é retângulo em B e está
+
+120º
+
+inscrito na circunferência;
+
+• a amplitude do arco CD é 120º ;
+• OC
+= BC
+= 10 ;
+• as cordas [AB] e [CD] são paralelas e iguais.
+A figura não está desenhada à escala.
+
+D
+
+A
+Figura 9
+
+14.1. Calcula a amplitude, em graus, do ângulo CAB .
+Apresenta todos os cálculos que efetuares.
+
+14.2. Calcula
+
+AB , utilizando o teorema de Pitágoras.
+
+Apresenta todos os cálculos que efetuares e, ainda, o resultado arredondado às centésimas.
+
+Prova 92/2.ª F. • Página 13/ 16
+
+15. Na Figura 10, estão representados os quadrados [ABCD] e [EFGH] .
+
+D
+
+C
+G
+
+H
+
+E
+
+A
+
+10
+
+F
+
+x−2
+
+B
+
+Figura 10
+
+Fixada uma unidade de medida, sabe-se que:
+
+• AB  x  2 , para um certo número real x , com x 2 12 ;
+• EF = 10 .
+Assinala com X a opção que apresenta uma expressão da área sombreada da figura.
+A
+
+x 2 − 4 x − 96
+
+B
+
+x 2 − 4 x − 104
+
+C
+
+x 2 − 104
+
+D
+
+x 2 − 96
+
+Prova 92/2.ª F. • Página 14/ 16
+
+16. Na Figura 11, apresentam-se dados relativos ao total de emissões de gases com efeito de estufa de
+seis países europeus, em 2019, em quilotoneladas equivalentes de dióxido de carbono (CO2) . Em
+2019, a União Europeia foi responsável pela emissão de 4 065 462 quilotoneladas equivalentes
+de CO2 .
+
+Total de emissões de gases com efeito de estufa em 2019
+Polónia
+
+390 745
+
+Países
+
+Eslováquia
+
+União Europeia (total):
+4 065 462
+
+39 921
+
+Portugal
+
+63 470
+
+Áustria
+
+79 842
+314 529
+
+Espanha
+Alemanha
+
+809 799
+0
+
+100 000 200 000 300 000 400 000 500 000 600 000 700 000 800 000
+
+quilotoneladas equivalentes de CO2
+Fonte: www.europarl.europa.eu
+(consultado em setembro de 2023). (Adaptado)
+
+Figura 11
+
+Assinala com X as três afirmações verdadeiras, tendo em conta os dados da figura.
+A
+
+A Áustria registou o dobro das emissões de gases com efeito de estufa, relativamente às
+emitidas pela Eslováquia.
+
+B
+
+A Áustria registou 30% das emissões de gases com efeito de estufa, relativamente às
+emitidas pela Polónia.
+
+C
+
+A Alemanha emitiu menos de 20% de gases com efeito de estufa, relativamente ao total
+dos emitidos na União Europeia.
+
+D
+
+A Polónia, a Eslováquia, a Espanha e Portugal, em conjunto, emitiram menos quantidade
+de gases com efeito de estufa do que a Alemanha.
+
+E
+
+A Alemanha emitiu 15 vezes mais gases com efeito de estufa do que os emitidos por
+Portugal.
+
+Prova 92/2.ª F. • Página 15/ 16
+
+Se quiseres completar ou emendar alguma resposta, utiliza o espaço abaixo.
+Caso o utilizes, não te esqueças de identificar claramente o item a que se refere cada uma das respostas
+completadas ou emendadas.
+
+FIM DA PROVA
+COTAÇÕES
+As pontuações obtidas nas
+respostas a estes 12 itens
+contribuem obrigatoriamente para
+a classificação final da prova.
+
+1.1.
+
+2.
+
+3.
+
+5.
+
+6.
+
+9.
+
+10.
+
+12.
+
+13.
+
+14.2.
+
+15.
+
+16.
+
+Subtotal
+
+Cotação (em pontos)
+
+6
+
+6
+
+6
+
+5
+
+6
+
+6
+
+6
+
+6
+
+7
+
+7
+
+6
+
+5
+
+72
+
+Destes 6 itens, contribuem para
+a classificação final da prova os
+4 itens cujas respostas obtenham
+melhor pontuação.
+Cotação (em pontos)
+TOTAL
+
+Prova 92/2.ª F. • Página 16/ 16
+
+1.2.
+
+4.
+
+7.
+
+8.
+
+4 x 7 pontos
+
+11.
+
+14.1.
+
+Subtotal
+
+28
+100
+
+
