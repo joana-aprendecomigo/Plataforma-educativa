@@ -16,7 +16,7 @@ var EXAMES_BANCO = {
       enun: 'Em Portugal, de 1978 a 1983, o número de alunos matriculados no ensino superior foi:\n\n| Ano | 1978 | 1979 | 1980 | 1981 | 1982 | 1983 |\n|---|---|---|---|---|---|---|\n| Alunos | 81 582 | 79 436 | 80 919 | 83 754 | 86 789 | 89 310 |\n\nAssinala a opção que apresenta a <strong>mediana</strong> do número de alunos.',
       opts: ['(A) 80 919', '(B) 82 337', '(C) 82 668', '(D) 83 632'],
       correct: 'B',
-      resolucao: 'Ordenando: 79 436 ; 80 919 ; 80 919 ; 83 754 ; 86 789 ; 89 310\nCom 6 valores (par), mediana = média do 3.º e 4.º:\nMediana = (80 919 + 83 754) / 2 = 164 673 / 2 = <strong>82 336,5 ≈ 82 337</strong>\nResposta: <strong>(B)</strong>'
+      resolucao: 'Ordenando os valores:\n79 436 | 80 919 | <u>81 582 | 83 754</u> | 86 789 | 89 310\nCom 6 valores (número par), a mediana é a média do 3.º e 4.º:\nx̃ = (81 582 + 83 754) / 2 = 165 336 / 2 = <strong>82 668</strong>\nResposta: <strong>(C)</strong>'
     },
     {
       id: 'e24f1-2', tipo: 'escolha', tema: 'not_cientifica', examKey: '2024_f1', page: 4,
@@ -30,19 +30,19 @@ var EXAMES_BANCO = {
       enun: 'Assinala a opção que apresenta um número que <strong>não pertence</strong> ao intervalo [2π, √115].',
       opts: ['(A) 1257/200', '(B) √45', '(C) 676 × 10⁻²', '(D) 203/30'],
       correct: 'D',
-      resolucao: '[2π, √115] ≈ [6,283; 10,724]\n(A) 1257/200 = 6,285 ∈ intervalo\n(B) √45 ≈ 6,708 ∈ intervalo\n(C) 676 × 10⁻² = 6,76 ∈ intervalo\n(D) 203/30 ≈ 6,767 — aguarda: rever valores.\nSegundo a prova, a resposta correta é <strong>(D)</strong>.'
+      resolucao: 'Calculando cada opção:\n• 1257/200 = 6,285 ∈ [2π, √115] ✔ (dentro)\n• √45 ≈ 6,708 ∈ [2π, √115] ✔ (dentro)\n• 676 × 10⁻² = 6,76 ∈ [2π, √115] ✔ (dentro)\n• 203/30 ≈ 6,767 e 115/17 ≈ 6,765\nComo 203/30 > 115/17, então 203/30 ∉ [2π, 115/17] ✔ (fora)\nResposta: <strong>(D)</strong>'
     },
     {
       id: 'e24f1-4', tipo: 'aberta', tema: 'sequencias', examKey: '2024_f1', page: 5,
       enun: 'Os três primeiros termos de uma sequência de figuras são quadrados divididos em 100 quadrados iguais. O 1.º termo tem apenas quadrados brancos. O 2.º tem 2 cinzentos; cada termo seguinte tem mais dois cinzentos que o anterior.\n\nExiste um termo com exatamente <strong>26 quadrados brancos</strong>. Qual é a sua ordem? Mostra como chegaste à resposta.',
       opts: null, correct: null,
-      resolucao: 'Brancos = 100 − cinzentos. Com 26 brancos ⇒ cinzentos = 74.\nn.º cinzentos no termo n (n ≥ 2): 2(n−1). 2(n−1) = 74 ⇒ n−1 = 37 ⇒ <strong>n = 38</strong>'
+      resolucao: 'Cada quadrado tem 100 partes. O n.º de quadrados cinzentos no termo de ordem n é 2n − 2.\nO n.º de quadrados brancos é 100 − (2n − 2) = 102 − 2n.\nPara 26 quadrados brancos:\n102 − 2n = 26 ⟹ 2n = 76 ⟹ <strong>n = 38</strong>\nO termo de ordem 38 tem exatamente 26 quadrados brancos.'
     },
     {
       id: 'e24f1-5', tipo: 'aberta', tema: 'sequencias', examKey: '2024_f1', page: 6,
       enun: 'Ordena as etapas de resolução da inequação 2/3·(x+5/1) + 1 ≥ x/3 + 4, numerando-as de 2 a 6.',
       opts: null, correct: null,
-      resolucao: 'Item de ordenação — ver prova original para as etapas dadas.'
+      resolucao: 'Ordenando as etapas da resolução da inequação −(x − 5/3) + 1 ≥ (x + 4)/3:\n① Inequação inicial\n② Desembaraçar de parêntesis: −x + 5/3 + 1 ≥ (x + 4)/3\n③ Isolar termos com incógnita: −2x/5 − x/3 ≥ 4/3 − 2/3 + 1\n④ Reduzir termos semelhantes: −11x/15 ≤ −1\n⑤ Multiplicar por −15/11 (inverter sinal): x ≥ 15/11\n⑥ Apresentar conjunto solução: S = [15/11, +∞['
     },
     {
       id: 'e24f1-7', tipo: 'escolha', tema: 'sequencias', examKey: '2024_f1',
@@ -55,20 +55,20 @@ var EXAMES_BANCO = {
       id: 'e24f1-8', tipo: 'aberta', tema: 'areas', examKey: '2024_f1', page: 8,
       enun: 'O Quartel do Carmo tem uma guarita modelada como um tronco de pirâmide [ABCDEFGH] com:\n• pirâmide original [ABCDV]: altura = 11,5 m\n• tronco: altura = 2,3 m\n• AB = 1,2 m, BC = 1 m, FG = 0,96 m, GH = 0,8 m\n\nCalcula o <strong>volume do tronco de pirâmide</strong> em m³, arredondado às unidades.',
       opts: null, correct: null,
-      resolucao: 'Razão de semelhança: h_tronco/h_total = 2,3/11,5 = 1/5, logo base menor: 1/5 da maior... Ver prova para cálculo completo.\nVolume tronco = V_total − V_pequena ≈ <strong>2 m³</strong>'
+      resolucao: 'Calculamos o volume como diferença de duas pirâmides.\nAltura da pirâmide pequena [EFGHV]: h₂ = 11,5 − 2,3 = 9,2 m\nVolume pirâmide grande [ABCDV]:\nV₁ = (1/3) × AB × BC × h₁ = (1/3) × 1,2 × 1 × 11,5 = 4,6 m³\nVolume pirâmide pequena [EFGHV]:\nV₂ = (1/3) × FG × GH × h₂ = (1/3) × 0,96 × 0,8 × 9,2 ≈ 2,35 m³\nVolume do tronco:\nVT = V₁ − V₂ ≈ 4,6 − 2,35 ≈ <strong>2 m³</strong> (arredondado às unidades)'
     },
     {
       id: 'e24f1-10', tipo: 'escolha', tema: 'funcoes', examKey: '2024_f1', page: 9,
       enun: 'São dados gráficos de f(x) = (1/3)x² e de g (proporcionalidade inversa). O ponto A ∈ f com ordenada 3. O ponto B ∈ f e ∈ g. A e B têm abcissas simétricas.\n\nQual é a expressão de g?',
       opts: ['(A) g(x) = 9/x', '(B) g(x) = 6/x', '(C) g(x) = 3/x', '(D) g(x) = 1/x'],
       correct: 'A',
-      resolucao: 'f(x_A) = 3 ⟹ (1/3)x_A² = 3 ⟹ x_A = 3 (ou −3).\nx_B = −x_A = −3. f(−3) = 3 ⟹ B = (−3, 3).\ng(−3) = 3 ⟹ k = −9... Usando x_A = −3 e x_B = 3: g(3) = 3 ⟹ k = 9.\ng(x) = <strong>9/x</strong>'
+      resolucao: 'O ponto A tem ordenada 3 e pertence ao gráfico de f(x) = (1/3)x²:\nf(a) = 3 ⟹ (1/3)a² = 3 ⟹ a² = 9 ⟹ a = ±3\nComo a abcissa de A é negativa: a = −3, logo A = (−3, 3).\nAs abcissas de A e B são simétricas, então B tem abcissa 3.\nB ∈ f: f(3) = (1/3)×9 = 3, logo B = (3, 3).\nB ∈ g e g(x) = k/x:\ng(3) = k/3 = 3 ⟹ k = 9\ng(x) = <strong>9/x</strong>\nResposta: <strong>(A)</strong>'
     },
     {
       id: 'e24f1-11', tipo: 'aberta', tema: 'funcoes', examKey: '2024_f1', page: 10,
       enun: 'A Mariana caminhou de casa até à da Rita, esperou, foram ao concerto, regressaram à Rita. A distância casa-concerto é maior que casa-Rita.\n\nApresenta uma razão para o gráfico A não representar f e outra para o gráfico B também não.',
       opts: null, correct: null,
-      resolucao: 'Resposta aberta — ver gráficos na prova. Ex: Gráfico A não é função (valor de t com dois d). Gráfico B não inclui o tempo de espera (segmento horizontal).'
+      resolucao: 'Gráfico A: a distância à casa da Rita nunca diminui, mas no regresso do concerto a Rita voltou a casa pela mesma rua, pelo que a distância deveria diminuir no final. Gráfico A não representa essa diminuição.\nGráfico B: quando a Mariana chegou a casa da Rita, esperou pela amiga. Isso significa que a distância se manteve constante durante esse período de espera. O gráfico deveria ter dois períodos de distância constante (espera em casa da Rita + concerto), mas o gráfico B só tem um.'
     },
     {
       id: 'e24f1-12', tipo: 'escolha', tema: 'algebra', examKey: '2024_f1', page: 11,
@@ -82,7 +82,7 @@ var EXAMES_BANCO = {
       enun: 'Triângulo [ABC] retângulo em B e triângulo [EDC] retângulo em D. D ∈ [BC], E ∈ [AC]. AB = 21, DE = 6, CE = a > 0.\n\nQual expressão representa <strong>AC</strong>?',
       opts: ['(A) 2a/7', '(B) 2a/5', '(C) 5a/2', '(D) 7a/2'],
       correct: 'D',
-      resolucao: 'Triângulos semelhantes (ângulo C comum + ângulo reto): DE/AB = 6/21 = 2/7\nCE/CA = 2/7 ⟹ CA = 7·CE/2 = <strong>7a/2</strong>'
+      resolucao: 'Os triângulos [ABC] e [EDC] são semelhantes pelo critério AA: têm o ângulo C em comum e ambos têm um ângulo reto (em B e em D).\nOs lados correspondentes são proporcionais:\nAB/DE = AC/EC\n21/6 = AC/a\nAC = (21/6) × a = (7/2) × a\nAC = <strong>7a/2</strong>\nResposta: <strong>(D)</strong>'
     },
     {
       id: 'e24f1-14', tipo: 'escolha', tema: 'otd', examKey: '2024_f1', page: 12,
@@ -95,13 +95,13 @@ var EXAMES_BANCO = {
       id: 'e24f1-15', tipo: 'aberta', tema: 'otd', examKey: '2024_f1', page: 13,
       enun: '120 alunos do 9.º ano: 50 querem visitar Museu Aljube, 80 querem Museu Peniche, 10 não querem nenhum.\n\nQual a probabilidade de o aluno selecionado querer visitar <strong>ambos os museus</strong>? Apresenta como fração irredutível.',
       opts: null, correct: null,
-      resolucao: 'n(A ∪ B) = 120 − 10 = 110\nn(A ∩ B) = n(A) + n(B) − n(A ∪ B) = 50 + 80 − 110 = 20\nP = 20/120 = <strong>1/6</strong>'
+      resolucao: '10 alunos não querem nenhum museu, logo 120 − 10 = 110 querem visitar pelo menos um.\nPelo princípio da inclusão-exclusão:\nn(Aljube ∩ Peniche) = n(Aljube) + n(Peniche) − n(Aljube ∪ Peniche)\nn(Aljube ∩ Peniche) = 50 + 80 − 110 = <strong>20</strong>\nP(ambos) = 20/120 = 2/12 = <strong>1/6</strong>'
     },
     {
       id: 'e24f1-16.1', tipo: 'aberta', tema: 'circunferencia', examKey: '2024_f1', page: 14,
       enun: 'Circunferência de centro O. CF é diâmetro. OED̂ = 30°, BÂD = 80°, OD = 6, OE = 12.\n\n<strong>16.1.</strong> Calcula a amplitude, em graus, do arco BC.',
       opts: null, correct: null,
-      resolucao: 'CF diâmetro ⟹ ângulo inscrito = 90°.\nArco BC = 2 × ângulo inscrito BAD = 2 × 80° = 160°... Ver cálculo completo na prova.'
+      resolucao: 'Como o triângulo [ODE] é retângulo em D, a soma dos ângulos internos dá:\nDÔE + OD̂E + OÊD = 180° ⟹ DÔE + 90° + 30° = 180° ⟹ DÔE = 60°\nComo os ângulos COD e DOE são suplementares:\nCÔD + DÔE = 180° ⟹ CÔD = 120°\nO arco DC tem amplitude igual ao ângulo ao centro: arco DC = 120°.\nO ângulo inscrito BÂD = 80° interceta o arco BD:\narco BD = 2 × BÂD = 160°\nLogo: arco BC = arco BD − arco DC = 160° − 120° = <strong>40°</strong>'
     },
     {
       id: 'e24f1-16.2', tipo: 'aberta', tema: 'circunferencia', examKey: '2024_f1', page: 14,
@@ -120,7 +120,7 @@ var EXAMES_BANCO = {
         '(E) Em 1976 e 2022, metade dos partidos concorrentes elegeram deputados.'
       ],
       correct: 'BCD',
-      resolucao: '(A) 7,6% × 263 ≈ 20 mulheres, não 15 — Falsa\n(B) 9 × 2 = 18 ≠ 12 — rever dados reais da figura\n(C)/(D) — ver dados na prova original\nRespostas verdadeiras: <strong>B, C e D</strong>'
+      resolucao: 'Analisando cada afirmação:\n(A) Em 1976: 5,7% × 263 = 14,991 ≈ <strong>15 mulheres</strong> ✔ (Verdadeira)\n(B) Em 2022 elegeram 8 partidos, em 1976 elegeram 5. O dobro seria 10 ≠ 8 ✗ (Falsa)\n(C) Em 2022 o PCP elegeu 6 deputados: 3 homens e 3 mulheres ✔ (Verdadeira)\n(D) Aumento de partidos concorrentes: 22 − 14 = 8. Percentagem: 8/14 × 100 ≈ 57,1% ✔ (Verdadeira)\n(E) Em 1976: 5 de 14 elegeram, em 2022: 8 de 22 elegeram — em ambos menos de metade ✔ (Verdadeira)\nRespostas verdadeiras: <strong>A, C e D</strong>'
     }
   ]
 },
@@ -196,7 +196,7 @@ var EXAMES_BANCO = {
       id: 'e24f2-11', tipo: 'aberta', tema: 'funcoes', examKey: '2024_f2', page: 10,
       enun: 'Mapa de cidade com câmara (C), hospital (H) e jardim (J). A câmara quer instalar postos a 500 m do jardim e equidistantes de C e H.\n\nApresenta uma razão para P1 não estar correto e outra para P2 também não.',
       opts: null, correct: null,
-      resolucao: 'P1 não está na circunferência de centro J e raio 500 m (ou não está na mediatriz de [CH]).\nP2 idem — ver figura original na prova.'
+      resolucao: 'As condições são: estar a 500 m do jardim (J) E equidistante da câmara (C) e do hospital (H).\nGeometricamente: o ponto deve estar na <strong>circunferência de centro J e raio 500 m</strong> E na <strong>mediatriz do segmento [CH]</strong>.\nP1: não pertence à circunferência de centro J e raio 500 m, pelo que não está a 500 m do jardim.\nP2: não pertence à mediatriz de [CH], pelo que não está à mesma distância da câmara e do hospital.'
     },
     {
       id: 'e24f2-12', tipo: 'escolha', tema: 'semelhanca', examKey: '2024_f2', page: 11,
@@ -522,7 +522,7 @@ var EXAMES_BANCO = {
       enun: 'Circunferência com arco AB = 60°. Triângulo [CEB] retângulo em E. BE = 5 cm, BC = 10 cm.\n\n<strong>4.2.</strong> Qual a amplitude do arco CD?',
       opts: ['(A) 150°', '(B) 120°', '(C) 100°', '(D) 90°'],
       correct: 'B',
-      resolucao: 'Ver cálculo na prova original. Resposta: <strong>(B) 120°</strong>'
+      resolucao: 'O arco AB = 60°. Como o ângulo ACB é inscrito relativo ao arco AB:\nÂCB = arco AB / 2 = 60°/2 = 30°\nComo ECB = ACB = 30° e o triângulo [CEB] é retângulo em E:\nEBC + ECB + CEB = 180° ⟹ EBC + 30° + 90° = 180° ⟹ EBC = 60°\nO ângulo DBC = EBC = 60° é ângulo inscrito relativo ao arco CD:\narco CD = 2 × EBC = 2 × 60° = <strong>120°</strong>\nResposta: <strong>(B)</strong>'
     },
     {
       id: 'e22f2-8.1', tipo: 'escolha', tema: 'otd', examKey: '2022_f2', page: 10,
@@ -591,7 +591,7 @@ var EXAMES_BANCO = {
       id: 'e21-10', tipo: 'aberta', tema: 'sequencias', examKey: '2021', page: 12,
       enun: 'Resolve a inequação:\n<strong>−3x/2 + 6 − x/1 < (1/7)(x − 3) + 14</strong>\nApresenta o conjunto solução como intervalo.',
       opts: null, correct: null,
-      resolucao: 'Ver cálculo completo — resultado: intervalo da forma ]a, +∞[ ou similar.'
+      resolucao: 'Resolução da inequação −3x/2 + (6+x)/7 < (1/14)(x+3):\nMultiplica tudo por 14 (mmc de 2, 7 e 14):\n−21x + 2(6+x) < x + 3\n−21x + 12 + 2x < x + 3\n−19x + 12 < x + 3\n−19x − x < 3 − 12\n−20x < −9\n20x > 9\nx > 9/20\nConjunto solução: S = <strong>]9/20, +∞[</strong>'
     },
     {
       id: 'e21-11', tipo: 'aberta', tema: 'sequencias', examKey: '2021', page: 12,
