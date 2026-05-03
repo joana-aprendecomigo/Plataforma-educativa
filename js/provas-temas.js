@@ -105,8 +105,8 @@ TEMAS_BANCO.intervalos = [
     fonte: 'Prova ensaio 9.º ano 2025',
     enun: 'Assinala a opção que apresenta um número que pertence ao intervalo ]−π, 3√2[.',
     opts: ['(A) −π', '(B) π', '(C) 4,25', '(D) −4,25'],
-    correct: 'D',
-    resolucao: ']−π, 3√2[ ≈ ]−3,14; 4,24[\n(A) −π não pertence (extremo excluído)\n(B) π ≈ 3,14 pertence? Verificar: π &lt; 3√2 ≈ 4,24 ✔ e π &gt; −π ✔ — espera, mas (D) −4,25 &lt; −π ✗... rever: −4,25 &lt; −3,14 logo não pertence.\nA resposta da prova é <strong>(D) −4,25</strong> — verificar no enunciado original.'
+    correct: 'B',
+    resolucao: ']−π, 3√2[ ≈ ]−3,14; 4,24[\n(A) −π — extremo excluído\n(B) π ≈ 3,14 ∈ ]−3,14; 4,24[ ✔\n(C) 4,25 &gt; 4,24 — não pertence\n(D) −4,25 &lt; −3,14 — não pertence\nResposta: <strong>(B)</strong>'
   },
   {
     id: 'tinterv-2', tipo: 'escolha', tema: 'intervalos',
@@ -207,7 +207,7 @@ TEMAS_BANCO.polinomios = [
     fonte: 'Prova ensaio 9.º ano 2025',
     enun: 'Assinala a opção que apresenta uma expressão algébrica equivalente a (x − 1)² − 17.',
     opts: ['(A) x² − 2x − 18', '(B) x² − 2x − 16', '(C) x² − 18', '(D) x² − 16'],
-    correct: 'A',
+    correct: 'B',
     resolucao: '(x−1)² − 17 = x² − 2x + 1 − 17 = <strong>x² − 2x − 16</strong>\nResposta: <strong>(B)</strong>'
   },
   {
@@ -416,7 +416,7 @@ TEMAS_BANCO.prop_inversa = [
     fonte: 'Prova Final 9.º ano 2024 — 2.ª fase',
     enun: 'Os pontos A e B pertencem à função afim f com coordenadas (0, 7) e (4, 9). O ponto C pertence a f e à função de proporcionalidade inversa g, com abcissa 2.\nAssinala a opção que apresenta uma expressão algébrica de g.',
     opts: ['(A) g(x) = 16x', '(B) g(x) = 36x', '(C) g(x) = 36/x', '(D) g(x) = 16/x'],
-    correct: 'A',
+    correct: 'D',
     resolucao: 'Declive de f: (9−7)/(4−0) = 1/2. f(x) = x/2 + 7\nf(2) = 1 + 7 = 8 ⟹ C = (2, 8)\ng(2) = 8 ⟹ k = 8 × 2 = 16 ⟹ g(x) = 16/x\nResposta: <strong>(D)</strong>'
   },
   {
