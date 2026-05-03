@@ -177,7 +177,7 @@ function _pnMCHTML(q) {
     var click = revealed ? '' : 'onclick="pnSelectOpt(\'' + q.id + '\',\'' + letter + '\')"';
     h += '<button class="' + cls + '" ' + click + '>';
     h += '<span class="pn-opt-letter">' + letter + '</span>';
-    h += '<span class="pn-opt-text">' + opt.replace(/^\([A-D]\)\s*/, '') + '</span>';
+    h += '<span class="pn-opt-text">' + _pnFmt(opt.replace(/^\([A-D]\)\s*/, '')) + '</span>';
     h += icon;
     h += '</button>';
   });
@@ -238,7 +238,36 @@ function _pnFeedback(correct) {
 
 function _pnFmt(text) {
   if (!text) return '';
-  return text.replace(/\n/g, '<br>');
+  return _pnMath(text).replace(/\n/g, '<br>');
+}
+
+function _pnMath(t) {
+  if (!t) return '';
+
+  // Split on HTML tags to avoid processing inside tag attributes/names
+  var parts = t.split(/(<[^>]+>)/);
+  for (var i = 0; i < parts.length; i++) {
+    if (parts[i].charAt(0) === '<') continue; // skip HTML tags
+
+    var s = parts[i];
+
+    // Superscripts: ^2 ^3 ^n
+    s = s.replace(/\^(\d+)/g, '<sup>$1</sup>');
+    s = s.replace(/²/g, '<sup>2</sup>');
+    s = s.replace(/³/g, '<sup>3</sup>');
+
+    // Subscripts: x_A x_B
+    s = s.replace(/_([A-Za-z0-9])/g, '<sub>$1</sub>');
+
+    // Inline fractions: num/den where both are simple tokens (no spaces)
+    // e.g. 9/x, 1/3, k/2, 36/x
+    s = s.replace(/([0-9a-zA-Zπ]+)\s*\/\s*([0-9a-zA-Zπ]+)/g, function(_, num, den) {
+      return '<span class="pn-frac"><span class="pn-frac-n">' + num + '</span><span class="pn-frac-d">' + den + '</span></span>';
+    });
+
+    parts[i] = s;
+  }
+  return parts.join('');
 }
 
 // ── INTERACTIONS ─────────────────────────────────────────────────────────────

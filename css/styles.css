@@ -2214,6 +2214,11 @@ body.dark-mode .pom-mode-btn.active{background:#2e2e2e!important;}
 .pn-badge--fig{background:rgba(150,150,150,.1);color:var(--ink4)}
 .pn-enun{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:500;color:var(--ink);line-height:1.65}
 
+/* Frações matemáticas inline */
+.pn-frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em;font-family:'JetBrains Mono',monospace}
+.pn-frac-n{border-bottom:1.5px solid currentColor;padding:0 .15em;line-height:1.2;font-size:.9em}
+.pn-frac-d{padding:0 .15em;line-height:1.2;font-size:.9em}
+
 /* Imagem da página do exame original */
 .pn-exam-img-details{margin:.8rem 0 .4rem;border-radius:10px;border:1.5px solid #ddd;overflow:hidden}
 .pn-exam-img-details summary.pn-exam-img-label{cursor:pointer;list-style:none;padding:.5rem .85rem;background:#f0edf7;color:#6b5fa0;font-size:.75rem;font-weight:700;display:flex;align-items:center;gap:.4rem;user-select:none}
