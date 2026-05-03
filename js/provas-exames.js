@@ -677,7 +677,7 @@ var EXAMES_BANCO = {
       id: 'e19f1-16', tipo: 'aberta', tema: 'circunferencia', examKey: '2019_f1', page: 14,
       enun: 'Circunferência com papagaio [ABCD] inscrito. Arco CD = 110° e AB = BC.\n\nDetermina, em graus, o ângulo ADC. Apresenta os cálculos.',
       opts: null, correct: null,
-      resolucao: 'AB = BC ⟹ arcos AB = arcos BC. Arco CD = 110°.\nAngle ADC inscrito intercepta arco ABC = 360° − 110° − arco AB − arco BC.\nVer cálculo completo na prova original.'
+      resolucao: 'Como [ABCD] é um papagaio com AB = BC, os arcos correspondentes são iguais: arco AB = arco BC.\nComo [ABCD] é papagaio, também CD = AD, logo arco CD = arco AD = 110°.\nArco CDA = arco CD + arco DA = 110° + 100° = 220°\nArco AC = 360° − arco CDA = 360° − 220° = 140°\nO ângulo ADC é inscrito relativo ao arco AC:\nADC = arco AC / 2 = 140°/2 = <strong>70°</strong>'
     },
     {
       id: 'e19f1-18', tipo: 'aberta', tema: 'semelhanca', examKey: '2019_f1', page: 15,
