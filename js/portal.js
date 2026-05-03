@@ -176,6 +176,22 @@ function portalRenderProgress() {
     + '</div>';
 }
 
+// ═══ EASTER EGG ═══
+var easterEggBuffer = '';
+document.addEventListener('keydown', function(e) {
+  easterEggBuffer += e.key.toLowerCase();
+  if (easterEggBuffer.length > 5) {
+    easterEggBuffer = easterEggBuffer.slice(-5);
+  }
+  if (easterEggBuffer.indexOf('joana') !== -1) {
+    var wordmark = document.querySelector('.wordmark');
+    if (wordmark) {
+      wordmark.innerHTML = 'Joana é um <em>máximo</em>';
+      easterEggBuffer = ''; // reset after trigger
+    }
+  }
+});
+
 // ═══ AUTO-INIT ═══
 document.addEventListener('DOMContentLoaded', function(){
   if(document.getElementById('portal-main')) portalRender();
