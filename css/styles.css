@@ -1875,6 +1875,17 @@ body.dark-mode .pom-mode-btn.active{background:#2e2e2e!important;}
 .calc-btn.eq:active{opacity:.85;}
 .calc-btn.clr{background:var(--cs-base);color:var(--cs-deep);}
 .calc-btn.zero{grid-column:span 2;}
+/* Calculadora roxa — página de exames */
+[data-no-pomodoro] #calc-fab{background:linear-gradient(135deg,#7570a8,#9b96d4);box-shadow:0 6px 20px rgba(117,112,168,.4);}
+[data-no-pomodoro] #calc-fab:hover{box-shadow:0 10px 28px rgba(117,112,168,.55);}
+[data-no-pomodoro] #calc-display{background:linear-gradient(135deg,#2a2848,#484580);}
+[data-no-pomodoro] .calc-btn.op{background:var(--c4-base);color:var(--c4-deep);}
+[data-no-pomodoro] .calc-btn.op:active{background:var(--c4-mid);color:#fff;}
+[data-no-pomodoro] .calc-btn.eq{background:linear-gradient(135deg,#484580,#7570a8);}
+[data-no-pomodoro] .calc-btn.clr{background:#f0eef8;color:#484580;}
+/* posição mais baixa pois não há pomodoro */
+[data-no-pomodoro] #calc-fab{bottom:24px;}
+[data-no-pomodoro] #calc-widget{bottom:88px;}
 
 /* ──────────────────────────────────────────
    7. TOOLTIPS DE FÓRMULAS
