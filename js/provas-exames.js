@@ -259,7 +259,7 @@ var EXAMES_BANCO = {
       id: 'e23f1-3.2', tipo: 'aberta', tema: 'otd', examKey: '2023_f1', page: 4,
       enun: '6 atividades: 4 com prancha (surf, bodyboard, windsurf, paddle), 2 sem prancha (mergulho, canoagem). Sorteiam-se 2 atividades diferentes.\n\nQual a probabilidade de as <strong>duas serem com prancha</strong>? Fração irredutível.',
       opts: null, correct: null,
-      resolucao: 'Total de pares: C(6,2) = 15\nPares com prancha: C(4,2) = 6\nP = 6/15 = <strong>2/5</strong>'
+      resolucao: 'Atividades com prancha: surf (S), bodyboard (B), windsurf (W), paddle (P).\nOrganizando todos os pares possíveis: S+B, S+W, S+P, S+M, S+C, B+W, B+P, B+M, B+C, W+P, W+M, W+C, P+M, P+C, M+C → 15 pares.\nPares com duas atividades de prancha: S+B, S+W, S+P, B+W, B+P, W+P → 6 pares.\nPela Regra de Laplace: P = 6/15 = <strong>2/5</strong>'
     },
     {
       id: 'e23f1-4', tipo: 'escolha', tema: 'not_cientifica', examKey: '2023_f1', page: 5,
@@ -310,7 +310,7 @@ var EXAMES_BANCO = {
       id: 'e23f1-14', tipo: 'aberta', tema: 'funcoes', examKey: '2023_f1', page: 13,
       enun: 'f(x) = 3x² e g(x) = a/x com a > 0. Os gráficos intersectam-se no ponto A de abcissa 2.\n\nQual o valor de a?',
       opts: null, correct: null,
-      resolucao: 'f(2) = 3×4 = 12. Como A ∈ g: g(2) = 12 ⟹ a/2 = 12 ⟹ <strong>a = 24</strong>'
+      resolucao: 'O ponto A tem abcissa 2 e pertence ao gráfico de f(x) = 3x²:\nyA = f(2) = 3 × 2² = 3 × 4 = 12, logo A = (2, 12)\nComo A também pertence ao gráfico de g(x) = a/x:\ng(2) = a/2 = 12 ⟹ a = 12 × 2 = <strong>24</strong>'
     },
     {
       id: 'e23f1-15', tipo: 'aberta', tema: 'otd', examKey: '2023_f1', page: 14,
@@ -365,7 +365,7 @@ var EXAMES_BANCO = {
       id: 'e23f2-5', tipo: 'aberta', tema: 'otd', examKey: '2023_f2', page: 5,
       enun: 'Clube com 145 sócios: 50 praticam basquetebol, 85 praticam voleibol, 40 não praticam nenhum.\n\nQual a probabilidade de o sócio selecionado praticar <strong>ambas as modalidades</strong>? Fração irredutível.',
       opts: null, correct: null,
-      resolucao: 'n(B ∪ V) = 145 − 40 = 105\nn(B ∩ V) = 50 + 85 − 105 = 30\nP = 30/145 = <strong>6/29</strong>'
+      resolucao: '40 sócios não praticam nenhuma modalidade, logo praticam pelo menos uma:\n145 − 40 = 105 sócios\nPelo princípio da inclusão-exclusão:\nn(B ∩ V) = n(B) + n(V) − n(B ∪ V) = 50 + 85 − 105 = 30\nPela Regra de Laplace: P = 30/145 = <strong>6/29</strong>'
     },
     {
       id: 'e23f2-6', tipo: 'escolha', tema: 'sequencias', examKey: '2023_f2',
@@ -412,7 +412,7 @@ var EXAMES_BANCO = {
       id: 'e23f2-16', tipo: 'aberta', tema: 'funcoes', examKey: '2023_f2', page: 13,
       enun: 'g(x) = 16/x. Gráficos f e g intersectam em A com abcissa 4. Ponto (−2, 0) ∈ gráfico de f.\n\nDetermina a expressão algébrica de f na forma f(x) = ax + b.',
       opts: null, correct: null,
-      resolucao: 'g(4) = 4 ⟹ A = (4, 4). Dois pontos de f: (−2, 0) e (4, 4).\ndeclive = (4−0)/(4−(−2)) = 4/6 = 2/3.\nf(x) = 2/3·x + b. f(−2) = 0 ⟹ −4/3 + b = 0 ⟹ b = 4/3.\nf(x) = <strong>2x/3 + 4/3</strong>'
+      resolucao: 'O ponto A tem abcissa 4 e pertence a g(x) = 16/x:\ng(4) = 16/4 = 4, logo A = (4, 4)\nO gráfico de f passa em (−2, 0) e em A(4, 4).\nDeclive: a = (4 − 0)/(4 − (−2)) = 4/6 = 2/3\nExpressão: f(x) = (2/3)x + b\nSubstituindo (−2, 0): 0 = (2/3)×(−2) + b ⟹ b = 4/3\nf(x) = <strong>(2/3)x + 4/3</strong>'
     }
   ]
 },
@@ -429,7 +429,7 @@ var EXAMES_BANCO = {
       enun: 'Turma de 23 alunos: 14 raparigas. A diretora escolhe ao acaso um aluno.\n\nQual a probabilidade de o aluno escolhido ser um <strong>rapaz</strong>?',
       opts: ['(A) 9/23', '(B) 1/23', '(C) 9/14', '(D) 1/9'],
       correct: 'A',
-      resolucao: 'Rapazes = 23 − 14 = 9\nP(rapaz) = 9/23'
+      resolucao: 'A turma tem 23 alunos, dos quais 14 são raparigas.\nNúmero de rapazes: 23 − 14 = 9\nPela Regra de Laplace: P(rapaz) = 9/23\nResposta: <strong>(A)</strong>'
     },
     {
       id: 'e22f1-8.2', tipo: 'aberta', tema: 'otd', examKey: '2022_f1', page: 10,
