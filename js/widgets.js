@@ -144,6 +144,6 @@ function _injectCalc() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  _injectPomodoro();
+  if (!document.body.dataset.noPomodoro) _injectPomodoro();
   _injectCalc();
 });
