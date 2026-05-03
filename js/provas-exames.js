@@ -246,7 +246,7 @@ var EXAMES_BANCO = {
       id: 'e23f1-2', tipo: 'aberta', tema: 'not_cientifica', examKey: '2023_f1', page: 4,
       enun: 'Em 2020, os estabelecimentos turísticos registaram 30,5 milhões de dormidas. Em 2023, estima-se um crescimento de 60% face a 2020.\n\nCalcula o número de dormidas em 2023 em <strong>notação científica</strong>.',
       opts: null, correct: null,
-      resolucao: '30,5 × 10⁶ × 1,60 = 48,8 × 10⁶ = <strong>4,88 × 10⁷ dormidas</strong>'
+      resolucao: 'Crescimento de 60% face a 2020:\n30,5 × 60/100 = 18,3 milhões de dormidas (aumento)\nEstimativa para 2023: 30,5 + 18,3 = 48,8 milhões\nEm notação científica: 48 800 000 = <strong>4,88 × 10⁷ dormidas</strong>'
     },
     {
       id: 'e23f1-3.1', tipo: 'escolha', tema: 'otd', examKey: '2023_f1', page: 4,
@@ -757,7 +757,7 @@ var EXAMES_BANCO = {
       id: 'e19f2-12', tipo: 'aberta', tema: 'sequencias', examKey: '2019_f2', page: 13,
       enun: 'Sequência de círculos (1 cinzento + 3 brancos no 1.º; cada termo seguinte acrescenta 1 cinzento + 2 brancos).\n\nUm termo tem <strong>110 círculos cinzentos</strong>. Qual o número total de círculos desse termo?',
       opts: null, correct: null,
-      resolucao: 'Cinzentos no termo n: 1 + (n−1) = n. n = 110 ⟹ termo 110.\nTotal no termo n: 1 + 3 + 3(n−1) = 3n + 1\nTotal = 3×110 + 1 = <strong>331</strong>'
+      resolucao: 'Observando a sequência:\n• coluna da esquerda: n círculos\n• coluna central: n + 1 círculos\n• coluna da direita: n círculos\nTotal no termo n: n + (n+1) + n = 3n + 1\nPara 110 círculos cinzentos (coluna da esquerda = n = 110):\nTotal = 3×110 + 1 = 330 + 1 = <strong>331</strong>'
     },
     {
       id: 'e19f2-13', tipo: 'aberta', tema: 'funcoes', examKey: '2019_f2', page: 14,
