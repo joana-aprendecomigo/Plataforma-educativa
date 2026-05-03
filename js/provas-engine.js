@@ -108,25 +108,17 @@ function _pnRenderQuestion(practice) {
   if (q.fig) {
     h += '<span class="pn-badge pn-badge--fig"><i class="ph ph-image"></i> Figura necessária</span>';
   }
-  if (q.examKey && !q.page) {
-    h += '<button class="pn-badge pn-badge--fig" style="cursor:pointer;border:none;background:none;padding:0" onclick="pnVerProvaImg(this,\'' + q.examKey + '\',\'\')" title="Ver imagem da prova original"><i class="ph ph-images"></i> Ver prova</button>';
-  }
   h += '</div>';
 
   // Enunciado em texto
   h += '<div class="pn-enun">' + _pnFmt(q.enun) + '</div>';
 
-  // Imagem da página do exame original (suporte visual para figuras/gráficos)
-  if (q.examKey && q.page) {
-    var _prefix = (window.location.pathname.indexOf('/mat7/') !== -1) ? '../' : '';
-    var _imgBase = _prefix + 'img/exames/' + q.examKey + '/';
-    var _pageStr = (q.page < 10 ? '0' : '') + q.page;
-    h += '<details class="pn-exam-img-details">';
-    h += '<summary class="pn-exam-img-label"><i class="ph ph-image-square"></i> Ver figura do exame original</summary>';
-    h += '<div class="pn-exam-img-wrap">';
-    h += '<img src="' + _imgBase + 'p-' + _pageStr + '.png" class="pn-exam-img" alt="Página do exame" onerror="this.closest(\'details\').style.display=\'none\'">';
+  // Imagem individual da figura (só quando a questão tem fig:true e imgSrc definido)
+  if (q.fig && q.imgSrc) {
+    var _prefix2 = (window.location.pathname.indexOf('/mat7/') !== -1) ? '../' : '';
+    h += '<div class="pn-fig-wrap">';
+    h += '<img src="' + _prefix2 + q.imgSrc + '" class="pn-fig-img" alt="Figura">';
     h += '</div>';
-    h += '</details>';
   }
 
   // Área de resposta
