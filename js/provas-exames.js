@@ -435,7 +435,7 @@ var EXAMES_BANCO = {
       id: 'e22f1-8.2', tipo: 'aberta', tema: 'otd', examKey: '2022_f1', page: 10,
       enun: 'A Catarina vai participar em 2 das 5 atividades (3 ao ar livre + 2 em sala). Escolhe ao acaso.\n\nQual a probabilidade de participar em <strong>duas atividades ao ar livre</strong>? Fração irredutível.',
       opts: null, correct: null,
-      resolucao: 'Total de pares: C(5,2) = 10\nPares ao ar livre: C(3,2) = 3\nP = 3/10'
+      resolucao: 'Atividades ao ar livre: A1, A2, A3. Atividades em sala: S1, S2.\nTotal de pares de 2 atividades de 5: C(5,2) = 5×4/2 = 10 pares possíveis.\nPares com duas atividades ao ar livre: A1+A2, A1+A3, A2+A3 = 3 pares favoráveis.\nPela Regra de Laplace: P = 3/10\nResposta: <strong>3/10</strong>'
     },
     {
       id: 'e22f1-9', tipo: 'escolha', tema: 'funcoes', examKey: '2022_f1', page: 12,
@@ -526,10 +526,10 @@ var EXAMES_BANCO = {
     },
     {
       id: 'e22f2-8.1', tipo: 'escolha', tema: 'otd', examKey: '2022_f2', page: 10,
-      enun: 'Agrupamento com 24 turmas: 5.º(A-F=6), 6.º(A-F=6), 7.º(A-E=5), 8.º(A-D=4), 9.º(A-C=3). Escolhe-se ao acaso uma turma.\n\nQual a probabilidade de ser do <strong>6.º ano</strong>?',
+      enun: 'Agrupamento com 24 turmas: 5.º(A-F=6), 6.º(A-E=5), 7.º(A-E=5), 8.º(A-D=4), 9.º(A-D=4). Escolhe-se ao acaso uma turma.\n\nQual a probabilidade de ser do <strong>6.º ano</strong>?',
       opts: ['(A) 5/19', '(B) 5/24', '(C) 1/24', '(D) 1/5'],
       correct: 'B',
-      resolucao: 'P(6.º ano) = 5/24\nResposta: <strong>(B)</strong>'
+      resolucao: 'O agrupamento tem 24 turmas, das quais 5 são do 6.º ano (turmas A a E).\nPela Regra de Laplace: P(6.º ano) = 5/24\nResposta: <strong>(B)</strong>'
     },
     {
       id: 'e22f2-8.2', tipo: 'aberta', tema: 'otd', examKey: '2022_f2', page: 10,
