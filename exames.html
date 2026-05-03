@@ -3,89 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Exames Nacionais de Matemática 9.º Ano — simulador, prática por tema e questões por ano com resolução detalhada.">
-<meta name="theme-color" content="#5c4e8a">
-<title>Exames Nacionais · Matemática · 3ponto14</title>
+<meta name="description" content="Exames Nacionais de Matemática 9.º Ano — simulador cronometrado, prática por tema e provas completas com resolução passo a passo.">
+<meta name="theme-color" content="#4a3f7a">
+<title>Exames Nacionais · Matemática 9.º Ano · 3ponto14</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
 <style>
-/* ── EXAMES PAGE ── */
-.ex-hero{background:linear-gradient(135deg,#3b3060 0%,#5c4e8a 50%,#7c6fa0 100%);padding:3rem 1.5rem 2.5rem;text-align:center;position:relative;overflow:hidden}
-.ex-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
-.ex-hero-eyebrow{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:1rem}
-.ex-hero h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.15}
-.ex-hero p{color:rgba(255,255,255,.7);font-size:.95rem;max-width:520px;margin:0 auto 1.5rem;line-height:1.6}
-.ex-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
-.ex-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:.75rem 1.5rem;text-align:center}
-.ex-stat-n{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:#fff;line-height:1}
-.ex-stat-l{font-size:.68rem;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+/* ═══════════════════════════════════════════════════════════
+   EXAMES NACIONAIS — Estilos
+═══════════════════════════════════════════════════════════ */
 
-/* ── MODO TABS ── */
-.ex-wrap{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
-.ex-mode-tabs{display:flex;gap:.5rem;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:.4rem;margin-bottom:2rem}
-.ex-mode-tab{flex:1;padding:.65rem .5rem;border:none;background:transparent;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:.4rem}
-.ex-mode-tab.active{background:#5c4e8a;color:#fff;box-shadow:0 2px 8px rgba(92,78,138,.35)}
-.ex-mode-tab:hover:not(.active){background:var(--cream);color:var(--ink1)}
+/* ── Topbar ── */
+.ex-topbar{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.07);position:sticky;top:0;z-index:200;padding:.7rem 1.5rem;display:flex;align-items:center;gap:.75rem}
+.ex-topbar-back{font-size:.75rem;font-weight:600;color:#6b5fa0;text-decoration:none;display:flex;align-items:center;gap:.3rem;padding:5px 12px;border:1.5px solid #d4cdf0;border-radius:999px;transition:all .15s;margin-left:auto;white-space:nowrap}
+.ex-topbar-back:hover{background:#f0edf7;border-color:#7c6fa0}
 
-/* ── TEMA CARDS ── */
-.ex-topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
-.ex-topic-card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem 1.4rem;cursor:pointer;transition:all .2s;text-align:left;width:100%}
-.ex-topic-card:hover{border-color:#7c6fa0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,78,138,.12)}
-.ex-topic-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;font-size:1.2rem}
-.ex-topic-label{font-size:.92rem;font-weight:700;color:var(--ink1);margin-bottom:.2rem}
-.ex-topic-sub{font-size:.75rem;color:var(--ink4);line-height:1.4;margin-bottom:.75rem}
-.ex-topic-footer{display:flex;align-items:center;justify-content:space-between}
-.ex-topic-count{font-size:.72rem;font-weight:600;color:var(--ink4)}
-.ex-topic-prog-wrap{flex:1;height:5px;background:var(--border);border-radius:99px;margin:0 .75rem;overflow:hidden}
-.ex-topic-prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#7c6fa0,#5c4e8a);transition:width .4s}
-.ex-topic-pct{font-size:.72rem;font-weight:700;color:#5c4e8a;min-width:28px;text-align:right}
+/* ── Hero ── */
+.ex-hero{position:relative;overflow:hidden;background:linear-gradient(150deg,#1e1640 0%,#3a2d6e 35%,#5c4e8a 70%,#7b6db0 100%);padding:4rem 1.5rem 3rem;text-align:center}
+.ex-hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ex-hero-particle{position:absolute;border-radius:50%;opacity:.15;animation:floatP 8s ease-in-out infinite}
+@keyframes floatP{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+.ex-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.ex-hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85);font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:999px;margin-bottom:1.2rem}
+.ex-hero h1{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.1;position:relative}
+.ex-hero h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.ex-hero-sub{color:rgba(255,255,255,.65);font-size:.92rem;max-width:500px;margin:0 auto 2rem;line-height:1.7}
+.ex-hero-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+.ex-hstat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:.85rem 1.6rem;text-align:center;backdrop-filter:blur(4px);transition:all .2s}
+.ex-hstat:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.ex-hstat-n{font-family:'JetBrains Mono',monospace;font-size:1.9rem;font-weight:700;color:#fff;line-height:1}
+.ex-hstat-l{font-size:.63rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
 
-/* ── SIMULADOR ── */
-.ex-sim-config{background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:2rem;margin-bottom:1.5rem}
-.ex-sim-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink1);margin-bottom:.4rem}
-.ex-sim-sub{font-size:.85rem;color:var(--ink3);margin-bottom:1.5rem;line-height:1.5}
-.ex-sim-opts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.ex-sim-opt{border:2px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s;text-align:left;background:var(--white)}
-.ex-sim-opt:hover{border-color:#7c6fa0;background:#f7f5fb}
-.ex-sim-opt.active{border-color:#5c4e8a;background:#f0edf7}
-.ex-sim-opt-title{font-size:.88rem;font-weight:700;color:var(--ink1);margin-bottom:.2rem}
-.ex-sim-opt-sub{font-size:.75rem;color:var(--ink3)}
-.ex-sim-timer{background:linear-gradient(135deg,#3b3060,#5c4e8a);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.ex-sim-timer-display{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:#fff;min-width:90px}
-.ex-sim-timer-label{font-size:.78rem;color:rgba(255,255,255,.65);font-weight:600}
-.ex-sim-timer-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;min-width:80px}
-.ex-sim-timer-bar{height:100%;background:#fff;border-radius:99px;transition:width 1s linear}
+/* ── Layout ── */
+.ex-page{max-width:860px;margin:0 auto;padding:2rem 1.25rem 5rem}
 
-/* ── POR ANO ── */
-.ex-year-list{display:flex;flex-direction:column;gap:.6rem}
-.ex-year-item{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:all .18s}
-.ex-year-item:hover{border-color:#7c6fa0;background:#f7f5fb}
-.ex-year-badge{background:#f0edf7;border:1px solid #c9bfe8;color:#5c4e8a;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
-.ex-year-name{font-size:.88rem;font-weight:700;color:var(--ink1);flex:1}
-.ex-year-count{font-size:.75rem;color:var(--ink4);font-weight:600}
+/* ── Mode Tabs ── */
+.ex-tabs-wrap{display:flex;gap:0;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:.35rem;margin-bottom:2rem;position:sticky;top:57px;z-index:100;backdrop-filter:blur(8px)}
+.ex-tab{flex:1;padding:.7rem .5rem;border:none;background:transparent;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;color:var(--ink3);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:.4rem;white-space:nowrap}
+.ex-tab.active{background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;box-shadow:0 4px 12px rgba(74,63,122,.4)}
+.ex-tab:hover:not(.active){background:rgba(107,95,160,.08);color:var(--ink1)}
+.ex-tab .tab-lbl{display:inline}
 
-/* ── SECÇÃO VAZIA ── */
+/* ── Panels ── */
 .ex-panel{display:none}
-.ex-panel.active{display:block}
+.ex-panel.active{display:block;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* ── START BTN ── */
-.ex-start-btn{background:linear-gradient(135deg,#5c4e8a,#7c6fa0);color:#fff;border:none;border-radius:12px;padding:.85rem 2rem;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;width:100%;justify-content:center}
-.ex-start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,78,138,.35)}
+/* ── Section headers ── */
+.ex-sec-head{margin-bottom:1.5rem}
+.ex-sec-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--ink1);margin-bottom:.2rem}
+.ex-sec-sub{font-size:.83rem;color:var(--ink3);line-height:1.5}
 
-/* ── TOPBAR NAV ── */
-.ex-topbar{background:var(--white);border-bottom:1.5px solid var(--border);position:sticky;top:0;z-index:100;padding:.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
-.ex-topbar-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
-.ex-back{font-size:.78rem;font-weight:600;color:var(--ink3);text-decoration:none;display:flex;align-items:center;gap:.3rem;padding:5px 12px;border:1.5px solid var(--border);border-radius:999px;transition:all .15s;margin-left:auto}
-.ex-back:hover{border-color:#7c6fa0;color:#5c4e8a}
+/* ════════════════════════════
+   PAINEL 1: PRÁTICA POR TEMA
+════════════════════════════ */
+.ex-topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem}
+.ex-topic-card{background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem 1.5rem;cursor:pointer;transition:all .22s;text-align:left;width:100%;position:relative;overflow:hidden}
+.ex-topic-card::after{content:'';position:absolute;inset:0;border-radius:18px;opacity:0;transition:opacity .22s;background:linear-gradient(135deg,rgba(107,95,160,.06),rgba(107,95,160,.02))}
+.ex-topic-card:hover{border-color:#8b7cc0;transform:translateY(-3px);box-shadow:0 12px 32px rgba(92,78,138,.14)}
+.ex-topic-card:hover::after{opacity:1}
+.ex-topic-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem;font-size:1.3rem;flex-shrink:0}
+.ex-topic-label{font-size:.95rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem;line-height:1.2}
+.ex-topic-sub{font-size:.74rem;color:var(--ink4);line-height:1.45;margin-bottom:.9rem}
+.ex-topic-footer{display:flex;align-items:center;gap:.5rem}
+.ex-topic-count{font-size:.7rem;font-weight:700;color:var(--ink4);white-space:nowrap}
+.ex-topic-bar-wrap{flex:1;height:5px;background:var(--border);border-radius:99px;overflow:hidden}
+.ex-topic-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#8b7cc0,#5c4e8a);transition:width .4s ease}
+.ex-topic-pct{font-size:.72rem;font-weight:800;color:#5c4e8a;min-width:30px;text-align:right}
+.ex-topic-new-badge{position:absolute;top:.8rem;right:.8rem;background:linear-gradient(135deg,#e06c75,#c0546b);color:#fff;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:999px;letter-spacing:.05em}
 
-@media(max-width:600px){
-  .ex-hero h1{font-size:1.7rem}
+/* ════════════════════════════
+   PAINEL 2: SIMULADOR
+════════════════════════════ */
+.ex-sim-wrap{display:flex;flex-direction:column;gap:1rem}
+.ex-sim-card{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem 2rem;transition:border-color .2s}
+.ex-sim-card-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.ex-sim-card-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ex-sim-card-title{font-size:.9rem;font-weight:800;color:var(--ink1)}
+.ex-sim-card-sub{font-size:.75rem;color:var(--ink4);margin-top:.15rem}
+.ex-sim-opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.ex-sim-opt{border:2px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s;text-align:left;background:var(--white);width:100%}
+.ex-sim-opt:hover{border-color:#8b7cc0;background:#faf9ff}
+.ex-sim-opt.active{border-color:#5c4e8a;background:#f3f0fb;box-shadow:0 0 0 3px rgba(92,78,138,.1)}
+.ex-sim-opt-icon{font-size:1.3rem;margin-bottom:.4rem}
+.ex-sim-opt-title{font-size:.86rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem}
+.ex-sim-opt-sub{font-size:.73rem;color:var(--ink4)}
+.ex-sim-tema-pill{display:inline-flex;align-items:center;gap:.3rem;padding:6px 13px;border-radius:999px;font-size:.74rem;font-weight:700;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:all .15s;color:var(--ink2)}
+.ex-sim-tema-pill.active{background:#5c4e8a;border-color:#5c4e8a;color:#fff}
+.ex-sim-tema-pill:hover:not(.active){border-color:#8b7cc0;color:#5c4e8a}
+.ex-sim-launch{background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;border:none;border-radius:14px;padding:1rem 2rem;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;transition:all .2s;margin-top:.5rem;letter-spacing:.02em}
+.ex-sim-launch:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(74,63,122,.4)}
+.ex-sim-launch:active{transform:none}
+
+/* Timer em execução */
+.ex-sim-timer{background:linear-gradient(135deg,#1e1640,#4a3f7a);border-radius:16px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.ex-sim-timer-clock{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:700;color:#fff;min-width:100px;text-shadow:0 0 20px rgba(180,160,255,.4)}
+.ex-sim-timer-info{flex:1}
+.ex-sim-timer-label{font-size:.7rem;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.ex-sim-timer-progress{height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;margin-top:.5rem}
+.ex-sim-timer-bar{height:100%;background:linear-gradient(90deg,#b8a9e8,#fff);border-radius:99px;transition:width 1s linear}
+.ex-sim-stop-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);border-radius:10px;padding:8px 16px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:'Montserrat',sans-serif}
+.ex-sim-stop-btn:hover{background:rgba(255,255,255,.2)}
+
+/* ════════════════════════════
+   PAINEL 3: POR ANO / PROVA
+════════════════════════════ */
+.ex-year-grid{display:flex;flex-direction:column;gap:.6rem}
+.ex-year-row{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;transition:all .18s}
+.ex-year-row:hover{border-color:#c5bcee;background:#fdfcff}
+.ex-year-pill{background:linear-gradient(135deg,#5c4e8a,#7c6fa0);color:#fff;font-size:.68rem;font-weight:800;padding:4px 12px;border-radius:999px;white-space:nowrap;letter-spacing:.04em}
+.ex-year-label{flex:1;font-size:.87rem;font-weight:700;color:var(--ink1)}
+.ex-year-sub{font-size:.73rem;color:var(--ink4);margin-top:.1rem}
+.ex-year-actions{display:flex;gap:.4rem;flex-shrink:0}
+.ex-year-btn{display:inline-flex;align-items:center;gap:.3rem;padding:6px 13px;border-radius:999px;font-size:.71rem;font-weight:800;cursor:pointer;border:1.5px solid;transition:all .15s;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.ex-year-btn-practice{background:#f0edf7;border-color:#c9bfe8;color:#5c4e8a}
+.ex-year-btn-practice:hover{background:#5c4e8a;color:#fff;border-color:#5c4e8a}
+.ex-year-btn-view{background:var(--surface);border-color:var(--border);color:var(--ink3)}
+.ex-year-btn-view:hover{background:var(--ink1);color:#fff;border-color:var(--ink1)}
+
+/* ── Viewer de prova (overlay) ── */
+.ex-overlay{position:fixed;inset:0;background:rgba(10,8,22,.92);z-index:9999;overflow-y:auto;overscroll-behavior:contain}
+.ex-overlay-inner{max-width:820px;margin:0 auto;padding:1rem}
+.ex-overlay-bar{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,8,22,.95);padding:.75rem 0;z-index:1;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:1rem;gap:1rem}
+.ex-overlay-title{color:#fff;font-weight:800;font-size:.95rem}
+.ex-overlay-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:8px;padding:7px 16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.3rem;font-family:'Montserrat',sans-serif;font-size:.78rem;transition:background .15s}
+.ex-overlay-close:hover{background:rgba(255,255,255,.2)}
+.ex-overlay-pg{width:100%;border-radius:8px;margin-bottom:.75rem;display:block;box-shadow:0 4px 24px rgba(0,0,0,.5)}
+
+/* ── Inline "ver prova" dentro do engine ── */
+.pn-exam-pages{margin-top:1rem;border-radius:12px;overflow:hidden;border:1.5px solid var(--border)}
+.pn-exam-pages-bar{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1rem;background:var(--surface);border-bottom:1px solid var(--border);font-size:.75rem;font-weight:700;color:var(--ink2)}
+.pn-exam-pages-content{display:none;background:#111;padding:.75rem}
+.pn-exam-pages-content.open{display:block}
+
+/* ── Resultado do Simulador ── */
+.ex-result-hero{background:linear-gradient(135deg,#2d2450,#4a3f7a);border-radius:20px;padding:2.5rem 2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.ex-result-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 0h20v20H0V0zm20 20h20v20H20V20z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.ex-result-icon-wrap{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;position:relative}
+.ex-result-nota-big{font-family:'JetBrains Mono',monospace;font-size:3.5rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.25rem;text-shadow:0 0 30px rgba(200,180,255,.4)}
+.ex-result-nota-max{font-size:1.2rem;opacity:.5}
+.ex-result-detail{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:.5rem}
+.ex-result-msg{font-size:.9rem;color:rgba(255,255,255,.85);font-weight:600}
+.ex-result-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.ex-result-btns .btn{border-radius:12px;padding:.75rem 1.5rem}
+
+/* ── Barra de progresso global ── */
+.ex-progress-bar-section{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.ex-progress-bar-title{font-size:.78rem;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between}
+.ex-progress-topic-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.ex-progress-topic-label{font-size:.74rem;font-weight:700;color:var(--ink2);min-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ex-progress-bar{flex:1;height:7px;background:var(--border);border-radius:99px;overflow:hidden}
+.ex-progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#8b7cc0,#5c4e8a);transition:width .5s ease}
+.ex-progress-pct{font-size:.71rem;font-weight:800;color:#5c4e8a;min-width:32px;text-align:right}
+
+/* ── Responsivo ── */
+@media(max-width:640px){
+  .ex-hero h1{font-size:2rem}
+  .ex-hero-sub{font-size:.83rem}
+  .ex-hstat-n{font-size:1.5rem}
+  .ex-hstat{padding:.65rem 1.1rem}
+  .ex-topic-grid{grid-template-columns:1fr 1fr}
   .ex-sim-opts{grid-template-columns:1fr}
-  .ex-mode-tab span.tab-label{display:none}
-  .ex-stats{gap:.75rem}
-  .ex-stat{padding:.6rem 1rem}
+  .ex-tab .tab-lbl{display:none}
+  .ex-year-actions{flex-direction:column}
+  .ex-result-nota-big{font-size:2.5rem}
+}
+@media(max-width:400px){
+  .ex-topic-grid{grid-template-columns:1fr}
+  .ex-hstat{padding:.55rem .9rem}
 }
 </style>
 </head>
@@ -93,92 +180,156 @@
 
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
 
-<!-- TOPBAR -->
+<!-- ── Topbar ── -->
 <nav class="ex-topbar">
-  <a class="ex-topbar-logo" href="index.html">
+  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
     <div class="mark bg-gradient-to-br from-[#77998E] to-[#516860] rounded-[10px] w-[34px] h-[34px] flex items-center justify-center text-[.6rem] font-extrabold text-white tracking-tight">3π</div>
     <span class="wordmark" style="font-size:1rem">3ponto<em>14</em></span>
   </a>
   <div class="topbar-divider"></div>
-  <span style="font-size:.82rem;font-weight:600;color:var(--ink2)">Exames Nacionais</span>
-  <a href="index.html" class="ex-back"><i class="ph ph-arrow-left"></i> Início</a>
+  <span style="font-size:.82rem;font-weight:700;color:var(--ink2)">Exames Nacionais</span>
+  <a href="index.html" class="ex-topbar-back"><i class="ph ph-arrow-left"></i> Início</a>
 </nav>
 
-<!-- HERO -->
-<div class="ex-hero">
-  <div class="ex-hero-eyebrow"><i class="ph ph-scroll"></i> Provas Nacionais</div>
-  <h1>Exames Nacionais<br><span style="font-style:italic;font-weight:400">Matemática 9.º Ano</span></h1>
-  <p>Questões reais de Provas Finais, Testes Intermédios e Provas de Aferição — com resolução passo a passo.</p>
-  <div class="ex-stats">
-    <div class="ex-stat"><div class="ex-stat-n">147</div><div class="ex-stat-l">Questões</div></div>
-    <div class="ex-stat"><div class="ex-stat-n">6</div><div class="ex-stat-l">Temas</div></div>
-    <div class="ex-stat"><div class="ex-stat-n" id="ex-stat-anos">12+</div><div class="ex-stat-l">Anos de provas</div></div>
-    <div class="ex-stat"><div class="ex-stat-n" id="ex-stat-feitas">0</div><div class="ex-stat-l">Questões feitas</div></div>
+<!-- ── Hero ── -->
+<header class="ex-hero">
+  <div class="ex-hero-grid"></div>
+  <div class="ex-hero-particles" id="ex-particles"></div>
+  <div style="position:relative">
+    <div class="ex-hero-eyebrow"><i class="ph ph-exam"></i> Provas Finais Nacionais</div>
+    <h1>Matemática<br><em>9.º Ano</em></h1>
+    <p class="ex-hero-sub">Questões reais dos exames nacionais com resolução detalhada — treina por tema, simula o exame ou navega prova a prova.</p>
+    <div class="ex-hero-stats">
+      <div class="ex-hstat">
+        <div class="ex-hstat-n" id="ex-stat-total">147+</div>
+        <div class="ex-hstat-l">Questões</div>
+      </div>
+      <div class="ex-hstat">
+        <div class="ex-hstat-n">9</div>
+        <div class="ex-hstat-l">Provas</div>
+      </div>
+      <div class="ex-hstat">
+        <div class="ex-hstat-n">6</div>
+        <div class="ex-hstat-l">Temas</div>
+      </div>
+      <div class="ex-hstat" style="cursor:pointer" onclick="exSwitchMode('temas',null)">
+        <div class="ex-hstat-n" id="ex-stat-feitas">0</div>
+        <div class="ex-hstat-l">Feitas por ti</div>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
-<!-- CONTEÚDO PRINCIPAL -->
-<div class="ex-wrap">
+<!-- ── Conteúdo ── -->
+<div class="ex-page">
 
-  <!-- TABS DE MODO -->
-  <div class="ex-mode-tabs">
-    <button class="ex-mode-tab active" onclick="exSwitchMode('temas',this)">
-      <i class="ph ph-books"></i> <span class="tab-label">Prática por Tema</span>
+  <!-- TABS -->
+  <div class="ex-tabs-wrap" role="tablist">
+    <button class="ex-tab active" onclick="exSwitchMode('temas',this)" role="tab">
+      <i class="ph ph-books"></i> <span class="tab-lbl">Por Tema</span>
     </button>
-    <button class="ex-mode-tab" onclick="exSwitchMode('simulador',this)">
-      <i class="ph ph-timer"></i> <span class="tab-label">Simulador de Exame</span>
+    <button class="ex-tab" onclick="exSwitchMode('simulador',this)" role="tab">
+      <i class="ph ph-timer"></i> <span class="tab-lbl">Simulador</span>
     </button>
-    <button class="ex-mode-tab" onclick="exSwitchMode('anos',this)">
-      <i class="ph ph-calendar"></i> <span class="tab-label">Por Ano</span>
+    <button class="ex-tab" onclick="exSwitchMode('anos',this)" role="tab">
+      <i class="ph ph-calendar-blank"></i> <span class="tab-lbl">Por Prova</span>
+    </button>
+    <button class="ex-tab" onclick="exSwitchMode('progresso',this)" role="tab">
+      <i class="ph ph-chart-bar"></i> <span class="tab-lbl">Progresso</span>
     </button>
   </div>
 
-  <!-- PAINEL: PRÁTICA POR TEMA -->
+  <!-- ── PAINEL: POR TEMA ── -->
   <div id="ex-panel-temas" class="ex-panel active">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Prática por Tema</div>
+      <div class="ex-sec-sub">Escolhe um tema e treina questões reais de várias provas — o motor seleciona e baralha automaticamente.</div>
+    </div>
     <div class="ex-topic-grid" id="ex-topic-grid"></div>
     <div id="mat7-caps-provas" style="display:none"></div>
     <div id="mat7-inline-provas" class="mat7-inline-content" style="margin-top:1.5rem"></div>
   </div>
 
-  <!-- PAINEL: SIMULADOR -->
+  <!-- ── PAINEL: SIMULADOR ── -->
   <div id="ex-panel-simulador" class="ex-panel">
-    <div class="ex-sim-config" id="ex-sim-config">
-      <div class="ex-sim-title">Simulador de Exame</div>
-      <div class="ex-sim-sub">Recria as condições reais do exame nacional — cronometrado, com questões de vários temas e cotação final em 20 valores.</div>
-
-      <div style="margin-bottom:1rem">
-        <div class="gf-label" style="margin-bottom:.6rem">Duração</div>
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Simulador de Exame</div>
+      <div class="ex-sec-sub">Condições reais — temporizador, questões mistas, cotação em 20 valores.</div>
+    </div>
+    <div class="ex-sim-wrap" id="ex-sim-config">
+      <!-- Duração -->
+      <div class="ex-sim-card">
+        <div class="ex-sim-card-head">
+          <div class="ex-sim-card-icon" style="background:#eef3ff;color:#4f8ef7"><i class="ph ph-clock"></i></div>
+          <div>
+            <div class="ex-sim-card-title">Duração</div>
+            <div class="ex-sim-card-sub">Escolhe quanto tempo tens disponível</div>
+          </div>
+        </div>
         <div class="ex-sim-opts" id="ex-sim-duracao-opts">
           <button class="ex-sim-opt active" onclick="exSimSelectOpt('duracao',this,'30')">
-            <div class="ex-sim-opt-title"><i class="ph ph-lightning"></i> Treino rápido</div>
-            <div class="ex-sim-opt-sub">30 minutos · 10 questões</div>
+            <div class="ex-sim-opt-icon">⚡</div>
+            <div class="ex-sim-opt-title">Treino Rápido</div>
+            <div class="ex-sim-opt-sub">30 min · 10 questões</div>
+          </button>
+          <button class="ex-sim-opt" onclick="exSimSelectOpt('duracao',this,'60')">
+            <div class="ex-sim-opt-icon">🎯</div>
+            <div class="ex-sim-opt-title">Treino Médio</div>
+            <div class="ex-sim-opt-sub">60 min · 20 questões</div>
           </button>
           <button class="ex-sim-opt" onclick="exSimSelectOpt('duracao',this,'90')">
-            <div class="ex-sim-opt-title"><i class="ph ph-exam"></i> Exame completo</div>
-            <div class="ex-sim-opt-sub">90 minutos · todas as questões</div>
+            <div class="ex-sim-opt-icon">📝</div>
+            <div class="ex-sim-opt-title">Exame Completo</div>
+            <div class="ex-sim-opt-sub">90 min · todas as questões</div>
+          </button>
+          <button class="ex-sim-opt" onclick="exSimSelectOpt('duracao',this,'120')">
+            <div class="ex-sim-opt-icon">🏆</div>
+            <div class="ex-sim-opt-title">Modo Maratona</div>
+            <div class="ex-sim-opt-sub">120 min · desafio total</div>
           </button>
         </div>
       </div>
-
-      <div style="margin-bottom:1.5rem">
-        <div class="gf-label" style="margin-bottom:.6rem">Temas incluídos</div>
+      <!-- Temas -->
+      <div class="ex-sim-card">
+        <div class="ex-sim-card-head">
+          <div class="ex-sim-card-icon" style="background:#f0edf7;color:#6b5fa0"><i class="ph ph-funnel"></i></div>
+          <div>
+            <div class="ex-sim-card-title">Temas incluídos</div>
+            <div class="ex-sim-card-sub">Clica para ativar ou desativar cada tema</div>
+          </div>
+        </div>
         <div id="ex-sim-temas-sel" style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
       </div>
-
-      <button class="ex-start-btn" onclick="exSimStart()">
-        <i class="ph ph-play"></i> Iniciar simulador
+      <!-- Lançar -->
+      <button class="ex-sim-launch" onclick="exSimStart()">
+        <i class="ph ph-play-circle" style="font-size:1.2rem"></i>
+        Iniciar Simulador
       </button>
     </div>
+    <!-- Running state -->
     <div id="ex-sim-running" style="display:none"></div>
   </div>
 
-  <!-- PAINEL: POR ANO -->
+  <!-- ── PAINEL: POR PROVA ── -->
   <div id="ex-panel-anos" class="ex-panel">
-    <div class="ex-year-list" id="ex-year-list"></div>
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Provas Nacionais</div>
+      <div class="ex-sec-sub">Navega por cada prova — pratica as suas questões ou consulta a prova original completa.</div>
+    </div>
+    <div class="ex-year-grid" id="ex-year-list"></div>
     <div id="ex-year-inline" class="mat7-inline-content" style="margin-top:1.5rem"></div>
   </div>
 
-</div><!-- /ex-wrap -->
+  <!-- ── PAINEL: PROGRESSO ── -->
+  <div id="ex-panel-progresso" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">O Meu Progresso</div>
+      <div class="ex-sec-sub">Acompanha a tua evolução em cada tema dos exames nacionais.</div>
+    </div>
+    <div id="ex-progress-content"></div>
+  </div>
+
+</div><!-- /ex-page -->
 
 <script src="js/shared.js"></script>
 <script src="js/provas.js"></script>
@@ -187,15 +338,31 @@
 <script src="js/fx.js"></script>
 <script src="js/nav.js"></script>
 <script>
-// ── ESTADO GLOBAL DA PÁGINA ──────────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════════
+   EXAMES NACIONAIS — Lógica da página
+══════════════════════════════════════════════════════════ */
+
 var _exMode = 'temas';
 var _exSimDuracao = '30';
+var _exSimQtd = { '30':10, '60':20, '90':999, '120':999 };
 var _exSimTemasAtivos = ['semelhanca','areas','otd','funcoes','sequencias','not_cientifica'];
 var _exSimTimer = null;
 var _exSimTimeLeft = 0;
 var _exSimTotalTime = 0;
 
-// ── PROGRESSO LOCAL ───────────────────────────────────────────────────────────
+/* ── Metadados dos temas ── */
+var _TOPICS_META = [
+  { key:'semelhanca',     label:'Figuras Semelhantes',        sub:'Razão de semelhança, critérios, áreas proporcionais',  icon:'ph-shapes',     color:'#6b5fa0', bg:'#f0edf7' },
+  { key:'areas',          label:'Áreas e Volumes',            sub:'Trapézios, paralelogramos, círculos, sólidos',          icon:'ph-polygon',    color:'#4f8ef7', bg:'#eef3ff' },
+  { key:'otd',            label:'Organização de Dados',       sub:'Tabelas, gráficos, média, mediana, moda',               icon:'ph-chart-bar',  color:'#e06c75', bg:'#fdf0f1' },
+  { key:'funcoes',        label:'Funções',                    sub:'Proporcionalidade direta e inversa, gráficos',          icon:'ph-trend-up',   color:'#56b6c2', bg:'#eef8f9' },
+  { key:'sequencias',     label:'Sequências e Álgebra',       sub:'Termos, leis de formação, equações, expressões',        icon:'ph-infinity',   color:'#e5c07b', bg:'#fdf8ee' },
+  { key:'not_cientifica', label:'Números e Notação',          sub:'Potências, notação científica, conjuntos numéricos',    icon:'ph-x-square',   color:'#98c379', bg:'#f0f7eb' }
+];
+
+/* ──────────────────────────────────────────────────────────
+   PROGRESSO
+────────────────────────────────────────────────────────── */
 function _exGetProgress() {
   try { return JSON.parse(localStorage.getItem('edupt_exames') || '{}'); } catch(e) { return {}; }
 }
@@ -208,36 +375,38 @@ function _exRecordAnswer(topic, correct) {
   d[topic].feitas++;
   if (correct) d[topic].certas++;
   _exSaveProgress(d);
-  _exUpdateStatFeitas();
+  _exUpdateStats();
 }
-function _exUpdateStatFeitas() {
+function _exUpdateStats() {
   var d = _exGetProgress();
   var total = 0;
-  Object.keys(d).forEach(function(k){ total += d[k].feitas || 0; });
+  Object.keys(d).forEach(function(k){ total += (d[k].feitas || 0); });
   var el = document.getElementById('ex-stat-feitas');
   if (el) el.textContent = total;
 }
 
-// ── SWITCH DE MODO ────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────
+   NAVEGAÇÃO ENTRE PAINÉIS
+────────────────────────────────────────────────────────── */
 function exSwitchMode(mode, btn) {
   _exMode = mode;
-  document.querySelectorAll('.ex-mode-tab').forEach(function(b){ b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.ex-tab').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    var tabs = document.querySelectorAll('.ex-tab');
+    var modeIdx = ['temas','simulador','anos','progresso'].indexOf(mode);
+    if (modeIdx >= 0 && tabs[modeIdx]) tabs[modeIdx].classList.add('active');
+  }
   document.querySelectorAll('.ex-panel').forEach(function(p){ p.classList.remove('active'); });
   var panel = document.getElementById('ex-panel-' + mode);
   if (panel) panel.classList.add('active');
+  if (mode === 'progresso') exRenderProgress();
 }
 
-// ── PRÁTICA POR TEMA ──────────────────────────────────────────────────────────
-var _TOPICS_META = [
-  { key:'semelhanca',    label:'Figuras Semelhantes',        sub:'Razão de semelhança, áreas, critérios', icon:'ph-shapes', color:'#7c6fa0', bg:'#f0edf7', total:53 },
-  { key:'areas',         label:'Áreas de Figuras',           sub:'Trapézios, paralelogramos, círculos',   icon:'ph-polygon', color:'#4f8ef7', bg:'#eef3ff', total:9 },
-  { key:'otd',           label:'Organização de Dados',       sub:'Tabelas, gráficos, média, moda',        icon:'ph-chart-bar', color:'#e06c75', bg:'#fdf0f1', total:30 },
-  { key:'funcoes',       label:'Funções',                    sub:'Proporcionalidade direta, gráficos',    icon:'ph-trend-up', color:'#98c379', bg:'#f0f7eb', total:15 },
-  { key:'sequencias',    label:'Sequências e Regularidades', sub:'Termos, leis de formação, álgebra',     icon:'ph-dots-three', color:'#e5c07b', bg:'#fdf8ee', total:20 },
-  { key:'not_cientifica',label:'Notação Científica',         sub:'Potências, notação científica',         icon:'ph-x-square', color:'#56b6c2', bg:'#eef8f9', total:20 }
-];
-
+/* ──────────────────────────────────────────────────────────
+   PAINEL 1: PRÁTICA POR TEMA
+────────────────────────────────────────────────────────── */
 function exRenderTopicGrid() {
   var grid = document.getElementById('ex-topic-grid');
   if (!grid) return;
@@ -246,15 +415,20 @@ function exRenderTopicGrid() {
   _TOPICS_META.forEach(function(t) {
     var prog = d[t.key] || { feitas:0, certas:0 };
     var pct = prog.feitas > 0 ? Math.round(prog.certas / prog.feitas * 100) : 0;
+    var banco = (window.PROVAS_BANCO && PROVAS_BANCO[t.key]) ? PROVAS_BANCO[t.key].length : 0;
+    var isNew = prog.feitas === 0;
     h += '<button class="ex-topic-card" onclick="exStartTopic(\'' + t.key + '\')">';
+    if (isNew) h += '<span class="ex-topic-new-badge">NOVO</span>';
     h += '<div class="ex-topic-icon" style="background:' + t.bg + ';color:' + t.color + '"><i class="ph ' + t.icon + '"></i></div>';
     h += '<div class="ex-topic-label">' + t.label + '</div>';
     h += '<div class="ex-topic-sub">' + t.sub + '</div>';
     h += '<div class="ex-topic-footer">';
-    h += '<span class="ex-topic-count">' + t.total + ' questões</span>';
+    h += '<span class="ex-topic-count"><i class="ph ph-question"></i> ' + (banco || '—') + ' questões</span>';
     if (prog.feitas > 0) {
-      h += '<div class="ex-topic-prog-wrap"><div class="ex-topic-prog-fill" style="width:' + pct + '%"></div></div>';
+      h += '<div class="ex-topic-bar-wrap"><div class="ex-topic-bar-fill" style="width:' + pct + '%"></div></div>';
       h += '<span class="ex-topic-pct">' + pct + '%</span>';
+    } else {
+      h += '<span style="font-size:.7rem;color:var(--ink4);margin-left:auto">Começar →</span>';
     }
     h += '</div>';
     h += '</button>';
@@ -263,23 +437,19 @@ function exRenderTopicGrid() {
 }
 
 function exStartTopic(key) {
-  // Esconde o grid, mostra questões
   document.getElementById('ex-topic-grid').style.display = 'none';
   if (typeof pnStartTopic === 'function') pnStartTopic(key);
 }
 
-// Override do back button do engine para mostrar grid de volta
 function _pnBackToPicker() {
   _pnClearInline();
-  document.getElementById('ex-topic-grid').style.display = 'grid';
-  exRenderTopicGrid(); // atualiza progresso
+  var grid = document.getElementById('ex-topic-grid');
+  if (grid) { grid.style.display = 'grid'; exRenderTopicGrid(); }
 }
 
-// Override do record de resposta para guardar progresso
-var _pnOrigSelfEval = window.pnSelfEval;
-var _pnOrigConfirmMC = window.pnConfirmMC;
-
-// ── SIMULADOR ─────────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────
+   PAINEL 2: SIMULADOR
+────────────────────────────────────────────────────────── */
 function exSimSelectOpt(group, btn, val) {
   var parent = btn.parentElement;
   parent.querySelectorAll('.ex-sim-opt').forEach(function(b){ b.classList.remove('active'); });
@@ -293,7 +463,9 @@ function exSimRenderTemasSelector() {
   var h = '';
   _TOPICS_META.forEach(function(t) {
     var active = _exSimTemasAtivos.indexOf(t.key) !== -1;
-    h += '<button class="mat7-cap-btn' + (active ? ' active' : '') + '" style="font-size:.78rem" onclick="exSimToggleTema(\'' + t.key + '\',this)">' + t.label + '</button>';
+    h += '<button class="ex-sim-tema-pill' + (active ? ' active' : '') + '" onclick="exSimToggleTema(\'' + t.key + '\',this)">';
+    h += '<i class="ph ' + t.icon + '"></i> ' + t.label;
+    h += '</button>';
   });
   el.innerHTML = h;
 }
@@ -304,32 +476,30 @@ function exSimToggleTema(key, btn) {
     _exSimTemasAtivos.push(key);
     btn.classList.add('active');
   } else {
-    if (_exSimTemasAtivos.length === 1) return; // pelo menos 1 tema
+    if (_exSimTemasAtivos.length === 1) return;
     _exSimTemasAtivos.splice(idx, 1);
     btn.classList.remove('active');
   }
 }
 
 function exSimStart() {
-  if (!window.PROVAS_BANCO) return;
-  // juntar questões dos temas selecionados
+  if (!window.PROVAS_BANCO) { if(typeof eduToast==='function') eduToast('Banco de questões não disponível.','error'); return; }
   var pool = [];
   _exSimTemasAtivos.forEach(function(k) {
     if (PROVAS_BANCO[k]) pool = pool.concat(PROVAS_BANCO[k]);
   });
-  // baralhar
   for (var i = pool.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
     var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
   }
-  var qtd = _exSimDuracao === '30' ? 10 : pool.length;
+  var qtd = _exSimQtd[_exSimDuracao] || 10;
   pool = pool.slice(0, qtd);
+  if (!pool.length) { if(typeof eduToast==='function') eduToast('Sem questões para os temas selecionados.','error'); return; }
 
   var minutos = parseInt(_exSimDuracao) || 30;
   _exSimTotalTime = minutos * 60;
   _exSimTimeLeft = _exSimTotalTime;
 
-  // usar o engine existente com o pool preparado
   _pnState.topic = 'simulador';
   _pnState.queue = pool;
   _pnState.idx = 0;
@@ -338,93 +508,102 @@ function exSimStart() {
   _pnState.score = 0;
   _pnState.total = pool.length;
 
-  document.getElementById('ex-sim-config').style.display = 'none';
+  var cfg = document.getElementById('ex-sim-config');
   var running = document.getElementById('ex-sim-running');
+  cfg.style.display = 'none';
   running.style.display = 'block';
 
-  // Timer bar
-  var timerHtml = '<div class="ex-sim-timer" id="ex-sim-timer-bar">';
-  timerHtml += '<i class="ph ph-timer" style="color:rgba(255,255,255,.7);font-size:1.2rem"></i>';
-  timerHtml += '<div><div class="ex-sim-timer-display" id="ex-sim-time">'+_exFmtTime(_exSimTimeLeft)+'</div><div class="ex-sim-timer-label">tempo restante</div></div>';
-  timerHtml += '<div class="ex-sim-timer-bar-wrap"><div class="ex-sim-timer-bar" id="ex-sim-tbar" style="width:100%"></div></div>';
-  timerHtml += '<button onclick="exSimStop()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;padding:5px 12px;font-size:.75rem;font-weight:600;cursor:pointer">Terminar</button>';
-  timerHtml += '</div>';
-  timerHtml += '<div id="ex-sim-questions"></div>';
-  running.innerHTML = timerHtml;
+  var h = '<div class="ex-sim-timer" id="ex-sim-timer-block">';
+  h += '<i class="ph ph-timer" style="color:rgba(255,255,255,.5);font-size:1.3rem;flex-shrink:0"></i>';
+  h += '<div class="ex-sim-timer-info">';
+  h += '<div class="ex-sim-timer-label">Tempo restante</div>';
+  h += '<div class="ex-sim-timer-clock" id="ex-sim-time">' + _exFmtTime(_exSimTimeLeft) + '</div>';
+  h += '<div class="ex-sim-timer-progress"><div class="ex-sim-timer-bar" id="ex-sim-tbar" style="width:100%"></div></div>';
+  h += '</div>';
+  h += '<div style="text-align:right">';
+  h += '<div style="color:rgba(255,255,255,.5);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem">Questões</div>';
+  h += '<div id="ex-sim-q-count" style="color:#fff;font-family:\'JetBrains Mono\',monospace;font-weight:700;font-size:1.1rem">1 / ' + pool.length + '</div>';
+  h += '</div>';
+  h += '<button class="ex-sim-stop-btn" onclick="exSimStop()"><i class="ph ph-stop-circle"></i> Terminar</button>';
+  h += '</div>';
+  h += '<div id="ex-sim-questions"></div>';
+  running.innerHTML = h;
 
-  // redirecionar o engine para ex-sim-questions
-  var origEl = document.getElementById('mat7-inline-provas');
-  // usamos um div temporário
   var simQ = document.getElementById('ex-sim-questions');
+  var origEl = document.getElementById('mat7-inline-provas');
+  simQ.id = 'mat7-inline-provas';
+  if (origEl) origEl.id = 'mat7-inline-provas-bak';
 
   _exSimTimer = setInterval(function() {
     _exSimTimeLeft--;
     var timeEl = document.getElementById('ex-sim-time');
-    var barEl = document.getElementById('ex-sim-tbar');
+    var barEl  = document.getElementById('ex-sim-tbar');
+    var cntEl  = document.getElementById('ex-sim-q-count');
     if (timeEl) timeEl.textContent = _exFmtTime(_exSimTimeLeft);
-    if (barEl) barEl.style.width = Math.round((_exSimTimeLeft / _exSimTotalTime) * 100) + '%';
-    if (_exSimTimeLeft <= 300 && barEl) barEl.style.background = '#f0a';
-    if (_exSimTimeLeft <= 60 && barEl) barEl.style.background = '#f55';
+    if (barEl)  barEl.style.width = Math.max(0, Math.round((_exSimTimeLeft / _exSimTotalTime) * 100)) + '%';
+    if (cntEl)  cntEl.textContent = (_pnState.idx + 1) + ' / ' + _pnState.total;
+    if (_exSimTimeLeft <= 300 && barEl) barEl.style.background = 'linear-gradient(90deg,#f0a010,#ffcc44)';
+    if (_exSimTimeLeft <= 60  && barEl) barEl.style.background = 'linear-gradient(90deg,#f55,#ff8080)';
     if (_exSimTimeLeft <= 0) exSimStop();
   }, 1000);
 
-  // patch mat7-inline-provas para apontar ao div do simulador
-  simQ.id = 'mat7-inline-provas';
-  if (origEl) origEl.id = 'mat7-inline-provas-bak';
-  _pnRenderQuestion(simQ);
+  _pnRenderQuestion(document.getElementById('mat7-inline-provas'));
 }
 
 function exSimStop() {
   clearInterval(_exSimTimer);
   _exSimTimer = null;
-  // restaurar ids
   var simQ = document.getElementById('mat7-inline-provas');
-  var bak = document.getElementById('mat7-inline-provas-bak');
+  var bak  = document.getElementById('mat7-inline-provas-bak');
   if (simQ) simQ.id = 'ex-sim-questions';
-  if (bak) bak.id = 'mat7-inline-provas';
-  // mostrar resultado
-  var timerBar = document.getElementById('ex-sim-timer-bar');
-  if (timerBar) timerBar.style.display = 'none';
-  _pnRenderResultSim();
+  if (bak)  bak.id  = 'mat7-inline-provas';
+  var timerBlock = document.getElementById('ex-sim-timer-block');
+  if (timerBlock) timerBlock.style.display = 'none';
+  _exRenderSimResult();
 }
 
-function _pnRenderResultSim() {
-  var el = document.getElementById('ex-sim-questions');
-  if (!el) el = document.getElementById('ex-sim-running');
+function _exRenderSimResult() {
+  var el = document.getElementById('ex-sim-questions') || document.getElementById('ex-sim-running');
+  if (!el) return;
   var score = _pnState.score;
   var total = _pnState.total;
-  var pct = total > 0 ? Math.round(score / total * 100) : 0;
-  var nota = Math.round(score / total * 20 * 10) / 10;
-  if (isNaN(nota)) nota = 0;
-  var icon, msg, cls;
-  if (pct >= 80)      { icon = '<i class="ph ph-trophy"></i>';    msg = 'Excelente! Estás pronto para o exame.'; cls = 'pn-result-card--great'; }
-  else if (pct >= 60) { icon = '<i class="ph ph-star"></i>';      msg = 'Bom resultado! Continua a treinar.';   cls = 'pn-result-card--good'; }
-  else if (pct >= 40) { icon = '<i class="ph ph-hand"></i>';      msg = 'Continua a praticar!';                cls = ''; }
-  else                { icon = '<i class="ph ph-book-open"></i>'; msg = 'Revê a matéria e tenta de novo.';     cls = ''; }
-  var h = '<div class="pn-result-card ' + cls + '" style="margin-bottom:1.5rem">';
-  h += '<div class="pn-result-icon">' + icon + '</div>';
-  h += '<div class="pn-result-topic">Simulador de Exame</div>';
-  h += '<div class="pn-result-nota">' + nota.toFixed(1).replace('.',',') + '<span class="pn-result-max"> / 20</span></div>';
-  h += '<div class="pn-result-detail">' + score + ' de ' + total + ' questões certas (' + pct + '%)</div>';
-  h += '<div class="pn-result-msg">' + msg + '</div>';
-  h += '<div class="pn-result-btns">';
-  h += '<button class="btn btn-ghost" onclick="exSimReset()"><i class="ph ph-arrow-left"></i> Novo simulador</button>';
-  h += '<button class="btn btn-primary" onclick="exSimStart()"><i class="ph ph-arrow-clockwise"></i> Repetir</button>';
+  var pct   = total > 0 ? Math.round(score / total * 100) : 0;
+  var nota  = total > 0 ? Math.round(score / total * 20 * 10) / 10 : 0;
+  var emoji, msg;
+  if (pct >= 90)      { emoji = '🏆'; msg = 'Excelente! Estás no topo da turma.'; }
+  else if (pct >= 75) { emoji = '⭐'; msg = 'Muito bom! Quase lá — continua assim.'; }
+  else if (pct >= 55) { emoji = '💪'; msg = 'Bom esforço! Continua a treinar.'; }
+  else if (pct >= 35) { emoji = '📚'; msg = 'Revê os temas com mais erros.'; }
+  else                { emoji = '🔄'; msg = 'Estuda a matéria e tenta de novo!'; }
+
+  var h = '<div class="ex-result-hero">';
+  h += '<div class="ex-result-icon-wrap">' + emoji + '</div>';
+  h += '<div class="ex-result-nota-big">' + nota.toFixed(1).replace('.',',') + '<span class="ex-result-nota-max"> / 20</span></div>';
+  h += '<div class="ex-result-detail">' + score + ' de ' + total + ' questões corretas &mdash; ' + pct + '%</div>';
+  h += '<div class="ex-result-msg">' + msg + '</div>';
+  h += '<div class="ex-result-btns">';
+  h += '<button class="btn btn-ghost" onclick="exSimReset()" style="color:#fff;border-color:rgba(255,255,255,.3)"><i class="ph ph-arrow-left"></i> Novo simulador</button>';
+  h += '<button class="btn btn-primary" onclick="exSimStart()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)"><i class="ph ph-arrow-clockwise"></i> Repetir</button>';
   h += '</div></div>';
-  // revisão
+
+  /* Revisão */
   h += '<div class="pn-review"><div class="pn-review-title">Revisão das questões</div>';
   _pnState.queue.forEach(function(q, qi) {
     var given = _pnState.answers[q.id];
-    var isOk = q.tipo === 'escolha' ? given === q.correct : given === 'yes';
+    var isOk  = q.tipo === 'escolha' ? given === q.correct : given === 'yes';
     var rowCls = typeof given !== 'undefined' ? (isOk ? 'pn-rev-item--ok' : 'pn-rev-item--err') : 'pn-rev-item--skip';
     h += '<div class="pn-rev-item ' + rowCls + '">';
     h += '<div class="pn-rev-head"><span class="pn-rev-num">' + (qi+1) + '</span>';
-    h += q.tipo === 'escolha' ? (isOk ? '<i class="ph ph-check-circle pn-icon-ok"></i>' : '<i class="ph ph-x-circle pn-icon-err"></i>') : '<span class="pn-badge pn-badge--open" style="font-size:.65rem;padding:2px 7px">Aberta</span>';
-    h += '<span class="pn-rev-fonte">' + (q.fonte||'') + '</span></div>';
+    h += q.tipo === 'escolha'
+      ? (isOk ? '<i class="ph ph-check-circle pn-icon-ok"></i>' : '<i class="ph ph-x-circle pn-icon-err"></i>')
+      : '<span class="pn-badge pn-badge--open" style="font-size:.65rem;padding:2px 7px">Aberta</span>';
+    h += '<span class="pn-rev-fonte">' + (q.fonte||'') + '</span>';
+    if (q.examKey) h += '<button class="pn-badge pn-badge--fig" style="cursor:pointer;border:none;background:none;margin-left:.25rem" onclick="exVerProva(\'' + q.examKey + '\')" title="Ver prova"><i class="ph ph-images"></i></button>';
+    h += '</div>';
     h += '<div class="pn-rev-enun">' + _pnFmt(q.enun) + '</div>';
     if (q.tipo === 'escolha' && q.correct) {
       h += '<div class="pn-rev-ans">Resposta correta: <strong>' + q.correct + '</strong>';
-      if (given && given !== q.correct) h += ' · A tua resposta: <strong class="pn-ans-wrong">' + given + '</strong>';
+      if (given && given !== q.correct) h += ' &nbsp;&middot;&nbsp; A tua resposta: <strong class="pn-ans-wrong">' + given + '</strong>';
       h += '</div>';
     }
     if (q.resolucao) h += _pnResolucao(q.resolucao);
@@ -436,18 +615,24 @@ function _pnRenderResultSim() {
 
 function exSimReset() {
   clearInterval(_exSimTimer);
-  document.getElementById('ex-sim-config').style.display = 'block';
-  document.getElementById('ex-sim-running').style.display = 'none';
-  document.getElementById('ex-sim-running').innerHTML = '';
+  var cfg = document.getElementById('ex-sim-config');
+  var running = document.getElementById('ex-sim-running');
+  if (cfg) cfg.style.display = 'flex';
+  if (running) { running.style.display = 'none'; running.innerHTML = ''; }
+  /* restaurar id original */
+  var bak = document.getElementById('mat7-inline-provas-bak');
+  if (bak) bak.id = 'mat7-inline-provas';
 }
 
 function _exFmtTime(s) {
-  var m = Math.floor(s / 60);
-  var sec = s % 60;
+  if (s < 0) s = 0;
+  var m = Math.floor(s / 60), sec = s % 60;
   return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
 }
 
-// ── POR ANO ───────────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────
+   PAINEL 3: POR PROVA
+────────────────────────────────────────────────────────── */
 function exRenderYearList() {
   var el = document.getElementById('ex-year-list');
   if (!el) return;
@@ -457,58 +642,48 @@ function exRenderYearList() {
     keys.forEach(function(key) {
       var prova = EXAMES_BANCO[key];
       var count = prova.questoes ? prova.questoes.length : 0;
-      h += '<div class="ex-year-item" style="display:flex;align-items:center;gap:1rem">';
-      h += '<span class="ex-year-badge"><i class="ph ph-calendar-blank"></i> ' + prova.ano + '</span>';
-      h += '<span class="ex-year-name">' + prova.label + '</span>';
-      h += '<div style="display:flex;gap:.5rem;align-items:center;flex-shrink:0">';
-      h += '<button style="background:#f0edf7;border:1px solid #c9bfe8;color:#5c4e8a;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:.3rem" onclick="exStartYear(\'' + key + '\')" title="Praticar questões"><i class="ph ph-pencil-simple"></i> Praticar</button>';
-      h += '<button style="background:#f7f5fb;border:1px solid #ddd;color:#555;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:.3rem" onclick="exVerProva(\'' + key + '\')" title="Ver prova original"><i class="ph ph-images"></i> Ver prova</button>';
-      h += '</div>';
-      h += '</div>';
-    });
-  } else if (window.PROVAS_BANCO) {
-    var yearMap = {};
-    Object.keys(PROVAS_BANCO).forEach(function(topic) {
-      PROVAS_BANCO[topic].forEach(function(q) {
-        var fonte = q.fonte || '';
-        if (!yearMap[fonte]) yearMap[fonte] = [];
-        yearMap[fonte].push(q);
-      });
-    });
-    var years = Object.keys(yearMap).sort().reverse();
-    years.forEach(function(y) {
-      var count = yearMap[y].length;
-      h += '<button class="ex-year-item" onclick="exStartYear(\'' + y.replace(/'/g,"\\'") + '\')">';
-      h += '<span class="ex-year-badge"><i class="ph ph-calendar-blank"></i></span>';
-      h += '<span class="ex-year-name">' + y + '</span>';
-      h += '<span class="ex-year-count">' + count + ' questão' + (count !== 1 ? 'ões' : '') + ' <i class="ph ph-arrow-right"></i></span>';
-      h += '</button>';
+      h += '<div class="ex-year-row">';
+      h += '<div class="ex-year-pill"><i class="ph ph-scroll"></i> ' + prova.ano + '</div>';
+      h += '<div><div class="ex-year-label">' + prova.label + '</div>';
+      h += '<div class="ex-year-sub"><i class="ph ph-question"></i> ' + count + ' questão' + (count!==1?'ões':'') + ' disponíveis</div></div>';
+      h += '<div class="ex-year-actions">';
+      h += '<button class="ex-year-btn ex-year-btn-practice" onclick="exStartYear(\'' + key + '\')"><i class="ph ph-pencil-simple"></i> Praticar</button>';
+      h += '<button class="ex-year-btn ex-year-btn-view" onclick="exVerProva(\'' + key + '\')"><i class="ph ph-images"></i> Ver prova</button>';
+      h += '</div></div>';
     });
   }
-  el.innerHTML = h;
+  el.innerHTML = h || '<p style="color:var(--ink4);font-size:.85rem;padding:1rem 0">Nenhuma prova disponível.</p>';
 }
 
 function exVerProva(key) {
-  if (!window.EXAMES_BANCO || !EXAMES_BANCO[key]) return;
-  var prova = EXAMES_BANCO[key];
+  if (window.EXAMES_BANCO && !EXAMES_BANCO[key]) {
+    /* chave pode ser examKey — tenta mapear pelo label */
+    var found = null;
+    Object.keys(EXAMES_BANCO).forEach(function(k){ if(k===key) found=k; });
+    if (!found) { if(typeof eduToast==='function') eduToast('Prova não encontrada.','error'); return; }
+    key = found;
+  }
+  var prova = window.EXAMES_BANCO ? EXAMES_BANCO[key] : null;
+  var label = prova ? prova.label : key;
   var imgBase = 'img/exames/' + key + '/';
-  // build a modal/overlay with all pages
+  var old = document.getElementById('ex-prova-overlay');
+  if (old) old.remove();
   var overlay = document.createElement('div');
   overlay.id = 'ex-prova-overlay';
-  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:9999;overflow-y:auto;padding:1rem';
-  var h = '<div style="max-width:900px;margin:0 auto">';
-  h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;position:sticky;top:0;background:rgba(0,0,0,.85);padding:.5rem 0;z-index:1">';
-  h += '<span style="color:#fff;font-weight:700;font-size:1rem">' + prova.label + '</span>';
-  h += '<button onclick="document.getElementById(\'ex-prova-overlay\').remove()" style="background:#fff;border:none;border-radius:8px;padding:6px 14px;font-weight:700;cursor:pointer;font-size:.85rem"><i class="ph ph-x"></i> Fechar</button>';
+  overlay.className = 'ex-overlay';
+  var h = '<div class="ex-overlay-inner">';
+  h += '<div class="ex-overlay-bar">';
+  h += '<span class="ex-overlay-title"><i class="ph ph-scroll" style="margin-right:.35rem"></i>' + label + '</span>';
+  h += '<button class="ex-overlay-close" onclick="document.getElementById(\'ex-prova-overlay\').remove()"><i class="ph ph-x"></i> Fechar</button>';
   h += '</div>';
-  // detect how many pages exist by trying common ranges
-  var pageNums = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
-  pageNums.forEach(function(p) {
-    h += '<img src="' + imgBase + 'p-' + p + '.png" onerror="this.style.display=\'none\'" style="width:100%;border-radius:8px;margin-bottom:.75rem;display:block;box-shadow:0 2px 16px rgba(0,0,0,.4)" loading="lazy">';
+  var pages = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20'];
+  pages.forEach(function(p) {
+    h += '<img class="ex-overlay-pg" src="' + imgBase + 'p-' + p + '.png" onerror="this.style.display=\'none\'" loading="lazy" alt="Página ' + p + '">';
   });
   h += '</div>';
   overlay.innerHTML = h;
   document.body.appendChild(overlay);
+  overlay.scrollTop = 0;
 }
 
 function exStartYear(key) {
@@ -517,49 +692,156 @@ function exStartYear(key) {
   if (window.EXAMES_BANCO && EXAMES_BANCO[key]) {
     pool = EXAMES_BANCO[key].questoes.slice();
     fonte = EXAMES_BANCO[key].label;
-    pool.forEach(function(q) { if (!q.fonte) q.fonte = fonte; q.examKey = key; });
+    pool.forEach(function(q){ if(!q.fonte) q.fonte = fonte; q.examKey = key; });
   } else if (window.PROVAS_BANCO) {
-    Object.keys(PROVAS_BANCO).forEach(function(topic) {
-      PROVAS_BANCO[topic].forEach(function(q) {
-        if (q.fonte === key) pool.push(q);
-      });
+    Object.keys(PROVAS_BANCO).forEach(function(t){
+      PROVAS_BANCO[t].forEach(function(q){ if(q.fonte===key) pool.push(q); });
     });
   }
-  if (!pool.length) return;
-  document.getElementById('ex-year-list').style.display = 'none';
-  _pnState.topic = fonte;
-  _pnState.queue = pool;
-  _pnState.idx = 0;
+  if (!pool.length) { if(typeof eduToast==='function') eduToast('Sem questões para esta prova.','error'); return; }
+  _pnState.topic   = fonte;
+  _pnState.queue   = pool;
+  _pnState.idx     = 0;
   _pnState.answers = {};
-  _pnState.revealed = {};
-  _pnState.score = 0;
-  _pnState.total = pool.length;
+  _pnState.revealed= {};
+  _pnState.score   = 0;
+  _pnState.total   = pool.length;
+  var list = document.getElementById('ex-year-list');
+  if (list) list.style.display = 'none';
   var inline = document.getElementById('ex-year-inline');
-  inline.id = 'mat7-inline-provas';
-  var orig = document.getElementById('mat7-inline-provas');
-  if (orig && orig !== inline) orig.id = 'mat7-inline-provas-bak2';
-  _pnRenderQuestion(inline);
+  if (inline) {
+    inline.id = 'mat7-inline-provas';
+    var orig = document.getElementById('mat7-inline-provas');
+    if (orig && orig !== inline) orig.id = 'mat7-inline-provas-bak2';
+    _pnRenderQuestion(inline);
+  }
 }
 
-// override back para o painel de anos
-var _origPnClearInlineYear = _pnClearInline;
 function _pnYearBack() {
   var el = document.getElementById('mat7-inline-provas');
   if (el) el.id = 'ex-year-inline';
   var bak = document.getElementById('mat7-inline-provas-bak2');
   if (bak) bak.id = 'mat7-inline-provas';
-  document.getElementById('ex-year-list').style.display = 'flex';
+  var list = document.getElementById('ex-year-list');
+  if (list) list.style.display = 'flex';
   var inline = document.getElementById('ex-year-inline');
   if (inline) inline.innerHTML = '';
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────
+   PAINEL 4: PROGRESSO
+────────────────────────────────────────────────────────── */
+function exRenderProgress() {
+  var el = document.getElementById('ex-progress-content');
+  if (!el) return;
+  var d = _exGetProgress();
+  var totalFeitas = 0, totalCertas = 0;
+  _TOPICS_META.forEach(function(t){
+    var p = d[t.key] || { feitas:0, certas:0 };
+    totalFeitas += p.feitas;
+    totalCertas += p.certas;
+  });
+  var globalPct = totalFeitas > 0 ? Math.round(totalCertas / totalFeitas * 100) : 0;
+  var h = '';
+
+  /* Cartão global */
+  h += '<div style="background:linear-gradient(135deg,#2d2450,#4a3f7a);border-radius:18px;padding:1.75rem 2rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">';
+  h += '<div style="flex:1;min-width:160px">';
+  h += '<div style="color:rgba(255,255,255,.55);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem">Taxa de acerto global</div>';
+  h += '<div style="font-family:\'JetBrains Mono\',monospace;font-size:2.8rem;font-weight:700;color:#fff;line-height:1">' + globalPct + '<span style="font-size:1.2rem;opacity:.55">%</span></div>';
+  h += '<div style="color:rgba(255,255,255,.45);font-size:.75rem;margin-top:.3rem">' + totalFeitas + ' questões feitas &middot; ' + totalCertas + ' corretas</div>';
+  h += '</div>';
+  h += '<div style="display:flex;flex-direction:column;gap:.5rem;min-width:140px">';
+  h += '<div style="background:rgba(255,255,255,.08);border-radius:10px;padding:.6rem 1rem;text-align:center">';
+  h += '<div style="font-family:\'JetBrains Mono\',monospace;font-size:1.5rem;font-weight:700;color:#fff">' + totalFeitas + '</div>';
+  h += '<div style="font-size:.63rem;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:.08em">Questões feitas</div>';
+  h += '</div></div></div>';
+
+  /* Por tema */
+  h += '<div class="ex-progress-bar-section">';
+  h += '<div class="ex-progress-bar-title"><span>Progresso por tema</span>';
+  if (totalFeitas > 0) h += '<button onclick="exResetProgress()" style="font-size:.65rem;color:var(--ink4);background:none;border:none;cursor:pointer;text-decoration:underline">Reiniciar</button>';
+  h += '</div>';
+
+  _TOPICS_META.forEach(function(t) {
+    var prog = d[t.key] || { feitas:0, certas:0 };
+    var pct  = prog.feitas > 0 ? Math.round(prog.certas / prog.feitas * 100) : 0;
+    var banco = (window.PROVAS_BANCO && PROVAS_BANCO[t.key]) ? PROVAS_BANCO[t.key].length : 0;
+    var cobertura = banco > 0 ? Math.min(100, Math.round(prog.feitas / banco * 100)) : 0;
+    h += '<div style="margin-bottom:1rem">';
+    h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem">';
+    h += '<span style="font-size:.78rem;font-weight:700;color:var(--ink1);display:flex;align-items:center;gap:.4rem"><i class="ph ' + t.icon + '" style="color:' + t.color + '"></i> ' + t.label + '</span>';
+    h += '<span style="font-size:.72rem;font-weight:800;color:#5c4e8a">' + (prog.feitas > 0 ? pct + '% acerto' : 'Não iniciado') + '</span>';
+    h += '</div>';
+    h += '<div class="ex-progress-bar"><div class="ex-progress-fill" style="width:' + (prog.feitas > 0 ? pct : 0) + '%;background:linear-gradient(90deg,' + t.color + ',#5c4e8a)"></div></div>';
+    if (prog.feitas > 0) {
+      h += '<div style="display:flex;justify-content:space-between;margin-top:.3rem">';
+      h += '<span style="font-size:.65rem;color:var(--ink4)">' + prog.feitas + ' feitas · ' + prog.certas + ' corretas</span>';
+      h += '<span style="font-size:.65rem;color:var(--ink4)">' + cobertura + '% do banco</span>';
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+  h += '</div>';
+
+  /* CTA se ainda não fez nada */
+  if (totalFeitas === 0) {
+    h += '<div style="text-align:center;padding:2rem;color:var(--ink4)">';
+    h += '<i class="ph ph-chart-bar" style="font-size:2.5rem;opacity:.3;display:block;margin-bottom:.75rem"></i>';
+    h += '<p style="font-size:.85rem">Ainda não fizeste nenhuma questão.<br>Começa pela <strong>Prática por Tema</strong>!</p>';
+    h += '<button class="ex-sim-launch" style="margin-top:1rem;max-width:260px" onclick="exSwitchMode(\'temas\',null)"><i class="ph ph-play-circle"></i> Começar agora</button>';
+    h += '</div>';
+  }
+
+  el.innerHTML = h;
+}
+
+function exResetProgress() {
+  if (!confirm('Apagar todo o progresso dos exames?')) return;
+  try { localStorage.removeItem('edupt_exames'); } catch(e) {}
+  _exUpdateStats();
+  exRenderProgress();
+  exRenderTopicGrid();
+}
+
+/* ──────────────────────────────────────────────────────────
+   HERO PARTICLES (decorativo)
+────────────────────────────────────────────────────────── */
+function _exInitParticles() {
+  var wrap = document.getElementById('ex-particles');
+  if (!wrap) return;
+  var h = '';
+  var sizes = [60,40,80,30,50,90,35,55,70,45];
+  var colors = ['rgba(180,160,255,.25)','rgba(255,255,255,.1)','rgba(120,100,200,.2)','rgba(200,180,255,.15)'];
+  for (var i = 0; i < 10; i++) {
+    var s = sizes[i % sizes.length];
+    var c = colors[i % colors.length];
+    var left = (i * 11 + 5) % 95;
+    var top  = (i * 13 + 8) % 80;
+    var delay = (i * 0.7).toFixed(1);
+    h += '<div class="ex-hero-particle" style="width:' + s + 'px;height:' + s + 'px;background:' + c + ';left:' + left + '%;top:' + top + '%;animation-delay:' + delay + 's;animation-duration:' + (7 + i * 0.5).toFixed(1) + 's"></div>';
+  }
+  wrap.innerHTML = h;
+}
+
+/* ──────────────────────────────────────────────────────────
+   INIT
+────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
+  _exInitParticles();
   if (typeof mat7LoadProvas === 'function') mat7LoadProvas();
   exRenderTopicGrid();
   exSimRenderTemasSelector();
   exRenderYearList();
-  _exUpdateStatFeitas();
+  _exUpdateStats();
+
+  /* Contador total de questões real */
+  if (window.PROVAS_BANCO) {
+    var cnt = 0;
+    Object.keys(PROVAS_BANCO).forEach(function(k){ cnt += PROVAS_BANCO[k].length; });
+    var el = document.getElementById('ex-stat-total');
+    if (el && cnt > 0) el.textContent = cnt + '+';
+  }
 });
 </script>
 </body>
