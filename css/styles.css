@@ -2219,11 +2219,9 @@ body.dark-mode .pom-mode-btn.active{background:#2e2e2e!important;}
 .pn-frac-n{border-bottom:1.5px solid currentColor;padding:0 .15em;line-height:1.2;font-size:.9em}
 .pn-frac-d{padding:0 .15em;line-height:1.2;font-size:.9em}
 
-/* Imagem da página do exame original */
-.pn-exam-img-details{margin:.8rem 0 .4rem;border-radius:10px;border:1.5px solid #ddd;overflow:hidden}
-.pn-exam-img-details summary.pn-exam-img-label{cursor:pointer;list-style:none;padding:.5rem .85rem;background:#f0edf7;color:#6b5fa0;font-size:.75rem;font-weight:700;display:flex;align-items:center;gap:.4rem;user-select:none}
-.pn-exam-img-details summary.pn-exam-img-label::-webkit-details-marker{display:none}
-.pn-exam-img-details[open] summary.pn-exam-img-label{border-bottom:1.5px solid #ddd}
+/* Figura recortada do exame */
+.pn-fig-wrap{margin:.9rem 0 .5rem;border-radius:10px;overflow:hidden;border:1.5px solid #ddd;background:#fff}
+.pn-fig-img{width:100%;display:block}
 .pn-exam-img-wrap{background:#fff}
 .pn-exam-img{width:100%;display:block;max-height:80vh;object-fit:contain;background:#fff}
 
