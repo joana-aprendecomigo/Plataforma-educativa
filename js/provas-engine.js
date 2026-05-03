@@ -108,15 +108,23 @@ function _pnRenderQuestion(practice) {
   if (q.fig) {
     h += '<span class="pn-badge pn-badge--fig"><i class="ph ph-image"></i> Figura necessária</span>';
   }
-  if (q.examKey) {
-    h += '<button class="pn-badge pn-badge--fig" style="cursor:pointer;border:none;background:none;padding:0" onclick="pnVerProvaImg(this,\'' + q.examKey + '\',\'' + (q.page || '') + '\')" title="Ver imagem da prova original"><i class="ph ph-images"></i> Ver prova</button>';
+  if (q.examKey && !q.page) {
+    h += '<button class="pn-badge pn-badge--fig" style="cursor:pointer;border:none;background:none;padding:0" onclick="pnVerProvaImg(this,\'' + q.examKey + '\',\'\')" title="Ver imagem da prova original"><i class="ph ph-images"></i> Ver prova</button>';
   }
   h += '</div>';
 
   // Enunciado
   h += '<div class="pn-enun">' + _pnFmt(q.enun) + '</div>';
-  if (q.examKey) {
-    h += '<div id="pn-prova-img-area" style="display:none;margin:1rem 0;border-radius:10px;overflow:hidden"></div>';
+
+  // Imagem da página do exame original — aparece automaticamente se tiver página definida
+  if (q.examKey && q.page) {
+    var _prefix = (window.location.pathname.indexOf('/mat7/') !== -1) ? '../' : '';
+    var _imgBase = _prefix + 'img/exames/' + q.examKey + '/';
+    var _pageStr = (q.page < 10 ? '0' : '') + q.page;
+    h += '<div class="pn-exam-img-wrap">';
+    h += '<div class="pn-exam-img-label"><i class="ph ph-image-square"></i> Prova original — ' + (q.fonte || q.examKey) + ', pág. ' + q.page + '</div>';
+    h += '<img src="' + _imgBase + 'p-' + _pageStr + '.png" class="pn-exam-img" alt="Página do exame" onerror="this.parentNode.style.display=\'none\'">';
+    h += '</div>';
   }
 
   // Área de resposta
