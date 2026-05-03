@@ -176,21 +176,21 @@ var EXAMES_BANCO = {
       id: 'e24f2-7', tipo: 'aberta', tema: 'not_cientifica', examKey: '2024_f2', page: 7,
       enun: 'As emissões de gases na UE em 1990 eram 4900 milhões de toneladas. O objetivo é reduzir 55% até 2030.\n\nQual o <strong>valor máximo de emissões</strong> pretendido até 2030? Apresenta em notação científica.',
       opts: null, correct: null,
-      resolucao: 'Redução de 55%: valor máximo = 45% × 4900 × 10⁶ = 0,45 × 4,9 × 10⁹ = 2,205 × 10⁹\nResultado: <strong>2,205 × 10⁹ toneladas</strong>'
+      resolucao: 'Uma redução de 55% significa que o valor máximo é 100% − 55% = 45% das emissões de 1990.\n4900 × 55/100 = 2695 milhões de toneladas (redução)\nValor máximo pretendido: 4900 − 2695 = 2205 milhões de toneladas\nEm notação científica: 2 205 000 000 = <strong>2,205 × 10⁹ toneladas</strong>'
     },
     {
       id: 'e24f2-9', tipo: 'escolha', tema: 'otd', examKey: '2024_f2', page: 9,
       enun: 'Cartazes por tema: 18, 8, k, 9, 7, 18, 9, k (com 9 < k < 18). A mediana é 11.\n\nQual o valor de k?',
       opts: ['(A) 10', '(B) 11', '(C) 12', '(D) 13'],
       correct: 'D',
-      resolucao: 'Ordenando sem k: 7, 8, 9, 9, 18, 18. Com dois k: 7, 8, 9, 9, k, k, 18, 18\nMediana (8 valores) = (4.º + 5.º)/2 = (9 + k)/2 = 11 ⟹ 9 + k = 22 ⟹ <strong>k = 13</strong>'
+      resolucao: 'Com 8 valores, para que a mediana seja 11, os valores centrais são o 4.º e o 5.º.\nOrdenando os dados conhecidos: 7, 8, 9, 9, k, k, 18, 18 (como 9 < k < 18)\n4.º valor = 9 e 5.º valor = k\nMediana = (9 + k)/2 = 11\n9 + k = 22\nk = 22 − 9 = <strong>13</strong>\nResposta: <strong>(D)</strong>'
     },
     {
       id: 'e24f2-10', tipo: 'escolha', tema: 'funcoes', examKey: '2024_f2', page: 9,
       enun: 'Gráficos de f (afim) e g (prop. inversa). A(0,7) e B(4,9) ∈ f. C ∈ f e ∈ g com abcissa 2.\n\nQual a expressão de g?',
       opts: ['(A) g(x) = 16x', '(B) g(x) = 36x', '(C) g(x) = 16/x', '(D) g(x) = 36/x'],
       correct: 'C',
-      resolucao: 'Declive de f: m = (9−7)/(4−0) = 1/2. f(x) = x/2 + 7.\nf(2) = 1 + 7 = 8 ⟹ C = (2, 8).\ng(2) = 8 ⟹ k/2 = 8 ⟹ k = 16. g(x) = <strong>16/x</strong>'
+      resolucao: 'Como f é afim e passa em A(0,7) e B(4,9):\ndeclive m = (9 − 7)/(4 − 0) = 2/4 = 1/2\nf(x) = (1/2)x + 7\nC tem abcissa 2: f(2) = (1/2)×2 + 7 = 1 + 7 = 8 ⟹ C = (2, 8)\nC ∈ g com g(x) = k/x:\ng(2) = k/2 = 8 ⟹ k = 16\ng(x) = <strong>16/x</strong>\nResposta: <strong>(C)</strong>'
     },
     {
       id: 'e24f2-11', tipo: 'aberta', tema: 'funcoes', examKey: '2024_f2', page: 10,
@@ -223,7 +223,7 @@ var EXAMES_BANCO = {
         '(E) A Alemanha emitiu 15× mais que Portugal.'
       ],
       correct: 'ACE',
-      resolucao: '(A) 79 842 / 39 921 ≈ 2 ✔\n(B) 79 842 / 390 745 ≈ 20%, não 30% — Falsa\n(C) 809 799 / 4 065 462 ≈ 19,9% < 20% ✔\n(D) 390 745 + 39 921 + 314 529 + 63 470 = 808 665 < 809 799 — Falsa\n(E) 809 799 / 63 470 ≈ 12,8, não 15 — rever\nRespostas: <strong>A, C, E</strong> (verificar na prova)'
+      resolucao: 'Analisando cada afirmação:\n(A) Áustria = 79 842, Eslováquia = 39 921. 39 921 × 2 = 79 842 ✔ (Verdadeira)\n(B) 30% da Polónia = 390 745 × 30/100 = 117 223 ≠ 79 842 ✗ (Falsa)\n(C) 20% da UE = 4 065 462 × 20/100 = 813 092. Alemanha = 809 799 < 813 092 ✔ (Verdadeira)\n(D) Polónia + Eslováquia + Espanha + Portugal = 390 745 + 39 921 + 314 529 + 63 470 = 808 665 < 809 799 (Alemanha) ✔ (Verdadeira)\n(E) 15 × Portugal = 15 × 63 470 = 952 050 > 809 799 (Alemanha) ✗ (Falsa)\nRespostas verdadeiras: <strong>A, C e D</strong>'
     }
   ]
 },
@@ -272,7 +272,7 @@ var EXAMES_BANCO = {
       id: 'e23f1-5', tipo: 'aberta', tema: 'semelhanca', examKey: '2023_f1', page: 6,
       enun: 'Triângulo [ABC] isósceles (AB = AC) e retângulo [DEFG]. BC = 15, AM = 12, área [AED] = 10.\n\nCalcula <strong>EF</strong>.',
       opts: null, correct: null,
-      resolucao: 'Ver figura original. EF = DE (retângulo). Usar semelhança de triângulos para determinar EF a partir dos dados.'
+      resolucao: 'Área do triângulo [ABC]: A = (BC × AM)/2 = (15 × 12)/2 = 90\nOs triângulos [ABC] e [AED] são semelhantes (ângulo A comum, lados paralelos).\nRazão de áreas: r² = A[ABC]/A[AED] = 90/10 = 9 ⟹ r = 3\nComo AM e AP são as alturas correspondentes:\nAM/AP = r ⟹ 12/AP = 3 ⟹ AP = 4\nComo PM = AM − AP = 12 − 4 = 8 e EF = PM (retângulo):\nEF = <strong>8</strong>'
     },
     {
       id: 'e23f1-6', tipo: 'aberta', tema: 'sequencias', examKey: '2023_f1', page: 7,
