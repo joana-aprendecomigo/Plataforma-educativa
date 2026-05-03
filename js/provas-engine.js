@@ -197,8 +197,8 @@ function _pnOpenHTML(q) {
 
   if (!revealed) {
     h += '<div class="pn-open-box">';
-    h += '<div class="pn-open-instructions"><i class="ph ph-pencil-line"></i> Resolve no teu caderno e depois clica para ver a solução.</div>';
-    h += '<button class="pn-confirm-btn" onclick="pnRevealOpen(\'' + q.id + '\')"><i class="ph ph-eye"></i> Ver solução completa</button>';
+    h += '<textarea class="pn-open-textarea" id="pn-ta-' + q.id + '" placeholder="Escreve aqui a tua resolução..."></textarea>';
+    h += '<button class="pn-confirm-btn" onclick="pnRevealOpen(\'' + q.id + '\')"><i class="ph ph-eye"></i> Ver solução</button>';
     h += '</div>';
   } else {
     h += '<div class="pn-open-box pn-open-box--revealed">';
