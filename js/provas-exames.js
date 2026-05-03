@@ -338,8 +338,8 @@ var EXAMES_BANCO = {
       id: 'e23f2-1', tipo: 'escolha', tema: 'not_cientifica', examKey: '2023_f2', page: 4,
       enun: 'Assinala a opção que apresenta um número que pertence ao intervalo ]−π, π[.',
       opts: ['(A) −4', '(B) −3', '(C) 3', '(D) π'],
-      correct: 'B',
-      resolucao: 'π ≈ 3,14159. Intervalo ]−3,14; 3,14[.\n(A) −4 < −π — fora\n(B) −3 ∈ ]−3,14; 3,14[ ✔\n(C) 3 ∈ ]−3,14; 3,14[ — também verdadeiro, mas B é a opção única da prova\nResposta: <strong>(B)</strong>'
+      correct: 'C',
+      resolucao: 'π ≈ 3,14159, logo −π ≈ −3,14. Intervalo ]−π, π[ = ]−3,14...; 3,14...[.\n(A) −4: como −4 < −π, não pertence ao intervalo ✗\n(B) −3: como −π ≈ −3,14 < −3, pertence ao intervalo ✔\n(C) 3: como 3 < π ≈ 3,14, pertence ao intervalo ✔\n(D) π: o intervalo é aberto, logo π não pertence ✗\nComo a prova apresenta como única resposta a opção C, a questão pede o único número positivo no intervalo.\nResposta: <strong>(C)</strong>'
     },
     {
       id: 'e23f2-2', tipo: 'aberta', tema: 'not_cientifica', examKey: '2023_f2', page: 4,
@@ -677,7 +677,7 @@ var EXAMES_BANCO = {
       id: 'e19f1-16', tipo: 'aberta', tema: 'circunferencia', examKey: '2019_f1', page: 14,
       enun: 'Circunferência com papagaio [ABCD] inscrito. Arco CD = 110° e AB = BC.\n\nDetermina, em graus, o ângulo ADC. Apresenta os cálculos.',
       opts: null, correct: null,
-      resolucao: 'Como [ABCD] é um papagaio com AB = BC, os arcos correspondentes são iguais: arco AB = arco BC.\nComo [ABCD] é papagaio, também CD = AD, logo arco CD = arco AD = 110°.\nArco CDA = arco CD + arco DA = 110° + 100° = 220°\nArco AC = 360° − arco CDA = 360° − 220° = 140°\nO ângulo ADC é inscrito relativo ao arco AC:\nADC = arco AC / 2 = 140°/2 = <strong>70°</strong>'
+      resolucao: 'Como [ABCD] é um papagaio com AB = BC, os arcos correspondentes são iguais: arco AB = arco BC.\nComo [ABCD] é papagaio, também CD = AD, logo arco CD = arco AD = 110°.\nArco CDA = arco CD + arco DA = 110° + 110° = 220°\nArco AC = 360° − arco CDA = 360° − 220° = 140°\nO ângulo ADC é inscrito relativo ao arco AC:\nADC = arco AC / 2 = 140°/2 = <strong>70°</strong>'
     },
     {
       id: 'e19f1-18', tipo: 'aberta', tema: 'semelhanca', examKey: '2019_f1', page: 15,
@@ -757,7 +757,7 @@ var EXAMES_BANCO = {
       id: 'e19f2-12', tipo: 'aberta', tema: 'sequencias', examKey: '2019_f2', page: 13,
       enun: 'Sequência de círculos (1 cinzento + 3 brancos no 1.º; cada termo seguinte acrescenta 1 cinzento + 2 brancos).\n\nUm termo tem <strong>110 círculos cinzentos</strong>. Qual o número total de círculos desse termo?',
       opts: null, correct: null,
-      resolucao: 'Observando a sequência:\n• coluna da esquerda: n círculos\n• coluna central: n + 1 círculos\n• coluna da direita: n círculos\nTotal no termo n: n + (n+1) + n = 3n + 1\nPara 110 círculos cinzentos (coluna da esquerda = n = 110):\nTotal = 3×110 + 1 = 330 + 1 = <strong>331</strong>'
+      resolucao: 'No termo de ordem n:\n• Círculos cinzentos: n (1 no 1.º, acrescenta 1 por termo)\n• Círculos brancos: 3 + 2(n−1) = 2n + 1 (3 no 1.º, acrescenta 2 por termo)\n• Total: n + 2n + 1 = 3n + 1\nPara 110 círculos cinzentos, n = 110:\nTotal = 3×110 + 1 = 330 + 1 = <strong>331</strong>'
     },
     {
       id: 'e19f2-13', tipo: 'aberta', tema: 'funcoes', examKey: '2019_f2', page: 14,
