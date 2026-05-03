@@ -683,7 +683,7 @@ var EXAMES_BANCO = {
       id: 'e19f1-18', tipo: 'aberta', tema: 'semelhanca', examKey: '2019_f1', page: 15,
       enun: 'Triângulos [ABC] e [ADE] retângulos em B e D. BC = 4, DE = 2, BD = a (a > 0). BC ∥ DE.\n\nDetermina, em função de a, a <strong>altura do triângulo [ABC]</strong> relativa ao lado [BC].',
       opts: null, correct: null,
-      resolucao: 'Razão de semelhança: DE/BC = 2/4 = 1/2 ⟹ AB = 2·AD.\nAD + DB = AB = 2·AD ⟹ DB = AD = a.\nAltura de [ABC] relativa a BC = AB = 2a. Mas: altura = AB + BD = AD + BD = 2a.\nResultado: altura = <strong>2a + 2a = ... ver figura.</strong>'
+      resolucao: 'Os ângulos EAD e BAC são verticalmente opostos. Ambos os triângulos têm ângulo reto. Pelo critério AA, os triângulos são semelhantes.\nRazão de semelhança: AB/AD = BC/DE = 4/2 = 2, logo AB = 2·AD.\nComo AB + AD = a (total):\n2·AD + AD = a ⟹ 3·AD = a ⟹ AD = a/3\nA altura do triângulo [ABC] relativa a [BC] é AB:\nAB = 2·AD = 2 × a/3 = <strong>2a/3</strong>'
     }
   ]
 },
