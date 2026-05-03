@@ -646,10 +646,15 @@ function checkEq4(){
 // GERADOR
 var fichaContent4='';
 function gerarFicha4(){
-  var tema=parseInt(document.getElementById('gen4-tema').value);
-  var tipo=document.getElementById('gen4-tipo').value;
-  var nivel=document.getElementById('gen4-nivel').value;
-  var qtd=parseInt(document.getElementById('gen4-qtd').value);
+  var temaEl=document.getElementById('gen4-tema');
+  var tipoEl=document.getElementById('gen4-tipo');
+  var nivelEl=document.getElementById('gen4-nivel');
+  var qtdEl=document.getElementById('gen4-qtd');
+  if(!temaEl||!tipoEl||!nivelEl||!qtdEl)return;
+  var tema=parseInt(temaEl.value)||0;
+  var tipo=tipoEl.value;
+  var nivel=nivelEl.value;
+  var qtd=parseInt(qtdEl.value)||10;
   var pool=[];
   var allQ=BANCO4.questoes.concat(BANCO4.teste);
   BANCO4.minitestes.slice(1).forEach(function(m){if(m)allQ=allQ.concat(m);});
@@ -692,8 +697,11 @@ function exame4SetLevel(btn){
   btn.classList.add('active');exameLevel4=btn.dataset.level;
 }
 function exame4Start(){
-  var tempo=parseInt(document.getElementById('exame4-tempo').value);
-  var qtd=parseInt(document.getElementById('exame4-qtd').value);
+  var tempoEl=document.getElementById('exame4-tempo');
+  var qtdEl=document.getElementById('exame4-qtd');
+  if(!tempoEl||!qtdEl)return;
+  var tempo=parseInt(tempoEl.value)||20;
+  var qtd=parseInt(qtdEl.value)||10;
   document.getElementById('exame4-config').style.display='none';
   document.getElementById('exame4-running').style.display='block';
   document.getElementById('exame4-result').style.display='none';

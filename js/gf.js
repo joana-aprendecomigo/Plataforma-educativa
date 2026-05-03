@@ -953,7 +953,7 @@ function _dinamico3(dif) {
     var angPent=[];
     for(var i=0;i<4;i++) angPent.push(R.int(90,135));
     var sumPent=(5-2)*180;
-    var fif=sumPent-angPent.reduce((a,b)=>a+b,0);
+    var fif=sumPent-angPent.reduce(function(a,b){return a+b;},0);
     ex+=_dinamicoRow(6,'Num pentágono, quatro dos ângulos internos medem '+angPent.join('°, ')+'°. Determina o quinto ângulo.');
     sol+='<div class="ex"><strong>6.</strong> Soma=(5−2)×180=540°. 5.º = 540−('+angPent.join('+')+') = <strong>'+fif+'°</strong></div>';
 

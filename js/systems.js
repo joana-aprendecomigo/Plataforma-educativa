@@ -1342,35 +1342,6 @@ document.addEventListener('edupt:progress', function() {
 // ── Init: actualiza topbar ao carregar ────────
 document.addEventListener('DOMContentLoaded', function() { pmUpdateTopbar(); });
 
-// ═══ CHAPTER NAV BAR — goToChapter ═══
-function goToChapter(n) {
-  // Map chapter number to view IDs and show functions
-  var viewMap = {
-    1: { id: 'view-math',  fn: function() { showMathView && showMathView() || (document.getElementById('view-math').style.display='block') } },
-    2: { id: 'view-math2', fn: function() { showMathView2 && showMathView2() || (document.getElementById('view-math2').style.display='block') } },
-    3: { id: 'view-math3', fn: function() { showMathView3 && showMathView3() || (document.getElementById('view-math3').style.display='block') } },
-    4: { id: 'view-math4', fn: function() { showMathView4 && showMathView4() || (document.getElementById('view-math4').style.display='block') } }
-  };
-  var allViews = ['view-portal','view-mat7','view-math','view-math2','view-math3','view-math4'];
-  // Hide all views
-  allViews.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  // Show the target view
-  var target = document.getElementById('view-math' + (n > 1 ? n : ''));
-  if (target) {
-    target.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  // Use viewMap fn to run the proper show/init function
-  if (viewMap[n] && typeof viewMap[n].fn === 'function') viewMap[n].fn();
-  // For chapters 2/3/4 activate first section
-  if (n === 2 && typeof showSection2 === 'function') showSection2('temas2', null);
-  if (n === 3 && typeof showSection3 === 'function') showSection3('temas3', null);
-  if (n === 4 && typeof showSection4 === 'function') showSection4('temas4', null);
-}
-
 // ═══ TEACHER STRIP TOGGLE ═══
 function toggleTeacher(btn) {
   var strip = btn.closest('.teacher-strip');
@@ -1431,11 +1402,13 @@ function progDownloadPDF() {
   var cor = function(taxa) {
     if (taxa==='—') return '#9e9e9e';
     var n = parseInt(taxa);
+    if (isNaN(n)) return '#9e9e9e';
     return n>=80 ? '#516860' : n>=50 ? '#c4a030' : '#c4796e';
   };
   var barraHtml = function(taxa) {
     if (taxa==='—') return '<div style="width:100%;height:8px;background:#eee;border-radius:4px"></div>';
     var n = parseInt(taxa);
+    if (isNaN(n)) n = 0;
     return '<div style="width:100%;height:8px;background:#eee;border-radius:4px;overflow:hidden"><div style="height:100%;width:'+n+'%;background:'+cor(taxa)+';border-radius:4px"></div></div>';
   };
 

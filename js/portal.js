@@ -56,7 +56,10 @@ function filterBy(f,btn){
 
 // ═══ PROGRESS DASHBOARD (stub for index.html where systems.js isn't loaded) ═══
 if(typeof pmToggleDashboard==='undefined'){
-  window.pmToggleDashboard=function(){ window.location.href='mat7/index.html'; };
+  window.pmToggleDashboard=function(){
+    var path=(typeof _mat7Path!=='undefined')?_mat7Path:'mat7/';
+    window.location.href=path+'index.html';
+  };
 }
 
 // ═══ PORTAL RENDER ═══

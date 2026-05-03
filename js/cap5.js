@@ -405,8 +405,11 @@ function exame5SetLevel(btn){
   btn.classList.add('active');exameLevel5=btn.dataset.level;
 }
 function exame5Start(){
-  var tempo=parseInt(document.getElementById('exame5-tempo').value);
-  var qtd=parseInt(document.getElementById('exame5-qtd').value);
+  var tempoEl=document.getElementById('exame5-tempo');
+  var qtdEl=document.getElementById('exame5-qtd');
+  if(!tempoEl||!qtdEl)return;
+  var tempo=parseInt(tempoEl.value)||20;
+  var qtd=parseInt(qtdEl.value)||10;
   document.getElementById('exame5-config').style.display='none';
   document.getElementById('exame5-running').style.display='block';
   document.getElementById('exame5-result').style.display='none';

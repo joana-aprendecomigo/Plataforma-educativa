@@ -53,8 +53,8 @@ function handleSubj(e, action) {
 
 // showGeradorFichas — go to mat7 fichas tab
 function showGeradorFichas(capNum) {
-  localStorage.setItem('mat7OpenTab', 'fichas');
-  if (capNum) localStorage.setItem('mat7GeradorCap', capNum);
+  try { localStorage.setItem('mat7OpenTab', 'fichas'); } catch(e) {}
+  try { if (capNum) localStorage.setItem('mat7GeradorCap', capNum); } catch(e) {}
   window.location.href = _mat7Path + 'index.html';
 }
 
