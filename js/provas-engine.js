@@ -390,3 +390,31 @@ function _pnRenderResult() {
 
   practice.innerHTML = h;
 }
+
+function pnVerProvaImg(btn, examKey, page) {
+  var area = document.getElementById('pn-prova-img-area');
+  if (!area) return;
+  if (area.style.display !== 'none') {
+    area.style.display = 'none';
+    btn.innerHTML = '<i class="ph ph-images"></i> Ver prova';
+    return;
+  }
+  // determine path prefix (exames.html is at root, chapter pages in mat7/)
+  var prefix = (window.location.pathname.indexOf('/mat7/') !== -1) ? '../' : '';
+  var imgBase = prefix + 'img/exames/' + examKey + '/';
+  var h = '<div style="background:#111;border-radius:10px;padding:.75rem">';
+  h += '<div style="color:#fff;font-size:.75rem;font-weight:700;margin-bottom:.5rem;opacity:.7">Prova original — ' + examKey + '</div>';
+  if (page) {
+    var p = page.length < 2 ? '0' + page : page;
+    h += '<img src="' + imgBase + 'p-' + p + '.png" style="width:100%;border-radius:6px" onerror="this.style.display=\'none\'">';
+  } else {
+    var pages = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16'];
+    pages.forEach(function(p) {
+      h += '<img src="' + imgBase + 'p-' + p + '.png" style="width:100%;border-radius:6px;margin-bottom:.5rem" onerror="this.style.display=\'none\'" loading="lazy">';
+    });
+  }
+  h += '</div>';
+  area.innerHTML = h;
+  area.style.display = 'block';
+  btn.innerHTML = '<i class="ph ph-x"></i> Fechar';
+}

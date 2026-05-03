@@ -408,6 +408,8 @@ var EXAMES_BANCO = {
   Object.keys(EXAMES_BANCO).forEach(function(ano) {
     var prova = EXAMES_BANCO[ano];
     prova.questoes.forEach(function(q) {
+      // stamp examKey so the renderer can show the original exam pages
+      if (!q.examKey) q.examKey = ano;
       var temaTarget = temaMap[q.tema] || q.tema;
       if (!window.PROVAS_BANCO[temaTarget]) window.PROVAS_BANCO[temaTarget] = [];
       // adiciona fonte se não tiver
