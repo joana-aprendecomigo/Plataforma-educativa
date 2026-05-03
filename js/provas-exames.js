@@ -737,7 +737,7 @@ var EXAMES_BANCO = {
       id: 'e19f2-8.2', tipo: 'escolha', tema: 'funcoes', examKey: '2019_f2', page: 11,
       enun: 'Drone: distância d(t) = at² (0 ≤ t ≤ 20). Sabe-se que d(10) = 40.\n\nQual o valor de a?',
       opts: ['(A) −4/25', '(B) −2/5', '(C) 2/5', '(D) 4/25'],
-      correct: 'D',
+      correct: 'C',
       resolucao: 'd(t) = at². Sabemos que d(10) = 40:\na × 10² = 40 ⟹ 100a = 40 ⟹ a = 40/100 = 2/5\nResposta: <strong>(C) 2/5</strong>'
     },
     {
