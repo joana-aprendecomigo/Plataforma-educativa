@@ -1170,7 +1170,7 @@ not_cientifica: [
     id: 'nc-9',
     fonte: 'Prova Final 3.\u00ba Ciclo \u2013 2020',
     tipo: 'escolha',
-    enun: 'Qual \u00e9 o resultado de 10\u00b4 \u00d7 10\u207b\u00b2?',
+    enun: 'Qual \u00e9 o resultado de 10\u2074 \u00d7 10\u207b\u00b2?',
     opts: ['(A) 10\u207b\u2078', '(B) 10\u00b2', '(C) 10\u2076', '(D) 10\u207b\u00b2'],
     correct: 'B',
     resolucao: '10\u00b4 \u00d7 10\u207b\u00b2 = 10^(4+(\u22122)) = <strong>10\u00b2</strong> = 100.'
