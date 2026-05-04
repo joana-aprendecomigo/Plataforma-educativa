@@ -88,7 +88,7 @@ function htmlToPdfDownload(htmlContent, filename) {
 // SHARED UTILITIES — used across chapter files
 function rnd(min,max){return Math.floor(Math.random()*(max-min+1))+min}
 function rndNZ(min,max){var v;do{v=rnd(min,max)}while(v===0);return v}
-function shuffle(arr){return arr.slice().sort(function(){return Math.random()-.5})}
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function fmt(n){return n>0?'+'+n:''+n}
 function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t}return a}
 function lcm(a,b){return Math.abs(a*b)/gcd(a,b)}
@@ -475,8 +475,8 @@ function _qzShowResults(cid) {
 function _qzRestart(cid) {
   var st = _qzState[cid];
   if (!st) return;
-  // Shuffle exercises and restart
-  st.exercises = st.exercises.sort(function(){ return Math.random() - .5; });
+  // Shuffle exercises and restart (Fisher-Yates)
+  st.exercises = shuffle(st.exercises);
   st.current = 0;
   st.score = { correct: 0, total: 0 };
   st.answered = false;
