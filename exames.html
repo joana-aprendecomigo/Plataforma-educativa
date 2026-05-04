@@ -721,9 +721,9 @@ function exStartYear(key) {
   if (list) list.style.display = 'none';
   var inline = document.getElementById('ex-year-inline');
   if (inline) {
-    inline.id = 'mat7-inline-provas';
     var orig = document.getElementById('mat7-inline-provas');
-    if (orig && orig !== inline) orig.id = 'mat7-inline-provas-bak2';
+    if (orig) orig.id = 'mat7-inline-provas-bak2';
+    inline.id = 'mat7-inline-provas';
     _pnRenderQuestion(inline);
   }
 }
