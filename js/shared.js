@@ -11,11 +11,13 @@ function eduToast(msg,type){
   _toastTimer=setTimeout(function(){t.classList.remove('show');},2800);
 }
 function htmlToPdfDownload(htmlContent, filename) {
-  // Prefix filename
-  if (_n) {
-    var _safe = _n.replace(/[^a-zA-Z0-9áéíóúâêîôûãõàèìòùçÁÉÍÓÚÂÊÎÔÛÃÕÀÈÌÒÙÇ]/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
+  // Prefix filename with user/role if available (optional, may not be set)
+  var _userName = (typeof window !== 'undefined' && (window._n || window.userName)) || null;
+  var _userRole = (typeof window !== 'undefined' && (window._role || window.userRole)) || null;
+  if (_userName) {
+    var _safe = String(_userName).replace(/[^a-zA-Z0-9áéíóúâêîôûãõàèìòùçÁÉÍÓÚÂÊÎÔÛÃÕÀÈÌÒÙÇ]/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
     if (_safe) {
-      var _prefix = _role === 'professor' ? 'prof_' + _safe + '_' : _safe + '_';
+      var _prefix = _userRole === 'professor' ? 'prof_' + _safe + '_' : _safe + '_';
       filename = _prefix + filename;
     }
   }
@@ -355,9 +357,12 @@ function _qzShowFeedback(cid, correct, correctVal) {
   var capNum = '1';
   if (ex && (ex._capId || ex.capId)) {
     capNum = String(ex._capId || ex.capId).replace('cap','');
-  } else if (sec.indexOf('2') !== -1) { capNum = '2'; }
-  else if (sec.indexOf('3') !== -1) { capNum = '3'; }
-  else if (sec.indexOf('4') !== -1 || sec.indexOf('mini') !== -1 || sec === 't4') { capNum = '4'; }
+  } else {
+    // Detect cap from sec string (e.g. 'q5', 'mini6', 't7')
+    var capMatch = sec && sec.match(/[1-9]/);
+    if (capMatch) capNum = capMatch[0];
+    else if (sec && sec.indexOf('mini') !== -1) capNum = '4';
+  }
 
   // ErrorTracker
   if (ex && typeof ErrorTracker !== 'undefined') {
