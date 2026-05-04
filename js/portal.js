@@ -67,6 +67,9 @@ var totalDisc=0,totalAvail=0,totalChapters=0;
 function portalRender(){
   var main=document.getElementById('portal-main');
   if(!main)return;
+  // Reset totals so repeated calls don't accumulate
+  totalDisc=0; totalAvail=0; totalChapters=0;
+  main.innerHTML='';
   CYCLES.forEach(function(cycle){
     var block=document.createElement('div');
     block.className='cycle-block '+cycle.cls;

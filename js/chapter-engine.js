@@ -57,7 +57,7 @@ function _capCheckAnswer(qid, tipo, val) {
     if (!inp || !inp.value.trim()) { if (typeof eduToast === 'function') eduToast('Introduz uma resposta!', 'warn'); return null; }
     var uv = inp.value.trim(); inp.disabled = true;
     if (tipo === 'fill_frac') { var norm = function(s) { return s.replace(/\s/g,'').replace(/÷/g,'/'); }; correct = norm(uv) === norm(String(val)); }
-    else correct = parseFloat(uv.replace(',','.')) === Number(val);
+    else { var uNum = parseFloat(uv.replace(',','.')); correct = !isNaN(uNum) && Math.abs(uNum - Number(val)) < 0.001; }
     inp.classList.add(correct ? 'correct' : 'wrong');
   } else {
     if (container) container.querySelectorAll('.option-btn').forEach(function(b) { b.disabled = true; });
