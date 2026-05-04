@@ -452,17 +452,8 @@ semelhanca: [
     fig: true,
     enun: 'Os tri\u00e2ngulos [ABC] e [PQR] s\u00e3o semelhantes, com raz\u00e3o de semelhan\u00e7a 0,5 e QR\u0305 = 5.\n\nCalcula o per\u00edmetro do tri\u00e2ngulo [ABC].',
     resolucao: 'Raz\u00e3o de semelhan\u00e7a k\u2009=\u20090,5, significa [ABC] \u00e9 redu\u00e7\u00e3o de [PQR].\nO per\u00edmetro de [ABC]\u2009=\u2009k\u00b7per\u00edmetro [PQR].\nQR\u2009=\u20095, e como o tri\u00e2ngulo \u00e9 semelhante, usa a figura para obter todos os lados de [PQR].\n(Sem a figura completa, o per\u00edmetro de [PQR] n\u00e3o \u00e9 determin\u00e1vel s\u00f3 com QR.)\n<em>Processo:</em> Per\u00edmetro [ABC]\u2009=\u20090,5\u00b7per\u00edmetro [PQR].'
-  },
-  {
-    id: 'sem-47',
-    fonte: 'Prova de Aferi\u00e7\u00e3o \u2013 2002',
-    tipo: 'escolha',
-    fig: true,
-    enun: 'Qual das figuras seguintes \u00e9 uma redu\u00e7\u00e3o da figura ao lado (selo Pedro Nunes)?\n\n[Figura necess\u00e1ria \u2014 ver enunciado original]',
-    opts: ['(A)', '(B)', '(C)', '(D)'],
-    correct: 'B',
-    resolucao: 'Uma redu\u00e7\u00e3o mant\u00e9m as propor\u00e7\u00f5es da figura original \u2014 todos os lados reduzidos pela mesma raz\u00e3o. A op\u00e7\u00e3o <strong>(B)</strong> \u00e9 a \u00fanica que mant\u00e9m as propor\u00e7\u00f5es do selo.'
   }
+  // sem-47 removida \u2014 depende de figura externa que n\u00e3o \u00e9 mostrada e tinha op\u00e7\u00f5es vazias
 ],
 
 areas: [

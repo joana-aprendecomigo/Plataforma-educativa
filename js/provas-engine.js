@@ -97,7 +97,18 @@ function pnStartTopic(key) {
     if (typeof eduToast === 'function') eduToast('Banco de questões não disponível.', 'error');
     return;
   }
-  var banco = window.PROVAS_BANCO[key].slice();
+  // Filter out unanswerable questions: escolha-type with all options empty
+  var banco = window.PROVAS_BANCO[key].filter(function(q) {
+    if (q.tipo === 'escolha' && q.opts && q.opts.length) {
+      var allEmpty = true;
+      for (var oi = 0; oi < q.opts.length; oi++) {
+        var clean = String(q.opts[oi]).replace(/^\([A-E]\)\s*/, '').trim();
+        if (clean) { allEmpty = false; break; }
+      }
+      if (allEmpty) return false;
+    }
+    return true;
+  }).slice();
   for (var i = banco.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
     var tmp = banco[i]; banco[i] = banco[j]; banco[j] = tmp;
