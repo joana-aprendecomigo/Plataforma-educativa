@@ -971,7 +971,7 @@ footer{background:linear-gradient(135deg,#4D4D4D,#2a3330,#516860)!important}
 .gen-level-btn{height:34px;padding:0 14px;background:var(--cream);border:1.5px solid var(--border);border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .2s;flex-shrink:0}
 .gen-level-btn.active{background:linear-gradient(135deg,#516860,#77998E);color:#fff;border-color:transparent}
 .btn{height:40px;padding:0 18px;border-radius:999px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
-.btn-primary{background:linear-gradient(135deg,#516860,#77998E);color:#fff;border:none;box-shadow:0 4px 16px rgba(81,104,96,.3)}
+.btn-primary{background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;border:none;box-shadow:0 4px 16px rgba(74,63,122,.3)}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .btn-ghost{background:var(--white);border:1.5px solid var(--border2);color:var(--ink2)}
 .btn-ghost:hover{border-color:var(--c2-mid);color:var(--c2-mid)}
