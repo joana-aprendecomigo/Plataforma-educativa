@@ -489,16 +489,21 @@
     <div id="pt-comp-editor" style="display:none;margin-top:1.5rem">
       <div style="background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem">
         <div id="pt-comp-enun" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.8;color:var(--ink1);margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)"></div>
-        <textarea id="pt-comp-textarea" rows="14" placeholder="Escreve o teu texto aqui..." style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.25rem;font-family:'Montserrat',sans-serif;font-size:.9rem;line-height:1.8;color:var(--ink1);resize:vertical;outline:none;transition:border-color .15s" oninput="ptCompCount()"></textarea>
+        <textarea id="pt-comp-textarea" rows="14" placeholder="Escreve o teu texto aqui..." style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.25rem;font-family:'Montserrat',sans-serif;font-size:.9rem;line-height:1.8;color:var(--ink1);resize:vertical;outline:none;transition:border-color .15s;box-sizing:border-box" oninput="ptCompCount()"></textarea>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.75rem;flex-wrap:wrap;gap:.5rem">
           <div>
             <span id="pt-comp-count" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:#5c4e8a">0</span>
             <span style="font-size:.75rem;color:var(--ink4);margin-left:.3rem">palavras</span>
             <span id="pt-comp-status" style="margin-left:.75rem;font-size:.73rem;font-weight:700;padding:3px 10px;border-radius:999px"></span>
           </div>
-          <button onclick="ptCompReset()" style="font-size:.73rem;font-weight:700;color:var(--ink4);background:none;border:1px solid var(--border);border-radius:999px;padding:5px 13px;cursor:pointer">Limpar</button>
+          <div style="display:flex;gap:.5rem">
+            <button onclick="ptCompAutocheck()" style="font-size:.73rem;font-weight:800;color:#fff;background:#5c4e8a;border:none;border-radius:999px;padding:6px 14px;cursor:pointer">✓ Verificar</button>
+            <button onclick="ptCompReset()" style="font-size:.73rem;font-weight:700;color:var(--ink4);background:none;border:1px solid var(--border);border-radius:999px;padding:5px 13px;cursor:pointer">Limpar</button>
+          </div>
         </div>
       </div>
+      <!-- Autocorreção por checklist -->
+      <div id="pt-comp-check-result" style="display:none;margin-top:1rem"></div>
     </div>
   </div>
 
