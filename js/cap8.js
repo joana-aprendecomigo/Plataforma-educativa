@@ -350,4 +350,11 @@ window.CAP_DATA[8]={
   testePlans:{subtema0:{t1:2,t2:2,t3:2,t4:2,t5:1}},
   flashcards:BANCO8.flashcards
 };
-_capRegisterWrappers(8);
+_capRegisterWrappers(8, {
+  exame8Submit:     function(){ if(typeof examActive!=='undefined') examActive=false; capExameStop(8); },
+  exame8Check:      function(qid,tipo,val,btn){ capExameCheck(8,qid,tipo,val,btn); },
+  fcStartSession8:  function(){ capFcRender(8); },
+  fcSetMode8:       function(){ capFcRender(8); },
+  fcResetStats8:    function(){ capProgReset(8); },
+  fcRate8:          function(){ capFcNext(8); }
+});

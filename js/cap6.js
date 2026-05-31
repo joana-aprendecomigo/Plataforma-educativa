@@ -365,10 +365,6 @@ window.CAP_DATA[6]={
   flashcards:BANCO6.flashcards
 };
 _capRegisterWrappers(6, {
-  exame6Submit:     function(){ if(typeof examActive!=='undefined') examActive=false; capExameStop(6); },
-  exame6Check:      function(qid,tipo,val,btn){ capExameCheck(6,qid,tipo,val,btn); },
-  fcStartSession6:  function(){ capFcRender(6); },
-  fcSetMode6:       function(){ capFcRender(6); },
-  fcResetStats6:    function(){ capProgReset(6); },
-  fcRate6:          function(){ capFcNext(6); }
+  exame6Submit: function(){ if(typeof examActive!=='undefined') examActive=false; capExameStop(6); },
+  exame6Check:  function(qid,tipo,val,btn){ capExameCheck(6,qid,tipo,val,btn); }
 });
