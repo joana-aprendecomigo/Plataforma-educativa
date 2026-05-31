@@ -344,4 +344,11 @@ window.CAP_DATA[7]={
   testePlans:{subtema0:{t1:2,t2:1,t3:1,t4:2,t5:1,t6:1}},
   flashcards:BANCO7.flashcards
 };
-_capRegisterWrappers(7);
+_capRegisterWrappers(7, {
+  exame7Submit:     function(){ if(typeof examActive!=='undefined') examActive=false; capExameStop(7); },
+  exame7Check:      function(qid,tipo,val,btn){ capExameCheck(7,qid,tipo,val,btn); },
+  fcStartSession7:  function(){ capFcRender(7); },
+  fcSetMode7:       function(){ capFcRender(7); },
+  fcResetStats7:    function(){ capProgReset(7); },
+  fcRate7:          function(){ capFcNext(7); }
+});
