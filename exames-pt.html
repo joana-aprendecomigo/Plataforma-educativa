@@ -333,6 +333,129 @@
     <div id="pt-sim-running" style="display:none"></div>
   </div>
 
+  <!-- ══ PAINEL: GRAMÁTICA ══ -->
+  <div id="pt-panel-gramatica" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Gramática Interativa</div>
+      <div class="ex-sec-sub">Treina funções sintáticas, tempos verbais, classes de palavras e orações subordinadas — os temas que mais saem nos exames.</div>
+    </div>
+    <div id="pt-gram-menu">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.25rem">
+        <button onclick="ptGramStart('funcoes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2a7db5" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">🔍</div>
+          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Funções Sintáticas</div>
+          <div style="font-size:.74rem;color:var(--ink4)">Sujeito, CD, CI, CO, predicativo, modificador...</div>
+          <div style="font-size:.68rem;font-weight:700;color:#2a7db5;margin-top:.6rem">32 exercícios</div>
+        </button>
+        <button onclick="ptGramStart('tempos')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #6b52a8" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">⏱️</div>
+          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Tempos Verbais</div>
+          <div style="font-size:.74rem;color:var(--ink4)">Conjuntivo, condicional, mais-que-perfeito...</div>
+          <div style="font-size:.68rem;font-weight:700;color:#6b52a8;margin-top:.6rem">12 exercícios</div>
+        </button>
+        <button onclick="ptGramStart('classes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #b07030" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">🏷️</div>
+          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Classes de Palavras</div>
+          <div style="font-size:.74rem;color:var(--ink4)">Advérbios, determinantes, pronomes, verbos...</div>
+          <div style="font-size:.68rem;font-weight:700;color:#b07030;margin-top:.6rem">10 exercícios</div>
+        </button>
+        <button onclick="ptGramStart('subordinadas')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2e7d52" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">🌿</div>
+          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Orações Subordinadas</div>
+          <div style="font-size:.74rem;color:var(--ink4)">Causal, concessiva, temporal, completiva...</div>
+          <div style="font-size:.68rem;font-weight:700;color:#2e7d52;margin-top:.6rem">12 exercícios</div>
+        </button>
+      </div>
+      <!-- Cheatsheet rápida -->
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem 1.5rem">
+        <div style="font-size:.75rem;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">⚡ Cheatsheet — Funções Sintáticas</div>
+        <div style="display:grid;gap:.4rem;font-size:.8rem">
+          <div style="display:flex;gap:.5rem"><span style="font-weight:800;color:#2a7db5;min-width:60px">Sujeito</span><span style="color:var(--ink2)">Quem realiza ou sofre a ação. Concorda com o verbo.</span></div>
+          <div style="display:flex;gap:.5rem"><span style="font-weight:800;color:#c0392b;min-width:60px">CD</span><span style="color:var(--ink2)">Responde a "o quê?" após verbo transitivo. Substituível por o/a/os/as.</span></div>
+          <div style="display:flex;gap:.5rem"><span style="font-weight:800;color:#2e7d52;min-width:60px">CI</span><span style="color:var(--ink2)">Destinatário da ação. Substituível por lhe/lhes.</span></div>
+          <div style="display:flex;gap:.5rem"><span style="font-weight:800;color:#b07030;min-width:60px">CO</span><span style="color:var(--ink2)">Exigido pelo verbo com preposição. Não é destinatário.</span></div>
+          <div style="display:flex;gap:.5rem"><span style="font-weight:800;color:#6b52a8;min-width:60px">PS</span><span style="color:var(--ink2)">Predicativo do sujeito — atributo através de verbo copulativo (ser, estar, ficar...).</span></div>
+          <div style="display:flex;gap:.5rem"><span style="font-weight:800;color:#5c4e8a;min-width:60px">Mod.GV</span><span style="color:var(--ink2)">Modificador do grupo verbal — facultativo, modifica a ação (tempo, modo, lugar).</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="pt-gram-engine" style="display:none"></div>
+  </div>
+
+  <!-- ══ PAINEL: FIGURAS DE ESTILO ══ -->
+  <div id="pt-panel-figuras" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Figuras de Estilo</div>
+      <div class="ex-sec-sub">Aprende e identifica as figuras de estilo mais frequentes nos exames — com exemplos reais e exercícios de identificação.</div>
+    </div>
+    <div id="pt-fig-menu">
+      <!-- Fichas das figuras -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin-bottom:1.25rem" id="pt-fig-cards"></div>
+      <button onclick="ptFigStart()" style="width:100%;background:linear-gradient(135deg,#b07030,#c9a84c);color:#fff;border:none;border-radius:14px;padding:1rem 2rem;font-family:Montserrat,sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <i class="ph ph-play"></i> Iniciar exercícios de identificação (18 questões)
+      </button>
+    </div>
+    <div id="pt-fig-engine" style="display:none"></div>
+  </div>
+
+  <!-- ══ PAINEL: OS LUSÍADAS ══ -->
+  <div id="pt-panel-lusiadas" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Os Lusíadas</div>
+      <div class="ex-sec-sub">Guia de estudo completo — episódios, personagens, temas e quiz de preparação para o exame.</div>
+    </div>
+    <div id="pt-lus-content"></div>
+  </div>
+
+  <!-- ══ PAINEL: DISCURSO DIRETO/INDIRETO ══ -->
+  <div id="pt-panel-discurso" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Discurso Direto ↔ Indireto</div>
+      <div class="ex-sec-sub">Um dos temas mais frequentes no exame — pratica a transformação com exemplos reais e aprende as regras de transformação.</div>
+    </div>
+    <div id="pt-disc-menu">
+      <!-- Tabela de regras -->
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1rem;overflow-x:auto">
+        <div style="font-size:.75rem;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">📋 Regras de Transformação de Tempos Verbais</div>
+        <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+          <thead>
+            <tr style="background:#f8f6ff">
+              <th style="padding:.5rem .75rem;text-align:left;font-weight:800;color:#4a3f7a;border-bottom:2px solid #d4cdf0">Discurso Direto</th>
+              <th style="padding:.5rem .75rem;text-align:left;font-weight:800;color:#4a3f7a;border-bottom:2px solid #d4cdf0">→ Discurso Indireto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border)">Presente do indicativo</td><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border);color:#5c4e8a;font-weight:700">Pretérito imperfeito do indicativo</td></tr>
+            <tr style="background:#fdfcff"><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border)">Pretérito perfeito simples</td><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border);color:#5c4e8a;font-weight:700">Pretérito mais-que-perfeito</td></tr>
+            <tr><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border)">Futuro do indicativo</td><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border);color:#5c4e8a;font-weight:700">Condicional</td></tr>
+            <tr style="background:#fdfcff"><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border)">Imperativo</td><td style="padding:.4rem .75rem;border-bottom:1px solid var(--border);color:#5c4e8a;font-weight:700">Imperfeito do conjuntivo</td></tr>
+            <tr><td style="padding:.4rem .75rem">Presente do conjuntivo</td><td style="padding:.4rem .75rem;color:#5c4e8a;font-weight:700">Imperfeito do conjuntivo</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:.75rem;font-size:.75rem;color:var(--ink3);background:#f8f6ff;border-radius:8px;padding:.5rem .75rem"><strong>Dêiticos:</strong> hoje → naquele dia · amanhã → no dia seguinte · aqui → ali · agora → naquele momento · este → aquele</div>
+      </div>
+      <button onclick="ptDiscStart()" style="width:100%;background:linear-gradient(135deg,#1a4a2e,#2e7d52);color:#fff;border:none;border-radius:14px;padding:1rem 2rem;font-family:Montserrat,sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <i class="ph ph-play"></i> Praticar transformações (7 exercícios)
+      </button>
+    </div>
+    <div id="pt-disc-engine" style="display:none"></div>
+  </div>
+
+  <!-- ══ PAINEL: CONECTORES ══ -->
+  <div id="pt-panel-conectores" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Conectores do Discurso</div>
+      <div class="ex-sec-sub">Aprende os conectores por tipo e pratica a escolha correta em contexto — essencial para a composição e para as questões de gramática.</div>
+    </div>
+    <div id="pt-con-menu">
+      <div id="pt-con-fichas" style="margin-bottom:1.25rem"></div>
+      <button onclick="ptConStart()" style="width:100%;background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;border:none;border-radius:14px;padding:1rem 2rem;font-family:Montserrat,sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <i class="ph ph-play"></i> Preencher os espaços (15 exercícios)
+      </button>
+    </div>
+    <div id="pt-con-engine" style="display:none"></div>
+  </div>
+
   <!-- ══ PAINEL: COMPOSIÇÃO ══ -->
   <div id="pt-panel-composicao" class="ex-panel">
     <div class="ex-sec-head">
