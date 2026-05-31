@@ -151,9 +151,10 @@ function ptFigStart() {
   _ptFig.total = 0;
   _ptFig.answered = false;
   _ptFig.streak = 0;
-  document.getElementById('pt-fig-menu').style.display = 'none';
+  var menu = document.getElementById('pt-fig-menu');
   var eng = document.getElementById('pt-fig-engine');
-  eng.style.display = 'block';
+  if (menu) menu.style.display = 'none';
+  if (eng) eng.style.display = 'block';
   ptFigRender();
 }
 
@@ -224,8 +225,10 @@ function ptFigSelect(btn) {
 function ptFigNext() { _ptFig.idx++; ptFigRender(); }
 
 function ptFigBack() {
-  document.getElementById('pt-fig-engine').style.display = 'none';
-  document.getElementById('pt-fig-menu').style.display = 'block';
+  var eng = document.getElementById('pt-fig-engine');
+  var menu = document.getElementById('pt-fig-menu');
+  if (eng) eng.style.display = 'none';
+  if (menu) menu.style.display = 'block';
 }
 
 function ptFigFinish() {
@@ -350,8 +353,10 @@ var _ptDisc = { idx: 0, score: 0, total: 0, answered: false, banco: [] };
 function ptDiscStart() {
   _ptDisc.banco = PT_DISCURSO_BANCO.filter(function(q){ return q.tipo !== 'regra'; }).slice().sort(function(){ return Math.random()-.5; });
   _ptDisc.idx = 0; _ptDisc.score = 0; _ptDisc.total = 0; _ptDisc.answered = false;
-  document.getElementById('pt-disc-menu').style.display = 'none';
-  document.getElementById('pt-disc-engine').style.display = 'block';
+  var dmenu = document.getElementById('pt-disc-menu');
+  var deng = document.getElementById('pt-disc-engine');
+  if (dmenu) dmenu.style.display = 'none';
+  if (deng) deng.style.display = 'block';
   ptDiscRender();
 }
 

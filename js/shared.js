@@ -1427,20 +1427,29 @@ function stCheck(qid, tipo, val, btn) {
   if (correct) _stScore.correct++;
   _stScore.total++;
   var fb = document.getElementById(qid + '-fb');
-  fb.className = 'feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
-  fb.innerHTML = makeFeedbackHTML(correct, expl, tipo==='fill'?val:undefined);
-  document.getElementById('st-score').textContent = _stScore.correct;
-  document.getElementById('st-total').textContent = '/ ' + _stScore.total;
-  document.getElementById('st-prog').style.width = (_stScore.total > 0 ? _stScore.correct/_stScore.total*100 : 0) + '%';
+  if (fb) {
+    fb.className = 'feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
+    fb.innerHTML = makeFeedbackHTML(correct, expl, tipo==='fill'?val:undefined);
+  }
+  var stScore = document.getElementById('st-score');
+  var stTotal = document.getElementById('st-total');
+  var stProg  = document.getElementById('st-prog');
+  if (stScore) stScore.textContent = _stScore.correct;
+  if (stTotal) stTotal.textContent = '/ ' + _stScore.total;
+  if (stProg)  stProg.style.width = (_stScore.total > 0 ? _stScore.correct/_stScore.total*100 : 0) + '%';
 }
 
 function stNovas() {
   if (window._stContext && window._stContext.gerador) {
     _stAnswered = {}; _stScore = { correct: 0, total: 0 };
-    document.getElementById('subtema-body').innerHTML = _buildStQuizHTML(window._stContext.gerador());
-    document.getElementById('st-score').textContent = '0';
-    document.getElementById('st-total').textContent = '/ 0';
-    document.getElementById('st-prog').style.width = '0%';
+    var sbody = document.getElementById('subtema-body');
+    var sc = document.getElementById('st-score');
+    var st = document.getElementById('st-total');
+    var sp = document.getElementById('st-prog');
+    if (sbody) sbody.innerHTML = _buildStQuizHTML(window._stContext.gerador());
+    if (sc) sc.textContent = '0';
+    if (st) st.textContent = '/ 0';
+    if (sp) sp.style.width = '0%';
   }
 }
 
