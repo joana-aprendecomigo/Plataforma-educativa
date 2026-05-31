@@ -218,16 +218,16 @@
     <p class="ex-hero-sub">Questões reais com texto e explicação — treina compreensão do oral, leitura e gramática por tema, ou navega prova a prova.</p>
     <div class="ex-hero-stats">
       <div class="ex-hstat">
-        <div class="ex-hstat-n" id="pt-stat-total">80+</div>
-        <div class="ex-hstat-l">Questões MC</div>
+        <div class="ex-hstat-n" id="pt-stat-total">200+</div>
+        <div class="ex-hstat-l">Exercícios</div>
       </div>
       <div class="ex-hstat">
         <div class="ex-hstat-n">8</div>
         <div class="ex-hstat-l">Provas</div>
       </div>
       <div class="ex-hstat">
-        <div class="ex-hstat-n">2</div>
-        <div class="ex-hstat-l">Temas</div>
+        <div class="ex-hstat-n">6</div>
+        <div class="ex-hstat-l">Módulos</div>
       </div>
       <div class="ex-hstat" id="pt-stat-feitas-wrap" style="cursor:pointer" onclick="ptSwitchMode('progresso',null)">
         <div class="ex-hstat-n" id="pt-stat-feitas">0</div>
@@ -613,15 +613,19 @@ function ptCountByTema(tema) {
 function ptSwitchMode(mode, btn) {
   _ptCurrentMode = mode;
   var panels = document.querySelectorAll('.ex-panel');
-  panels.forEach(function(p){ p.classList.remove('active'); });
+  panels.forEach(function(p){ p.classList.remove('active'); p.style.display = ''; });
   var tabs = document.querySelectorAll('.ex-tab');
   tabs.forEach(function(t){ t.classList.remove('active'); });
   var panel = document.getElementById('pt-panel-' + mode);
   if (panel) panel.classList.add('active');
   if (btn) btn.classList.add('active');
-  document.getElementById('pt-inline-engine').innerHTML = '';
+  var eng = document.getElementById('pt-inline-engine');
+  if (eng) { eng.innerHTML = ''; eng.style.display = 'none'; }
   if (mode === 'progresso') ptRenderProgresso();
   if (mode === 'composicao') ptRenderComposicaoTemas();
+  if (mode === 'lusiadas') { if (typeof ptLusRenderMenu === 'function') ptLusRenderMenu(); }
+  if (mode === 'figuras') ptRenderFigCards();
+  if (mode === 'conectores') ptRenderConFichas();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1231,6 +1235,105 @@ function ptResetProgress() {
   ptRenderProgresso();
 }
 
+/* ══ FIGURAS — Render cards ══ */
+function ptRenderFigCards() {
+  var wrap = document.getElementById('pt-fig-cards');
+  if (!wrap || typeof PT_FIGURAS_INFO === 'undefined') return;
+  var h = '';
+  PT_FIGURAS_INFO.forEach(function(f) {
+    h += '<div style="background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem">';
+    h += '<div style="font-size:.9rem;font-weight:800;color:var(--ink1);margin-bottom:.35rem">' + f.nome + '</div>';
+    h += '<div style="font-size:.8rem;color:var(--ink2);line-height:1.6;margin-bottom:.5rem">' + f.def + '</div>';
+    h += '<div style="font-family:Cormorant Garamond,serif;font-size:.9rem;color:#b07030;font-style:italic;background:#fefbf0;border-radius:8px;padding:.4rem .7rem;margin-bottom:.35rem">' + f.ex[0] + '</div>';
+    h += '<div style="font-size:.7rem;font-weight:700;color:#6b52a8;background:#f0edf7;border-radius:999px;padding:3px 9px;display:inline-block"><i class="ph ph-lightbulb"></i> ' + f.dica + '</div>';
+    h += '</div>';
+  });
+  wrap.innerHTML = h;
+}
+
+/* ══ CONECTORES — Render fichas ══ */
+function ptRenderConFichas() {
+  var wrap = document.getElementById('pt-con-fichas');
+  if (!wrap || typeof PT_CONECTORES_INFO === 'undefined') return;
+  var h = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.6rem">';
+  PT_CONECTORES_INFO.forEach(function(c) {
+    h += '<div style="background:' + c.bg + ';border:1.5px solid ' + c.cor + '33;border-radius:12px;padding:.85rem 1rem">';
+    h += '<div style="font-size:.8rem;font-weight:800;color:' + c.cor + ';margin-bottom:.4rem">' + c.tipo + '</div>';
+    h += '<div style="font-size:.8rem;color:var(--ink2)">' + c.exemplos.join(' · ') + '</div>';
+    h += '</div>';
+  });
+  h += '</div>';
+  wrap.innerHTML = h;
+}
+
+/* ══ COMPOSIÇÃO — Autocorreção por checklist ══ */
+function ptCompAutocheck() {
+  var ta = document.getElementById('pt-comp-textarea');
+  var result = document.getElementById('pt-comp-check-result');
+  if (!ta || !result) return;
+  var texto = ta.value.trim();
+  if (!texto) { alert('Escreve o teu texto primeiro!'); return; }
+
+  var words = texto.split(/\s+/).filter(function(w){ return w.length > 0; }).length;
+  var paragrafos = texto.split(/\n\s*\n/).filter(function(p){ return p.trim().length > 20; }).length;
+  var frases = texto.split(/[.!?]+/).filter(function(f){ return f.trim().length > 10; }).length;
+
+  // Detectar conectores
+  var conectoresUsados = [];
+  var conectoresLista = ['porque','portanto','contudo','no entanto','embora','ainda que','além disso','por outro lado','em conclusão','em suma','por exemplo','todavia','porém','assim','desta forma','nomeadamente'];
+  var textoLower = texto.toLowerCase();
+  conectoresLista.forEach(function(c) {
+    if (textoLower.indexOf(c) !== -1) conectoresUsados.push(c);
+  });
+
+  // Verificar estrutura
+  var temIntroducao = paragrafos >= 1;
+  var temDesenvolvimento = paragrafos >= 2;
+  var temConclusao = paragrafos >= 3 || /conclus|suma|portanto|assim sendo|em suma|concluindo/.test(textoLower);
+
+  var checks = [
+    { ok: words >= 160 && words <= 260, label: 'Extensão válida (160-260 palavras)', detalhe: words + ' palavras' },
+    { ok: words >= 55, label: 'Mínimo de 55 palavras (≥ 0 pontos)', detalhe: words < 55 ? '⚠️ Abaixo de 55 = 0 pontos!' : '' },
+    { ok: temIntroducao, label: 'Tem introdução (pelo menos 1 parágrafo)', detalhe: '' },
+    { ok: temDesenvolvimento, label: 'Tem desenvolvimento (≥ 2 parágrafos)', detalhe: paragrafos + ' parágrafos detetados' },
+    { ok: temConclusao, label: 'Tem conclusão (palavra ou parágrafo de conclusão)', detalhe: '' },
+    { ok: conectoresUsados.length >= 2, label: 'Usa conectores do discurso (≥ 2)', detalhe: conectoresUsados.length > 0 ? 'Detetados: ' + conectoresUsados.join(', ') : 'Nenhum detetado — usa «portanto», «contudo», «além disso»...' },
+    { ok: frases >= 5, label: 'Texto com variedade frásica (≥ 5 frases)', detalhe: frases + ' frases detetadas' }
+  ];
+
+  var pontos = 0;
+  var pesos = [3, 2, 1, 2, 2, 2, 1]; // peso de cada critério
+  checks.forEach(function(c, i) { if (c.ok) pontos += pesos[i]; });
+  var max = pesos.reduce(function(a,b){ return a+b; }, 0);
+
+  var cor = pontos >= max * .8 ? '#2e7d52' : pontos >= max * .5 ? '#b07030' : '#c0392b';
+  var bg = pontos >= max * .8 ? '#e8f5ee' : pontos >= max * .5 ? '#fef3e2' : '#fdecea';
+
+  var h = '<div style="background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem">';
+  h += '<div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap">';
+  h += '<div style="background:' + bg + ';border-radius:14px;padding:.85rem 1.25rem;text-align:center">';
+  h += '<div style="font-family:JetBrains Mono,monospace;font-size:1.8rem;font-weight:700;color:' + cor + '">' + pontos + '<span style="font-size:1rem;opacity:.5">/' + max + '</span></div>';
+  h += '<div style="font-size:.68rem;font-weight:700;color:' + cor + ';text-transform:uppercase;letter-spacing:.08em">Checklist</div>';
+  h += '</div>';
+  h += '<div><div style="font-size:.82rem;font-weight:700;color:var(--ink1)">Verificação automática</div><div style="font-size:.75rem;color:var(--ink3);margin-top:.2rem">Baseada em critérios objetivos — não substitui a correção do professor.</div></div>';
+  h += '</div>';
+  h += '<div style="display:flex;flex-direction:column;gap:.5rem">';
+  checks.forEach(function(c) {
+    h += '<div style="display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .6rem;border-radius:8px;background:' + (c.ok ? '#f0faf4' : '#fff8f8') + '">';
+    h += '<span style="font-size:1rem;flex-shrink:0">' + (c.ok ? '✅' : '❌') + '</span>';
+    h += '<div><div style="font-size:.82rem;font-weight:' + (c.ok ? '600' : '700') + ';color:' + (c.ok ? '#2e7d52' : '#c0392b') + '">' + c.label + '</div>';
+    if (c.detalhe) h += '<div style="font-size:.74rem;color:var(--ink4);margin-top:.1rem">' + c.detalhe + '</div>';
+    h += '</div></div>';
+  });
+  h += '</div>';
+  // Nota: critérios qualitativos
+  h += '<div style="margin-top:1rem;padding:.75rem 1rem;background:#f8f6ff;border-radius:10px;font-size:.78rem;color:var(--ink3);line-height:1.6"><strong>Não verificável automaticamente:</strong> coerência e coesão do texto, qualidade do vocabulário, correção ortográfica e gramática — estes são avaliados pelo professor.</div>';
+  h += '</div>';
+  result.innerHTML = h;
+  result.style.display = 'block';
+  result.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
 /* ══ HERO PARTICLES ══ */
 function ptInitParticles() {
   var wrap = document.getElementById('pt-particles');
@@ -1253,6 +1356,8 @@ document.addEventListener('DOMContentLoaded', function() {
   ptRenderYearGrid();
   ptRenderComposicaoTemas();
   ptUpdateStatFeitas();
+  // Inicializar Os Lusíadas (será renderizado quando o painel abrir)
+  // Os outros painéis renderizam ao clicar na tab
 
   // Contar total
   var total = ptAllQuestions().length;
