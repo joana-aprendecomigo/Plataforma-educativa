@@ -42,14 +42,15 @@ function _capBuildQuizHTML(exs, qidPrefix, checkFnCall) {
       var vC = ex.resposta === 'V';
       html += '<div style="display:flex;gap:.75rem;flex-wrap:wrap"><button class="option-btn" data-correct="' + vC + '" onclick="' + checkFnCall + '(\'' + qid + '\',\'mc\',' + vC + ',this)"><span class="opt-label" style="background:rgba(62,207,142,.2);color:var(--correct)">V</span>Verdadeiro</button><button class="option-btn" data-correct="' + (!vC) + '" onclick="' + checkFnCall + '(\'' + qid + '\',\'mc\',' + (!vC) + ',this)"><span class="opt-label" style="background:rgba(255,107,107,.2);color:var(--wrong)">F</span>Falso</button></div>';
     }
-    html += '<div class="feedback" id="' + qid + '-fb"></div><span id="' + qid + '-expl" style="display:none">' + (ex.expl||'').replace(/'/g,"&#39;") + '</span></div>';
+    html += '<div class="feedback" id="' + qid + '-fb"></div><span id="' + qid + '-expl" style="display:none" data-expl="' + (ex.expl||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;') + '"></span></div>';
   });
   return html;
 }
 
 // ── Shared: check an answer (returns {correct:bool} or null if invalid) ──
 function _capCheckAnswer(qid, tipo, val) {
-  var expl = (_capEl(qid + '-expl') || {}).textContent || '';
+  var _explEl = _capEl(qid + '-expl');
+  var expl = _explEl ? (_explEl.getAttribute('data-expl') || _explEl.textContent || '') : '';
   var container = _capEl(qid);
   var correct = false;
   if (tipo === 'fill' || tipo === 'fill_frac') {

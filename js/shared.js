@@ -1408,7 +1408,7 @@ function stCheck(qid, tipo, val, btn) {
   if (_stAnswered[qid]) return;
   _stAnswered[qid] = true;
   var explEl = document.getElementById(qid + '-expl');
-  var expl = explEl ? explEl.textContent : '';
+  var expl = explEl ? (explEl.getAttribute('data-expl') || explEl.textContent || '') : '';
   var container = document.getElementById(qid);
   var correct = false;
   if (tipo === 'fill' || tipo === 'fill_frac') {
