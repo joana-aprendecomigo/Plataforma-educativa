@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Exames Nacionais de Português 9.º Ano — simulador cronometrado, prática por tema, texto + questão em simultâneo.">
+<meta name="theme-color" content="#4a3f7a">
+<title>Exames Nacionais · Português 9.º Ano · 3ponto14</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<style>
+/* ═══════════════════════════════════════════════════════════
+   EXAMES PT — Estilos (reutiliza padrões de exames.html)
+═══════════════════════════════════════════════════════════ */
+:root {
+  --pt-primary: #4a3f7a;
+  --pt-mid: #6b5fa0;
+  --pt-light: #f3f0fb;
+  --pt-accent: #c9a84c;
+}
+
+/* Topbar */
+.ex-topbar{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.07);position:sticky;top:0;z-index:200;padding:.7rem 1.5rem;display:flex;align-items:center;gap:.75rem}
+.ex-topbar-back{font-size:.75rem;font-weight:600;color:#6b5fa0;text-decoration:none;display:flex;align-items:center;gap:.3rem;padding:5px 12px;border:1.5px solid #d4cdf0;border-radius:999px;transition:all .15s;margin-left:auto;white-space:nowrap}
+.ex-topbar-back:hover{background:#f0edf7;border-color:#7c6fa0}
+
+/* Hero */
+.ex-hero{position:relative;overflow:hidden;background:linear-gradient(150deg,#1a1033 0%,#2d2450 35%,#4a3f7a 70%,#6b5fa0 100%);padding:4rem 1.5rem 3rem;text-align:center}
+.ex-hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ex-hero-particle{position:absolute;border-radius:50%;opacity:.15;animation:floatP 8s ease-in-out infinite}
+@keyframes floatP{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+.ex-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.ex-hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85);font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:999px;margin-bottom:1.2rem}
+.ex-hero h1{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.1;position:relative}
+.ex-hero h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.ex-hero-sub{color:rgba(255,255,255,.65);font-size:.92rem;max-width:520px;margin:0 auto 2rem;line-height:1.7}
+.ex-hero-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+.ex-hstat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:.85rem 1.6rem;text-align:center;backdrop-filter:blur(4px);transition:all .2s}
+.ex-hstat:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.ex-hstat-n{font-family:'JetBrains Mono',monospace;font-size:1.9rem;font-weight:700;color:#fff;line-height:1}
+.ex-hstat-l{font-size:.63rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+
+/* Layout */
+.ex-page{max-width:860px;margin:0 auto;padding:2rem 1.25rem 5rem}
+
+/* Mode Tabs */
+.ex-tabs-wrap{display:flex;gap:0;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:.35rem;margin-bottom:2rem;position:sticky;top:57px;z-index:100;backdrop-filter:blur(8px)}
+.ex-tab{flex:1;padding:.7rem .5rem;border:none;background:transparent;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;color:var(--ink3);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:.4rem;white-space:nowrap}
+.ex-tab.active{background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;box-shadow:0 4px 12px rgba(74,63,122,.4)}
+.ex-tab:hover:not(.active){background:rgba(107,95,160,.08);color:var(--ink1)}
+.ex-tab .tab-lbl{display:inline}
+
+/* Panels */
+.ex-panel{display:none}
+.ex-panel.active{display:block;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Section headers */
+.ex-sec-head{margin-bottom:1.5rem}
+.ex-sec-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--ink1);margin-bottom:.2rem}
+.ex-sec-sub{font-size:.83rem;color:var(--ink3);line-height:1.5}
+
+/* ═══════════════
+   PAINEL TEMAS
+═══════════════ */
+.pt-topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem}
+.pt-topic-card{background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem 1.5rem;cursor:pointer;transition:all .22s;text-align:left;width:100%;position:relative;overflow:hidden}
+.pt-topic-card:hover{border-color:#8b7cc0;transform:translateY(-3px);box-shadow:0 12px 32px rgba(92,78,138,.14)}
+.pt-topic-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem;font-size:1.3rem}
+.pt-topic-label{font-size:.95rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem;line-height:1.2}
+.pt-topic-sub{font-size:.74rem;color:var(--ink4);line-height:1.45;margin-bottom:.9rem}
+.pt-topic-count{font-size:.7rem;font-weight:700;color:var(--ink4)}
+
+/* ═══════════════════
+   PAINEL POR PROVA
+═══════════════════ */
+.pt-year-grid{display:flex;flex-direction:column;gap:.6rem}
+.pt-year-row{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;transition:all .18s}
+.pt-year-row:hover{border-color:#c5bcee;background:#fdfcff}
+.pt-year-pill{background:linear-gradient(135deg,#5c4e8a,#7c6fa0);color:#fff;font-size:.68rem;font-weight:800;padding:4px 12px;border-radius:999px;white-space:nowrap;letter-spacing:.04em}
+.pt-year-label{flex:1;font-size:.87rem;font-weight:700;color:var(--ink1)}
+.pt-year-sub{font-size:.73rem;color:var(--ink4);margin-top:.1rem}
+.pt-year-actions{display:flex;gap:.4rem;flex-shrink:0}
+.pt-year-btn{display:inline-flex;align-items:center;gap:.3rem;padding:6px 13px;border-radius:999px;font-size:.71rem;font-weight:800;cursor:pointer;border:1.5px solid;transition:all .15s;font-family:'Montserrat',sans-serif;white-space:nowrap}
+.pt-year-btn-practice{background:#f0edf7;border-color:#c9bfe8;color:#5c4e8a}
+.pt-year-btn-practice:hover{background:#5c4e8a;color:#fff;border-color:#5c4e8a}
+.pt-year-btn-view{background:var(--surface);border-color:var(--border);color:var(--ink3)}
+.pt-year-btn-view:hover{background:var(--ink1);color:#fff;border-color:var(--ink1)}
+
+/* ═══════════════════
+   SIMULADOR
+═══════════════════ */
+.pt-sim-card{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem 2rem;margin-bottom:1rem}
+.pt-sim-opts{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+.pt-sim-opt{border:2px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;cursor:pointer;transition:all .18s;text-align:left;background:var(--white);width:100%}
+.pt-sim-opt:hover{border-color:#8b7cc0;background:#faf9ff}
+.pt-sim-opt.active{border-color:#5c4e8a;background:#f3f0fb;box-shadow:0 0 0 3px rgba(92,78,138,.1)}
+.pt-sim-opt-icon{font-size:1.3rem;margin-bottom:.4rem}
+.pt-sim-opt-title{font-size:.86rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem}
+.pt-sim-opt-sub{font-size:.73rem;color:var(--ink4)}
+.pt-sim-launch{background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;border:none;border-radius:14px;padding:1rem 2rem;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;transition:all .2s;letter-spacing:.02em}
+.pt-sim-launch:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(74,63,122,.4)}
+
+/* Timer */
+.ex-sim-timer{background:linear-gradient(135deg,#1e1640,#4a3f7a);border-radius:16px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.ex-sim-timer-clock{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:700;color:#fff;min-width:100px;text-shadow:0 0 20px rgba(180,160,255,.4)}
+.ex-sim-timer-info{flex:1}
+.ex-sim-timer-label{font-size:.7rem;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.ex-sim-timer-progress{height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;margin-top:.5rem}
+.ex-sim-timer-bar{height:100%;background:linear-gradient(90deg,#b8a9e8,#fff);border-radius:99px;transition:width 1s linear}
+.ex-sim-stop-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);border-radius:10px;padding:8px 16px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:'Montserrat',sans-serif}
+.ex-sim-stop-btn:hover{background:rgba(255,255,255,.2)}
+
+/* Resultado */
+.ex-result-hero{background:linear-gradient(135deg,#2d2450,#4a3f7a);border-radius:20px;padding:2.5rem 2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.ex-result-nota-big{font-family:'JetBrains Mono',monospace;font-size:3.5rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.25rem}
+.ex-result-nota-max{font-size:1.2rem;opacity:.5}
+.ex-result-detail{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:.5rem}
+.ex-result-msg{font-size:.9rem;color:rgba(255,255,255,.85);font-weight:600}
+.ex-result-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.ex-result-btns .btn{border-radius:12px;padding:.75rem 1.5rem}
+
+/* ═══════════════════════════
+   ENGINE QUESTÃO (reutiliza pn-*)
+═══════════════════════════ */
+#pt-inline-engine .pn-question-card{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem}
+#pt-inline-engine .pn-question-card .pn-back-btn{background:none;border:none;font-size:.78rem;font-weight:700;color:var(--pt-mid);cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:0;margin-bottom:1rem;font-family:'Montserrat',sans-serif}
+#pt-inline-engine .pn-question-card .pn-back-btn:hover{color:var(--pt-primary)}
+
+/* Badge de tipo */
+.pt-badge{display:inline-flex;align-items:center;gap:.3rem;padding:3px 10px;border-radius:999px;font-size:.65rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.pt-badge-grammar{background:#fef3e2;color:#b07030;border:1px solid #f4d99a}
+.pt-badge-comp{background:#e8f4fd;color:#2a7db5;border:1px solid #b8d9f5}
+
+/* Texto associado à questão */
+.pt-texto-box{background:#f8f6ff;border:1.5px solid #ddd8f5;border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;font-size:.88rem;line-height:1.8;color:var(--ink2)}
+.pt-texto-box-title{font-size:.68rem;font-weight:800;color:#7c6fa0;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+.pt-texto-box-content{font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.85;color:var(--ink1)}
+
+/* Ver texto toggle */
+.pt-toggle-texto{display:flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:700;color:var(--pt-mid);cursor:pointer;padding:6px 14px;border:1.5px solid #d4cdf0;border-radius:999px;background:var(--white);transition:all .15s;margin-bottom:.75rem}
+.pt-toggle-texto:hover{background:#f0edf7;border-color:#8b7cc0}
+
+/* Progresso painel */
+.ex-progress-bar-section{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.ex-progress-bar-title{font-size:.78rem;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between}
+.ex-progress-topic-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.ex-progress-topic-label{font-size:.74rem;font-weight:700;color:var(--ink2);min-width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ex-progress-bar{flex:1;height:7px;background:var(--border);border-radius:99px;overflow:hidden}
+.ex-progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#8b7cc0,#5c4e8a);transition:width .5s ease}
+.ex-progress-pct{font-size:.71rem;font-weight:800;color:#5c4e8a;min-width:32px;text-align:right}
+
+/* Overlay visualizador de prova */
+.pt-overlay{position:fixed;inset:0;background:rgba(10,8,22,.92);z-index:9999;overflow-y:auto;overscroll-behavior:contain}
+.pt-overlay-inner{max-width:820px;margin:0 auto;padding:1rem}
+.pt-overlay-bar{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,8,22,.95);padding:.75rem 0;z-index:1;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:1rem;gap:1rem}
+.pt-overlay-title{color:#fff;font-weight:800;font-size:.95rem}
+.pt-overlay-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:8px;padding:7px 16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.3rem;font-family:'Montserrat',sans-serif;font-size:.78rem;transition:background .15s}
+.pt-overlay-close:hover{background:rgba(255,255,255,.2)}
+.pt-overlay-pg{width:100%;border-radius:8px;margin-bottom:.75rem;display:block;box-shadow:0 4px 24px rgba(0,0,0,.5)}
+
+/* Info card Composição */
+.pt-composicao-card{background:linear-gradient(135deg,#1e1640,#3a2d6e);border-radius:20px;padding:2rem;color:#fff;margin-bottom:1rem}
+.pt-composicao-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-bottom:.5rem}
+.pt-composicao-card p{font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1rem}
+.pt-crit-item{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.6rem}
+.pt-crit-icon{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.pt-crit-text{font-size:.81rem;color:rgba(255,255,255,.8);line-height:1.5}
+.pt-crit-text strong{color:#fff}
+.pt-counter-wrap{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:1rem 1.25rem;margin-top:1rem}
+.pt-counter-num{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;color:#fff}
+.pt-counter-label{font-size:.68rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em}
+.pt-themes-composicao{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem}
+.pt-theme-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:1rem;cursor:pointer;transition:all .18s;text-align:left}
+.pt-theme-btn:hover{background:rgba(255,255,255,.14)}
+.pt-theme-btn-icon{font-size:1.4rem;margin-bottom:.4rem}
+.pt-theme-btn-title{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:.15rem}
+.pt-theme-btn-sub{font-size:.68rem;color:rgba(255,255,255,.5)}
+
+/* Responsivo */
+@media(max-width:640px){
+  .ex-hero h1{font-size:2rem}
+  .pt-topic-grid{grid-template-columns:1fr 1fr}
+  .pt-sim-opts{grid-template-columns:1fr}
+  .ex-tab .tab-lbl{display:none}
+  .pt-year-actions{flex-direction:column}
+  .pt-themes-composicao{grid-template-columns:1fr}
+}
+@media(max-width:400px){
+  .pt-topic-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-no-pomodoro="1">
+
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+
+<!-- Topbar -->
+<nav class="ex-topbar">
+  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
+    <div class="mark bg-gradient-to-br from-[#77998E] to-[#516860] rounded-[10px] w-[34px] h-[34px] flex items-center justify-center text-[.6rem] font-extrabold text-white tracking-tight">3π</div>
+    <span class="wordmark" style="font-size:1rem">3ponto<em>14</em></span>
+  </a>
+  <div class="topbar-divider"></div>
+  <span style="font-size:.82rem;font-weight:700;color:var(--ink2)">Exames Nacionais</span>
+  <a href="index.html" class="ex-topbar-back"><i class="ph ph-arrow-left"></i> Início</a>
+</nav>
+
+<!-- Hero -->
+<header class="ex-hero">
+  <div class="ex-hero-grid"></div>
+  <div class="ex-hero-particles" id="pt-particles"></div>
+  <div style="position:relative">
+    <div class="ex-hero-eyebrow"><i class="ph ph-book-open-text"></i> Provas Finais Nacionais</div>
+    <h1>Português<br><em>9.º Ano</em></h1>
+    <p class="ex-hero-sub">Questões reais com texto e explicação — treina compreensão do oral, leitura e gramática por tema, ou navega prova a prova.</p>
+    <div class="ex-hero-stats">
+      <div class="ex-hstat">
+        <div class="ex-hstat-n" id="pt-stat-total">80+</div>
+        <div class="ex-hstat-l">Questões MC</div>
+      </div>
+      <div class="ex-hstat">
+        <div class="ex-hstat-n">8</div>
+        <div class="ex-hstat-l">Provas</div>
+      </div>
+      <div class="ex-hstat">
+        <div class="ex-hstat-n">2</div>
+        <div class="ex-hstat-l">Temas</div>
+      </div>
+      <div class="ex-hstat" id="pt-stat-feitas-wrap" style="cursor:pointer" onclick="ptSwitchMode('progresso',null)">
+        <div class="ex-hstat-n" id="pt-stat-feitas">0</div>
+        <div class="ex-hstat-l">Feitas por ti</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Conteúdo -->
+<div class="ex-page">
+
+  <!-- TABS -->
+  <div class="ex-tabs-wrap" role="tablist">
+    <button class="ex-tab active" onclick="ptSwitchMode('temas',this)" role="tab">
+      <i class="ph ph-books"></i> <span class="tab-lbl">Por Tema</span>
+    </button>
+    <button class="ex-tab" onclick="ptSwitchMode('provas',this)" role="tab">
+      <i class="ph ph-calendar-blank"></i> <span class="tab-lbl">Por Prova</span>
+    </button>
+    <button class="ex-tab" onclick="ptSwitchMode('simulador',this)" role="tab">
+      <i class="ph ph-timer"></i> <span class="tab-lbl">Simulador</span>
+    </button>
+    <button class="ex-tab" onclick="ptSwitchMode('composicao',this)" role="tab">
+      <i class="ph ph-pencil-line"></i> <span class="tab-lbl">Composição</span>
+    </button>
+    <button class="ex-tab" onclick="ptSwitchMode('progresso',this)" role="tab">
+      <i class="ph ph-chart-bar"></i> <span class="tab-lbl">Progresso</span>
+    </button>
+  </div>
+
+  <!-- ENGINE INLINE (partilhado entre todos os painéis) -->
+  <div id="pt-inline-engine"></div>
+
+  <!-- ══ PAINEL: POR TEMA ══ -->
+  <div id="pt-panel-temas" class="ex-panel active">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Prática por Tema</div>
+      <div class="ex-sec-sub">Escolhe um tema e treina questões reais de várias provas — mistura compreensão e gramática.</div>
+    </div>
+    <div class="pt-topic-grid" id="pt-topic-grid"></div>
+  </div>
+
+  <!-- ══ PAINEL: POR PROVA ══ -->
+  <div id="pt-panel-provas" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Por Prova</div>
+      <div class="ex-sec-sub">Navega as questões de cada exame nacional, com o texto da prova visível ao lado.</div>
+    </div>
+    <div class="pt-year-grid" id="pt-year-grid"></div>
+  </div>
+
+  <!-- ══ PAINEL: SIMULADOR ══ -->
+  <div id="pt-panel-simulador" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Simulador Cronometrado</div>
+      <div class="ex-sec-sub">Treina num tempo limitado, como no exame real. Só as questões de escolha múltipla (com resposta certa objetiva).</div>
+    </div>
+    <div id="pt-sim-setup">
+      <div class="pt-sim-card">
+        <div style="font-size:.8rem;font-weight:800;color:var(--ink2);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.07em">Número de questões</div>
+        <div class="pt-sim-opts" id="pt-sim-num-opts">
+          <button class="pt-sim-opt active" onclick="ptSimSetNum(10,this)">
+            <div class="pt-sim-opt-icon">⚡</div>
+            <div class="pt-sim-opt-title">10 questões</div>
+            <div class="pt-sim-opt-sub">~15 minutos</div>
+          </button>
+          <button class="pt-sim-opt" onclick="ptSimSetNum(20,this)">
+            <div class="pt-sim-opt-icon">🎯</div>
+            <div class="pt-sim-opt-title">20 questões</div>
+            <div class="pt-sim-opt-sub">~30 minutos</div>
+          </button>
+          <button class="pt-sim-opt" onclick="ptSimSetNum(30,this)">
+            <div class="pt-sim-opt-icon">📚</div>
+            <div class="pt-sim-opt-title">30 questões</div>
+            <div class="pt-sim-opt-sub">~45 minutos</div>
+          </button>
+          <button class="pt-sim-opt" onclick="ptSimSetNum(999,this)">
+            <div class="pt-sim-opt-icon">🏆</div>
+            <div class="pt-sim-opt-title">Todas</div>
+            <div class="pt-sim-opt-sub">Banco completo</div>
+          </button>
+        </div>
+      </div>
+      <div class="pt-sim-card">
+        <div style="font-size:.8rem;font-weight:800;color:var(--ink2);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.07em">Tema</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem" id="pt-sim-tema-pills">
+          <button class="ex-sim-tema-pill active" onclick="ptSimSetTema('',this)">Todos</button>
+          <button class="ex-sim-tema-pill" onclick="ptSimSetTema('compreensao',this)"><i class="ph ph-eye"></i> Compreensão</button>
+          <button class="ex-sim-tema-pill" onclick="ptSimSetTema('gramatica',this)"><i class="ph ph-text-t"></i> Gramática</button>
+        </div>
+        <button class="pt-sim-launch" onclick="ptSimLaunch()">
+          <i class="ph ph-play"></i> Iniciar simulador
+        </button>
+      </div>
+    </div>
+    <div id="pt-sim-running" style="display:none"></div>
+  </div>
+
+  <!-- ══ PAINEL: COMPOSIÇÃO ══ -->
+  <div id="pt-panel-composicao" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">Composição Escrita</div>
+      <div class="ex-sec-sub">A composição não tem correção automática — mas podes escrever aqui com os critérios sempre visíveis.</div>
+    </div>
+
+    <div class="pt-composicao-card">
+      <h3><i class="ph ph-pencil-line"></i> Como funciona</h3>
+      <p>Nos exames de Português, a composição vale <strong>20 pontos</strong> (em 100). É avaliada em três dimensões:</p>
+      <div class="pt-crit-item">
+        <div class="pt-crit-icon">📝</div>
+        <div class="pt-crit-text"><strong>Tema e estrutura (8 pts):</strong> Defendes um ponto de vista claro? Apresentas pelo menos duas razões? Tens introdução, desenvolvimento e conclusão?</div>
+      </div>
+      <div class="pt-crit-item">
+        <div class="pt-crit-icon">✍️</div>
+        <div class="pt-crit-text"><strong>Coerência e coesão (6 pts):</strong> O texto tem sentido lógico? As frases e parágrafos estão bem ligados com conectores?</div>
+      </div>
+      <div class="pt-crit-item">
+        <div class="pt-crit-icon">📖</div>
+        <div class="pt-crit-text"><strong>Correção linguística (6 pts):</strong> Ortografia, pontuação, vocabulário variado e estrutura frásica correta.</div>
+      </div>
+      <div class="pt-crit-item">
+        <div class="pt-crit-icon">📏</div>
+        <div class="pt-crit-text"><strong>Extensão obrigatória:</strong> <strong>mínimo 160 palavras, máximo 260 palavras.</strong> Abaixo de 55 palavras = 0 pontos.</div>
+      </div>
+    </div>
+
+    <div class="pt-themes-composicao" id="pt-comp-temas"></div>
+
+    <div id="pt-comp-editor" style="display:none;margin-top:1.5rem">
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem">
+        <div id="pt-comp-enun" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.8;color:var(--ink1);margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)"></div>
+        <textarea id="pt-comp-textarea" rows="14" placeholder="Escreve o teu texto aqui..." style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.25rem;font-family:'Montserrat',sans-serif;font-size:.9rem;line-height:1.8;color:var(--ink1);resize:vertical;outline:none;transition:border-color .15s" oninput="ptCompCount()"></textarea>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.75rem;flex-wrap:wrap;gap:.5rem">
+          <div>
+            <span id="pt-comp-count" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:#5c4e8a">0</span>
+            <span style="font-size:.75rem;color:var(--ink4);margin-left:.3rem">palavras</span>
+            <span id="pt-comp-status" style="margin-left:.75rem;font-size:.73rem;font-weight:700;padding:3px 10px;border-radius:999px"></span>
+          </div>
+          <button onclick="ptCompReset()" style="font-size:.73rem;font-weight:700;color:var(--ink4);background:none;border:1px solid var(--border);border-radius:999px;padding:5px 13px;cursor:pointer">Limpar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAINEL: PROGRESSO ══ -->
+  <div id="pt-panel-progresso" class="ex-panel">
+    <div class="ex-sec-head">
+      <div class="ex-sec-title">O Meu Progresso</div>
+      <div class="ex-sec-sub">Registo local das questões que já respondeste.</div>
+    </div>
+    <div id="pt-prog-content"></div>
+  </div>
+
+</div><!-- /ex-page -->
+
+<!-- Overlay visualizador de prova -->
+<div id="pt-overlay" class="pt-overlay" style="display:none">
+  <div class="pt-overlay-inner">
+    <div class="pt-overlay-bar">
+      <span class="pt-overlay-title" id="pt-overlay-title">Prova</span>
+      <button class="pt-overlay-close" onclick="ptCloseOverlay()"><i class="ph ph-x"></i> Fechar</button>
+    </div>
+    <div id="pt-overlay-pages"></div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="js/shared.js"></script>
+<script src="js/provas-engine.js"></script>
+<script src="js/provas-pt-exames.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════
+   PORTUGUÊS EXAMES — Lógica principal
+══════════════════════════════════════════════════════ */
+
+var _ptSimNum = 10;
+var _ptSimTema = '';
+var _ptSimTimer = null;
+var _ptSimSecs = 0;
+var _ptSimQuestions = [];
+var _ptSimIdx = 0;
+var _ptSimResults = [];
+var _ptCurrentMode = 'temas';
+var _ptSimTotalSecs = 0;
+
+var PT_STORAGE_KEY = 'edupt_exames_pt';
+
+/* ── Temas ── */
+var PT_TEMAS = [
+  {
+    id: 'compreensao',
+    label: 'Compreensão Leitora',
+    sub: 'Sentido global, estrutura textual, intenção do autor, figuras de estilo',
+    icon: '👁️',
+    color: '#e8f4fd',
+    iconColor: '#2a7db5'
+  },
+  {
+    id: 'gramatica',
+    label: 'Gramática',
+    sub: 'Funções sintáticas, tempos verbais, classes de palavras, subordinação',
+    icon: '📐',
+    color: '#fef3e2',
+    iconColor: '#b07030'
+  }
+];
+
+/* ── Helpers ── */
+function ptGetProgress() {
+  try { return JSON.parse(localStorage.getItem(PT_STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+}
+function ptSaveProgress(data) {
+  try { localStorage.setItem(PT_STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+function ptRecordAnswer(qId, correct) {
+  var p = ptGetProgress();
+  if (!p[qId]) p[qId] = { attempts: 0, correct: 0 };
+  p[qId].attempts++;
+  if (correct) p[qId].correct++;
+  ptSaveProgress(p);
+  ptUpdateStatFeitas();
+}
+function ptUpdateStatFeitas() {
+  var p = ptGetProgress();
+  var done = Object.keys(p).length;
+  var el = document.getElementById('pt-stat-feitas');
+  if (el) el.textContent = done;
+}
+
+function ptAllQuestions() {
+  var all = [];
+  Object.keys(EXAMES_PT_BANCO).forEach(function(k) {
+    var exam = EXAMES_PT_BANCO[k];
+    exam.questoes.forEach(function(q) { all.push(q); });
+  });
+  return all;
+}
+
+function ptCountByTema(tema) {
+  var all = ptAllQuestions();
+  if (!tema) return all.length;
+  return all.filter(function(q){ return q.tema === tema; }).length;
+}
+
+/* ── Switch de modo ── */
+function ptSwitchMode(mode, btn) {
+  _ptCurrentMode = mode;
+  var panels = document.querySelectorAll('.ex-panel');
+  panels.forEach(function(p){ p.classList.remove('active'); });
+  var tabs = document.querySelectorAll('.ex-tab');
+  tabs.forEach(function(t){ t.classList.remove('active'); });
+  var panel = document.getElementById('pt-panel-' + mode);
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+  document.getElementById('pt-inline-engine').innerHTML = '';
+  if (mode === 'progresso') ptRenderProgresso();
+  if (mode === 'composicao') ptRenderComposicaoTemas();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ══ PAINEL TEMAS ══ */
+function ptRenderTopicGrid() {
+  var grid = document.getElementById('pt-topic-grid');
+  if (!grid) return;
+  var h = '';
+  PT_TEMAS.forEach(function(t) {
+    var cnt = ptCountByTema(t.id);
+    var prog = ptGetProgress();
+    var done = Object.keys(prog).filter(function(k){ return k.indexOf('pt') !== -1; }).length;
+    h += '<button class="pt-topic-card" onclick="ptStartTema(\'' + t.id + '\')" style="border-top:3px solid ' + t.iconColor + '">';
+    h += '<div class="pt-topic-icon" style="background:' + t.color + ';color:' + t.iconColor + '">' + t.icon + '</div>';
+    h += '<div class="pt-topic-label">' + t.label + '</div>';
+    h += '<div class="pt-topic-sub">' + t.sub + '</div>';
+    h += '<div class="pt-topic-count"><i class="ph ph-stack"></i> ' + cnt + ' questões de exame</div>';
+    h += '</button>';
+  });
+  // Card "Todas"
+  var total = ptAllQuestions().length;
+  h += '<button class="pt-topic-card" onclick="ptStartTema(\'\')" style="border-top:3px solid #5c4e8a">';
+  h += '<div class="pt-topic-icon" style="background:#f0edf7;color:#5c4e8a">🎯</div>';
+  h += '<div class="pt-topic-label">Mistura Completa</div>';
+  h += '<div class="pt-topic-sub">Compreensão e gramática juntas — como no exame real</div>';
+  h += '<div class="pt-topic-count"><i class="ph ph-stack"></i> ' + total + ' questões de exame</div>';
+  h += '</button>';
+  grid.innerHTML = h;
+}
+
+function ptStartTema(tema) {
+  var all = ptAllQuestions();
+  var filtered = tema ? all.filter(function(q){ return q.tema === tema; }) : all;
+  // baralhar
+  filtered = filtered.slice().sort(function(){ return Math.random() - .5; });
+  ptRunInline(filtered, '_ptClearInline()', 'Por Tema');
+}
+
+function _ptClearInline() {
+  document.getElementById('pt-inline-engine').innerHTML = '';
+  document.getElementById('pt-inline-engine').style.display = 'none';
+  var panel = document.getElementById('pt-panel-' + _ptCurrentMode);
+  if (panel) panel.style.display = '';
+}
+
+/* ══ ENGINE INLINE ══ */
+function ptRunInline(questions, backFn, modeLabel) {
+  // Oculta painel actual e mostra engine
+  var panel = document.getElementById('pt-panel-' + _ptCurrentMode);
+  if (panel) panel.style.display = 'none';
+  var eng = document.getElementById('pt-inline-engine');
+  eng.style.display = 'block';
+  // Adapta questões para o formato do _pnState
+  window._ptInlineQuestions = questions;
+  window._ptInlineIdx = 0;
+  window._ptInlineMode = modeLabel;
+  window._ptInlineBackFn = backFn;
+  _ptInlineRender();
+}
+
+function _ptInlineRender() {
+  var questions = window._ptInlineQuestions;
+  var idx = window._ptInlineIdx;
+  if (!questions || idx >= questions.length) {
+    _ptClearInline();
+    return;
+  }
+  var q = questions[idx];
+  var prog = ptGetProgress();
+  var qProg = prog[q.id] || { attempts: 0, correct: 0 };
+  var pct = qProg.attempts ? Math.round(qProg.correct / qProg.attempts * 100) : null;
+
+  var examKey = q.examKey;
+  var exam = EXAMES_PT_BANCO[examKey];
+  var textoInfo = exam && exam.textos && q.texto ? exam.textos[q.texto] : null;
+
+  var h = '<div class="pn-question-card" id="pt-qcard" style="background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem;margin-bottom:1rem">';
+
+  // Header
+  h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">';
+  h += '<button class="pn-back-btn" style="background:none;border:none;font-size:.78rem;font-weight:700;color:#6b5fa0;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:0;font-family:Montserrat,sans-serif" onclick="' + window._ptInlineBackFn + '"><i class="ph ph-arrow-left"></i> ' + window._ptInlineMode + '</button>';
+  h += '<div style="display:flex;align-items:center;gap:.5rem">';
+  if (q.tema === 'gramatica') h += '<span class="pt-badge pt-badge-grammar"><i class="ph ph-text-t"></i> Gramática</span>';
+  else h += '<span class="pt-badge pt-badge-comp"><i class="ph ph-eye"></i> Compreensão</span>';
+  h += '<span style="font-size:.72rem;color:var(--ink4);font-weight:700">' + (idx+1) + '/' + questions.length + '</span>';
+  if (pct !== null) h += '<span style="font-size:.7rem;color:#5c4e8a;font-weight:800;background:#f0edf7;padding:3px 8px;border-radius:999px">' + pct + '% ✓</span>';
+  h += '</div></div>';
+
+  // Texto associado toggle
+  if (textoInfo) {
+    h += '<button class="pt-toggle-texto" onclick="ptToggleTexto()"><i class="ph ph-article" id="pt-texto-icon"></i> Ver texto da prova</button>';
+    h += '<div id="pt-texto-box" class="pt-texto-box" style="display:none">';
+    h += '<div class="pt-texto-box-title"><i class="ph ph-article"></i> ' + textoInfo.titulo + (textoInfo.autor ? ' — <em>' + textoInfo.autor + '</em>' : '') + '</div>';
+    // Show pages
+    h += '<div style="font-size:.75rem;color:var(--ink4);margin-bottom:.75rem">Ver imagem da prova — páginas ' + textoInfo.paginas.join(', ') + '</div>';
+    h += '<div id="pt-texto-imgs">';
+    textoInfo.paginas.forEach(function(pg) {
+      var pgStr = pg < 10 ? '0' + pg : '' + pg;
+      h += '<img src="img/exames_pt/' + examKey + '/p-' + pgStr + '.png" style="width:100%;border-radius:8px;margin-bottom:.5rem;border:1px solid var(--border)" alt="Página ' + pg + '">';
+    });
+    h += '</div></div>';
+  }
+
+  // Enunciado
+  h += '<div style="font-size:.95rem;font-weight:700;color:var(--ink1);line-height:1.65;margin-bottom:1.25rem">' + q.enun + '</div>';
+
+  // Proveniência
+  if (exam) h += '<div style="font-size:.7rem;color:var(--ink4);margin-bottom:1rem"><i class="ph ph-calendar-blank"></i> ' + exam.label + (q.texto ? ' · Texto ' + q.texto : '') + '</div>';
+
+  // Opções MC
+  h += '<div id="pt-opts-wrap">';
+  q.opts.forEach(function(opt, i) {
+    var letter = ['A','B','C','D','E'][i];
+    h += '<button class="pn-opt" id="pt-opt-' + letter + '" onclick="ptSelectOpt(\'' + letter + '\')" style="display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:.5rem;font-family:Montserrat,sans-serif;font-size:.86rem;font-weight:600;color:var(--ink1);cursor:pointer;transition:all .15s">';
+    h += opt;
+    h += '</button>';
+  });
+  h += '</div>';
+
+  // Botão confirmar
+  h += '<div id="pt-confirm-wrap" style="margin-top:.75rem">';
+  h += '<button class="btn-primary" id="pt-confirm-btn" onclick="ptConfirm(\'' + q.id + '\')" disabled style="width:100%;border-radius:12px;padding:.85rem;font-size:.88rem;font-weight:800;cursor:pointer;border:none;background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;opacity:.5;transition:all .2s">Confirmar resposta</button>';
+  h += '</div>';
+
+  // Feedback (oculto)
+  h += '<div id="pt-feedback" style="display:none"></div>';
+
+  // Navegação
+  h += '<div style="display:flex;gap:.75rem;margin-top:1.25rem">';
+  if (idx > 0) h += '<button onclick="window._ptInlineIdx--;_ptInlineRender()" style="flex:1;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:.75rem;font-weight:700;font-size:.82rem;cursor:pointer;font-family:Montserrat,sans-serif;color:var(--ink2)"><i class="ph ph-arrow-left"></i> Anterior</button>';
+  h += '<button id="pt-next-btn" onclick="window._ptInlineIdx++;_ptInlineRender()" style="flex:1;background:linear-gradient(135deg,#4a3f7a,#6b5fa0);border:none;border-radius:12px;padding:.75rem;font-weight:800;font-size:.82rem;cursor:pointer;font-family:Montserrat,sans-serif;color:#fff;display:none"><i class="ph ph-arrow-right"></i> ' + (idx < questions.length - 1 ? 'Próxima' : 'Terminar') + '</button>';
+  h += '</div>';
+
+  h += '</div>';
+
+  var eng = document.getElementById('pt-inline-engine');
+  eng.innerHTML = h;
+  window._ptSelectedOpt = null;
+}
+
+var _ptSelectedOpt = null;
+
+function ptToggleTexto() {
+  var box = document.getElementById('pt-texto-box');
+  var icon = document.getElementById('pt-texto-icon');
+  if (!box) return;
+  var open = box.style.display !== 'none';
+  box.style.display = open ? 'none' : 'block';
+  if (icon) icon.className = open ? 'ph ph-article' : 'ph ph-article-ny-times';
+}
+
+function ptSelectOpt(letter) {
+  window._ptSelectedOpt = letter;
+  var opts = document.querySelectorAll('.pn-opt');
+  opts.forEach(function(o){ o.style.borderColor = 'var(--border)'; o.style.background = 'var(--white)'; });
+  var sel = document.getElementById('pt-opt-' + letter);
+  if (sel) { sel.style.borderColor = '#5c4e8a'; sel.style.background = '#f0edf7'; }
+  var btn = document.getElementById('pt-confirm-btn');
+  if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+}
+
+function ptConfirm(qId) {
+  if (!window._ptSelectedOpt) return;
+  var q = window._ptInlineQuestions[window._ptInlineIdx];
+  var correct = window._ptSelectedOpt === q.correct;
+  ptRecordAnswer(qId, correct);
+
+  // Mostrar feedback visual nas opções
+  q.opts.forEach(function(opt, i) {
+    var letter = ['A','B','C','D','E'][i];
+    var el = document.getElementById('pt-opt-' + letter);
+    if (!el) return;
+    el.style.cursor = 'default';
+    el.onclick = null;
+    if (letter === q.correct) {
+      el.style.borderColor = '#2e7d52';
+      el.style.background = '#e8f5ee';
+      el.style.color = '#1a5c38';
+    } else if (letter === window._ptSelectedOpt && !correct) {
+      el.style.borderColor = '#c0392b';
+      el.style.background = '#fdecea';
+      el.style.color = '#922b21';
+    }
+  });
+
+  // Mostrar feedback + explicação
+  var fb = document.getElementById('pt-feedback');
+  if (fb) {
+    var fbH = '';
+    if (correct) {
+      fbH = '<div style="background:#e8f5ee;border:1.5px solid #2e7d52;border-radius:14px;padding:1rem 1.25rem;margin-top:.75rem">';
+      fbH += '<div style="font-weight:800;color:#1a5c38;margin-bottom:.35rem;font-size:.85rem"><i class="ph ph-check-circle"></i> Correto!</div>';
+    } else {
+      fbH = '<div style="background:#fdecea;border:1.5px solid #c0392b;border-radius:14px;padding:1rem 1.25rem;margin-top:.75rem">';
+      fbH += '<div style="font-weight:800;color:#922b21;margin-bottom:.35rem;font-size:.85rem"><i class="ph ph-x-circle"></i> Resposta correta: ' + q.correct + '</div>';
+    }
+    if (q.explicacao) {
+      fbH += '<div style="font-size:.82rem;color:' + (correct ? '#1a5c38' : '#922b21') + ';line-height:1.6">' + q.explicacao + '</div>';
+    }
+    fbH += '</div>';
+    fb.innerHTML = fbH;
+    fb.style.display = 'block';
+  }
+
+  // Esconder confirmar, mostrar próxima
+  var conf = document.getElementById('pt-confirm-wrap');
+  if (conf) conf.style.display = 'none';
+  var next = document.getElementById('pt-next-btn');
+  if (next) next.style.display = 'block';
+}
+
+/* ══ PAINEL POR PROVA ══ */
+function ptRenderYearGrid() {
+  var grid = document.getElementById('pt-year-grid');
+  if (!grid) return;
+  var h = '';
+  var keys = Object.keys(EXAMES_PT_BANCO).sort(function(a,b){ return b.localeCompare(a); });
+  keys.forEach(function(key) {
+    var exam = EXAMES_PT_BANCO[key];
+    var cnt = exam.questoes.length;
+    h += '<div class="pt-year-row">';
+    h += '<div class="pt-year-pill">' + exam.ano + '</div>';
+    h += '<div class="pt-year-label">' + exam.label + '<div class="pt-year-sub">' + cnt + ' questões de escolha múltipla disponíveis</div></div>';
+    h += '<div class="pt-year-actions">';
+    h += '<button class="pt-year-btn pt-year-btn-practice" onclick="ptStartYear(\'' + key + '\')"><i class="ph ph-play"></i> Praticar</button>';
+    h += '<button class="pt-year-btn pt-year-btn-view" onclick="ptViewProva(\'' + key + '\')"><i class="ph ph-eye"></i> Ver prova</button>';
+    h += '</div>';
+    h += '</div>';
+  });
+  grid.innerHTML = h;
+}
+
+function ptStartYear(examKey) {
+  var exam = EXAMES_PT_BANCO[examKey];
+  if (!exam) return;
+  _ptCurrentMode = 'provas';
+  ptRunInline(exam.questoes.slice(), '_ptYearBack()', exam.label);
+}
+
+function _ptYearBack() {
+  document.getElementById('pt-inline-engine').innerHTML = '';
+  document.getElementById('pt-inline-engine').style.display = 'none';
+  document.getElementById('pt-panel-provas').style.display = '';
+}
+
+function ptViewProva(examKey) {
+  var exam = EXAMES_PT_BANCO[examKey];
+  if (!exam) return;
+  document.getElementById('pt-overlay-title').textContent = exam.label;
+  var pagesDiv = document.getElementById('pt-overlay-pages');
+  pagesDiv.innerHTML = '<div style="color:rgba(255,255,255,.5);font-size:.8rem;padding:1rem">A carregar páginas...</div>';
+  document.getElementById('pt-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+
+  // Discover pages
+  var n = examKey === '2023_f1' || examKey === '2023_f2' || examKey === '2024_f1' || examKey === '2024_f2' ? 16 : 16;
+  var h = '';
+  for (var i = 1; i <= n; i++) {
+    var pg = i < 10 ? '0' + i : '' + i;
+    h += '<img src="img/exames_pt/' + examKey + '/p-' + pg + '.png" class="pt-overlay-pg" alt="Página ' + i + '" onerror="this.style.display=\'none\'">';
+  }
+  pagesDiv.innerHTML = h;
+}
+
+function ptCloseOverlay() {
+  document.getElementById('pt-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+/* ══ SIMULADOR ══ */
+function ptSimSetNum(n, btn) {
+  _ptSimNum = n;
+  document.querySelectorAll('#pt-sim-num-opts .pt-sim-opt').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+}
+
+function ptSimSetTema(tema, btn) {
+  _ptSimTema = tema;
+  document.querySelectorAll('#pt-sim-tema-pills .ex-sim-tema-pill').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+}
+
+function ptSimLaunch() {
+  var all = ptAllQuestions();
+  var filtered = _ptSimTema ? all.filter(function(q){ return q.tema === _ptSimTema; }) : all;
+  filtered = filtered.slice().sort(function(){ return Math.random() - .5; });
+  if (_ptSimNum < 999) filtered = filtered.slice(0, _ptSimNum);
+  if (!filtered.length) { alert('Nenhuma questão disponível para este tema.'); return; }
+
+  _ptSimQuestions = filtered;
+  _ptSimIdx = 0;
+  _ptSimResults = [];
+  _ptSimTotalSecs = filtered.length * 90; // 1.5 min por questão
+  _ptSimSecs = _ptSimTotalSecs;
+
+  var setup = document.getElementById('pt-sim-setup');
+  var running = document.getElementById('pt-sim-running');
+  if (setup) setup.style.display = 'none';
+  if (running) running.style.display = 'block';
+
+  _ptSimRenderTimer();
+  _ptSimRenderQuestion();
+  _ptSimStartTimer();
+}
+
+function _ptSimStartTimer() {
+  if (_ptSimTimer) clearInterval(_ptSimTimer);
+  _ptSimTimer = setInterval(function() {
+    _ptSimSecs--;
+    _ptSimUpdateTimer();
+    if (_ptSimSecs <= 0) {
+      clearInterval(_ptSimTimer);
+      _ptSimTimer = null;
+      ptSimFinish();
+    }
+  }, 1000);
+}
+
+function _ptSimRenderTimer() {
+  var running = document.getElementById('pt-sim-running');
+  if (!running) return;
+  var mins = Math.floor(_ptSimSecs / 60);
+  var secs = _ptSimSecs % 60;
+  var timeStr = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+  var pct = _ptSimSecs / _ptSimTotalSecs * 100;
+  var h = '<div class="ex-sim-timer">';
+  h += '<div class="ex-sim-timer-clock" id="pt-timer-clock">' + timeStr + '</div>';
+  h += '<div class="ex-sim-timer-info">';
+  h += '<div class="ex-sim-timer-label">Questão ' + (_ptSimIdx + 1) + ' de ' + _ptSimQuestions.length + '</div>';
+  h += '<div class="ex-sim-timer-progress"><div class="ex-sim-timer-bar" id="pt-timer-bar" style="width:' + pct + '%"></div></div>';
+  h += '</div>';
+  h += '<button class="ex-sim-stop-btn" onclick="ptSimStop()"><i class="ph ph-stop"></i> Parar</button>';
+  h += '</div>';
+  h += '<div id="pt-sim-q-wrap"></div>';
+  running.innerHTML = h;
+}
+
+function _ptSimUpdateTimer() {
+  var mins = Math.floor(_ptSimSecs / 60);
+  var secs = _ptSimSecs % 60;
+  var timeStr = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+  var clock = document.getElementById('pt-timer-clock');
+  if (clock) clock.textContent = timeStr;
+  var bar = document.getElementById('pt-timer-bar');
+  if (bar) bar.style.width = (_ptSimSecs / _ptSimTotalSecs * 100) + '%';
+}
+
+function _ptSimRenderQuestion() {
+  var wrap = document.getElementById('pt-sim-q-wrap');
+  if (!wrap) return;
+  var q = _ptSimQuestions[_ptSimIdx];
+  if (!q) { ptSimFinish(); return; }
+
+  var h = '<div style="background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem">';
+  var exam = EXAMES_PT_BANCO[q.examKey];
+  if (q.tema === 'gramatica') h += '<span class="pt-badge pt-badge-grammar" style="margin-bottom:.75rem;display:inline-flex"><i class="ph ph-text-t"></i> Gramática</span>';
+  else h += '<span class="pt-badge pt-badge-comp" style="margin-bottom:.75rem;display:inline-flex"><i class="ph ph-eye"></i> Compreensão</span>';
+  if (exam) h += '<div style="font-size:.7rem;color:var(--ink4);margin-bottom:.75rem">' + exam.label + '</div>';
+  h += '<div style="font-size:.95rem;font-weight:700;color:var(--ink1);line-height:1.65;margin-bottom:1.25rem">' + q.enun + '</div>';
+  h += '<div id="pt-sim-opts">';
+  q.opts.forEach(function(opt, i) {
+    var letter = ['A','B','C','D','E'][i];
+    h += '<button class="pn-opt" id="pt-sopt-' + letter + '" onclick="ptSimSelect(\'' + letter + '\')" style="display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:.5rem;font-family:Montserrat,sans-serif;font-size:.86rem;font-weight:600;color:var(--ink1);cursor:pointer;transition:all .15s">';
+    h += opt;
+    h += '</button>';
+  });
+  h += '</div>';
+  h += '<div id="pt-sim-feedback" style="display:none"></div>';
+  h += '<button id="pt-sim-confirm-btn" onclick="ptSimConfirm()" disabled style="width:100%;margin-top:.75rem;background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;border:none;border-radius:12px;padding:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;font-family:Montserrat,sans-serif;opacity:.5;transition:all .2s">Confirmar</button>';
+  h += '<button id="pt-sim-next-btn" onclick="ptSimNext()" style="width:100%;margin-top:.5rem;background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;border:none;border-radius:12px;padding:.85rem;font-weight:800;font-size:.88rem;cursor:pointer;font-family:Montserrat,sans-serif;display:none">Próxima <i class="ph ph-arrow-right"></i></button>';
+  h += '</div>';
+  wrap.innerHTML = h;
+  window._ptSimSelectedOpt = null;
+}
+
+function ptSimSelect(letter) {
+  window._ptSimSelectedOpt = letter;
+  document.querySelectorAll('#pt-sim-opts .pn-opt').forEach(function(o){ o.style.borderColor='var(--border)';o.style.background='var(--white)'; });
+  var sel = document.getElementById('pt-sopt-' + letter);
+  if (sel) { sel.style.borderColor='#5c4e8a';sel.style.background='#f0edf7'; }
+  var btn = document.getElementById('pt-sim-confirm-btn');
+  if (btn) { btn.disabled=false;btn.style.opacity='1'; }
+}
+
+function ptSimConfirm() {
+  if (!window._ptSimSelectedOpt) return;
+  var q = _ptSimQuestions[_ptSimIdx];
+  var correct = window._ptSimSelectedOpt === q.correct;
+  _ptSimResults.push({ id: q.id, correct: correct, chosen: window._ptSimSelectedOpt });
+  ptRecordAnswer(q.id, correct);
+
+  q.opts.forEach(function(opt, i) {
+    var letter = ['A','B','C','D','E'][i];
+    var el = document.getElementById('pt-sopt-' + letter);
+    if (!el) return;
+    el.onclick = null;
+    if (letter === q.correct) { el.style.borderColor='#2e7d52';el.style.background='#e8f5ee';el.style.color='#1a5c38'; }
+    else if (letter === window._ptSimSelectedOpt && !correct) { el.style.borderColor='#c0392b';el.style.background='#fdecea';el.style.color='#922b21'; }
+  });
+
+  var fb = document.getElementById('pt-sim-feedback');
+  if (fb) {
+    var fbH = correct
+      ? '<div style="background:#e8f5ee;border:1.5px solid #2e7d52;border-radius:12px;padding:.85rem 1rem;margin-top:.75rem;font-size:.82rem;color:#1a5c38"><strong>✓ Correto!</strong>' + (q.explicacao ? ' ' + q.explicacao : '') + '</div>'
+      : '<div style="background:#fdecea;border:1.5px solid #c0392b;border-radius:12px;padding:.85rem 1rem;margin-top:.75rem;font-size:.82rem;color:#922b21"><strong>✗ Resposta: ' + q.correct + '.</strong>' + (q.explicacao ? ' ' + q.explicacao : '') + '</div>';
+    fb.innerHTML = fbH;
+    fb.style.display = 'block';
+  }
+
+  var conf = document.getElementById('pt-sim-confirm-btn');
+  if (conf) conf.style.display = 'none';
+  var nxt = document.getElementById('pt-sim-next-btn');
+  if (nxt) { nxt.style.display = 'block'; nxt.textContent = _ptSimIdx < _ptSimQuestions.length - 1 ? 'Próxima →' : 'Ver resultados'; }
+}
+
+function ptSimNext() {
+  _ptSimIdx++;
+  if (_ptSimIdx >= _ptSimQuestions.length) { ptSimFinish(); return; }
+  var label = document.querySelector('.ex-sim-timer-label');
+  if (label) label.textContent = 'Questão ' + (_ptSimIdx + 1) + ' de ' + _ptSimQuestions.length;
+  _ptSimRenderQuestion();
+}
+
+function ptSimStop() {
+  if (_ptSimTimer) clearInterval(_ptSimTimer);
+  _ptSimTimer = null;
+  ptSimFinish();
+}
+
+function ptSimFinish() {
+  if (_ptSimTimer) clearInterval(_ptSimTimer);
+  _ptSimTimer = null;
+  var total = _ptSimResults.length;
+  var certas = _ptSimResults.filter(function(r){ return r.correct; }).length;
+  var pct = total ? Math.round(certas / total * 100) : 0;
+  var emoji = pct >= 80 ? '🏆' : pct >= 60 ? '🎯' : pct >= 40 ? '📚' : '💪';
+
+  var running = document.getElementById('pt-sim-running');
+  if (!running) return;
+  var h = '<div class="ex-result-hero">';
+  h += '<div style="font-size:2.5rem;margin-bottom:.5rem">' + emoji + '</div>';
+  h += '<div class="ex-result-nota-big">' + certas + '<span class="ex-result-nota-max">/' + total + '</span></div>';
+  h += '<div class="ex-result-detail">' + pct + '% de respostas corretas</div>';
+  var msg = pct >= 80 ? 'Excelente domínio!' : pct >= 60 ? 'Boa prestação, continua!' : pct >= 40 ? 'Caminho certo, pratica mais!' : 'Estuda os temas com mais erros!';
+  h += '<div class="ex-result-msg">' + msg + '</div>';
+  h += '<div class="ex-result-btns">';
+  h += '<button class="btn-primary" onclick="ptSimRestart()" style="border-radius:12px;padding:.75rem 1.5rem;border:none;cursor:pointer;font-family:Montserrat,sans-serif;font-weight:800;font-size:.85rem">Novo simulador</button>';
+  h += '</div></div>';
+  running.innerHTML = h;
+}
+
+function ptSimRestart() {
+  var running = document.getElementById('pt-sim-running');
+  if (running) running.style.display = 'none';
+  var setup = document.getElementById('pt-sim-setup');
+  if (setup) setup.style.display = 'block';
+  _ptSimResults = [];
+  _ptSimIdx = 0;
+}
+
+/* ══ COMPOSIÇÃO ══ */
+var PT_COMPOSICAO_TEMAS = [
+  {
+    id: 'opiniao',
+    icon: '💬',
+    title: 'Texto de Opinião',
+    sub: '2024, 2023, 2022, 2021',
+    temas_recentes: [
+      { ano: '2024 1.ª F.', enun: 'Na tua perspetiva, deverão os meios tecnológicos, como o computador ou os telemóveis, ocupar um lugar central nas nossas vidas?\n\nEscreve um texto de opinião bem estruturado, com um mínimo de 160 e um máximo de 260 palavras, em que defendas o teu ponto de vista.' },
+      { ano: '2024 2.ª F.', enun: 'Na tua perspetiva, devem as pessoas dedicar tempo à leitura de obras literárias como a Ilíada e a Odisseia?\n\nEscreve um texto de opinião bem estruturado, com um mínimo de 160 e um máximo de 260 palavras, em que defendas o teu ponto de vista.' },
+      { ano: '2023 1.ª F.', enun: 'Na tua perspetiva, deve a leitura em voz alta ter um lugar na escola e na família?\n\nEscreve um texto de opinião bem estruturado, com um mínimo de 160 e um máximo de 260 palavras, em que defendas o teu ponto de vista.' },
+      { ano: '2022 1.ª F.', enun: 'Na tua perspetiva, deve a escola promover mais atividades na natureza e ao ar livre?\n\nEscreve um texto de opinião bem estruturado, com um mínimo de 160 e um máximo de 260 palavras, em que defendas o teu ponto de vista.' }
+    ]
+  },
+  {
+    id: 'analise',
+    icon: '🔍',
+    title: 'Análise de Texto',
+    sub: 'Os Lusíadas e outras obras',
+    temas_recentes: [
+      { ano: '2024 1.ª F.', enun: 'Faz uma análise da estância apresentada (Canto X, est. 154 de Os Lusíadas), recorrendo aos teus conhecimentos sobre a obra.\n\nNa tua resposta, deves explicitar:\n— o conteúdo dos versos 1 a 4, estabelecendo a relação com a figura retratada;\n— o sentido do verso 8, referindo o que são as «Cousas que juntas se acham raramente» e onde se encontram presentes.' },
+      { ano: '2023 2.ª F.', enun: 'Faz uma análise do excerto de Os Lusíadas apresentado, recorrendo aos teus conhecimentos sobre a obra.\n\nNa tua resposta, deves explicitar o conteúdo e o seu significado no contexto da obra.' }
+    ]
+  }
+];
+
+function ptRenderComposicaoTemas() {
+  var wrap = document.getElementById('pt-comp-temas');
+  if (!wrap) return;
+  var h = '';
+  PT_COMPOSICAO_TEMAS.forEach(function(t) {
+    h += '<button class="pt-theme-btn" onclick="ptOpenComposicao(\'' + t.id + '\')">';
+    h += '<div class="pt-theme-btn-icon">' + t.icon + '</div>';
+    h += '<div class="pt-theme-btn-title">' + t.title + '</div>';
+    h += '<div class="pt-theme-btn-sub">' + t.sub + '</div>';
+    h += '</button>';
+  });
+  wrap.innerHTML = h;
+}
+
+function ptOpenComposicao(id) {
+  var tema = null;
+  PT_COMPOSICAO_TEMAS.forEach(function(t){ if(t.id === id) tema = t; });
+  if (!tema) return;
+
+  // Escolher enunciado aleatório
+  var enun = tema.temas_recentes[Math.floor(Math.random() * tema.temas_recentes.length)];
+
+  var editor = document.getElementById('pt-comp-editor');
+  var enunDiv = document.getElementById('pt-comp-enun');
+  var ta = document.getElementById('pt-comp-textarea');
+
+  enunDiv.innerHTML = '<div style="font-size:.68rem;font-weight:800;color:#7c6fa0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">' + tema.title + ' · ' + enun.ano + '</div>' + enun.enun.replace(/\n/g,'<br>');
+  ta.value = '';
+  editor.style.display = 'block';
+  ptCompCount();
+  editor.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function ptCompCount() {
+  var ta = document.getElementById('pt-comp-textarea');
+  var cnt = document.getElementById('pt-comp-count');
+  var status = document.getElementById('pt-comp-status');
+  if (!ta || !cnt || !status) return;
+  var words = ta.value.trim() === '' ? 0 : ta.value.trim().split(/\s+/).length;
+  cnt.textContent = words;
+  if (words < 55) {
+    cnt.style.color = '#c0392b';
+    status.textContent = 'Muito curto (0 pts)';
+    status.style.background = '#fdecea';
+    status.style.color = '#c0392b';
+  } else if (words < 160) {
+    cnt.style.color = '#e67e22';
+    status.textContent = 'Abaixo do mínimo';
+    status.style.background = '#fef3e2';
+    status.style.color = '#b07030';
+  } else if (words <= 260) {
+    cnt.style.color = '#2e7d52';
+    status.textContent = '✓ Extensão válida';
+    status.style.background = '#e8f5ee';
+    status.style.color = '#2e7d52';
+  } else {
+    cnt.style.color = '#c0392b';
+    status.textContent = 'Acima do máximo';
+    status.style.background = '#fdecea';
+    status.style.color = '#c0392b';
+  }
+}
+
+function ptCompReset() {
+  var ta = document.getElementById('pt-comp-textarea');
+  if (ta) ta.value = '';
+  ptCompCount();
+}
+
+/* ══ PROGRESSO ══ */
+function ptRenderProgresso() {
+  var wrap = document.getElementById('pt-prog-content');
+  if (!wrap) return;
+  var prog = ptGetProgress();
+  var all = ptAllQuestions();
+  var total = all.length;
+  var done = 0;
+  var certas = 0;
+  all.forEach(function(q) {
+    var p = prog[q.id];
+    if (p && p.attempts > 0) {
+      done++;
+      if (p.correct > 0) certas++;
+    }
+  });
+  var pct = done ? Math.round(certas / done * 100) : 0;
+
+  var h = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-bottom:1.5rem">';
+  h += '<div class="ex-hstat" style="background:var(--white);border:1.5px solid var(--border)"><div class="ex-hstat-n" style="color:#5c4e8a">' + done + '</div><div class="ex-hstat-l" style="color:var(--ink4)">Respondidas</div></div>';
+  h += '<div class="ex-hstat" style="background:var(--white);border:1.5px solid var(--border)"><div class="ex-hstat-n" style="color:#2e7d52">' + certas + '</div><div class="ex-hstat-l" style="color:var(--ink4)">Corretas</div></div>';
+  h += '<div class="ex-hstat" style="background:var(--white);border:1.5px solid var(--border)"><div class="ex-hstat-n" style="color:#e67e22">' + pct + '%</div><div class="ex-hstat-l" style="color:var(--ink4)">Taxa de acerto</div></div>';
+  h += '<div class="ex-hstat" style="background:var(--white);border:1.5px solid var(--border)"><div class="ex-hstat-n" style="color:var(--ink2)">' + (total - done) + '</div><div class="ex-hstat-l" style="color:var(--ink4)">Por fazer</div></div>';
+  h += '</div>';
+
+  // Por tema
+  h += '<div class="ex-progress-bar-section">';
+  h += '<div class="ex-progress-bar-title"><span>Progresso por Tema</span></div>';
+  PT_TEMAS.forEach(function(t) {
+    var tQs = all.filter(function(q){ return q.tema === t.id; });
+    var tDone = tQs.filter(function(q){ var p=prog[q.id]; return p&&p.attempts>0; }).length;
+    var tCert = tQs.filter(function(q){ var p=prog[q.id]; return p&&p.correct>0; }).length;
+    var tPct = tQs.length ? Math.round(tDone / tQs.length * 100) : 0;
+    h += '<div class="ex-progress-topic-row">';
+    h += '<div class="ex-progress-topic-label">' + t.label + '</div>';
+    h += '<div class="ex-progress-bar"><div class="ex-progress-fill" style="width:' + tPct + '%"></div></div>';
+    h += '<div class="ex-progress-pct">' + tPct + '%</div>';
+    h += '</div>';
+  });
+  h += '</div>';
+
+  if (done > 0) {
+    h += '<button onclick="ptResetProgress()" style="font-size:.75rem;font-weight:700;color:#c0392b;background:none;border:1px solid #e8a8a0;border-radius:999px;padding:7px 18px;cursor:pointer;margin-top:.5rem">Limpar progresso</button>';
+  }
+  wrap.innerHTML = h;
+}
+
+function ptResetProgress() {
+  if (!confirm('Apagar todo o progresso?')) return;
+  localStorage.removeItem(PT_STORAGE_KEY);
+  ptUpdateStatFeitas();
+  ptRenderProgresso();
+}
+
+/* ══ HERO PARTICLES ══ */
+function ptInitParticles() {
+  var wrap = document.getElementById('pt-particles');
+  if (!wrap) return;
+  var h = '';
+  var sizes = [60,40,80,30,50,90,35,55,70,45];
+  var colors = ['rgba(180,160,255,.25)','rgba(255,255,255,.1)','rgba(120,100,200,.2)','rgba(200,180,255,.15)'];
+  for (var i = 0; i < 10; i++) {
+    var s = sizes[i%sizes.length], c = colors[i%colors.length];
+    var left = (i*11+5)%95, top = (i*13+8)%80, delay = (i*.7).toFixed(1);
+    h += '<div class="ex-hero-particle" style="width:'+s+'px;height:'+s+'px;background:'+c+';left:'+left+'%;top:'+top+'%;animation-delay:'+delay+'s;animation-duration:'+(7+i*.5).toFixed(1)+'s"></div>';
+  }
+  wrap.innerHTML = h;
+}
+
+/* ══ INIT ══ */
+document.addEventListener('DOMContentLoaded', function() {
+  ptInitParticles();
+  ptRenderTopicGrid();
+  ptRenderYearGrid();
+  ptRenderComposicaoTemas();
+  ptUpdateStatFeitas();
+
+  // Contar total
+  var total = ptAllQuestions().length;
+  var el = document.getElementById('pt-stat-total');
+  if (el) el.textContent = total + '+';
+
+  // Scroll-to-top
+  window.addEventListener('scroll', function() {
+    var btn = document.getElementById('scrollTopBtn');
+    if (btn) btn.style.opacity = window.scrollY > 400 ? '1' : '0';
+  });
+
+  // Fechar overlay com Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') ptCloseOverlay();
+  });
+});
+</script>
+</body>
+</html>
