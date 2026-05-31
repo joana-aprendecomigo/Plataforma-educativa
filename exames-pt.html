@@ -341,29 +341,45 @@
     </div>
     <div id="pt-gram-menu">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.25rem">
-        <button onclick="ptGramStart('funcoes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2a7db5" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+        <button onclick="ptGramStart('funcoes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2a7db5" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(42,125,181,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
           <div style="font-size:1.4rem;margin-bottom:.6rem">🔍</div>
           <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Funções Sintáticas</div>
-          <div style="font-size:.74rem;color:var(--ink4)">Sujeito, CD, CI, CO, predicativo, modificador...</div>
-          <div style="font-size:.68rem;font-weight:700;color:#2a7db5;margin-top:.6rem">32 exercícios</div>
+          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Sujeito, CD, CI, CO, predicativo, modificador...</div>
+          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+            <span style="font-size:.68rem;font-weight:700;color:#2a7db5;background:#e8f4fd;border-radius:999px;padding:2px 8px">32 exercícios</span>
+            <span style="font-size:.68rem;color:var(--ink4)">~10 min</span>
+            <span style="font-size:.68rem;font-weight:700;color:#c0392b;background:#fdecea;border-radius:999px;padding:2px 8px">★★★ Difícil</span>
+          </div>
         </button>
-        <button onclick="ptGramStart('tempos')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #6b52a8" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+        <button onclick="ptGramStart('tempos')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #6b52a8" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(107,82,168,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
           <div style="font-size:1.4rem;margin-bottom:.6rem">⏱️</div>
           <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Tempos Verbais</div>
-          <div style="font-size:.74rem;color:var(--ink4)">Conjuntivo, condicional, mais-que-perfeito...</div>
-          <div style="font-size:.68rem;font-weight:700;color:#6b52a8;margin-top:.6rem">12 exercícios</div>
+          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Conjuntivo, condicional, mais-que-perfeito...</div>
+          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+            <span style="font-size:.68rem;font-weight:700;color:#6b52a8;background:#f0edf7;border-radius:999px;padding:2px 8px">12 exercícios</span>
+            <span style="font-size:.68rem;color:var(--ink4)">~5 min</span>
+            <span style="font-size:.68rem;font-weight:700;color:#b07030;background:#fef3e2;border-radius:999px;padding:2px 8px">★★☆ Médio</span>
+          </div>
         </button>
-        <button onclick="ptGramStart('classes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #b07030" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+        <button onclick="ptGramStart('classes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #b07030" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(176,112,48,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
           <div style="font-size:1.4rem;margin-bottom:.6rem">🏷️</div>
           <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Classes de Palavras</div>
-          <div style="font-size:.74rem;color:var(--ink4)">Advérbios, determinantes, pronomes, verbos...</div>
-          <div style="font-size:.68rem;font-weight:700;color:#b07030;margin-top:.6rem">10 exercícios</div>
+          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Advérbios, determinantes, pronomes, verbos...</div>
+          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+            <span style="font-size:.68rem;font-weight:700;color:#b07030;background:#fef3e2;border-radius:999px;padding:2px 8px">10 exercícios</span>
+            <span style="font-size:.68rem;color:var(--ink4)">~4 min</span>
+            <span style="font-size:.68rem;font-weight:700;color:#2e7d52;background:#e8f5ee;border-radius:999px;padding:2px 8px">★☆☆ Fácil</span>
+          </div>
         </button>
-        <button onclick="ptGramStart('subordinadas')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2e7d52" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+        <button onclick="ptGramStart('subordinadas')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2e7d52" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(46,125,82,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
           <div style="font-size:1.4rem;margin-bottom:.6rem">🌿</div>
           <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Orações Subordinadas</div>
-          <div style="font-size:.74rem;color:var(--ink4)">Causal, concessiva, temporal, completiva...</div>
-          <div style="font-size:.68rem;font-weight:700;color:#2e7d52;margin-top:.6rem">12 exercícios</div>
+          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Causal, concessiva, temporal, completiva...</div>
+          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+            <span style="font-size:.68rem;font-weight:700;color:#2e7d52;background:#e8f5ee;border-radius:999px;padding:2px 8px">12 exercícios</span>
+            <span style="font-size:.68rem;color:var(--ink4)">~5 min</span>
+            <span style="font-size:.68rem;font-weight:700;color:#b07030;background:#fef3e2;border-radius:999px;padding:2px 8px">★★☆ Médio</span>
+          </div>
         </button>
       </div>
       <!-- Cheatsheet rápida -->
