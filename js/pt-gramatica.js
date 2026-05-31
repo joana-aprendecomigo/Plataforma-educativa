@@ -129,6 +129,7 @@ function ptGramStart(mode) {
     classes: PT_CLASSES_BANCO,
     subordinadas: PT_SUBORDINADAS_BANCO
   };
+  if (!bancos[mode]) return;
   _ptGram.mode = mode;
   _ptGram.banco = bancos[mode].slice().sort(function(){ return Math.random() - .5; });
   _ptGram.idx = 0;
@@ -136,6 +137,11 @@ function ptGramStart(mode) {
   _ptGram.total = 0;
   _ptGram.answered = false;
   _ptGram.streak = 0;
+  // Mostrar engine, esconder menu
+  var menu = document.getElementById('pt-gram-menu');
+  var eng = document.getElementById('pt-gram-engine');
+  if (menu) menu.style.display = 'none';
+  if (eng) eng.style.display = 'block';
   ptGramRender();
 }
 
@@ -194,7 +200,7 @@ function ptGramRender() {
   // Guardar ordem aleatória para verificação
   _ptGram.currentOpts = opts;
   opts.forEach(function(opt, i) {
-    h += '<button onclick="ptGramSelect(this, \'' + opt.replace(/'/g, "\\'") + '\')" data-opt="' + opt.replace(/"/g,'&quot;') + '" style="display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:.5rem;font-family:Montserrat,sans-serif;font-size:.86rem;font-weight:600;color:var(--ink1);cursor:pointer;transition:all .15s">';
+    h += '<button onclick="ptGramSelect(this)" data-opt="' + opt.replace(/"/g,'&quot;').replace(/'/g,'&#39;') + '" style="display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:.5rem;font-family:Montserrat,sans-serif;font-size:.86rem;font-weight:600;color:var(--ink1);cursor:pointer;transition:all .15s">';
     h += opt;
     h += '</button>';
   });
@@ -211,8 +217,9 @@ function ptGramRender() {
   _ptGram.answered = false;
 }
 
-function ptGramSelect(btn, chosen) {
+function ptGramSelect(btn) {
   if (_ptGram.answered) return;
+  var chosen = btn.getAttribute('data-opt');
   _ptGram.answered = true;
   _ptGram.total++;
 
@@ -264,10 +271,10 @@ function ptGramNext() {
 }
 
 function ptGramBack() {
-  var wrap = document.getElementById('pt-gram-engine');
-  if (wrap) wrap.innerHTML = '';
-  document.getElementById('pt-gram-engine').style.display = 'none';
-  document.getElementById('pt-gram-menu').style.display = 'block';
+  var eng = document.getElementById('pt-gram-engine');
+  var menu = document.getElementById('pt-gram-menu');
+  if (eng) { eng.innerHTML = ''; eng.style.display = 'none'; }
+  if (menu) menu.style.display = 'block';
 }
 
 function ptGramFinish() {
