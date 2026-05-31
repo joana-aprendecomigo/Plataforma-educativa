@@ -345,10 +345,6 @@ window.CAP_DATA[7]={
   flashcards:BANCO7.flashcards
 };
 _capRegisterWrappers(7, {
-  exame7Submit:     function(){ if(typeof examActive!=='undefined') examActive=false; capExameStop(7); },
-  exame7Check:      function(qid,tipo,val,btn){ capExameCheck(7,qid,tipo,val,btn); },
-  fcStartSession7:  function(){ capFcRender(7); },
-  fcSetMode7:       function(){ capFcRender(7); },
-  fcResetStats7:    function(){ capProgReset(7); },
-  fcRate7:          function(){ capFcNext(7); }
+  exame7Submit: function(){ if(typeof examActive!=='undefined') examActive=false; capExameStop(7); },
+  exame7Check:  function(qid,tipo,val,btn){ capExameCheck(7,qid,tipo,val,btn); }
 });
