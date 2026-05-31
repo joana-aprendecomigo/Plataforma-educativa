@@ -635,9 +635,23 @@ function ptSwitchMode(mode, btn) {
   tabs.forEach(function(t){ t.classList.remove('active'); });
   var panel = document.getElementById('pt-panel-' + mode);
   if (panel) panel.classList.add('active');
-  if (btn) btn.classList.add('active');
+  // Activar a tab correcta — btn pode ser null se chamado de código
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    // Encontrar a tab que corresponde ao modo pelo onclick
+    tabs.forEach(function(t) {
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'" + mode + "'") !== -1) {
+        t.classList.add('active');
+      }
+    });
+  }
   var eng = document.getElementById('pt-inline-engine');
   if (eng) { eng.innerHTML = ''; eng.style.display = 'none'; }
+  // Parar timer do simulador se estiver activo
+  if (typeof _ptSimTimer !== 'undefined' && _ptSimTimer) {
+    clearInterval(_ptSimTimer); _ptSimTimer = null;
+  }
   if (mode === 'progresso') ptRenderProgresso();
   if (mode === 'composicao') ptRenderComposicaoTemas();
   if (mode === 'lusiadas') { if (typeof ptLusRenderMenu === 'function') ptLusRenderMenu(); }
@@ -682,20 +696,23 @@ function ptStartTema(tema) {
 }
 
 function _ptClearInline() {
-  document.getElementById('pt-inline-engine').innerHTML = '';
-  document.getElementById('pt-inline-engine').style.display = 'none';
-  var panel = document.getElementById('pt-panel-' + _ptCurrentMode);
+  var eng = document.getElementById('pt-inline-engine');
+  if (eng) { eng.innerHTML = ''; eng.style.display = 'none'; }
+  // Usar o modo guardado no início do engine, não o modo actual (pode ter mudado)
+  var mode = window._ptInlinePanelMode || _ptCurrentMode;
+  var panel = document.getElementById('pt-panel-' + mode);
   if (panel) panel.style.display = '';
 }
 
 /* ══ ENGINE INLINE ══ */
 function ptRunInline(questions, backFn, modeLabel) {
-  // Oculta painel actual e mostra engine
+  // Guardar o modo activo no momento do início (para _ptClearInline usar o certo)
+  window._ptInlinePanelMode = _ptCurrentMode;
   var panel = document.getElementById('pt-panel-' + _ptCurrentMode);
   if (panel) panel.style.display = 'none';
   var eng = document.getElementById('pt-inline-engine');
+  if (!eng) return;
   eng.style.display = 'block';
-  // Adapta questões para o formato do _pnState
   window._ptInlineQuestions = questions;
   window._ptInlineIdx = 0;
   window._ptInlineMode = modeLabel;
@@ -791,7 +808,7 @@ function ptToggleTexto() {
   if (!box) return;
   var open = box.style.display !== 'none';
   box.style.display = open ? 'none' : 'block';
-  if (icon) icon.className = open ? 'ph ph-article' : 'ph ph-article-ny-times';
+  if (icon) icon.className = open ? 'ph ph-article' : 'ph ph-article-medium';
 }
 
 function ptSelectOpt(letter) {
@@ -897,8 +914,14 @@ function ptViewProva(examKey) {
   document.getElementById('pt-overlay').style.display = 'block';
   document.body.style.overflow = 'hidden';
 
-  // Discover pages
-  var n = examKey === '2023_f1' || examKey === '2023_f2' || examKey === '2024_f1' || examKey === '2024_f2' ? 16 : 16;
+  // Número de páginas real por exame
+  var pageCounts = {
+    '2024_f1': 16, '2024_f2': 33,
+    '2023_f1': 34, '2023_f2': 34,
+    '2022_f1': 16, '2022_f2': 16,
+    '2021': 16,    '2019_f1': 16
+  };
+  var n = pageCounts[examKey] || 16;
   var h = '';
   for (var i = 1; i <= n; i++) {
     var pg = i < 10 ? '0' + i : '' + i;
@@ -1095,12 +1118,16 @@ function ptSimFinish() {
 }
 
 function ptSimRestart() {
+  // Parar timer antes de reiniciar
+  if (_ptSimTimer) { clearInterval(_ptSimTimer); _ptSimTimer = null; }
   var running = document.getElementById('pt-sim-running');
-  if (running) running.style.display = 'none';
+  if (running) { running.style.display = 'none'; running.innerHTML = ''; }
   var setup = document.getElementById('pt-sim-setup');
   if (setup) setup.style.display = 'block';
   _ptSimResults = [];
   _ptSimIdx = 0;
+  _ptSimQuestions = [];
+  _ptSimSecs = 0;
 }
 
 /* ══ COMPOSIÇÃO ══ */
@@ -1332,7 +1359,9 @@ function ptCompAutocheck() {
   if (!texto) { alert('Escreve o teu texto primeiro!'); return; }
 
   var words = texto.split(/\s+/).filter(function(w){ return w.length > 0; }).length;
-  var paragrafos = texto.split(/\n\s*\n/).filter(function(p){ return p.trim().length > 20; }).length;
+  // Aceitar um único \n ou dois \n\n como separador de parágrafo
+  var paragrafos = texto.split(/\n+/).filter(function(p){ return p.trim().length > 30; }).length;
+  if (paragrafos < 1) paragrafos = 1; // se não há newlines, o próprio texto é 1 parágrafo
   var frases = texto.split(/[.!?]+/).filter(function(f){ return f.trim().length > 10; }).length;
 
   // Detectar conectores
@@ -1421,15 +1450,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var el = document.getElementById('pt-stat-total');
   if (el) el.textContent = total + '+';
 
-  // Scroll-to-top
-  window.addEventListener('scroll', function() {
-    var btn = document.getElementById('scrollTopBtn');
-    if (btn) btn.style.opacity = window.scrollY > 400 ? '1' : '0';
-  });
-
-  // Fechar overlay com Escape
+  // Fechar overlay com Escape (ux-improvements.js já trata do scroll-to-top e do Escape global,
+  // mas registamos aqui também para garantir que ptCloseOverlay é chamado)
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') ptCloseOverlay();
+    if (e.key === 'Escape') { ptCloseOverlay(); }
   });
 });
 </script>

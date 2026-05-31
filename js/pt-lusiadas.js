@@ -235,7 +235,7 @@ function ptLusRenderQuiz() {
   h += '<div id="pt-lus-opts">';
   q.opts.forEach(function(opt, i) {
     var letter = ['A','B','C','D'][i];
-    h += '<button onclick="ptLusSelect(this,\'' + letter + '\')" data-letter="' + letter + '" style="display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:.5rem;font-family:Montserrat,sans-serif;font-size:.86rem;font-weight:600;color:var(--ink1);cursor:pointer;transition:all .15s">' + opt + '</button>';
+    h += '<button onclick="ptLusSelect(this)" data-letter="' + letter + '" style="display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:.5rem;font-family:Montserrat,sans-serif;font-size:.86rem;font-weight:600;color:var(--ink1);cursor:pointer;transition:all .15s">' + opt + '</button>';
   });
   h += '</div>';
   h += '<div id="pt-lus-feedback" style="display:none;margin-top:.75rem"></div>';
@@ -245,8 +245,9 @@ function ptLusRenderQuiz() {
   _ptLus.answered = false;
 }
 
-function ptLusSelect(btn, letter) {
+function ptLusSelect(btn) {
   if (_ptLus.answered) return;
+  var letter = btn.getAttribute('data-letter');
   _ptLus.answered = true;
   _ptLus.total++;
   var q = _ptLus.banco[_ptLus.idx];
