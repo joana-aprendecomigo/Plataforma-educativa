@@ -129,7 +129,8 @@ function pnStartTopic(key) {
   var btns = document.querySelectorAll('.pn-topic-btns .mat7-cap-btn');
   for (var b = 0; b < btns.length; b++) {
     btns[b].classList.remove('active');
-    if (btns[b].getAttribute('onclick').indexOf('\'' + key + '\'') !== -1) {
+    var oc = btns[b].getAttribute('onclick') || '';
+    if (oc.indexOf('\'' + key + '\'') !== -1) {
       btns[b].classList.add('active');
     }
   }
