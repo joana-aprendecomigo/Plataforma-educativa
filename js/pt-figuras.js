@@ -548,12 +548,16 @@ function ptConSelect(btn) {
 
 function ptConNext() { _ptCon.idx++; ptConRender(); }
 function ptConBack() {
-  document.getElementById('pt-con-engine').style.display = 'none';
-  document.getElementById('pt-con-menu').style.display = 'block';
+  var eng = document.getElementById('pt-con-engine');
+  var menu = document.getElementById('pt-con-menu');
+  if (eng) eng.style.display = 'none';
+  if (menu) menu.style.display = 'block';
 }
 function ptConFinish() {
   var s = _ptCon.score, t = _ptCon.total, pct = t ? Math.round(s/t*100) : 0;
-  document.getElementById('pt-con-engine').innerHTML = '<div style="background:linear-gradient(135deg,#1e1640,#4a3f7a);border-radius:20px;padding:2.5rem 2rem;text-align:center;color:#fff">' +
+  var eng = document.getElementById('pt-con-engine');
+  if (!eng) return;
+  eng.innerHTML = '<div style="background:linear-gradient(135deg,#1e1640,#4a3f7a);border-radius:20px;padding:2.5rem 2rem;text-align:center;color:#fff">' +
     '<div style="font-size:2.5rem;margin-bottom:.5rem">' + (pct>=80?'🏆':pct>=60?'🎯':'📚') + '</div>' +
     '<div style="font-family:JetBrains Mono,monospace;font-size:3rem;font-weight:700;line-height:1">' + s + '<span style="font-size:1.3rem;opacity:.5">/' + t + '</span></div>' +
     '<div style="font-size:.82rem;color:rgba(255,255,255,.6);margin:.4rem 0">' + pct + '% corretas</div>' +
