@@ -1563,8 +1563,7 @@ function _treinoRenderExercicios(exercicios, containerId) {
       });
       html += '</div>';
     }
-    var explEsc = (ex.expl||'').replace(/'/g,"&#39;").replace(/"/g,'&quot;');
-    html += '<span id="'+qid+'-expl" style="display:none">'+explEsc+'</span>';
+    html += '<span id="'+qid+'-expl" style="display:none" data-expl="'+(ex.expl||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;')+'"></span>';
     html += '<div class="feedback" id="'+qid+'-fb"></div>';
     html += '</div>';
   });
@@ -1576,7 +1575,7 @@ function checkTreino(qid, tipo, val, btn) {
   if (!st || st.answered) return;
   st.answered = true;
   var explEl = document.getElementById(qid+'-expl');
-  var explTxt = explEl ? explEl.textContent : '';
+  var explTxt = explEl ? (explEl.getAttribute('data-expl') || explEl.textContent || '') : '';
   var fb = document.getElementById(qid+'-fb');
   var correct;
   if (tipo === 'fill') {

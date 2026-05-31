@@ -95,9 +95,9 @@ function lcm(a,b){return Math.abs(a*b)/gcd(a,b)}
 
 // localStorage abstraction
 var store = {
-  get: function(key, fallback) { try { return JSON.parse(localStorage.getItem('edupt_'+key)) } catch(e) { return fallback !== undefined ? fallback : null } },
-  set: function(key, val) { localStorage.setItem('edupt_'+key, JSON.stringify(val)) },
-  remove: function(key) { localStorage.removeItem('edupt_'+key) }
+  get: function(key, fallback) { try { return JSON.parse(localStorage.getItem('edupt_'+key)); } catch(e) { return fallback !== undefined ? fallback : null; } },
+  set: function(key, val) { try { localStorage.setItem('edupt_'+key, JSON.stringify(val)); } catch(e) { /* quota exceeded — falha silenciosa */ } },
+  remove: function(key) { try { localStorage.removeItem('edupt_'+key); } catch(e) {} }
 };
 
 // QUIZ ENGINE — Uma questão de cada vez, com barra de progresso
@@ -302,7 +302,7 @@ function _qzRender(cid) {
     +   optionsHtml
     +   '<div class="qz-feedback" id="' + cid + '-fb"></div>'
     +   '<div class="qz-next-row">'
-    +     '<div id="' + cid + '-expl-store" style="display:none">' + (ex.expl || '').replace(/'/g,"&#39;") + '</div>'
+    +     '<div id="' + cid + '-expl-store" style="display:none" data-expl="' + (ex.expl || '').replace(/"/g,'&quot;').replace(/'/g,'&#39;') + '"></div>'
     +     '<button class="qz-next-btn" id="' + cid + '-next" onclick="qzNext(' + q + ')">'
     +       (cur < total ? 'Próxima <i class="ph ph-arrow-right"></i>' : 'Ver resultados <i class="ph ph-check-circle"></i>')
     +     '</button>'
@@ -339,7 +339,8 @@ function _qzShowFeedback(cid, correct, correctVal) {
   if (sl) sl.textContent = '✓ ' + st.score.correct;
 
   // Build feedback
-  var expl = (document.getElementById(cid + '-expl-store') || {}).textContent || '';
+  var explEl = document.getElementById(cid + '-expl-store');
+  var expl = explEl ? (explEl.getAttribute('data-expl') || explEl.textContent || '') : '';
   var fb = document.getElementById(cid + '-fb');
   if (fb) {
     fb.className = 'qz-feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
