@@ -193,8 +193,9 @@ function ptFigRender() {
   _ptFig.answered = false;
 }
 
-function ptFigSelect(btn, chosen) {
+function ptFigSelect(btn) {
   if (_ptFig.answered) return;
+  var chosen = btn.getAttribute('data-opt');
   _ptFig.answered = true;
   _ptFig.total++;
   var q = _ptFig.banco[_ptFig.idx];
