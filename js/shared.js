@@ -1345,7 +1345,7 @@ function _buildStQuizHTML(exercicios) {
       var vC = ex.resposta==='V';
       qhtml += '<div style="display:flex;gap:.75rem;flex-wrap:wrap"><button class="option-btn" onclick="stCheck(\'' + qid + '\',\'mc\',' + vC + ',this)"><span class="opt-label" style="background:rgba(62,207,142,.2);color:var(--correct)">V</span>Verdadeiro</button><button class="option-btn" onclick="stCheck(\'' + qid + '\',\'mc\',' + (!vC) + ',this)"><span class="opt-label" style="background:rgba(255,107,107,.2);color:var(--wrong)">F</span>Falso</button></div>';
     }
-    qhtml += '<div class="feedback" id="' + qid + '-fb"></div><span id="' + qid + '-expl" style="display:none">' + (ex.expl||'').replace(/'/g,"&#39;") + '</span></div>';
+    qhtml += '<div class="feedback" id="' + qid + '-fb"></div><span id="' + qid + '-expl" style="display:none" data-expl="' + (ex.expl||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;') + '"></span></div>';
   });
   return qhtml;
 }
