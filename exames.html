@@ -180,47 +180,28 @@
 
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
 
-<!-- ── Topbar ── -->
-<nav class="ex-topbar">
-  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
-    <div class="mark bg-gradient-to-br from-[#77998E] to-[#516860] rounded-[10px] w-[34px] h-[34px] flex items-center justify-center text-[.6rem] font-extrabold text-white tracking-tight">3π</div>
-    <span class="wordmark" style="font-size:1rem">3ponto<em>14</em></span>
+<!-- Topbar unificada -->
+<nav class="site-topbar">
+  <a href="index.html" class="site-topbar-logo">
+    <div class="mark">3π</div>
+    <span class="wordmark">3ponto<em>14</em></span>
   </a>
-  <div class="topbar-divider"></div>
-  <span style="font-size:.82rem;font-weight:700;color:var(--ink2)">Exames Nacionais</span>
-  <a href="index.html" class="ex-topbar-back"><i class="ph ph-arrow-left"></i> Início</a>
+  <div class="site-topbar-sep"></div>
+  <span class="site-topbar-title">Exames · Matemática 9.º</span>
+  <div class="site-topbar-actions" id="ux-topbar-controls-placeholder"></div>
+  <a href="index.html" class="site-topbar-back"><i class="ph ph-arrow-left"></i> Início</a>
 </nav>
 
-<!-- ── Hero ── -->
-<header class="ex-hero">
-  <div class="ex-hero-grid"></div>
-  <div class="ex-hero-particles" id="ex-particles"></div>
-  <div style="position:relative">
-    <div class="ex-hero-eyebrow"><i class="ph ph-exam"></i> Provas Finais Nacionais</div>
-    <h1>Matemática<br><em>9.º Ano</em></h1>
-    <p class="ex-hero-sub">Questões reais dos exames nacionais com resolução detalhada — treina por tema, simula o exame ou navega prova a prova.</p>
-    <div class="ex-hero-stats">
-      <div class="ex-hstat">
-        <div class="ex-hstat-n" id="ex-stat-total">147+</div>
-        <div class="ex-hstat-l">Questões</div>
-      </div>
-      <div class="ex-hstat">
-        <div class="ex-hstat-n">9</div>
-        <div class="ex-hstat-l">Provas</div>
-      </div>
-      <div class="ex-hstat">
-        <div class="ex-hstat-n">6</div>
-        <div class="ex-hstat-l">Temas</div>
-      </div>
-      <div class="ex-hstat" style="cursor:pointer" onclick="exSwitchMode('temas',null)">
-        <div class="ex-hstat-n" id="ex-stat-feitas">0</div>
-        <div class="ex-hstat-l">Feitas por ti</div>
-      </div>
-    </div>
+<!-- Page header simples -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-eyebrow"><i class="ph ph-exam"></i> Provas Finais Nacionais 2019–2024</div>
+    <h1>Matemática <em>9.º Ano</em></h1>
+    <p class="page-header-sub">Questões reais com resolução detalhada — treina por tema ou simula o exame.</p>
   </div>
 </header>
 
-<!-- ── Conteúdo ── -->
+<!-- Conteúdo -->
 <div class="ex-page">
 
   <!-- TABS — 3 tabs -->
@@ -238,21 +219,6 @@
 
   <!-- ── PAINEL: POR TEMA ── -->
   <div id="ex-panel-temas" class="ex-panel active">
-
-    <!-- Banner orientador para novos utilizadores (visível só sem progresso) -->
-    <div id="ex-welcome-banner" style="background:linear-gradient(135deg,#1e1640,#4a3f7a);border-radius:20px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;display:none;align-items:flex-start;gap:1.25rem;flex-wrap:wrap">
-      <div style="font-size:2rem;flex-shrink:0">🎯</div>
-      <div style="flex:1;min-width:200px">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.4rem">Como usar estes exames?</div>
-        <div style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:.9rem">Treina por <strong style="color:#fff">tema</strong> para atacar os tópicos mais fracos, usa o <strong style="color:#fff">Simulador</strong> para testar em condições reais de exame, ou navega <strong style="color:#fff">Por Prova</strong> para fazer questões de um ano específico.</div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button onclick="exSwitchMode('simulador',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-timer"></i> Simulador</button>
-          <button onclick="exSwitchMode('anos',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-calendar-blank"></i> Por Prova</button>
-          <button onclick="exSwitchMode('progresso',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-chart-bar"></i> Ver Progresso</button>
-        </div>
-      </div>
-      <button onclick="document.getElementById('ex-welcome-banner').style.display='none'" style="background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.5);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;flex-shrink:0;display:flex;align-items:center;justify-content:center" title="Fechar">×</button>
-    </div>
 
     <!-- Sub-selector: Por Tema / Por Prova -->
     <div style="display:flex;gap:.4rem;margin-bottom:1.25rem;border-bottom:2px solid var(--border);padding-bottom:.75rem">
@@ -864,53 +830,14 @@ function exResetProgress() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   HERO PARTICLES (decorativo)
-────────────────────────────────────────────────────────── */
-function _exInitParticles() {
-  var wrap = document.getElementById('ex-particles');
-  if (!wrap) return;
-  var h = '';
-  var sizes = [60,40,80,30,50,90,35,55,70,45];
-  var colors = ['rgba(180,160,255,.25)','rgba(255,255,255,.1)','rgba(120,100,200,.2)','rgba(200,180,255,.15)'];
-  for (var i = 0; i < 10; i++) {
-    var s = sizes[i % sizes.length];
-    var c = colors[i % colors.length];
-    var left = (i * 11 + 5) % 95;
-    var top  = (i * 13 + 8) % 80;
-    var delay = (i * 0.7).toFixed(1);
-    h += '<div class="ex-hero-particle" style="width:' + s + 'px;height:' + s + 'px;background:' + c + ';left:' + left + '%;top:' + top + '%;animation-delay:' + delay + 's;animation-duration:' + (7 + i * 0.5).toFixed(1) + 's"></div>';
-  }
-  wrap.innerHTML = h;
-}
-
-/* ──────────────────────────────────────────────────────────
    INIT
 ────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
-  _exInitParticles();
   if (typeof mat7LoadProvas === 'function') mat7LoadProvas();
   exRenderTopicGrid();
   exSimRenderTemasSelector();
   exRenderYearList();
   _exUpdateStats();
-
-  /* Contador total de questões real */
-  if (window.PROVAS_BANCO) {
-    var cnt = 0;
-    Object.keys(PROVAS_BANCO).forEach(function(k){ cnt += PROVAS_BANCO[k].length; });
-    var el = document.getElementById('ex-stat-total');
-    if (el && cnt > 0) el.textContent = cnt + '+';
-  }
-
-  /* Mostrar banner de orientação apenas para novos utilizadores (sem progresso) */
-  var banner = document.getElementById('ex-welcome-banner');
-  if (banner) {
-    var prog = _exGetProgress();
-    var hasProgress = Object.keys(prog).length > 0;
-    if (!hasProgress) {
-      banner.style.display = 'flex';
-    }
-  }
 });
 </script>
 </body>

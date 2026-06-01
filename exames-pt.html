@@ -197,43 +197,24 @@
 
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
 
-<!-- Topbar -->
-<nav class="ex-topbar">
-  <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
-    <div class="mark bg-gradient-to-br from-[#77998E] to-[#516860] rounded-[10px] w-[34px] h-[34px] flex items-center justify-center text-[.6rem] font-extrabold text-white tracking-tight">3π</div>
-    <span class="wordmark" style="font-size:1rem">3ponto<em>14</em></span>
+<!-- Topbar unificada -->
+<nav class="site-topbar">
+  <a href="index.html" class="site-topbar-logo">
+    <div class="mark">3π</div>
+    <span class="wordmark">3ponto<em>14</em></span>
   </a>
-  <div class="topbar-divider"></div>
-  <span style="font-size:.82rem;font-weight:700;color:var(--ink2)">Exames Nacionais</span>
-  <a href="index.html" class="ex-topbar-back"><i class="ph ph-arrow-left"></i> Início</a>
+  <div class="site-topbar-sep"></div>
+  <span class="site-topbar-title">Exames · Português 9.º</span>
+  <div class="site-topbar-actions"></div>
+  <a href="index.html" class="site-topbar-back"><i class="ph ph-arrow-left"></i> Início</a>
 </nav>
 
-<!-- Hero -->
-<header class="ex-hero">
-  <div class="ex-hero-grid"></div>
-  <div class="ex-hero-particles" id="pt-particles"></div>
-  <div style="position:relative">
-    <div class="ex-hero-eyebrow"><i class="ph ph-book-open-text"></i> Provas Finais Nacionais</div>
-    <h1>Português<br><em>9.º Ano</em></h1>
-    <p class="ex-hero-sub">Questões reais com texto e explicação — treina compreensão do oral, leitura e gramática por tema, ou navega prova a prova.</p>
-    <div class="ex-hero-stats">
-      <div class="ex-hstat">
-        <div class="ex-hstat-n" id="pt-stat-total">200+</div>
-        <div class="ex-hstat-l">Exercícios</div>
-      </div>
-      <div class="ex-hstat">
-        <div class="ex-hstat-n">8</div>
-        <div class="ex-hstat-l">Provas</div>
-      </div>
-      <div class="ex-hstat">
-        <div class="ex-hstat-n">6</div>
-        <div class="ex-hstat-l">Módulos</div>
-      </div>
-      <div class="ex-hstat" id="pt-stat-feitas-wrap" style="cursor:pointer" onclick="ptSwitchMode('progresso',null)">
-        <div class="ex-hstat-n" id="pt-stat-feitas">0</div>
-        <div class="ex-hstat-l">Feitas por ti</div>
-      </div>
-    </div>
+<!-- Page header simples -->
+<header class="page-header page-header--pt">
+  <div class="page-header-inner">
+    <div class="page-header-eyebrow"><i class="ph ph-book-open-text"></i> Provas Finais Nacionais 2019–2024</div>
+    <h1>Português <em>9.º Ano</em></h1>
+    <p class="page-header-sub">Questões reais, gramática, figuras de estilo, Os Lusíadas e composição — tudo para o exame.</p>
   </div>
 </header>
 
@@ -272,31 +253,16 @@
   <!-- ══ PAINEL: QUESTÕES (antigo Temas) ══ -->
   <div id="pt-panel-temas" class="ex-panel active">
 
-    <!-- Banner de boas-vindas / guia rápido -->
-    <div id="pt-welcome-banner" style="background:linear-gradient(135deg,#2d2450,#4a3f7a);border-radius:20px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1.25rem;flex-wrap:wrap">
-      <div style="font-size:2rem;flex-shrink:0">📖</div>
-      <div style="flex:1;min-width:200px">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.4rem">Por onde começar?</div>
-        <div style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:.9rem">Treina as questões reais dos exames nacionais — escolhe por tema ou por prova. O site também tem gramática, figuras de estilo, Os Lusíadas e prática de composição nas outras tabs.</div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button onclick="ptSwitchMode('gramatica',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-text-t"></i> Gramática</button>
-          <button onclick="ptSwitchMode('figuras',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-sparkle"></i> Figuras de Estilo</button>
-          <button onclick="ptSwitchMode('lusiadas',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-book-open-text"></i> Os Lusíadas</button>
-          <button onclick="ptSwitchMode('composicao',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-pencil-line"></i> Composição</button>
-        </div>
-      </div>
-      <button onclick="document.getElementById('pt-welcome-banner').style.display='none'" style="background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.5);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;flex-shrink:0;display:flex;align-items:center;justify-content:center" title="Fechar">×</button>
-    </div>
-
     <div class="ex-sec-head">
       <div class="ex-sec-title">Questões de Exame</div>
       <div class="ex-sec-sub">Treina questões reais dos exames nacionais de Português 9.º ano (2019–2024) com explicação detalhada de cada resposta.</div>
     </div>
     <div class="pt-topic-grid" id="pt-topic-grid"></div>
 
-    <!-- Acesso rápido às provas -->
     <div style="margin-top:1.5rem">
-      <div style="font-size:.75rem;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Ou escolhe por prova</div>
+      <div class="ex-sec-head" style="margin-bottom:.75rem">
+        <div class="ex-sec-title" style="font-size:1.1rem">Por Prova</div>
+      </div>
       <div class="pt-year-grid" id="pt-year-grid-mini"></div>
     </div>
   </div>
@@ -365,41 +331,41 @@
     </div>
     <div id="pt-gram-menu">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.25rem">
-        <button onclick="ptGramStart('funcoes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2a7db5" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(42,125,181,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-          <div style="font-size:1.4rem;margin-bottom:.6rem">🔍</div>
-          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Funções Sintáticas</div>
-          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Sujeito, CD, CI, CO, predicativo, modificador...</div>
-          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        <button onclick="ptGramStart('funcoes')" class="pt-gram-card" style="border-top:3px solid #2a7db5">
+          <div class="pt-gram-card-icon">🔍</div>
+          <div class="pt-gram-card-title">Funções Sintáticas</div>
+          <div class="pt-gram-card-sub">Sujeito, CD, CI, CO, predicativo, modificador...</div>
+          <div class="pt-gram-card-meta">
             <span style="font-size:.68rem;font-weight:700;color:#2a7db5;background:#e8f4fd;border-radius:999px;padding:2px 8px">32 exercícios</span>
             <span style="font-size:.68rem;color:var(--ink4)">~10 min</span>
             <span style="font-size:.68rem;font-weight:700;color:#c0392b;background:#fdecea;border-radius:999px;padding:2px 8px">★★★ Difícil</span>
           </div>
         </button>
-        <button onclick="ptGramStart('tempos')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #6b52a8" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(107,82,168,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-          <div style="font-size:1.4rem;margin-bottom:.6rem">⏱️</div>
-          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Tempos Verbais</div>
-          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Conjuntivo, condicional, mais-que-perfeito...</div>
-          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        <button onclick="ptGramStart('tempos')" class="pt-gram-card" style="border-top:3px solid #6b52a8">
+          <div class="pt-gram-card-icon">⏱️</div>
+          <div class="pt-gram-card-title">Tempos Verbais</div>
+          <div class="pt-gram-card-sub">Conjuntivo, condicional, mais-que-perfeito...</div>
+          <div class="pt-gram-card-meta">
             <span style="font-size:.68rem;font-weight:700;color:#6b52a8;background:#f0edf7;border-radius:999px;padding:2px 8px">12 exercícios</span>
             <span style="font-size:.68rem;color:var(--ink4)">~5 min</span>
             <span style="font-size:.68rem;font-weight:700;color:#b07030;background:#fef3e2;border-radius:999px;padding:2px 8px">★★☆ Médio</span>
           </div>
         </button>
-        <button onclick="ptGramStart('classes')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #b07030" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(176,112,48,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-          <div style="font-size:1.4rem;margin-bottom:.6rem">🏷️</div>
-          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Classes de Palavras</div>
-          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Advérbios, determinantes, pronomes, verbos...</div>
-          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        <button onclick="ptGramStart('classes')" class="pt-gram-card" style="border-top:3px solid #b07030">
+          <div class="pt-gram-card-icon">🏷️</div>
+          <div class="pt-gram-card-title">Classes de Palavras</div>
+          <div class="pt-gram-card-sub">Advérbios, determinantes, pronomes, verbos...</div>
+          <div class="pt-gram-card-meta">
             <span style="font-size:.68rem;font-weight:700;color:#b07030;background:#fef3e2;border-radius:999px;padding:2px 8px">10 exercícios</span>
             <span style="font-size:.68rem;color:var(--ink4)">~4 min</span>
             <span style="font-size:.68rem;font-weight:700;color:#2e7d52;background:#e8f5ee;border-radius:999px;padding:2px 8px">★☆☆ Fácil</span>
           </div>
         </button>
-        <button onclick="ptGramStart('subordinadas')" style="background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:1.4rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #2e7d52" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(46,125,82,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-          <div style="font-size:1.4rem;margin-bottom:.6rem">🌿</div>
-          <div style="font-size:.92rem;font-weight:800;color:var(--ink1);margin-bottom:.25rem">Orações Subordinadas</div>
-          <div style="font-size:.74rem;color:var(--ink4);margin-bottom:.6rem">Causal, concessiva, temporal, completiva...</div>
-          <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        <button onclick="ptGramStart('subordinadas')" class="pt-gram-card" style="border-top:3px solid #2e7d52">
+          <div class="pt-gram-card-icon">🌿</div>
+          <div class="pt-gram-card-title">Orações Subordinadas</div>
+          <div class="pt-gram-card-sub">Causal, concessiva, temporal, completiva...</div>
+          <div class="pt-gram-card-meta">
             <span style="font-size:.68rem;font-weight:700;color:#2e7d52;background:#e8f5ee;border-radius:999px;padding:2px 8px">12 exercícios</span>
             <span style="font-size:.68rem;color:var(--ink4)">~5 min</span>
             <span style="font-size:.68rem;font-weight:700;color:#b07030;background:#fef3e2;border-radius:999px;padding:2px 8px">★★☆ Médio</span>
@@ -1473,24 +1439,8 @@ function ptCompAutocheck() {
   result.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
-/* ══ HERO PARTICLES ══ */
-function ptInitParticles() {
-  var wrap = document.getElementById('pt-particles');
-  if (!wrap) return;
-  var h = '';
-  var sizes = [60,40,80,30,50,90,35,55,70,45];
-  var colors = ['rgba(180,160,255,.25)','rgba(255,255,255,.1)','rgba(120,100,200,.2)','rgba(200,180,255,.15)'];
-  for (var i = 0; i < 10; i++) {
-    var s = sizes[i%sizes.length], c = colors[i%colors.length];
-    var left = (i*11+5)%95, top = (i*13+8)%80, delay = (i*.7).toFixed(1);
-    h += '<div class="ex-hero-particle" style="width:'+s+'px;height:'+s+'px;background:'+c+';left:'+left+'%;top:'+top+'%;animation-delay:'+delay+'s;animation-duration:'+(7+i*.5).toFixed(1)+'s"></div>';
-  }
-  wrap.innerHTML = h;
-}
-
 /* ══ INIT ══ */
 document.addEventListener('DOMContentLoaded', function() {
-  ptInitParticles();
   ptRenderTopicGrid();
   ptRenderYearGrid();
   ptRenderYearGridMini();  // mini grid na tab de questões
@@ -1499,23 +1449,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar Os Lusíadas (será renderizado quando o painel abrir)
   // Os outros painéis renderizam ao clicar na tab
 
-  // Contar total
-  var total = ptAllQuestions().length;
-  var el = document.getElementById('pt-stat-total');
-  if (el) el.textContent = total + '+';
 
   // Fechar overlay com Escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { ptCloseOverlay(); }
   });
 
-  /* Mostrar banner de orientação apenas para novos utilizadores */
-  var ptBanner = document.getElementById('pt-welcome-banner');
-  if (ptBanner) {
-    var ptProg = ptGetProgress();
-    var ptHasProgress = Object.keys(ptProg).length > 0;
-    if (ptHasProgress) ptBanner.style.display = 'none';
-  }
+  // Banner de orientação removido (simplificação visual)
 });
 </script>
 </body>

@@ -2567,3 +2567,345 @@ button:focus-visible,a:focus-visible{outline:2px solid #6b5fa0!important;outline
   background: var(--c2-mid);
   border-radius: 2px;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   SISTEMA MINIMALISTA UNIFICADO
+   Substitui os heróis pesados e as topbars inconsistentes
+══════════════════════════════════════════════════════════════ */
+
+/* ── Topbar única para todas as páginas ── */
+.site-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 56px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: .75rem;
+}
+.site-topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.site-topbar-logo .mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--c2-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .6rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.03em;
+  font-family: 'Montserrat', sans-serif;
+}
+.site-topbar-logo .wordmark {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--ink1);
+}
+.site-topbar-logo .wordmark em {
+  color: var(--c2-mid);
+  font-style: normal;
+}
+.site-topbar-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.site-topbar-title {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink3);
+}
+.site-topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.site-topbar-back {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--ink3);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: all .15s;
+  background: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+.site-topbar-back:hover {
+  border-color: var(--ink3);
+  color: var(--ink1);
+  background: var(--cream);
+}
+
+/* ── Page header simples (substitui hero) ── */
+.page-header {
+  padding: 2rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.page-header-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+.page-header-eyebrow {
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--c2-mid);
+  margin-bottom: .4rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.page-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ink1);
+  line-height: 1.15;
+  margin-bottom: .35rem;
+}
+.page-header h1 em {
+  font-style: italic;
+  color: var(--c2-mid);
+}
+.page-header-sub {
+  font-size: .85rem;
+  color: var(--ink3);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── Variante para exames PT (cor diferente) ── */
+.page-header--pt .page-header-eyebrow { color: #5c4e8a; }
+.page-header--pt h1 em { color: #5c4e8a; }
+
+/* ── Content wrapper ── */
+.page-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 5rem;
+}
+
+/* ── Dark mode adaptations ── */
+body.dark-mode .site-topbar {
+  background: #1a1a1a !important;
+  border-bottom-color: #2a2a2a !important;
+}
+body.dark-mode .page-header {
+  background: #1a1a1a !important;
+  border-bottom-color: #2a2a2a !important;
+}
+body.dark-mode .site-topbar-back {
+  border-color: #2a2a2a !important;
+  color: var(--ink3) !important;
+}
+body.dark-mode .site-topbar-back:hover {
+  background: #242424 !important;
+}
+
+
+/* ══ EXAMES-PT — classes extraídas dos inline styles ══ */
+
+/* Gramática — cards de categoria */
+.pt-gram-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 1.4rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all .2s;
+  width: 100%;
+}
+.pt-gram-card:hover { transform: translateY(-2px); }
+.pt-gram-card-icon { font-size: 1.4rem; margin-bottom: .6rem; }
+.pt-gram-card-title { font-size: .92rem; font-weight: 800; color: var(--ink1); margin-bottom: .25rem; }
+.pt-gram-card-sub { font-size: .74rem; color: var(--ink4); margin-bottom: .6rem; }
+.pt-gram-card-meta { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.pt-gram-card-count { font-size: .68rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; }
+.pt-gram-card-time { font-size: .68rem; color: var(--ink4); }
+.pt-gram-card-diff { font-size: .68rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; }
+
+/* Progresso — tabela */
+.pt-prog-table-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .5rem;
+}
+.pt-prog-table-label {
+  font-size: .74rem;
+  font-weight: 700;
+  color: var(--ink2);
+  min-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Composição — secção de critérios (complementa .pt-composicao-card existente) */
+.pt-comp-section-title {
+  font-size: .68rem;
+  font-weight: 800;
+  color: rgba(255,255,255,.6);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: .6rem;
+}
+.pt-comp-theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+@media(max-width:480px){ .pt-comp-theme-grid { grid-template-columns: 1fr; } }
+
+/* Sub-selector Por Tema / Por Prova (exames.html e exames-pt.html) */
+.ex-sub-selector {
+  display: flex;
+  gap: .4rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .75rem;
+}
+.ex-sub-btn {
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all .15s;
+  background: transparent;
+  color: var(--ink3);
+}
+.ex-sub-btn.active {
+  background: var(--c4-mid, #7570a8);
+  border-color: var(--c4-mid, #7570a8);
+  color: #fff;
+}
+.ex-sub-btn:hover:not(.active) {
+  border-color: var(--ink3);
+  color: var(--ink1);
+}
+
+/* Discurso — tabela de regras */
+.pt-disc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+}
+.pt-disc-table th {
+  padding: .5rem .75rem;
+  text-align: left;
+  font-weight: 800;
+  color: #4a3f7a;
+  border-bottom: 2px solid #d4cdf0;
+  background: #f8f6ff;
+}
+.pt-disc-table td {
+  padding: .4rem .75rem;
+  border-bottom: 1px solid var(--border);
+}
+.pt-disc-table td:last-child { color: #5c4e8a; font-weight: 700; }
+
+/* Overlay visual melhorado */
+.pt-overlay-pg { width: 100%; border-radius: 8px; margin-bottom: .75rem; display: block; box-shadow: 0 4px 24px rgba(0,0,0,.5); }
+
+
+/* ══ PORTAL CARDS — novo design minimalista ══ */
+.portal-cards {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.portal-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+  font-family: 'Montserrat', sans-serif;
+}
+.portal-card:hover {
+  border-color: var(--c2-mid);
+  box-shadow: 0 4px 16px rgba(0,0,0,.07);
+  transform: translateY(-1px);
+}
+.portal-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  color: #fff;
+}
+.portal-card-icon--mat    { background: var(--c2-mid); }
+.portal-card-icon--exmat  { background: #5c4e8a; }
+.portal-card-icon--expt   { background: #4a3f7a; }
+.portal-card-body { flex: 1; }
+.portal-card-title {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink1);
+  margin-bottom: .15rem;
+}
+.portal-card-sub {
+  font-size: .76rem;
+  color: var(--ink4);
+  line-height: 1.4;
+}
+.portal-card-arrow {
+  color: var(--border2);
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: color .15s, transform .15s;
+}
+.portal-card:hover .portal-card-arrow {
+  color: var(--c2-mid);
+  transform: translateX(3px);
+}
+
+/* Dark mode portal */
+body.dark-mode .portal-card {
+  background: #242424 !important;
+  border-color: #2a2a2a !important;
+}
+body.dark-mode .portal-card:hover {
+  border-color: var(--c2-mid) !important;
+}
+

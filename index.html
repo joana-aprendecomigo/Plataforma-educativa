@@ -44,77 +44,54 @@
 
 <div id="view-portal">
 
-<nav class="topbar">
-  <a class="topbar-logo" href="#">
-    <div class="mark bg-gradient-to-br from-[#77998E] to-[#516860] rounded-[10px] w-[38px] h-[38px] flex items-center justify-center text-[.65rem] font-extrabold text-white font-[Montserrat,sans-serif] tracking-tight shadow-[0_3px_12px_rgba(119,153,142,.35)]">3π</div>
+<nav class="site-topbar">
+  <a href="#" class="site-topbar-logo">
+    <div class="mark">3π</div>
     <span class="wordmark">3ponto<em>14</em></span>
   </a>
-  <div class="topbar-divider"></div>
-  <span class="topbar-sub">Matemática 7.º Ano</span>
+  <div class="site-topbar-actions"></div>
 </nav>
 
-<section class="hero">
-  <div class="hero-blob hero-blob-1"></div><div class="hero-blob hero-blob-2"></div><div class="hero-blob hero-blob-3"></div>
-  <div class="deco deco-1"></div><div class="deco deco-2"></div>
-  <div class="deco deco-3"></div><div class="deco deco-4"></div>
-  <div class="deco deco-5"></div><div class="deco deco-6"></div>
-  <div class="hero-eyebrow"><div class="dot"></div>Matemática &amp; Português · 7.º e 9.º Ano</div>
-  <h1>3ponto<span class="line2 italic font-normal">14</span> <span class="line3">A tua plataforma de estudo</span></h1>
-  <p class="hero-sub">Exercícios interativos, fichas, jogos e preparação para exames nacionais — Matemática e Português ao teu ritmo.</p>
-</section>
-
-<div class="featured-wrap">
-  <button class="featured-card" onclick="showMat7View()">
-    <div class="featured-icon-lg"><i class="ph ph-calculator text-[2.8em] text-white/85"></i></div>
-    <div class="featured-body">
-      <h3>Matemática · 7.º Ano</h3>
-      <p>Conteúdo completo com teoria, exercícios interativos, minitestes, jogos e fichas — seleciona um capítulo ou estuda vários de uma vez.</p>
-    </div>
-    <div class="featured-btn-ui">Escolher capítulo <span class="arrow">→</span></div>
-  </button>
-</div>
-
-<!-- ── Exames Nacionais ── -->
-<div class="featured-wrap" style="padding-top:0">
-  <div style="max-width:1200px;margin:0 auto 1rem;display:flex;flex-direction:column;gap:.75rem">
-    <button onclick="window.location.href='exames.html'" style="background:var(--surface);border:1.5px solid var(--border);border-radius:18px;padding:1.75rem 2.25rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;box-shadow:var(--shadow);width:100%;text-align:left;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='#7c6fa0';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(92,78,138,.18)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none';this.style.boxShadow='var(--shadow)'">
-      <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#7c6fa0,#5c4e8a);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <i class="ph ph-scroll" style="font-size:1.6rem;color:#fff"></i>
-      </div>
-      <div style="flex:1;min-width:200px">
-        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;flex-wrap:wrap">
-          <span style="font-size:1rem;font-weight:700;color:var(--ink1)">Matemática · 9.º Ano</span>
-          <span style="background:#f0edf7;border:1px solid #c9bfe8;color:#6b52a8;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:999px">Exames Nacionais</span>
-        </div>
-        <p style="font-size:.85rem;color:var(--ink3);margin:0 0 .5rem">Questões reais de 2019–2024 com resolução passo a passo. Treina por tema ou simula o exame completo.</p>
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap">
-          <span style="font-size:.7rem;font-weight:700;color:#5c4e8a;background:#f0edf7;border-radius:999px;padding:2px 9px">147+ questões</span>
-          <span style="font-size:.7rem;font-weight:700;color:#5c4e8a;background:#f0edf7;border-radius:999px;padding:2px 9px">9 provas</span>
-          <span style="font-size:.7rem;font-weight:700;color:#5c4e8a;background:#f0edf7;border-radius:999px;padding:2px 9px">Simulador cronometrado</span>
-        </div>
-      </div>
-      <span style="background:linear-gradient(135deg,#5c4e8a,#7c6fa0);color:#fff;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:.3rem;flex-shrink:0"><i class="ph ph-play"></i> Praticar</span>
-    </button>
-    <button onclick="window.location.href='exames-pt.html'" style="background:var(--surface);border:1.5px solid var(--border);border-radius:18px;padding:1.75rem 2.25rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;box-shadow:var(--shadow);width:100%;text-align:left;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='#5c4e8a';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(74,63,122,.18)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none';this.style.boxShadow='var(--shadow)'">
-      <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#4a3f7a,#2d2450);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <i class="ph ph-book-open-text" style="font-size:1.6rem;color:#fff"></i>
-      </div>
-      <div style="flex:1;min-width:200px">
-        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;flex-wrap:wrap">
-          <span style="font-size:1rem;font-weight:700;color:var(--ink1)">Português · 9.º Ano</span>
-          <span style="background:#ede8f5;border:1px solid #b8a8d8;color:#4a3f7a;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:999px">Exames Nacionais</span>
-          <span style="background:linear-gradient(135deg,#b07030,#c9a84c);color:#fff;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:999px">Novo</span>
-        </div>
-        <p style="font-size:.85rem;color:var(--ink3);margin:0 0 .5rem">Gramática, figuras de estilo, Os Lusíadas, discurso e composição — tudo para o exame de Português.</p>
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap">
-          <span style="font-size:.7rem;font-weight:700;color:#4a3f7a;background:#ede8f5;border-radius:999px;padding:2px 9px">200+ exercícios</span>
-          <span style="font-size:.7rem;font-weight:700;color:#4a3f7a;background:#ede8f5;border-radius:999px;padding:2px 9px">8 provas</span>
-          <span style="font-size:.7rem;font-weight:700;color:#4a3f7a;background:#ede8f5;border-radius:999px;padding:2px 9px">Os Lusíadas</span>
-        </div>
-      </div>
-      <span style="background:linear-gradient(135deg,#4a3f7a,#6b5fa0);color:#fff;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:.3rem;flex-shrink:0"><i class="ph ph-play"></i> Praticar</span>
-    </button>
+<header class="page-header">
+  <div class="page-header-inner" style="max-width:860px">
+    <h1 style="font-size:1.8rem">3ponto<em>14</em></h1>
+    <p class="page-header-sub">Exercícios, fichas, jogos e exames nacionais — Matemática e Português, ao teu ritmo.</p>
   </div>
+</header>
+
+<div class="portal-cards">
+  <button class="portal-card" onclick="showMat7View()">
+    <div class="portal-card-icon portal-card-icon--mat">
+      <i class="ph ph-calculator"></i>
+    </div>
+    <div class="portal-card-body">
+      <div class="portal-card-title">Matemática · 7.º Ano</div>
+      <div class="portal-card-sub">Teoria, exercícios, jogos e fichas — todos os 8 capítulos</div>
+    </div>
+    <i class="ph ph-arrow-right portal-card-arrow"></i>
+  </button>
+
+  <button class="portal-card" onclick="window.location.href='exames.html'">
+    <div class="portal-card-icon portal-card-icon--exmat">
+      <i class="ph ph-exam"></i>
+    </div>
+    <div class="portal-card-body">
+      <div class="portal-card-title">Matemática · 9.º Ano</div>
+      <div class="portal-card-sub">Exames nacionais 2019–2024 com resolução</div>
+    </div>
+    <i class="ph ph-arrow-right portal-card-arrow"></i>
+  </button>
+
+  <button class="portal-card" onclick="window.location.href='exames-pt.html'">
+    <div class="portal-card-icon portal-card-icon--expt">
+      <i class="ph ph-book-open-text"></i>
+    </div>
+    <div class="portal-card-body">
+      <div class="portal-card-title">Português · 9.º Ano</div>
+      <div class="portal-card-sub">Gramática, figuras, Lusíadas e exames</div>
+    </div>
+    <i class="ph ph-arrow-right portal-card-arrow"></i>
+  </button>
 </div>
 
 <!-- ── Progresso rápido (injectado por portal.js) ── -->
