@@ -2434,3 +2434,23 @@ button:focus-visible,a:focus-visible{outline:2px solid #6b5fa0!important;outline
 .ex-hstat{cursor:default}
 .ex-hstat[style*="cursor:pointer"]{cursor:pointer}
 .ex-hstat[style*="cursor:pointer"]:hover{background:rgba(255,255,255,.16)!important;transform:translateY(-3px)}
+
+/* ══ PT GRAMÁTICA — melhorar sublinhado mobile ══ */
+/* O sublinhado nas frases de gramática precisa ser bem visível */
+.pt-gram-frase u, .pt-gram-frase ins {
+  text-decoration: underline;
+  text-decoration-color: #5c4e8a;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  font-weight: 700;
+  color: #4a3f7a;
+}
+/* Garantir que <u> em todas as frases de questões PT é visível */
+#pt-gram-engine u, #pt-fig-engine u, #pt-lus-engine u,
+#pt-inline-engine u, #pt-disc-engine u, #pt-con-engine u {
+  text-decoration: underline;
+  text-decoration-color: #5c4e8a;
+  text-decoration-thickness: 2.5px;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}

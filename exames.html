@@ -241,6 +241,22 @@
 
   <!-- ── PAINEL: POR TEMA ── -->
   <div id="ex-panel-temas" class="ex-panel active">
+
+    <!-- Banner orientador para novos utilizadores (visível só sem progresso) -->
+    <div id="ex-welcome-banner" style="background:linear-gradient(135deg,#1e1640,#4a3f7a);border-radius:20px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;display:none;align-items:flex-start;gap:1.25rem;flex-wrap:wrap">
+      <div style="font-size:2rem;flex-shrink:0">🎯</div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.4rem">Como usar estes exames?</div>
+        <div style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:.9rem">Treina por <strong style="color:#fff">tema</strong> para atacar os tópicos mais fracos, usa o <strong style="color:#fff">Simulador</strong> para testar em condições reais de exame, ou navega <strong style="color:#fff">Por Prova</strong> para fazer questões de um ano específico.</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button onclick="exSwitchMode('simulador',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-timer"></i> Simulador</button>
+          <button onclick="exSwitchMode('anos',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-calendar-blank"></i> Por Prova</button>
+          <button onclick="exSwitchMode('progresso',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-chart-bar"></i> Ver Progresso</button>
+        </div>
+      </div>
+      <button onclick="document.getElementById('ex-welcome-banner').style.display='none'" style="background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.5);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;flex-shrink:0;display:flex;align-items:center;justify-content:center" title="Fechar">×</button>
+    </div>
+
     <div class="ex-sec-head">
       <div class="ex-sec-title">Prática por Tema</div>
       <div class="ex-sec-sub">Escolhe um tema e treina questões reais de várias provas — o motor seleciona e baralha automaticamente.</div>
@@ -856,6 +872,16 @@ document.addEventListener('DOMContentLoaded', function() {
     Object.keys(PROVAS_BANCO).forEach(function(k){ cnt += PROVAS_BANCO[k].length; });
     var el = document.getElementById('ex-stat-total');
     if (el && cnt > 0) el.textContent = cnt + '+';
+  }
+
+  /* Mostrar banner de orientação apenas para novos utilizadores (sem progresso) */
+  var banner = document.getElementById('ex-welcome-banner');
+  if (banner) {
+    var prog = _exGetProgress();
+    var hasProgress = Object.keys(prog).length > 0;
+    if (!hasProgress) {
+      banner.style.display = 'flex';
+    }
   }
 });
 </script>

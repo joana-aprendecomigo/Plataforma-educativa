@@ -243,7 +243,7 @@
   <!-- TABS -->
   <div class="ex-tabs-wrap" role="tablist" style="overflow-x:auto;flex-wrap:nowrap">
     <button class="ex-tab active" onclick="ptSwitchMode('temas',this)" role="tab">
-      <i class="ph ph-books"></i> <span class="tab-lbl">Exames</span>
+      <i class="ph ph-exam"></i> <span class="tab-lbl">Questões</span>
     </button>
     <button class="ex-tab" onclick="ptSwitchMode('gramatica',this)" role="tab">
       <i class="ph ph-text-t"></i> <span class="tab-lbl">Gramática</span>
@@ -268,13 +268,36 @@
   <!-- ENGINE INLINE (partilhado entre todos os painéis) -->
   <div id="pt-inline-engine"></div>
 
-  <!-- ══ PAINEL: POR TEMA ══ -->
+  <!-- ══ PAINEL: QUESTÕES (antigo Temas) ══ -->
   <div id="pt-panel-temas" class="ex-panel active">
+
+    <!-- Banner de boas-vindas / guia rápido -->
+    <div id="pt-welcome-banner" style="background:linear-gradient(135deg,#2d2450,#4a3f7a);border-radius:20px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1.25rem;flex-wrap:wrap">
+      <div style="font-size:2rem;flex-shrink:0">📖</div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:.4rem">Por onde começar?</div>
+        <div style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:.9rem">Treina as questões reais dos exames nacionais — escolhe por tema ou por prova. O site também tem gramática, figuras de estilo, Os Lusíadas e prática de composição nas outras tabs.</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button onclick="ptSwitchMode('gramatica',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-text-t"></i> Gramática</button>
+          <button onclick="ptSwitchMode('figuras',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-sparkle"></i> Figuras de Estilo</button>
+          <button onclick="ptSwitchMode('lusiadas',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-book-open-text"></i> Os Lusíadas</button>
+          <button onclick="ptSwitchMode('composicao',null)" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:Montserrat,sans-serif;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><i class="ph ph-pencil-line"></i> Composição</button>
+        </div>
+      </div>
+      <button onclick="document.getElementById('pt-welcome-banner').style.display='none'" style="background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.5);border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.9rem;flex-shrink:0;display:flex;align-items:center;justify-content:center" title="Fechar">×</button>
+    </div>
+
     <div class="ex-sec-head">
-      <div class="ex-sec-title">Prática por Tema</div>
-      <div class="ex-sec-sub">Escolhe um tema e treina questões reais de várias provas — mistura compreensão e gramática.</div>
+      <div class="ex-sec-title">Questões de Exame</div>
+      <div class="ex-sec-sub">Treina questões reais dos exames nacionais de Português 9.º ano (2019–2024) com explicação detalhada de cada resposta.</div>
     </div>
     <div class="pt-topic-grid" id="pt-topic-grid"></div>
+
+    <!-- Acesso rápido às provas -->
+    <div style="margin-top:1.5rem">
+      <div style="font-size:.75rem;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem">Ou escolhe por prova</div>
+      <div class="pt-year-grid" id="pt-year-grid-mini"></div>
+    </div>
   </div>
 
   <!-- ══ PAINEL: POR PROVA ══ -->
@@ -653,7 +676,7 @@ function ptSwitchMode(mode, btn) {
     clearInterval(_ptSimTimer); _ptSimTimer = null;
   }
   if (mode === 'progresso') ptRenderProgresso();
-  if (mode === 'composicao') ptRenderComposicaoTemas();
+  if (mode === 'composicao') { ptRenderComposicaoTemas(); ptOpenComposicao('opiniao'); }
   if (mode === 'lusiadas') { if (typeof ptLusRenderMenu === 'function') ptLusRenderMenu(); }
   if (mode === 'figuras') ptRenderFigCards();
   if (mode === 'conectores') ptRenderConFichas();
@@ -869,6 +892,25 @@ function ptConfirm(qId) {
   if (next) next.style.display = 'block';
 }
 
+/* ══ MINI GRID DE PROVAS (na tab de Questões) ══ */
+function ptRenderYearGridMini() {
+  var grid = document.getElementById('pt-year-grid-mini');
+  if (!grid) return;
+  var h = '';
+  var keys = Object.keys(EXAMES_PT_BANCO).sort(function(a,b){ return b.localeCompare(a); });
+  keys.forEach(function(key) {
+    var exam = EXAMES_PT_BANCO[key];
+    h += '<div class="pt-year-row" style="padding:.75rem 1rem">';
+    h += '<div class="pt-year-pill" style="font-size:.62rem;padding:3px 9px">' + exam.ano + '</div>';
+    h += '<div class="pt-year-label" style="font-size:.82rem">' + exam.label + '</div>';
+    h += '<div class="pt-year-actions">';
+    h += '<button class="pt-year-btn pt-year-btn-practice" onclick="ptStartYear(\'' + key + '\')" style="padding:5px 11px;font-size:.68rem"><i class="ph ph-play"></i> Praticar</button>';
+    h += '</div>';
+    h += '</div>';
+  });
+  grid.innerHTML = h;
+}
+
 /* ══ PAINEL POR PROVA ══ */
 function ptRenderYearGrid() {
   var grid = document.getElementById('pt-year-grid');
@@ -1020,9 +1062,20 @@ function _ptSimRenderQuestion() {
 
   var h = '<div style="background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:1.75rem">';
   var exam = EXAMES_PT_BANCO[q.examKey];
+  var textoInfo = exam && exam.textos && q.texto ? exam.textos[q.texto] : null;
   if (q.tema === 'gramatica') h += '<span class="pt-badge pt-badge-grammar" style="margin-bottom:.75rem;display:inline-flex"><i class="ph ph-text-t"></i> Gramática</span>';
   else h += '<span class="pt-badge pt-badge-comp" style="margin-bottom:.75rem;display:inline-flex"><i class="ph ph-eye"></i> Compreensão</span>';
-  if (exam) h += '<div style="font-size:.7rem;color:var(--ink4);margin-bottom:.75rem">' + exam.label + '</div>';
+  if (exam) h += '<div style="font-size:.7rem;color:var(--ink4);margin-bottom:.75rem">' + exam.label + (q.texto ? ' · Texto ' + q.texto : '') + '</div>';
+  // Mostrar texto da prova no simulador (colapsável)
+  if (textoInfo) {
+    h += '<button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display===\'none\'?\'block\':\'none\'" class="pt-toggle-texto" style="margin-bottom:.75rem"><i class="ph ph-article"></i> ' + textoInfo.titulo + '</button>';
+    h += '<div style="display:none;margin-bottom:1rem">';
+    textoInfo.paginas.forEach(function(pg) {
+      var pgStr = pg < 10 ? '0' + pg : '' + pg;
+      h += '<img src="img/exames_pt/' + q.examKey + '/p-' + pgStr + '.png" style="width:100%;border-radius:8px;margin-bottom:.5rem;border:1px solid var(--border)" alt="Página ' + pg + '">';
+    });
+    h += '</div>';
+  }
   h += '<div style="font-size:.95rem;font-weight:700;color:var(--ink1);line-height:1.65;margin-bottom:1.25rem">' + q.enun + '</div>';
   h += '<div id="pt-sim-opts">';
   q.opts.forEach(function(opt, i) {
@@ -1439,6 +1492,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ptInitParticles();
   ptRenderTopicGrid();
   ptRenderYearGrid();
+  ptRenderYearGridMini();  // mini grid na tab de questões
   ptRenderComposicaoTemas();
   ptUpdateStatFeitas();
   // Inicializar Os Lusíadas (será renderizado quando o painel abrir)
@@ -1449,11 +1503,18 @@ document.addEventListener('DOMContentLoaded', function() {
   var el = document.getElementById('pt-stat-total');
   if (el) el.textContent = total + '+';
 
-  // Fechar overlay com Escape (ux-improvements.js já trata do scroll-to-top e do Escape global,
-  // mas registamos aqui também para garantir que ptCloseOverlay é chamado)
+  // Fechar overlay com Escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') { ptCloseOverlay(); }
   });
+
+  /* Mostrar banner de orientação apenas para novos utilizadores */
+  var ptBanner = document.getElementById('pt-welcome-banner');
+  if (ptBanner) {
+    var ptProg = ptGetProgress();
+    var ptHasProgress = Object.keys(ptProg).length > 0;
+    if (ptHasProgress) ptBanner.style.display = 'none';
+  }
 });
 </script>
 </body>
