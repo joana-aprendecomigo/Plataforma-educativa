@@ -48,19 +48,15 @@
   <p>Teoria, exercícios interativos, minitestes, jogos e fichas para imprimir</p>
 </header>
 
-<nav class="tabs hidden" id="tabs2">
-  <button class="tab-btn active" onclick="showSection2('temas2', this)">Temas</button>
-  <button class="tab-btn" onclick="showSection2('teoria2', this)">Teoria</button>
-  <button class="tab-btn" onclick="showSection2('questoes2', this)">Exercícios</button>
-  <button class="tab-btn" onclick="showSection2('minitestes2', this)"><i class="ph ph-file-text"></i> Minitestes</button>
-  <button class="tab-btn" onclick="showSection2('teste2', this)">Teste</button>
-  <button class="tab-btn" onclick="showSection2('gerador2', this)">Gerador</button>
-  <button class="tab-btn" onclick="showSection2('jogos2', this)">Jogos</button>
-  <button class="tab-btn" onclick="showSection2('quiz-game2', this)">⚡ Quiz</button>
-  <button class="tab-btn" onclick="showSection2('flashcards2', this)">Flashcards</button>
-  <button class="tab-btn" onclick="showSection2('exame2', this)">Exame</button>
-  <button class="tab-btn" onclick="showSection2('progresso2', this)">Progresso</button>
+<nav class="tabs" id="tabs-cap2">
+  <button class="tab-btn cap-group-btn active" data-group="aprender" onclick="showSection2('temas2', this)" data-secs="temas2,teoria2"><i class="ph ph-book-open-text"></i> Aprender</button>
+  <button class="tab-btn cap-group-btn" data-group="praticar" onclick="showSection2('questoes2', this)" data-secs="questoes2,minitestes2,gerador2"><i class="ph ph-pencil-simple"></i> Praticar</button>
+  <button class="tab-btn cap-group-btn" data-group="testar" onclick="showSection2('teste2', this)" data-secs="teste2,quiz-game2,flashcards2,exame2"><i class="ph ph-timer"></i> Testar</button>
+  <button class="tab-btn" onclick="showSection2('jogos2', this)"><i class="ph ph-game-controller"></i> Jogos</button>
+  <button class="tab-btn" onclick="showSection2('progresso2', this)"><i class="ph ph-chart-bar"></i> Progresso</button>
 </nav>
+<div class="cap-subnav" id="cap-subnav-2" style="display:none"></div>
+
 
 <main>
 

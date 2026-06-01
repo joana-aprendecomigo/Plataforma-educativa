@@ -49,20 +49,14 @@
 </header>
 
 <nav class="tabs" id="tabs-cap1">
-  <button class="tab-btn active" onclick="showSection('temas', this)">Temas</button>
-  <button class="tab-btn" onclick="showSection('teoria', this)">Teoria</button>
-  <button class="tab-btn" onclick="showSection('questoes', this)">Exercícios</button>
-  <button class="tab-btn" onclick="showSection('minitestes', this)"><i class="ph ph-file-text"></i> Minitestes</button>
-  <button class="tab-btn" onclick="showSection('teste', this)">Teste</button>
-  <button class="tab-btn" onclick="showSection('gerador', this)">Gerador</button>
-  <button class="tab-btn" onclick="showSection('jogos', this)">Jogos</button>
-  <button class="tab-btn" onclick="showSection('quiz-game', this)">⚡ Modo Quiz</button>
-  <button class="tab-btn" onclick="showSection('reta', this)">Reta</button>
-  <button class="tab-btn" onclick="showSection('calc-expr', this)">Calculadora</button>
-  <button class="tab-btn" onclick="showSection('flashcards', this)">Flashcards</button>
-  <button class="tab-btn" onclick="showSection('exame', this)">Exame</button>
-  <button class="tab-btn" onclick="showSection('progresso', this)">Progresso</button>
+  <button class="tab-btn cap-group-btn active" data-group="aprender" onclick="showSection('temas', this)" data-secs="temas,teoria"><i class="ph ph-book-open-text"></i> Aprender</button>
+  <button class="tab-btn cap-group-btn" data-group="praticar" onclick="showSection('questoes', this)" data-secs="questoes,minitestes,gerador,reta,calc-expr"><i class="ph ph-pencil-simple"></i> Praticar</button>
+  <button class="tab-btn cap-group-btn" data-group="testar" onclick="showSection('teste', this)" data-secs="teste,quiz-game,flashcards,exame"><i class="ph ph-timer"></i> Testar</button>
+  <button class="tab-btn" onclick="showSection('jogos', this)"><i class="ph ph-game-controller"></i> Jogos</button>
+  <button class="tab-btn" onclick="showSection('progresso', this)"><i class="ph ph-chart-bar"></i> Progresso</button>
 </nav>
+<div class="cap-subnav hidden" id="cap-subnav-1"></div>
+
 
 <main class="chapter-main">
 

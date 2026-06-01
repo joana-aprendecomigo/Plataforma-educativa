@@ -121,8 +121,18 @@ function _mat7BuildSelectors() {
   });
 }
 // Auto-run when DOM is ready
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _mat7BuildSelectors);
-else _mat7BuildSelectors();
+function _mat7Init() {
+  _mat7BuildSelectors();
+  // Renderizar Progresso se for o painel activo por omissão
+  var activePanel = document.querySelector('.mat7-panel.active');
+  if (activePanel && activePanel.id === 'mat7p-progresso') {
+    setTimeout(function() {
+      if (typeof renderProgressoUnificado === 'function') renderProgressoUnificado();
+    }, 100);
+  }
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _mat7Init);
+else _mat7Init();
 
 // ── "Por onde começar?" continue banner ──────────────────────────────────────
 var _mat7CapNames = {
@@ -605,22 +615,34 @@ function _mat7GetActiveCaps(tab) {
 
 function mat7SwitchTab(tab, btn) {
   document.querySelectorAll('.mat7-hub-tab').forEach(function(b){ b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
+  // Activar a tab correcta na barra — se btn é null, encontrar pela correspondência
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    // Tabs de prática não têm botão próprio — activar o botão "Praticar"
+    var pratTabs = ['exercicios','jogos','quiz','flashcards','exame'];
+    var targetTab = pratTabs.indexOf(tab) !== -1 ? 'praticar' : tab;
+    var tabBtn = document.querySelector('.mat7-hub-tab[data-tab="' + targetTab + '"]');
+    if (tabBtn) tabBtn.classList.add('active');
+  }
   document.querySelectorAll('.mat7-panel').forEach(function(p){ p.classList.remove('active'); p.style.display = 'none'; });
   var panel = document.getElementById('mat7p-' + tab);
   if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
   // Update document title
-  var _tabTitles = { resumo:'Resumo', exercicios:'Exercícios', testes:'Testes',
-    flashcards:'Flashcards', jogos:'Jogos', exame:'Exame', progresso:'Progresso', quiz:'Modo Quiz' };
+  var _tabTitles = { resumo:'Teoria', exercicios:'Exercícios', flashcards:'Flashcards',
+    jogos:'Jogos', exame:'Teste', progresso:'Progresso', quiz:'Quiz', fichas:'Fichas', praticar:'Praticar' };
   if (_tabTitles[tab]) document.title = 'Mat. 7.º — ' + _tabTitles[tab] + ' · 3ponto14';
   // Auto-render content
   if (tab === 'resumo') mat7RenderResumoInline();
   else if (tab === 'quiz') { if (typeof qgHubInit === 'function') qgHubInit(); }
   else if (tab === 'progresso') { if (typeof renderProgressoUnificado === 'function') renderProgressoUnificado(); }
-  else if (tab === 'exercicios') {
-    mat7LoadInline('exercicios');
-  }
+  else if (tab === 'exercicios') { mat7LoadInline('exercicios'); }
   else if (_mat7SecMap[tab]) mat7LoadInline(tab);
+}
+
+// mat7SwitchHub — activa uma tab de "hub" (como Praticar) sem despacho adicional
+function mat7SwitchHub(tab, btn) {
+  mat7SwitchTab(tab, btn);
 }
 
 

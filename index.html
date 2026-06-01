@@ -120,23 +120,8 @@
 <!-- ── Progresso rápido (injectado por portal.js) ── -->
 <div id="portal-progress-widget" style="display:none;max-width:760px;margin:.5rem auto 0;padding:0 1rem"></div>
 
-<div class="controls-wrap">
-  <div class="search-box">
-    <span class="search-icon"><i class="ph ph-magnifying-glass"></i></span>
-    <input type="text" id="s-input" placeholder="Pesquisar disciplina, ano ou conteúdo…" oninput="doSearch(this.value)" onkeydown="searchKeyNav(event)" autocomplete="off">
-    <div class="search-results" id="searchResults"></div>
-  </div>
-  <div class="filters">
-    <button class="f-btn active c3" onclick="filterBy('all',this)">Matemática 7.º Ano</button>
-  </div>
-</div>
-
-<main id="portal-main"></main>
-<div class="no-results" id="no-results">
-  <div class="nr-icon"><i class="ph ph-magnifying-glass text-[2.8em] text-[var(--ink4)]"></i></div>
-  <h3>Sem resultados</h3>
-  <p>Tenta pesquisar com outro termo.</p>
-</div>
+<!-- Placeholder para compatibilidade com portal.js -->
+<main id="portal-main" style="display:none"></main>
 
 <footer>
   <strong>3ponto14</strong> · Centro de Estudos · Construído com <i class="ph ph-heart" aria-hidden="true"></i> para alunos e professores de Portugal

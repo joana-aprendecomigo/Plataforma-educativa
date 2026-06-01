@@ -1654,6 +1654,83 @@ function _initChapterNav() {
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _initChapterNav);
 else _initChapterNav();
 
+// ── Cap group tabs sub-nav ──────────────────────────────────────────────────
+// Quando se clica num botão de grupo (Aprender, Praticar, Testar),
+// mostra uma sub-barra com as secções desse grupo
+(function() {
+  var SEC_LABELS = {
+    // cap1
+    temas:'Temas', teoria:'Teoria', questoes:'Exercícios', minitestes:'Minitestes',
+    gerador:'Gerador', reta:'Reta Numérica', 'calc-expr':'Calculadora',
+    teste:'Teste', 'quiz-game':'⚡ Quiz', flashcards:'Flashcards', exame:'Exame Cronometrado',
+    jogos:'Jogos', progresso:'Progresso',
+  };
+  // Adicionar labels com sufixo numérico
+  [2,3,4,5,6,7,8].forEach(function(n) {
+    Object.keys(SEC_LABELS).forEach(function(k) {
+      SEC_LABELS[k+n] = SEC_LABELS[k];
+    });
+  });
+
+  function initGroupTabs() {
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.cap-group-btn');
+      if (!btn) return;
+      var secsStr = btn.getAttribute('data-secs');
+      if (!secsStr) return;
+      var secs = secsStr.split(',');
+      if (secs.length <= 1) return; // só 1 secção, sem sub-nav necessário
+
+      // Encontrar a sub-nav mais próxima
+      var tabsNav = btn.closest('nav.tabs');
+      if (!tabsNav) return;
+      var subNav = tabsNav.nextElementSibling;
+      if (!subNav || !subNav.classList.contains('cap-subnav')) return;
+
+      // Marcar botão activo
+      tabsNav.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      // Construir sub-nav
+      var h = '';
+      secs.forEach(function(secId, i) {
+        var lbl = SEC_LABELS[secId] || secId;
+        var activeClass = i === 0 ? ' active' : '';
+        h += '<button class="cap-subnav-btn' + activeClass + '" onclick="capSubNavClick(this,\'' + secId + '\')">' + lbl + '</button>';
+      });
+      subNav.innerHTML = h;
+      subNav.style.display = 'flex';
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initGroupTabs);
+  else initGroupTabs();
+})();
+
+window.capSubNavClick = function(btn, secId) {
+  var subNav = btn.parentElement;
+  subNav.querySelectorAll('.cap-subnav-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  // Encontrar a função showSection correcta
+  var tabsNav = subNav.previousElementSibling;
+  if (tabsNav) {
+    var groupBtn = tabsNav.querySelector('.cap-group-btn.active');
+    if (groupBtn) {
+      var fn = groupBtn.getAttribute('onclick');
+      if (fn) {
+        // Extrair nome da função: showSection4('...', this) → showSection4
+        var fnName = fn.match(/^(\w+)\s*\(/);
+        if (fnName && typeof window[fnName[1]] === 'function') {
+          window[fnName[1]](secId, null);
+          return;
+        }
+      }
+    }
+  }
+  // Fallback: tentar showSection genérico
+  if (typeof showSection === 'function') showSection(secId, null);
+};
+
 // ── SVG Visual Helpers ──────────────────────────────────────────────────────
 
 // Coordinate grid with optional points and line y=mx+b

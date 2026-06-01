@@ -48,26 +48,56 @@
   <span class="mat7-hub-year">7.º Ano</span>
 </div>
 
-<!-- ── Tab bar ── -->
+<!-- ── Tab bar — 4 tabs ── -->
 <div class="mat7-hub-tabbar" id="mat7-hub-tabbar">
-  <button class="mat7-hub-tab active" data-tab="fichas"   onclick="mat7SwitchTab('fichas',this)">  <span class="mat7-hub-tab-icon"><i class="ph ph-file"></i></span> Fichas</button>
-  <button class="mat7-hub-tab"        data-tab="resumo"   onclick="mat7SwitchTab('resumo',this)">  <span class="mat7-hub-tab-icon"><i class="ph ph-book-open-text"></i></span> Resumo</button>
-  <button class="mat7-hub-tab"        data-tab="exercicios" onclick="mat7SwitchTab('exercicios',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-pencil-simple"></i></span> Exercícios</button>
-
-  <button class="mat7-hub-tab"        data-tab="jogos"    onclick="mat7SwitchTab('jogos',this)">  <span class="mat7-hub-tab-icon"><i class="ph ph-game-controller"></i></span> Jogos</button>
-  <button class="mat7-hub-tab"        data-tab="quiz"     onclick="mat7SwitchTab('quiz',this)">   <span class="mat7-hub-tab-icon"><i class="ph ph-star"></i></span> ⚡ Quiz</button>
-  <button class="mat7-hub-tab"        data-tab="flashcards" onclick="mat7SwitchTab('flashcards',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-cards"></i></span> Flashcards</button>
-  <button class="mat7-hub-tab"        data-tab="exame"    onclick="mat7SwitchTab('exame',this)">  <span class="mat7-hub-tab-icon">⏱</span> Teste</button>
-  <button class="mat7-hub-tab"        data-tab="progresso" onclick="mat7SwitchTab('progresso',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-trophy"></i></span> Progresso</button>
+  <button class="mat7-hub-tab"         data-tab="resumo"    onclick="mat7SwitchTab('resumo',this)">   <span class="mat7-hub-tab-icon"><i class="ph ph-book-open-text"></i></span> Teoria</button>
+  <button class="mat7-hub-tab"         data-tab="praticar"  onclick="mat7SwitchHub('praticar',this)"> <span class="mat7-hub-tab-icon"><i class="ph ph-pencil-simple"></i></span> Praticar</button>
+  <button class="mat7-hub-tab"         data-tab="fichas"    onclick="mat7SwitchTab('fichas',this)">   <span class="mat7-hub-tab-icon"><i class="ph ph-file-pdf"></i></span> Fichas</button>
+  <button class="mat7-hub-tab active"  data-tab="progresso" onclick="mat7SwitchTab('progresso',this)"><span class="mat7-hub-tab-icon"><i class="ph ph-chart-bar"></i></span> Progresso</button>
 </div>
 
 
 <main class="mat7-hub-main">
 
 <!-- ══════════════════════════════════════════
-     PANEL: FICHAS (default)
+     PANEL: PRATICAR (sub-menu → despacha para painéis existentes)
 ══════════════════════════════════════════ -->
-<div class="mat7-panel active" id="mat7p-fichas">
+<div class="mat7-panel hidden" id="mat7p-praticar">
+  <div class="mat7-panel-heading">Praticar</div>
+  <div class="mat7-panel-sub">Escolhe o modo de prática — todas as ferramentas de treino num só lugar.</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-top:1rem">
+    <button onclick="mat7SwitchTab('exercicios',null)" style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid var(--c2-mid)" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="font-size:1.4rem;margin-bottom:.5rem"><i class="ph ph-pencil-simple" style="color:var(--c2-mid)"></i></div>
+      <div style="font-size:.9rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem">Exercícios</div>
+      <div style="font-size:.75rem;color:var(--ink4)">Questões geradas com correção imediata</div>
+    </button>
+    <button onclick="mat7SwitchTab('quiz',null)" style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #e5c07b" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="font-size:1.4rem;margin-bottom:.5rem">⚡</div>
+      <div style="font-size:.9rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem">Quiz Relâmpago</div>
+      <div style="font-size:.75rem;color:var(--ink4)">Escolha múltipla · 3 vidas · streak</div>
+    </button>
+    <button onclick="mat7SwitchTab('flashcards',null)" style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #56b6c2" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="font-size:1.4rem;margin-bottom:.5rem"><i class="ph ph-cards" style="color:#56b6c2"></i></div>
+      <div style="font-size:.9rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem">Flashcards</div>
+      <div style="font-size:.75rem;color:var(--ink4)">Repetição espaçada para memorizar</div>
+    </button>
+    <button onclick="mat7SwitchTab('exame',null)" style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #c678dd" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="font-size:1.4rem;margin-bottom:.5rem">⏱</div>
+      <div style="font-size:.9rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem">Teste Cronometrado</div>
+      <div style="font-size:.75rem;color:var(--ink4)">Simula condições reais de teste</div>
+    </button>
+    <button onclick="mat7SwitchTab('jogos',null)" style="background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:1.25rem;text-align:left;cursor:pointer;transition:all .2s;border-top:3px solid #98c379" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,.08)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="font-size:1.4rem;margin-bottom:.5rem"><i class="ph ph-game-controller" style="color:#98c379"></i></div>
+      <div style="font-size:.9rem;font-weight:800;color:var(--ink1);margin-bottom:.2rem">Jogos</div>
+      <div style="font-size:.75rem;color:var(--ink4)">Jogo do 24, Minesweeper e mais</div>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL: FICHAS
+══════════════════════════════════════════ -->
+<div class="mat7-panel hidden" id="mat7p-fichas" style="display:none">
   <div class="mat7-panel-heading">Gerador de Fichas</div>
   <div class="mat7-panel-sub">Escolhe os capítulos e o que incluir — gera e descarrega uma ficha PDF personalizada. <strong>Para professores:</strong> ativa "Soluções" para a versão com respostas.</div>
   <!-- Existing gf panel embedded -->
@@ -240,7 +270,7 @@
 <!-- ══════════════════════════════════════════
      PANEL: PROGRESSO
 ══════════════════════════════════════════ -->
-<div class="mat7-panel hidden" id="mat7p-progresso">
+<div class="mat7-panel active" id="mat7p-progresso">
   <div class="mat7-panel-heading">O Teu Progresso</div>
   <div class="mat7-panel-sub">Visão global de todos os capítulos — desempenho, erros e treino direcionado</div>
   <div id="mat7-progresso-unified"></div>

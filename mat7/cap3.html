@@ -48,20 +48,15 @@
   <p>Teoria, exercícios interativos, minitestes, jogos e fichas para imprimir</p>
 </header>
 
-<nav class="tabs hidden" id="tabs3">
-  <button class="tab-btn active" onclick="showSection3('temas3', this)">Temas</button>
-  <button class="tab-btn" onclick="showSection3('teoria3', this)">Teoria</button>
-  <button class="tab-btn" onclick="showSection3('questoes3', this)">Exercícios</button>
-  <button class="tab-btn" onclick="showSection3('minitestes3', this)"><i class="ph ph-file-text"></i> Minitestes</button>
-  <button class="tab-btn" onclick="showSection3('teste3', this)">Teste</button>
-  <button class="tab-btn" onclick="showSection3('gerador3', this)">Gerador</button>
-  <button class="tab-btn" onclick="showSection3('jogos3', this)">Jogos</button>
-  <button class="tab-btn" onclick="showSection3('quiz-game3', this)">⚡ Quiz</button>
-  <button class="tab-btn" onclick="showSection3('reta3', this)">Ângulos</button>
-  <button class="tab-btn" onclick="showSection3('flashcards3', this)">Flashcards</button>
-  <button class="tab-btn" onclick="showSection3('exame3', this)">Teste</button>
-  <button class="tab-btn" onclick="showSection3('progresso3', this)">Progresso</button>
+<nav class="tabs" id="tabs-cap3">
+  <button class="tab-btn cap-group-btn active" data-group="aprender" onclick="showSection3('temas3', this)" data-secs="temas3,teoria3"><i class="ph ph-book-open-text"></i> Aprender</button>
+  <button class="tab-btn cap-group-btn" data-group="praticar" onclick="showSection3('questoes3', this)" data-secs="questoes3,minitestes3,gerador3,reta3"><i class="ph ph-pencil-simple"></i> Praticar</button>
+  <button class="tab-btn cap-group-btn" data-group="testar" onclick="showSection3('teste3', this)" data-secs="teste3,quiz-game3,flashcards3,exame3"><i class="ph ph-timer"></i> Testar</button>
+  <button class="tab-btn" onclick="showSection3('jogos3', this)"><i class="ph ph-game-controller"></i> Jogos</button>
+  <button class="tab-btn" onclick="showSection3('progresso3', this)"><i class="ph ph-chart-bar"></i> Progresso</button>
 </nav>
+<div class="cap-subnav" id="cap-subnav-3" style="display:none"></div>
+
 
 <main>
 

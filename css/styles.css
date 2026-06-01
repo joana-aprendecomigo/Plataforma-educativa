@@ -2511,3 +2511,59 @@ button:focus-visible,a:focus-visible{outline:2px solid #6b5fa0!important;outline
   color: #2e4039 !important;
   font-weight: 600;
 }
+
+/* ══ CAP GROUP TABS — Sub-nav ══ */
+/* Sub-barra que aparece quando se clica em Aprender/Praticar/Testar */
+.cap-subnav {
+  display: none;
+  align-items: center;
+  gap: .3rem;
+  padding: .4rem .75rem;
+  background: var(--cream2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+}
+.cap-subnav::-webkit-scrollbar { display: none; }
+.cap-subnav-btn {
+  background: transparent;
+  border: 1.5px solid var(--border2);
+  border-radius: 999px;
+  padding: 4px 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--ink3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.cap-subnav-btn:hover { border-color: var(--c2-mid); color: var(--c2-mid); }
+.cap-subnav-btn.active {
+  background: var(--c2-mid);
+  border-color: var(--c2-mid);
+  color: #fff;
+}
+
+/* Hub mat7 tabs — 4 tabs mais largas e visíveis */
+.mat7-hub-tabbar .mat7-hub-tab {
+  flex: 1;
+}
+
+/* Cap page tabs — 5 tabs mais limpas */
+.tabs .tab-btn.cap-group-btn {
+  position: relative;
+}
+.tabs .tab-btn.cap-group-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: var(--c2-mid);
+  border-radius: 2px;
+}

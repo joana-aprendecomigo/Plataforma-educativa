@@ -63,20 +63,14 @@
   </header>
 
   <!-- Tabs (hidden — navigation is now via chapter nav bar + scroll) -->
-  <div class="tabs-wrap4 hidden" id="tabs6">
-    <button class="tab-btn active" onclick="showSection6('temas6',this)">Temas</button>
-    <button class="tab-btn" onclick="showSection6('teoria6',this)">Teoria</button>
-    <button class="tab-btn" onclick="showSection6('questoes6',this)">Exercícios</button>
-    <button class="tab-btn" onclick="showSection6('minitestes6',this)"><i class="ph ph-file-text"></i> Minitestes</button>
-    <button class="tab-btn" onclick="showSection6('teste6',this)">Teste</button>
-    <button class="tab-btn" onclick="showSection6('gerador6',this)">Gerador</button>
-    <button class="tab-btn" onclick="showSection6('jogos6',this)">Jogos</button>
-    <button class="tab-btn" onclick="showSection6('quiz-game6',this)">⚡ Quiz</button>
-    <button class="tab-btn" onclick="showSection6('flashcards6',this)">Flashcards</button>
-    <button class="tab-btn" onclick="showSection6('exame6',this)">Teste</button>
-    <button class="tab-btn" onclick="showSection6('progresso6',this)">Progresso</button>
-  </div>
-
+  <nav class="tabs" id="tabs-cap6">
+  <button class="tab-btn cap-group-btn active" data-group="aprender" onclick="showSection6('temas6', this)" data-secs="temas6,teoria6"><i class="ph ph-book-open-text"></i> Aprender</button>
+  <button class="tab-btn cap-group-btn" data-group="praticar" onclick="showSection6('questoes6', this)" data-secs="questoes6,minitestes6,gerador6"><i class="ph ph-pencil-simple"></i> Praticar</button>
+  <button class="tab-btn cap-group-btn" data-group="testar" onclick="showSection6('teste6', this)" data-secs="teste6,quiz-game6,flashcards6,exame6"><i class="ph ph-timer"></i> Testar</button>
+  <button class="tab-btn" onclick="showSection6('jogos6', this)"><i class="ph ph-game-controller"></i> Jogos</button>
+  <button class="tab-btn" onclick="showSection6('progresso6', this)"><i class="ph ph-chart-bar"></i> Progresso</button>
+</nav>
+<div class="cap-subnav" id="cap-subnav-6" style="display:none"></div>
   <div class="sections4">
 
   <!-- ══ TEMAS ══ -->
