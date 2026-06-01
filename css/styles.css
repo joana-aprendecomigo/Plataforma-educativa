@@ -12,8 +12,8 @@
   --sage:#77998E;--sage-light:#9ab5aa;--sage-dark:#516860;
   --rose:#AB9790;--rose-light:#c4b0a9;--charcoal:#4D4D4D;--blush:#D7BDB2;
   --cream:#f7f5f2;--cream2:#ede9e4;--cream3:#e0dbd4;
-  --ink:#2a2724;--ink2:#3d3a38;--ink3:#6b6560;--ink4:#a09890;
-  --white:#ffffff;--border:#ddd8d2;--border2:#ccc6bf;
+  --ink:#2a2724;--ink1:#2a2724;--ink2:#3d3a38;--ink3:#6b6560;--ink4:#a09890;
+  --white:#ffffff;--surface:#f7f5f2;--border:#ddd8d2;--border2:#ccc6bf;
   --c1-base:#edf4f1;--c1-mid:#77998E;--c1-deep:#3d5c54;--c1-pale:#f2f8f6;
   --c2-base:#f0eeec;--c2-mid:#516860;--c2-deep:#2e4039;--c2-pale:#f6f4f2;
   --c3-base:#f5f0ee;--c3-mid:#AB9790;--c3-deep:#7a6860;--c3-pale:#faf7f6;
@@ -2257,7 +2257,7 @@ body.dark-mode .pom-mode-btn.active{background:#2e2e2e!important;}
 .pn-icon-err{color:#e53935;font-size:1.1rem;margin-left:auto}
 
 .pn-confirm-btn{margin-top:.85rem;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;padding:9px 22px;border-radius:999px;border:none;background:var(--sage-dark);color:#fff;cursor:pointer;transition:all .15s}
-.pn-confirm-btn:hover{background:var(--sage-mid)}
+.pn-confirm-btn:hover{background:var(--sage-dark)}
 
 .pn-feedback{display:flex;align-items:center;gap:.5rem;margin-top:.85rem;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:700;padding:8px 14px;border-radius:10px}
 .pn-feedback--ok{background:#f0faf0;color:#2e7d32}

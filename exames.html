@@ -449,7 +449,8 @@ function exRenderTopicGrid() {
 }
 
 function exStartTopic(key) {
-  document.getElementById('ex-topic-grid').style.display = 'none';
+  var grid = document.getElementById('ex-topic-grid');
+  if (grid) grid.style.display = 'none';
   if (typeof pnStartTopic === 'function') pnStartTopic(key);
 }
 
