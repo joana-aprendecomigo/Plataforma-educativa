@@ -69,7 +69,7 @@
 ══════════════════════════════════════════ -->
 <div class="mat7-panel active" id="mat7p-fichas">
   <div class="mat7-panel-heading">Gerador de Fichas</div>
-  <div class="mat7-panel-sub">Escolhe os capítulos e subtemas — gera e descarrega uma ficha PDF personalizada</div>
+  <div class="mat7-panel-sub">Escolhe os capítulos e o que incluir — gera e descarrega uma ficha PDF personalizada. <strong>Para professores:</strong> ativa "Soluções" para a versão com respostas.</div>
   <!-- Existing gf panel embedded -->
   <div id="mat7-downloads" class="mat7-dl-panel">
     <div class="gf-row mb-4">
@@ -89,7 +89,7 @@
           <button class="gf-type-btn active" data-type="exercicios" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Exercícios</button>
           <button class="gf-type-btn active" data-type="teste" onclick="gfToggleType(this)"><span class="gf-tick">✓</span> Teste de avaliação</button>
           <button class="gf-type-btn" data-type="minitestes" onclick="gfToggleType(this)"><span class="gf-tick"></span> Minitestes</button>
-          <button class="gf-type-btn" data-type="solucoes" onclick="gfToggleType(this)"><span class="gf-tick"></span> Soluções</button>
+          <button class="gf-type-btn active" data-type="solucoes" onclick="gfToggleType(this)" title="Incluir respostas no final da ficha — útil para a versão do professor" style="border-color:var(--c2-mid);color:var(--c2-deep)"><span class="gf-tick">✓</span> Soluções <span style="font-size:.65rem;background:var(--c2-mid);color:#fff;border-radius:999px;padding:1px 6px;margin-left:3px">Professor</span></button>
         </div>
       </div>
     </div>
