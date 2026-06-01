@@ -8,7 +8,14 @@ function lazyLoad(src, callback) {
   if (existing) { if(callback) callback(); return; }
   var s = document.createElement('script');
   s.src = fullSrc;
-  if(callback) s.onload = callback;
+  if(callback) {
+    s.onload = callback;
+    s.onerror = function() {
+      console.warn('lazyLoad: failed to load ' + fullSrc);
+      // Call callback anyway so the UI doesn't hang
+      callback();
+    };
+  }
   document.head.appendChild(s);
 }
 

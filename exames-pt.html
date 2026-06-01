@@ -898,9 +898,10 @@ function ptStartYear(examKey) {
 }
 
 function _ptYearBack() {
-  document.getElementById('pt-inline-engine').innerHTML = '';
-  document.getElementById('pt-inline-engine').style.display = 'none';
-  document.getElementById('pt-panel-provas').style.display = '';
+  var eng = document.getElementById('pt-inline-engine');
+  var panel = document.getElementById('pt-panel-provas');
+  if (eng) { eng.innerHTML = ''; eng.style.display = 'none'; }
+  if (panel) panel.style.display = '';
 }
 
 function ptViewProva(examKey) {
